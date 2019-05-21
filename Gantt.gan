@@ -1,9 +1,12 @@
-<?xml version="1.0" encoding="UTF-8"?><project name="11 CS ISU" company="" webLink="http://" view-date="2019-05-22" view-index="1" gantt-divider-location="300" resource-divider-location="300" version="2.8.10" locale="en_CA">
+<?xml version="1.0" encoding="UTF-8"?><project name="11 CS ISU" company="" webLink="http://" view-date="2019-05-19" view-index="0" gantt-divider-location="300" resource-divider-location="300" version="2.8.10" locale="en_CA">
     <description><![CDATA[help]]></description>
     <view zooming-state="default:0" id="gantt-chart">
-        <field id="tpd3" name="Name" width="167" order="0"/>
-        <field id="tpd4" name="Begin date" width="65" order="1"/>
-        <field id="tpd5" name="End date" width="64" order="2"/>
+        <field id="tpd3" name="Name" width="158" order="0"/>
+        <field id="tpd4" name="Begin date" width="62" order="1"/>
+        <field id="tpd5" name="End date" width="61" order="2"/>
+        <option id="taskLabelUp" value="name"/>
+        <option id="taskLabelDown" value=""/>
+        <option id="taskLabelLeft" value="resources"/>
     </view>
     <view id="resource-table">
         <field id="0" name="Name" width="210" order="0"/>
@@ -33,41 +36,78 @@
             <taskproperty id="tpd8" name="coordinator" type="default" valuetype="text"/>
             <taskproperty id="tpd9" name="predecessorsr" type="default" valuetype="text"/>
         </taskproperties>
-        <task id="0" name="Build Basic Map" color="#8cb6ce" meeting="false" start="2019-05-23" duration="1" complete="0" thirdDate="2019-05-20" thirdDate-constraint="0" expand="true"/>
-        <task id="3" name="Movement in Map" color="#8cb6ce" meeting="false" start="2019-05-24" duration="2" complete="0" thirdDate="2019-05-20" thirdDate-constraint="0" expand="true">
-            <depend id="67" type="2" difference="0" hardness="Strong"/>
-        </task>
-        <task id="74" name="Collisions In Map" color="#8cb6ce" meeting="false" start="2019-05-24" duration="2" complete="0" thirdDate="2019-05-22" thirdDate-constraint="0" expand="true"/>
-        <task id="67" name="Dynamic Camera" color="#8cb6ce" meeting="false" start="2019-05-26" duration="2" complete="0" thirdDate="2019-05-22" thirdDate-constraint="0" expand="true"/>
-        <task id="71" name="Text Interaction" color="#8cb6ce" meeting="false" start="2019-05-26" duration="2" complete="0" thirdDate="2019-05-22" thirdDate-constraint="0" expand="true"/>
-        <task id="4" name="GameManager Logic" color="#8cb6ce" meeting="false" start="2019-05-23" duration="1" complete="0" thirdDate="2019-05-18" thirdDate-constraint="0" expand="true">
-            <depend id="34" type="1" difference="0" hardness="Strong"/>
-        </task>
-        <task id="34" name="GameScreen Logic" color="#8cb6ce" meeting="false" start="2019-05-23" duration="1" complete="0" thirdDate="2019-05-18" thirdDate-constraint="0" expand="true">
-            <notes><![CDATA[Default Mouse Listeners
+        <task id="132" name="Game Basics" color="#8cb6ce" meeting="false" start="2019-05-23" duration="10" complete="0" thirdDate="2019-05-23" thirdDate-constraint="0" expand="true">
+            <notes><![CDATA[The thingst hat need to be made before any game content can work:
+baisc logic, utility methods, anything to help simplify content creation.
+
+This is where the messiest code goes (hopefully)]]></notes>
+            <task id="110" name="Map" color="#8cb6ce" meeting="false" start="2019-05-23" duration="6" complete="0" thirdDate="2019-05-20" thirdDate-constraint="0" expand="true">
+                <task id="0" name="Build Basic Map" color="#8cb6ce" meeting="false" start="2019-05-23" duration="1" complete="0" thirdDate="2019-05-20" thirdDate-constraint="0" expand="true"/>
+                <task id="3" name="Movement in Map" color="#8cb6ce" meeting="false" start="2019-05-24" duration="2" complete="0" thirdDate="2019-05-20" thirdDate-constraint="0" expand="true">
+                    <depend id="67" type="2" difference="0" hardness="Strong"/>
+                </task>
+                <task id="74" name="Collisions In Map" color="#8cb6ce" meeting="false" start="2019-05-24" duration="2" complete="0" thirdDate="2019-05-22" thirdDate-constraint="0" expand="true"/>
+                <task id="67" name="Dynamic Camera" color="#8cb6ce" meeting="false" start="2019-05-26" duration="2" complete="0" thirdDate="2019-05-22" thirdDate-constraint="0" expand="true"/>
+                <task id="71" name="Text Interaction" color="#8cb6ce" meeting="false" start="2019-05-26" duration="2" complete="0" thirdDate="2019-05-22" thirdDate-constraint="0" expand="true"/>
+                <task id="182" name="Map Screen to Level Screen connection" color="#8cb6ce" meeting="false" start="2019-05-28" duration="1" complete="0" thirdDate="2019-05-23" thirdDate-constraint="0" expand="true">
+                    <notes><![CDATA[Probably based on the GameManager's internal setscreen method]]></notes>
+                </task>
+            </task>
+            <task id="112" name="Internal Utilities" meeting="false" start="2019-05-23" duration="5" complete="0" expand="true">
+                <task id="113" name="GameManager Logic" color="#8cb6ce" meeting="false" start="2019-05-23" duration="1" complete="0" thirdDate="2019-05-18" thirdDate-constraint="0" expand="true">
+                    <depend id="34" type="1" difference="0" hardness="Strong"/>
+                </task>
+                <task id="34" name="GameScreen Logic" color="#8cb6ce" meeting="false" start="2019-05-23" duration="1" complete="0" thirdDate="2019-05-18" thirdDate-constraint="0" expand="true">
+                    <notes><![CDATA[Default Mouse Listeners
 Default Key Listeners
 Hover Method
 (Full) Click Method]]></notes>
-            <depend id="3" type="2" difference="0" hardness="Strong"/>
-            <depend id="48" type="2" difference="2" hardness="Strong"/>
+                    <depend id="3" type="2" difference="0" hardness="Strong"/>
+                    <depend id="48" type="2" difference="2" hardness="Strong"/>
+                </task>
+                <task id="6" name="Progression/Character File I/O" color="#8cb6ce" meeting="false" start="2019-05-24" duration="3" complete="0" thirdDate="2019-05-18" thirdDate-constraint="0" expand="true"/>
+                <task id="45" name="Glass Pane Research" color="#8cb6ce" meeting="false" start="2019-05-25" duration="1" complete="0" thirdDate="2019-05-23" thirdDate-constraint="0" expand="true"/>
+                <task id="86" name="Animation Logic" color="#8cb6ce" meeting="false" start="2019-05-26" duration="2" complete="0" thirdDate="2019-05-22" thirdDate-constraint="0" expand="true"/>
+                <task id="153" name="Audio/Music Logic" color="#8cb6ce" meeting="false" start="2019-05-27" duration="1" complete="0" thirdDate="2019-05-20" thirdDate-constraint="0" expand="true"/>
+                <task id="90" name="Text Logic" color="#8cb6ce" meeting="false" start="2019-05-24" duration="2" complete="0" thirdDate="2019-05-22" thirdDate-constraint="0" expand="true">
+                    <depend id="71" type="2" difference="0" hardness="Strong"/>
+                </task>
+            </task>
+            <task id="114" name="Battle Logic" color="#8cb6ce" meeting="false" start="2019-05-23" duration="10" complete="0" thirdDate="2019-05-20" thirdDate-constraint="0" expand="true">
+                <task id="14" name="Level Screen Outline/Shapes" color="#8cb6ce" meeting="false" start="2019-05-23" duration="2" complete="0" thirdDate="2019-05-21" thirdDate-constraint="0" expand="true"/>
+                <task id="25" name="Entities in Grid" color="#8cb6ce" meeting="false" start="2019-05-25" duration="1" complete="0" thirdDate="2019-05-21" thirdDate-constraint="0" expand="true"/>
+                <task id="48" name="Hover and Click in Battle" color="#8cb6ce" meeting="false" start="2019-05-26" duration="2" complete="0" thirdDate="2019-05-21" thirdDate-constraint="0" expand="true">
+                    <depend id="80" type="2" difference="0" hardness="Strong"/>
+                </task>
+                <task id="80" name="Battle Indicator/Icons" color="#8cb6ce" meeting="false" start="2019-05-28" duration="2" complete="0" thirdDate="2019-05-22" thirdDate-constraint="0" expand="true"/>
+                <task id="78" name="Movement in Grid" color="#8cb6ce" meeting="false" start="2019-05-30" duration="1" complete="0" thirdDate="2019-05-22" thirdDate-constraint="0" expand="true">
+                    <notes><![CDATA[Have fun]]></notes>
+                </task>
+                <task id="109" name="Enemy Intent + Action" color="#8cb6ce" meeting="false" start="2019-05-28" duration="3" complete="0" thirdDate="2019-05-22" thirdDate-constraint="0" expand="true"/>
+                <task id="101" name="Tile Abilities" color="#8cb6ce" meeting="false" start="2019-05-31" duration="2" complete="0" thirdDate="2019-05-22" thirdDate-constraint="0" expand="true"/>
+                <task id="102" name="AOE abilities + hovering" color="#8cb6ce" meeting="false" start="2019-05-31" duration="2" complete="0" thirdDate="2019-05-22" thirdDate-constraint="0" expand="true"/>
+            </task>
         </task>
-        <task id="6" name="Progression/Character File I/O" color="#8cb6ce" meeting="false" start="2019-05-24" duration="3" complete="0" thirdDate="2019-05-18" thirdDate-constraint="0" expand="true"/>
-        <task id="45" name="Glass Pane Research" color="#8cb6ce" meeting="false" start="2019-05-25" duration="2" complete="0" thirdDate="2019-05-23" thirdDate-constraint="0" expand="true"/>
-        <task id="86" name="Animation Logic" color="#8cb6ce" meeting="false" start="2019-05-27" duration="1" complete="0" thirdDate="2019-05-22" thirdDate-constraint="0" expand="true"/>
-        <task id="90" name="Text Logic" color="#8cb6ce" meeting="false" start="2019-05-26" duration="2" complete="0" thirdDate="2019-05-22" thirdDate-constraint="0" expand="true"/>
-        <task id="101" name="Tile Abilities" color="#8cb6ce" meeting="false" start="2019-05-31" duration="2" complete="0" thirdDate="2019-05-22" thirdDate-constraint="0" expand="true"/>
-        <task id="102" name="AOE abilities + hovering" color="#8cb6ce" meeting="false" start="2019-05-31" duration="2" complete="0" thirdDate="2019-05-22" thirdDate-constraint="0" expand="true"/>
-        <task id="103" name="task_103" meeting="false" start="2019-05-22" duration="1" complete="0" expand="true"/>
-        <task id="14" name="Level Screen Outline/Shapes" color="#8cb6ce" meeting="false" start="2019-05-23" duration="2" complete="0" thirdDate="2019-05-21" thirdDate-constraint="0" expand="true"/>
-        <task id="25" name="Entities in Grid" color="#8cb6ce" meeting="false" start="2019-05-25" duration="1" complete="0" thirdDate="2019-05-21" thirdDate-constraint="0" expand="true"/>
-        <task id="48" name="Hover and Click in Battle" color="#8cb6ce" meeting="false" start="2019-05-26" duration="2" complete="0" thirdDate="2019-05-21" thirdDate-constraint="0" expand="true">
-            <depend id="80" type="2" difference="0" hardness="Strong"/>
+        <task id="131" name="Content Creation" color="#8cb6ce" meeting="false" start="2019-06-02" duration="2" complete="0" thirdDate="2019-05-23" thirdDate-constraint="0" expand="false">
+            <notes><![CDATA[This is where encounters, progression, and game design are created/developed.]]></notes>
+            <task id="149" name="Plot Development" color="#8cb6ce" meeting="false" start="2019-06-03" duration="1" complete="0" thirdDate="2019-05-19" thirdDate-constraint="0" expand="true">
+                <notes><![CDATA[The plot (whatever it is) determines what the map features, characters, enemies, and encounters are.]]></notes>
+                <task id="163" name="Generate story/progression board" color="#8cb6ce" meeting="false" start="2019-06-03" duration="1" complete="0" thirdDate="2019-05-26" thirdDate-constraint="0" expand="true"/>
+            </task>
+            <task id="140" name="Map Generation" color="#8cb6ce" meeting="false" start="2019-06-03" duration="1" complete="0" thirdDate="2019-05-21" thirdDate-constraint="0" expand="true">
+                <notes><![CDATA[Creating RHHS, byte by byte]]></notes>
+                <task id="167" name="Create Relevent Rooms" color="#8cb6ce" meeting="false" start="2019-06-03" duration="1" complete="0" thirdDate="2019-05-26" thirdDate-constraint="0" expand="true"/>
+            </task>
+            <task id="142" name="Character Creation" color="#8cb6ce" meeting="false" start="2019-06-02" duration="1" complete="0" thirdDate="2019-05-19" thirdDate-constraint="0" expand="true">
+                <task id="170" name="First Character" color="#8cb6ce" meeting="false" start="2019-06-02" duration="1" complete="0" thirdDate="2019-05-27" thirdDate-constraint="0" expand="true"/>
+            </task>
+            <task id="145" name="Enemy Creation" color="#8cb6ce" meeting="false" start="2019-06-02" duration="1" complete="0" thirdDate="2019-05-19" thirdDate-constraint="0" expand="true">
+                <task id="174" name="Tutorial Enemy" color="#8cb6ce" meeting="false" start="2019-06-02" duration="1" complete="0" thirdDate="2019-05-27" thirdDate-constraint="0" expand="true"/>
+            </task>
+            <task id="147" name="Encounter Creation" color="#8cb6ce" meeting="false" start="2019-06-03" duration="1" complete="0" thirdDate="2019-05-19" thirdDate-constraint="0" expand="true">
+                <task id="178" name="Tutorial Encounter" color="#8cb6ce" meeting="false" start="2019-06-03" duration="1" complete="0" thirdDate="2019-05-27" thirdDate-constraint="0" expand="true"/>
+            </task>
         </task>
-        <task id="80" name="Battle Indicator/Icons" color="#8cb6ce" meeting="false" start="2019-05-28" duration="2" complete="0" thirdDate="2019-05-22" thirdDate-constraint="0" expand="true"/>
-        <task id="78" name="Movement in Grid" color="#8cb6ce" meeting="false" start="2019-05-30" duration="1" complete="0" thirdDate="2019-05-22" thirdDate-constraint="0" expand="true">
-            <notes><![CDATA[Have fun]]></notes>
-        </task>
-        <task id="109" name="Enemy Intent + Action" color="#8cb6ce" meeting="false" start="2019-05-28" duration="3" complete="0" thirdDate="2019-05-22" thirdDate-constraint="0" expand="true"/>
     </tasks>
     <resources>
         <resource id="0" name="Jasmine" function="Default:1" contacts="" phone=""/>
@@ -90,14 +130,15 @@ Hover Method
         <allocation task-id="78" resource-id="2" function="Default:1" responsible="true" load="100.0"/>
         <allocation task-id="80" resource-id="2" function="Default:1" responsible="true" load="100.0"/>
         <allocation task-id="101" resource-id="2" function="Default:1" responsible="true" load="100.0"/>
-        <allocation task-id="4" resource-id="3" function="Default:1" responsible="true" load="50.0"/>
-        <allocation task-id="6" resource-id="3" function="Default:1" responsible="true" load="100.0"/>
+        <allocation task-id="6" resource-id="3" function="Default:1" responsible="true" load="50.0"/>
         <allocation task-id="34" resource-id="3" function="Default:1" responsible="true" load="50.0"/>
         <allocation task-id="45" resource-id="3" function="Default:1" responsible="true" load="10.0"/>
-        <allocation task-id="86" resource-id="3" function="Default:1" responsible="true" load="70.0"/>
-        <allocation task-id="90" resource-id="3" function="Default:1" responsible="true" load="40.0"/>
+        <allocation task-id="90" resource-id="3" function="Default:1" responsible="true" load="50.0"/>
         <allocation task-id="102" resource-id="3" function="Default:1" responsible="true" load="100.0"/>
         <allocation task-id="109" resource-id="3" function="Default:1" responsible="true" load="100.0"/>
+        <allocation task-id="113" resource-id="3" function="Default:1" responsible="true" load="50.0"/>
+        <allocation task-id="86" resource-id="3" function="Default:1" responsible="true" load="50.0"/>
+        <allocation task-id="153" resource-id="3" function="Default:1" responsible="true" load="50.0"/>
     </allocations>
     <vacations/>
     <previous/>
