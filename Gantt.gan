@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?><project name="11 CS ISU" company="" webLink="http://" view-date="2019-05-22" view-index="1" gantt-divider-location="300" resource-divider-location="300" version="2.8.10" locale="en_CA">
+    <description><![CDATA[help]]></description>
+    <view zooming-state="default:0" id="gantt-chart">
+        <field id="tpd3" name="Name" width="167" order="0"/>
+        <field id="tpd4" name="Begin date" width="65" order="1"/>
+        <field id="tpd5" name="End date" width="64" order="2"/>
+    </view>
+    <view id="resource-table">
+        <field id="0" name="Name" width="210" order="0"/>
+        <field id="1" name="Default role" width="86" order="1"/>
+    </view>
+    <!-- -->
+    <calendars>
+        <day-types>
+            <day-type id="0"/>
+            <day-type id="1"/>
+            <default-week id="1" name="default" sun="1" mon="0" tue="0" wed="0" thu="0" fri="0" sat="1"/>
+            <only-show-weekends value="true"/>
+            <overriden-day-types/>
+            <days/>
+        </day-types>
+    </calendars>
+    <tasks empty-milestones="true">
+        <taskproperties>
+            <taskproperty id="tpd0" name="type" type="default" valuetype="icon"/>
+            <taskproperty id="tpd1" name="priority" type="default" valuetype="icon"/>
+            <taskproperty id="tpd2" name="info" type="default" valuetype="icon"/>
+            <taskproperty id="tpd3" name="name" type="default" valuetype="text"/>
+            <taskproperty id="tpd4" name="begindate" type="default" valuetype="date"/>
+            <taskproperty id="tpd5" name="enddate" type="default" valuetype="date"/>
+            <taskproperty id="tpd6" name="duration" type="default" valuetype="int"/>
+            <taskproperty id="tpd7" name="completion" type="default" valuetype="int"/>
+            <taskproperty id="tpd8" name="coordinator" type="default" valuetype="text"/>
+            <taskproperty id="tpd9" name="predecessorsr" type="default" valuetype="text"/>
+        </taskproperties>
+        <task id="0" name="Build Basic Map" color="#8cb6ce" meeting="false" start="2019-05-23" duration="1" complete="0" thirdDate="2019-05-20" thirdDate-constraint="0" expand="true"/>
+        <task id="3" name="Movement in Map" color="#8cb6ce" meeting="false" start="2019-05-24" duration="2" complete="0" thirdDate="2019-05-20" thirdDate-constraint="0" expand="true">
+            <depend id="67" type="2" difference="0" hardness="Strong"/>
+        </task>
+        <task id="74" name="Collisions In Map" color="#8cb6ce" meeting="false" start="2019-05-24" duration="2" complete="0" thirdDate="2019-05-22" thirdDate-constraint="0" expand="true"/>
+        <task id="67" name="Dynamic Camera" color="#8cb6ce" meeting="false" start="2019-05-26" duration="2" complete="0" thirdDate="2019-05-22" thirdDate-constraint="0" expand="true"/>
+        <task id="71" name="Text Interaction" color="#8cb6ce" meeting="false" start="2019-05-26" duration="2" complete="0" thirdDate="2019-05-22" thirdDate-constraint="0" expand="true"/>
+        <task id="4" name="GameManager Logic" color="#8cb6ce" meeting="false" start="2019-05-23" duration="1" complete="0" thirdDate="2019-05-18" thirdDate-constraint="0" expand="true">
+            <depend id="34" type="1" difference="0" hardness="Strong"/>
+        </task>
+        <task id="34" name="GameScreen Logic" color="#8cb6ce" meeting="false" start="2019-05-23" duration="1" complete="0" thirdDate="2019-05-18" thirdDate-constraint="0" expand="true">
+            <notes><![CDATA[Default Mouse Listeners
+Default Key Listeners
+Hover Method
+(Full) Click Method]]></notes>
+            <depend id="3" type="2" difference="0" hardness="Strong"/>
+            <depend id="48" type="2" difference="2" hardness="Strong"/>
+        </task>
+        <task id="6" name="Progression/Character File I/O" color="#8cb6ce" meeting="false" start="2019-05-24" duration="3" complete="0" thirdDate="2019-05-18" thirdDate-constraint="0" expand="true"/>
+        <task id="45" name="Glass Pane Research" color="#8cb6ce" meeting="false" start="2019-05-25" duration="2" complete="0" thirdDate="2019-05-23" thirdDate-constraint="0" expand="true"/>
+        <task id="86" name="Animation Logic" color="#8cb6ce" meeting="false" start="2019-05-27" duration="1" complete="0" thirdDate="2019-05-22" thirdDate-constraint="0" expand="true"/>
+        <task id="90" name="Text Logic" color="#8cb6ce" meeting="false" start="2019-05-26" duration="2" complete="0" thirdDate="2019-05-22" thirdDate-constraint="0" expand="true"/>
+        <task id="101" name="Tile Abilities" color="#8cb6ce" meeting="false" start="2019-05-31" duration="2" complete="0" thirdDate="2019-05-22" thirdDate-constraint="0" expand="true"/>
+        <task id="102" name="AOE abilities + hovering" color="#8cb6ce" meeting="false" start="2019-05-31" duration="2" complete="0" thirdDate="2019-05-22" thirdDate-constraint="0" expand="true"/>
+        <task id="103" name="task_103" meeting="false" start="2019-05-22" duration="1" complete="0" expand="true"/>
+        <task id="14" name="Level Screen Outline/Shapes" color="#8cb6ce" meeting="false" start="2019-05-23" duration="2" complete="0" thirdDate="2019-05-21" thirdDate-constraint="0" expand="true"/>
+        <task id="25" name="Entities in Grid" color="#8cb6ce" meeting="false" start="2019-05-25" duration="1" complete="0" thirdDate="2019-05-21" thirdDate-constraint="0" expand="true"/>
+        <task id="48" name="Hover and Click in Battle" color="#8cb6ce" meeting="false" start="2019-05-26" duration="2" complete="0" thirdDate="2019-05-21" thirdDate-constraint="0" expand="true">
+            <depend id="80" type="2" difference="0" hardness="Strong"/>
+        </task>
+        <task id="80" name="Battle Indicator/Icons" color="#8cb6ce" meeting="false" start="2019-05-28" duration="2" complete="0" thirdDate="2019-05-22" thirdDate-constraint="0" expand="true"/>
+        <task id="78" name="Movement in Grid" color="#8cb6ce" meeting="false" start="2019-05-30" duration="1" complete="0" thirdDate="2019-05-22" thirdDate-constraint="0" expand="true">
+            <notes><![CDATA[Have fun]]></notes>
+        </task>
+        <task id="109" name="Enemy Intent + Action" color="#8cb6ce" meeting="false" start="2019-05-28" duration="3" complete="0" thirdDate="2019-05-22" thirdDate-constraint="0" expand="true"/>
+    </tasks>
+    <resources>
+        <resource id="0" name="Jasmine" function="Default:1" contacts="" phone=""/>
+        <resource id="1" name="Ethan" function="Default:1" contacts="" phone=""/>
+        <resource id="2" name="Kevin" function="Default:1" contacts="" phone=""/>
+        <resource id="3" name="Allen" function="Default:1" contacts="" phone=""/>
+    </resources>
+    <allocations>
+        <allocation task-id="0" resource-id="0" function="Default:1" responsible="true" load="100.0"/>
+        <allocation task-id="3" resource-id="0" function="Default:1" responsible="true" load="50.0"/>
+        <allocation task-id="67" resource-id="0" function="Default:1" responsible="true" load="100.0"/>
+        <allocation task-id="74" resource-id="0" function="Default:1" responsible="true" load="50.0"/>
+        <allocation task-id="0" resource-id="1" function="Default:1" responsible="true" load="100.0"/>
+        <allocation task-id="3" resource-id="1" function="Default:1" responsible="true" load="50.0"/>
+        <allocation task-id="71" resource-id="1" function="Default:1" responsible="true" load="100.0"/>
+        <allocation task-id="74" resource-id="1" function="Default:1" responsible="true" load="50.0"/>
+        <allocation task-id="14" resource-id="2" function="Default:1" responsible="true" load="100.0"/>
+        <allocation task-id="25" resource-id="2" function="Default:1" responsible="true" load="100.0"/>
+        <allocation task-id="48" resource-id="2" function="Default:1" responsible="true" load="100.0"/>
+        <allocation task-id="78" resource-id="2" function="Default:1" responsible="true" load="100.0"/>
+        <allocation task-id="80" resource-id="2" function="Default:1" responsible="true" load="100.0"/>
+        <allocation task-id="101" resource-id="2" function="Default:1" responsible="true" load="100.0"/>
+        <allocation task-id="4" resource-id="3" function="Default:1" responsible="true" load="50.0"/>
+        <allocation task-id="6" resource-id="3" function="Default:1" responsible="true" load="100.0"/>
+        <allocation task-id="34" resource-id="3" function="Default:1" responsible="true" load="50.0"/>
+        <allocation task-id="45" resource-id="3" function="Default:1" responsible="true" load="10.0"/>
+        <allocation task-id="86" resource-id="3" function="Default:1" responsible="true" load="70.0"/>
+        <allocation task-id="90" resource-id="3" function="Default:1" responsible="true" load="40.0"/>
+        <allocation task-id="102" resource-id="3" function="Default:1" responsible="true" load="100.0"/>
+        <allocation task-id="109" resource-id="3" function="Default:1" responsible="true" load="100.0"/>
+    </allocations>
+    <vacations/>
+    <previous/>
+    <roles roleset-name="Default"/>
+    <roles>
+        <role id="1" name=""/>
+    </roles>
+</project>
