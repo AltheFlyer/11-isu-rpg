@@ -5,16 +5,16 @@ import java.awt.event.*;
 /**
  * [GameScreen.java]
  * Abstract class for game screens
- * @version 1.0
+ * @version 1.1
  * @author Allen Liu
  * @since May 22, 2019
  */
-public class GameScreen extends JPanel implements MouseListener, KeyListener, MouseMotionListener, MouseWheelListener {
+abstract public class GameScreen extends JPanel implements MouseListener, KeyListener, MouseMotionListener, MouseWheelListener {
 
     private GameManager game;
 
-    int mouseX, mouseY;
-    int clickX, clickY;
+    private int mouseX, mouseY;
+    private int clickX, clickY;
 
     public GameScreen(GameManager game) {
         this.game = game;
@@ -54,6 +54,42 @@ public class GameScreen extends JPanel implements MouseListener, KeyListener, Mo
      */
     public void setScreen(GameScreen s) {
         game.setScreen(s);
+    }
+
+    /**
+     * [getMouseX]
+     * gets the x position of the mouse
+     * @return int mouseX, the x position of the mouse
+     */
+    public int getMouseX() {
+        return mouseX;
+    }
+
+    /**
+     * [getMouseY]
+     * gets the y position of the mouse
+     * @return int mouseY, the y position of the mouse
+     */
+    public int getMouseY() {
+        return mouseY;
+    }
+
+    /**
+     * [getClickX]
+     * gets the x position of the last mouse press
+     * @return int clickX, the x position of the last mouse press
+     */
+    public int getClickX() {
+        return clickX;
+    }
+
+    /**
+     * [getClickY]
+     * gets the y position of the last mouse press
+     * @return int clickY, the y position of the last mouse press
+     */
+    public int getClickY() {
+        return clickY;
     }
 
     @Override
