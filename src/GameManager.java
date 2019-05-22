@@ -18,6 +18,8 @@ public class GameManager {
 
         //Default window values
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        //Smallest window settings for fullscreen (Allen's PC)
+        window.setSize(1366, 768);
         window.setVisible(true);
     }
 

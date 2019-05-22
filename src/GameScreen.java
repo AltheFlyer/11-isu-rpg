@@ -19,6 +19,9 @@ public class GameScreen extends JPanel implements MouseListener, KeyListener, Mo
     public GameScreen(GameManager game) {
         this.game = game;
 
+        setFocusable(true);
+        requestFocus();
+
         addMouseListener(this);
         addKeyListener(this);
         addMouseMotionListener(this);
