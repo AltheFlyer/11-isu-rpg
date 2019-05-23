@@ -1,6 +1,9 @@
+import javax.sound.sampled.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.File;
+import java.io.IOException;
 
 /**
  * [GameScreen.java]
@@ -9,7 +12,8 @@ import java.awt.event.*;
  * @author Allen Liu
  * @since May 22, 2019
  */
-abstract public class GameScreen extends JPanel implements MouseListener, KeyListener, MouseMotionListener, MouseWheelListener {
+abstract public class GameScreen extends JPanel
+        implements MouseListener, KeyListener, MouseMotionListener, MouseWheelListener {
 
     private GameManager game;
 
@@ -20,7 +24,7 @@ abstract public class GameScreen extends JPanel implements MouseListener, KeyLis
         this.game = game;
 
         setFocusable(true);
-        requestFocus();
+        requestFocusInWindow();
 
         addMouseListener(this);
         addKeyListener(this);
@@ -45,6 +49,25 @@ abstract public class GameScreen extends JPanel implements MouseListener, KeyLis
      */
     public boolean isFullyClicked(Rectangle rect) {
         return rect.contains(mouseX, mouseY) && rect.contains(clickX, clickY);
+    }
+
+    /**
+     * [playSound]
+     * Plays a sound from an audio file
+     * @param path the file path of the audio source
+     */
+    public void playSound(String path) {
+        Clip clip = game.initializeClip(path);
+        clip.start();
+    }
+
+    /**
+     * [setMusic]
+     * Sets the music for the screen, and starts its loop
+     * @param path the file path of the audio source
+     */
+    public void setMusic(String path) {
+        game.setMusic(path);
     }
 
     /**
