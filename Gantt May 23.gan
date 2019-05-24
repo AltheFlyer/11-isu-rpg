@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?><project name="11 CS ISU" company="" webLink="http://" view-date="2019-05-20" view-index="0" gantt-divider-location="300" resource-divider-location="300" version="2.8.10" locale="en_CA">
+<?xml version="1.0" encoding="UTF-8"?><project name="11 CS ISU" company="" webLink="http://" view-date="2019-05-19" view-index="0" gantt-divider-location="300" resource-divider-location="300" version="2.8.10" locale="en_CA">
     <description><![CDATA[help]]></description>
-    <view zooming-state="default:0" id="gantt-chart">
+    <view zooming-state="default:1" id="gantt-chart">
         <field id="tpd3" name="Name" width="154" order="0"/>
         <field id="tpd4" name="Begin date" width="64" order="1"/>
         <field id="tpd5" name="End date" width="63" order="2"/>
@@ -52,12 +52,13 @@ This is where the messiest code goes (hopefully)]]></notes>
                 <task id="182" name="Map Screen to Level Screen connection" color="#8cb6ce" meeting="false" start="2019-05-28" duration="1" complete="0" thirdDate="2019-05-23" thirdDate-constraint="0" expand="true">
                     <notes><![CDATA[Probably based on the GameManager's internal setscreen method]]></notes>
                 </task>
-                <task id="199" name="Map to Map connection" color="#8cb6ce" meeting="false" start="2019-05-28" duration="1" complete="0" expand="true"/>
-                <task id="205" name="Room puzzles" color="#8cb6ce" meeting="false" start="2019-05-29" duration="4" complete="0" expand="true">
+                <task id="199" name="Map to Map connection" color="#8cb6ce" meeting="false" start="2019-05-28" duration="1" complete="0" thirdDate="2019-05-28" thirdDate-constraint="0" expand="true"/>
+                <task id="205" name="Room puzzles" color="#8cb6ce" meeting="false" start="2019-05-29" duration="4" complete="0" thirdDate="2019-05-29" thirdDate-constraint="0" expand="true">
                     <notes><![CDATA[English: text based ineraction
-Math: map laser puzzle based on angles]]></notes>
+Math: map laser puzzle based on angles
+Comp sci: logic gates]]></notes>
                 </task>
-                <task id="209" name="Room puzzles 2" color="#8cb6ce" meeting="false" start="2019-05-29" duration="4" complete="0" expand="true">
+                <task id="209" name="Room puzzles 2" color="#8cb6ce" meeting="false" start="2019-05-29" duration="4" complete="0" thirdDate="2019-05-29" thirdDate-constraint="0" expand="true">
                     <notes><![CDATA[Physics: collision interactions
 Music: rhythm game]]></notes>
                 </task>
@@ -93,7 +94,7 @@ Hover Method
                     <notes><![CDATA[Have fun]]></notes>
                 </task>
                 <task id="109" name="Enemy Intent + Action" color="#8cb6ce" meeting="false" start="2019-05-28" duration="3" complete="0" thirdDate="2019-05-22" thirdDate-constraint="0" expand="true"/>
-                <task id="101" name="Tile Abilities" color="#8cb6ce" meeting="false" start="2019-05-31" duration="2" complete="0" thirdDate="2019-05-22" thirdDate-constraint="0" expand="true"/>
+                <task id="101" name="Tile Abilities" color="#8cb6ce" meeting="false" start="2019-05-31" duration="2" complete="0" thirdDate="2019-05-22" thirdDate-constraint="0" expand="true" cost-manual-value="50.0" cost-calculated="false"/>
                 <task id="102" name="AOE abilities + hovering" color="#8cb6ce" meeting="false" start="2019-05-31" duration="2" complete="0" thirdDate="2019-05-22" thirdDate-constraint="0" expand="true"/>
             </task>
         </task>
@@ -102,7 +103,7 @@ Hover Method
             <task id="149" name="Plot Development" color="#8cb6ce" meeting="false" start="2019-06-02" duration="4" complete="0" thirdDate="2019-05-19" thirdDate-constraint="0" expand="true">
                 <notes><![CDATA[The plot (whatever it is) determines what the map features, characters, enemies, and encounters are.]]></notes>
                 <task id="163" name="Generate story/progression board" color="#8cb6ce" meeting="false" start="2019-06-02" duration="1" complete="0" thirdDate="2019-05-26" thirdDate-constraint="0" expand="true"/>
-                <task id="223" name="Implement plot events" color="#8cb6ce" meeting="false" start="2019-06-05" duration="1" complete="0" expand="true"/>
+                <task id="223" name="Implement plot events" color="#8cb6ce" meeting="false" start="2019-06-05" duration="1" complete="0" thirdDate="2019-06-05" thirdDate-constraint="0" expand="true"/>
             </task>
             <task id="140" name="Map Generation" color="#8cb6ce" meeting="false" start="2019-06-03" duration="2" complete="0" thirdDate="2019-05-21" thirdDate-constraint="0" expand="true">
                 <notes><![CDATA[Creating RHHS, byte by byte]]></notes>
@@ -126,12 +127,12 @@ Creating abilitities for enemies]]></notes>
             <task id="147" name="Encounter Creation" color="#8cb6ce" meeting="false" start="2019-06-03" duration="1" complete="0" thirdDate="2019-05-19" thirdDate-constraint="0" expand="true">
                 <task id="178" name="Tutorial Encounter" color="#8cb6ce" meeting="false" start="2019-06-03" duration="1" complete="0" thirdDate="2019-05-27" thirdDate-constraint="0" expand="true"/>
             </task>
-            <task id="228" name="Character recruitment" color="#8cb6ce" meeting="false" start="2019-06-06" duration="1" complete="0" expand="true">
+            <task id="228" name="Character recruitment" color="#8cb6ce" meeting="false" start="2019-06-06" duration="1" complete="0" thirdDate="2019-06-06" thirdDate-constraint="0" expand="true">
                 <notes><![CDATA[managing party?]]></notes>
             </task>
-            <task id="239" name="Shop and item mechanics" color="#8cb6ce" meeting="false" start="2019-06-07" duration="2" complete="0" expand="true"/>
-            <task id="231" name="Implementing assets" color="#8cb6ce" meeting="false" start="2019-06-09" duration="2" complete="0" expand="true"/>
-            <task id="240" name="Debugging and testing" color="#8cb6ce" meeting="false" start="2019-06-11" duration="3" complete="0" expand="true">
+            <task id="239" name="Shop and item mechanics" color="#8cb6ce" meeting="false" start="2019-06-07" duration="2" complete="0" thirdDate="2019-06-07" thirdDate-constraint="0" expand="true"/>
+            <task id="231" name="Implementing assets" color="#8cb6ce" meeting="false" start="2019-06-09" duration="2" complete="0" thirdDate="2019-06-09" thirdDate-constraint="0" expand="true"/>
+            <task id="240" name="Debugging and testing" color="#8cb6ce" meeting="false" start="2019-06-11" duration="3" complete="0" thirdDate="2019-06-11" thirdDate-constraint="0" expand="true">
                 <notes><![CDATA[clean up stuff]]></notes>
             </task>
             <task id="191" name="Assets" meeting="false" start="2019-06-01" duration="13" complete="0" expand="true">
@@ -151,57 +152,65 @@ Creating abilitities for enemies]]></notes>
         <allocation task-id="3" resource-id="0" function="Default:1" responsible="true" load="50.0"/>
         <allocation task-id="67" resource-id="0" function="Default:1" responsible="true" load="100.0"/>
         <allocation task-id="74" resource-id="0" function="Default:1" responsible="true" load="50.0"/>
-        <allocation task-id="163" resource-id="0" function="Default:1" responsible="true" load="50.0"/>
+        <allocation task-id="163" resource-id="0" function="Default:1" responsible="true" load="25.0"/>
         <allocation task-id="167" resource-id="0" function="Default:1" responsible="true" load="50.0"/>
         <allocation task-id="195" resource-id="0" function="Default:1" responsible="true" load="20.0"/>
         <allocation task-id="197" resource-id="0" function="Default:1" responsible="true" load="20.0"/>
         <allocation task-id="182" resource-id="0" function="Default:1" responsible="true" load="100.0"/>
-        <allocation task-id="209" resource-id="0" function="Default:1" responsible="true" load="100.0"/>
-        <allocation task-id="223" resource-id="0" function="Default:1" responsible="true" load="100.0"/>
-        <allocation task-id="228" resource-id="0" function="Default:1" responsible="true" load="100.0"/>
-        <allocation task-id="231" resource-id="0" function="Default:1" responsible="true" load="100.0"/>
+        <allocation task-id="209" resource-id="0" function="Default:1" responsible="true" load="50.0"/>
+        <allocation task-id="223" resource-id="0" function="Default:1" responsible="true" load="50.0"/>
+        <allocation task-id="228" resource-id="0" function="Default:1" responsible="true" load="25.0"/>
+        <allocation task-id="231" resource-id="0" function="Default:1" responsible="true" load="50.0"/>
+        <allocation task-id="239" resource-id="0" function="Default:1" responsible="true" load="25.0"/>
+        <allocation task-id="240" resource-id="0" function="Default:1" responsible="true" load="50.0"/>
         <allocation task-id="0" resource-id="1" function="Default:1" responsible="true" load="100.0"/>
         <allocation task-id="3" resource-id="1" function="Default:1" responsible="true" load="50.0"/>
         <allocation task-id="71" resource-id="1" function="Default:1" responsible="true" load="100.0"/>
         <allocation task-id="74" resource-id="1" function="Default:1" responsible="true" load="50.0"/>
-        <allocation task-id="163" resource-id="1" function="Default:1" responsible="true" load="50.0"/>
+        <allocation task-id="163" resource-id="1" function="Default:1" responsible="true" load="25.0"/>
         <allocation task-id="167" resource-id="1" function="Default:1" responsible="true" load="50.0"/>
         <allocation task-id="195" resource-id="1" function="Default:1" responsible="true" load="20.0"/>
         <allocation task-id="197" resource-id="1" function="Default:1" responsible="true" load="20.0"/>
         <allocation task-id="199" resource-id="1" function="Default:1" responsible="true" load="100.0"/>
-        <allocation task-id="205" resource-id="1" function="Default:1" responsible="true" load="100.0"/>
-        <allocation task-id="223" resource-id="1" function="Default:1" responsible="true" load="100.0"/>
-        <allocation task-id="228" resource-id="1" function="Default:1" responsible="true" load="100.0"/>
-        <allocation task-id="231" resource-id="1" function="Default:1" responsible="true" load="100.0"/>
+        <allocation task-id="205" resource-id="1" function="Default:1" responsible="true" load="50.0"/>
+        <allocation task-id="223" resource-id="1" function="Default:1" responsible="true" load="50.0"/>
+        <allocation task-id="228" resource-id="1" function="Default:1" responsible="true" load="25.0"/>
+        <allocation task-id="231" resource-id="1" function="Default:1" responsible="true" load="50.0"/>
+        <allocation task-id="239" resource-id="1" function="Default:1" responsible="true" load="25.0"/>
+        <allocation task-id="240" resource-id="1" function="Default:1" responsible="true" load="50.0"/>
         <allocation task-id="14" resource-id="2" function="Default:1" responsible="true" load="100.0"/>
         <allocation task-id="25" resource-id="2" function="Default:1" responsible="true" load="100.0"/>
         <allocation task-id="48" resource-id="2" function="Default:1" responsible="true" load="100.0"/>
         <allocation task-id="78" resource-id="2" function="Default:1" responsible="true" load="100.0"/>
         <allocation task-id="80" resource-id="2" function="Default:1" responsible="true" load="100.0"/>
-        <allocation task-id="101" resource-id="2" function="Default:1" responsible="true" load="100.0"/>
-        <allocation task-id="170" resource-id="2" function="Default:1" responsible="true" load="100.0"/>
-        <allocation task-id="178" resource-id="2" function="Default:1" responsible="true" load="100.0"/>
+        <allocation task-id="101" resource-id="2" function="Default:1" responsible="true" load="50.0"/>
+        <allocation task-id="170" resource-id="2" function="Default:1" responsible="true" load="50.0"/>
+        <allocation task-id="178" resource-id="2" function="Default:1" responsible="true" load="50.0"/>
         <allocation task-id="195" resource-id="2" function="Default:1" responsible="true" load="20.0"/>
         <allocation task-id="197" resource-id="2" function="Default:1" responsible="true" load="20.0"/>
-        <allocation task-id="213" resource-id="2" function="Default:1" responsible="true" load="100.0"/>
-        <allocation task-id="228" resource-id="2" function="Default:1" responsible="true" load="100.0"/>
-        <allocation task-id="231" resource-id="2" function="Default:1" responsible="true" load="100.0"/>
+        <allocation task-id="213" resource-id="2" function="Default:1" responsible="true" load="50.0"/>
+        <allocation task-id="228" resource-id="2" function="Default:1" responsible="true" load="25.0"/>
+        <allocation task-id="231" resource-id="2" function="Default:1" responsible="true" load="50.0"/>
+        <allocation task-id="239" resource-id="2" function="Default:1" responsible="true" load="25.0"/>
+        <allocation task-id="240" resource-id="2" function="Default:1" responsible="true" load="50.0"/>
         <allocation task-id="6" resource-id="3" function="Default:1" responsible="true" load="50.0"/>
         <allocation task-id="34" resource-id="3" function="Default:1" responsible="true" load="50.0"/>
         <allocation task-id="45" resource-id="3" function="Default:1" responsible="true" load="10.0"/>
-        <allocation task-id="90" resource-id="3" function="Default:1" responsible="true" load="50.0"/>
-        <allocation task-id="102" resource-id="3" function="Default:1" responsible="true" load="100.0"/>
+        <allocation task-id="90" resource-id="3" function="Default:1" responsible="true" load="40.0"/>
+        <allocation task-id="102" resource-id="3" function="Default:1" responsible="true" load="50.0"/>
         <allocation task-id="109" resource-id="3" function="Default:1" responsible="true" load="100.0"/>
         <allocation task-id="113" resource-id="3" function="Default:1" responsible="true" load="50.0"/>
         <allocation task-id="86" resource-id="3" function="Default:1" responsible="true" load="50.0"/>
         <allocation task-id="153" resource-id="3" function="Default:1" responsible="true" load="50.0"/>
-        <allocation task-id="174" resource-id="3" function="Default:1" responsible="true" load="100.0"/>
-        <allocation task-id="178" resource-id="3" function="Default:1" responsible="true" load="100.0"/>
+        <allocation task-id="174" resource-id="3" function="Default:1" responsible="true" load="50.0"/>
+        <allocation task-id="178" resource-id="3" function="Default:1" responsible="true" load="50.0"/>
         <allocation task-id="195" resource-id="3" function="Default:1" responsible="true" load="20.0"/>
         <allocation task-id="197" resource-id="3" function="Default:1" responsible="true" load="20.0"/>
-        <allocation task-id="217" resource-id="3" function="Default:1" responsible="true" load="100.0"/>
-        <allocation task-id="228" resource-id="3" function="Default:1" responsible="true" load="100.0"/>
-        <allocation task-id="231" resource-id="3" function="Default:1" responsible="true" load="100.0"/>
+        <allocation task-id="217" resource-id="3" function="Default:1" responsible="true" load="50.0"/>
+        <allocation task-id="228" resource-id="3" function="Default:1" responsible="true" load="25.0"/>
+        <allocation task-id="231" resource-id="3" function="Default:1" responsible="true" load="50.0"/>
+        <allocation task-id="239" resource-id="3" function="Default:1" responsible="true" load="25.0"/>
+        <allocation task-id="240" resource-id="3" function="Default:1" responsible="true" load="50.0"/>
     </allocations>
     <vacations/>
     <previous/>
