@@ -6,7 +6,7 @@ public class PlayerMap {
     PlayerMap() {
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
-                playerArray[i][j] = new PlayerTile(323 + i * 120, 108 + j * 120);
+                playerArray[i][j] = new PlayerTile(323 + j * 120, 108 + i * 120);
             }
         }
     }

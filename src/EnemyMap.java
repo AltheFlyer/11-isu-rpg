@@ -6,7 +6,7 @@ public class EnemyMap {
     EnemyMap() {
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
-                enemyArray[i][j] = new EnemyTile(683+i*120, 108+j*120);
+                enemyArray[i][j] = new EnemyTile(683+j*120, 108+i*120);
             }
         }
     }
