@@ -6,6 +6,7 @@ public class LevelScreen extends GameScreen{
     Player selectedPlayer;
     PlayerMap playerMap;
     Player kevin;
+    Player allen;
     EnemyMap enemyMap;
     Enemy ack;
 
@@ -14,8 +15,12 @@ public class LevelScreen extends GameScreen{
         playerMap = new PlayerMap();
         enemyMap = new EnemyMap();
         kevin = new Player(10,"kevin");
+        allen = new Player(10,"allen");
         ack = new Enemy(10);
+
+        //Add things onto the map
         playerMap.addPlayer(1,1,kevin);
+        playerMap.addPlayer(1,2,allen);
         enemyMap.addEnemy(1,1,ack);
     }
 
@@ -53,9 +58,15 @@ public class LevelScreen extends GameScreen{
         if (isFullyClicked(new Rectangle(323, 468, 360, 100))) {
             selectedPlayer = playerMap.findPlayer(kevin);
         }
-        if (isFullyClicked(new Rectangle(323, 588, 360, 100))) {
+
+        if (isFullyClicked(new Rectangle(323, 568, 360, 100))) {
+            selectedPlayer = playerMap.findPlayer(allen);
+        }
+
+        if (isFullyClicked(new Rectangle(323, 668, 360, 100))) {
             selectedPlayer = null;
         }
+        //Use an ability here
         if (selectedPlayer != null && isFullyClicked(new Rectangle(10, 40, 60, 15))) {
             System.out.println("bam!");
             enemyMap.target(1,1,3,1);
@@ -67,6 +78,20 @@ public class LevelScreen extends GameScreen{
         playerMap.draw(g);
         enemyMap.draw(g);
         //Profile of person 1
+        if (isMouseOver(new Rectangle(323, 568, 360, 100))) {
+            g.setColor(Color.GREEN);
+            g.fillRect(323, 568, 360, 100);
+            g.setColor(Color.BLACK);
+            g.drawRect(323, 568, 360, 100);
+        } else {
+            //Profile of player should be here!
+            g.setColor(Color.RED);
+            g.fillRect(323, 568, 360, 100);
+            g.setColor(Color.BLACK);
+            g.drawRect(323, 568, 360, 100);
+            //(Separator) look above
+        }
+        // profile of person 2
         if (isMouseOver(new Rectangle(323, 468, 360, 100))) {
             g.setColor(Color.GREEN);
             g.fillRect(323, 468, 360, 100);
