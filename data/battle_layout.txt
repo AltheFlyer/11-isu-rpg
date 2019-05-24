@@ -1,0 +1,3 @@
+* a *
+* b *
+* c_c_c_equals_c_cubed *
