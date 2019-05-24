@@ -10,10 +10,13 @@ public class Enemy extends Entity{
         g.fillRect(0,0,120,120);
     }
 
-    public void draw(int x, int y, Graphics g){
+    public void draw(int x, int y, Graphics g, boolean indicated){
         g.setColor(Color.ORANGE);
         g.fillRect(x,y,120,120);
         g.setColor(Color.BLACK);
+        if (indicated){
+            g.setColor(Color.GRAY);
+        }
         g.drawRect(x, y, 120, 120);
     }
 }

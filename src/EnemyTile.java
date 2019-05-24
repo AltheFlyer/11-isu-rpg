@@ -3,7 +3,7 @@ import java.awt.*;
 public class EnemyTile extends Tile{
     private Enemy enemy;
 
-    EnemyTile(int x, int y){
+    EnemyTile(int x, int y, int xTile, int yTile){
         super(x,y);
     }
 
@@ -21,9 +21,12 @@ public class EnemyTile extends Tile{
             g.setColor(Color.RED);
             g.fillRect(getX(), getY(), 120, 120);
             g.setColor(Color.BLACK);
+            if (getIndication()){
+                g.setColor(Color.GRAY);
+            }
             g.drawRect(getX(), getY(), 120, 120);
         } else {
-            enemy.draw(getX(), getY(),g);
+            enemy.draw(getX(), getY(),g, getIndication());
         }
     }
 

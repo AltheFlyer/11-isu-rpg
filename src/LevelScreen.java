@@ -12,47 +12,33 @@ public class LevelScreen extends GameScreen{
     Enemy ack;
 
     SingleAbility ability1;
+    SingleAbility heal;
 
     LevelScreen(GameManager game){
         super(game);
-        ability1 = new SingleAbility("basic",3,6,1,2);
+        ability1 = new SingleAbility("basic",6,0,1,2);
+        heal = new SingleAbility("heal",0,3,1,-2.0);
         playerMap = new PlayerMap();
         enemyMap = new EnemyMap();
         kevin = new Player(10,"kevin",ability1);
-        allen = new Player(10,"allen",ability1);
+        allen = new Player(10,"allen",heal);
         ack = new Enemy(10);
 
 
         //Add things onto the map
         playerMap.addPlayer(1,1,kevin);
-        playerMap.addPlayer(1,2,allen);
+        playerMap.addPlayer(2,1,allen);
         enemyMap.addEnemy(1,1,ack);
     }
 
     @Override
     public void keyPressed(KeyEvent e) {
-        if(e.getKeyChar() == 'a' ){    //Good time to use a Switch statement
-            System.out.println("left");
-            attack();
-            System.out.println(kevin.getHealth());
-
-        } else if(e.getKeyChar() == 's' ){
+        if(e.getKeyChar() == 's' ){
             System.out.println("down");
             playerMap.addPlayer(1,1,kevin);
             kevin.setHealth(10);
             enemyMap.addEnemy(1,1,ack);
             ack.setHealth(10);
-
-        } else if(e.getKeyChar() == 'd' ){
-            System.out.println("right");
-            selectedPlayer = playerMap.findPlayer(kevin); /////////////////////////////////////////
-
-        } else if(e.getKeyChar() == 'w' ){
-            System.out.println("up");
-            selectedPlayer = playerMap.findPlayer(kevin); /////////////////////////////////////////
-
-        } else if(e.getKeyChar() == 'x' ){
-
         }
     }
 
@@ -62,25 +48,39 @@ public class LevelScreen extends GameScreen{
 
         if (isFullyClicked(new Rectangle(323, 468, 360, 80))) {
             selectedPlayer = playerMap.findPlayer(kevin);
+            selectedAbility = null;
+            enemyMap.unIndicateAll();
+            playerMap.unIndicateAll();
         }
 
         if (isFullyClicked(new Rectangle(323, 548, 360, 80))) {
             selectedPlayer = playerMap.findPlayer(allen);
+            selectedAbility = null;
+            enemyMap.unIndicateAll();
+            playerMap.unIndicateAll();
         }
 
         if (isFullyClicked(new Rectangle(323, 628, 360, 80))) {
             selectedPlayer = null;
+            selectedAbility = null;
+            enemyMap.unIndicateAll();
+            playerMap.unIndicateAll();
         }
+
         //Use an ability here
         if (selectedPlayer != null && isFullyClicked(new Rectangle(10, 40, 60, 15))) {
             selectedAbility = playerMap.findPlayer(selectedPlayer).getAbility1();
         }
 
-        //CLEAN UP!!!!!
-        if (selectedAbility != null && isFullyClicked(new Rectangle(803, 228, 120, 120))) {
-            ability1.act(enemyMap,1,1);
-            System.out.println("bam!");
-            selectedAbility = null;
+        //Action attack!
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                if (selectedPlayer != null && selectedAbility != null && isFullyClicked(new Rectangle(686 + 121 * j, 108 + 121 * i, 120, 120))) {
+                    actionEnemy(j,i);
+                } else if (selectedPlayer != null && selectedAbility != null && isFullyClicked(new Rectangle(323 + 121 * j, 108 + 121 * i, 120, 120))) {
+                    actionPlayer(j,i);
+                }
+            }
         }
     }
 
@@ -89,16 +89,40 @@ public class LevelScreen extends GameScreen{
         playerMap.draw(g);
         enemyMap.draw(g);
         drawPlayerProfiles(g);
-        if (selectedAbility != null){
-            if (isMouseOver(new Rectangle(803, 228, 120, 120))) {
-                g.setColor(Color.GREEN);
-                g.drawRect(803, 228, 120, 120);
+
+
+        if (selectedAbility != null && selectedPlayer != null){
+            //Calculate Range of Ability!
+            int rangeAhead = playerMap.findPlayerX(selectedPlayer) + selectedAbility.getXRange();
+            int rangeBehind = playerMap.findPlayerX(selectedPlayer) - selectedAbility.getXRange();
+            int rangeDown = playerMap.findPlayerY(selectedPlayer) + selectedAbility.getYRange();
+            int rangeUp = playerMap.findPlayerY(selectedPlayer) - selectedAbility.getYRange();
+
+            //Create Indications for ability
+            for (int i = rangeUp; i <= rangeDown; i++) {
+                for (int j = rangeBehind; j <= rangeAhead; j++) {
+                    if (enemyMap.tileExists(i,j-3)){
+                        enemyMap.indicate(j-3,i);
+                    }
+                }
             }
+
+            for (int i = rangeUp; i <= rangeDown; i++) {
+                for (int j = rangeBehind; j <= rangeAhead; j++) {
+                    if (playerMap.tileExists(i, j)) {
+                        playerMap.indicate(j, i);
+                    }
+                }
+            }
+
+            //Draw hover if you hover a spot you can attack
+            drawHoverAttack(g);
         }
+
         //Profile of person 1
         if (selectedPlayer != null) {
-            selectedPlayer.drawAbilities(g, selectedAbility == ability1);
-            selectedPlayer = playerMap.findPlayer(selectedPlayer);
+            selectedPlayer.drawAbilities(g, selectedAbility == selectedPlayer.getAbility1());
+            //selectedPlayer = playerMap.findPlayer(selectedPlayer);
             //Ability selection
             if (isMouseOver(new Rectangle(10, 40, 60, 15))) {
                 g.setColor(Color.GREEN);
@@ -107,69 +131,110 @@ public class LevelScreen extends GameScreen{
                 g.drawRect(10, 40, 60, 15);
             }
         }
+
         repaint();
     }
 
-    public void attack(){
-        playerMap.target(1,1,1,0);
-        System.out.println("attacked!");
+    public void actionEnemy(int j, int i) {
+        if (enemyMap.getIndication(j, i) && !enemyMap.isEmpty(j, i)) {
+            ability1.actEnemy(enemyMap, j, i);
+            System.out.println("bam!");
+            selectedAbility = null;
+            enemyMap.unIndicateAll();
+            playerMap.unIndicateAll();
+        }
     }
 
+    public void actionPlayer(int j, int i) {
+        if (playerMap.getIndication(j, i) && !playerMap.isEmpty(j, i)) {
+            selectedAbility.actPlayer(playerMap, j, i);
+            System.out.println("bam?");
+            selectedAbility = null;
+            System.out.println(selectedPlayer.getHealth());
+            enemyMap.unIndicateAll();
+            playerMap.unIndicateAll();
+        }
+    }
+
+
+    public void drawHoverAttack(Graphics g){
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                if (isMouseOver(new Rectangle(323 + 121 * j, 108 + 121 * i, 120, 120))) {
+                    if (playerMap.getIndication(j, i)) {
+                        g.setColor(Color.GREEN);
+                        g.drawRect(323 + 121 * j, 108 + 121 * i, 120, 120);
+                    }
+                }
+            }
+        }
+
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                if (isMouseOver(new Rectangle(686+121*j, 108+121*i, 120, 120))) {
+                    if (enemyMap.getIndication(j,i)) {
+                        g.setColor(Color.GREEN);
+                        g.drawRect(686 + 121 * j, 108 + 121 * i, 120, 120);
+                    }
+                }
+            }
+        }
+    }
     public void drawPlayerProfiles(Graphics g){
         // profile of person 1
-        if (isMouseOver(new Rectangle(323, 468, 360, 80))) {
+        if (isMouseOver(new Rectangle(323, 471, 363, 80))) {
             g.setColor(Color.GREEN);
-            g.fillRect(323, 468, 360, 80);
+            g.fillRect(323, 471, 363, 80);
             g.setColor(Color.BLACK);
-            g.drawRect(323, 468, 360, 80);
+            g.drawRect(323, 471, 363, 80);
         } else {
             //Profile of player should be here!
             g.setColor(Color.RED);
-            g.fillRect(323, 468, 360, 80);
+            g.fillRect(323, 471, 363, 80);
             g.setColor(Color.BLACK);
-            g.drawRect(323, 468, 360, 80);
+            g.drawRect(323, 471, 363, 80);
             //(Separator) look above
         }
         //Profile of player 2
-        if (isMouseOver(new Rectangle(323, 548, 360, 80))) {
+        if (isMouseOver(new Rectangle(323, 551, 363, 80))) {
             g.setColor(Color.GREEN);
-            g.fillRect(323, 548, 360, 80);
+            g.fillRect(323, 551, 363, 80);
             g.setColor(Color.BLACK);
-            g.drawRect(323, 548, 360, 80);
+            g.drawRect(323, 551, 363, 80);
         } else {
             //Profile of player should be here!
             g.setColor(Color.RED);
-            g.fillRect(323, 548, 360, 80);
+            g.fillRect(323, 551, 363, 80);
             g.setColor(Color.BLACK);
-            g.drawRect(323, 548, 360, 80);
+            g.drawRect(323, 551, 363, 80);
             //(Separator) look above
         }
         //profile of player 3
-        if (isMouseOver(new Rectangle(323, 628, 360, 80))) {
+        if (isMouseOver(new Rectangle(323, 631, 363, 80))) {
             g.setColor(Color.GREEN);
-            g.fillRect(323, 628, 360, 80);
+            g.fillRect(323, 631, 363, 80);
             g.setColor(Color.BLACK);
-            g.drawRect(323, 628, 360, 80);
+            g.drawRect(323, 631, 363, 80);
         } else {
             //Profile of player should be here!
             g.setColor(Color.RED);
-            g.fillRect(323, 628, 360, 80);
+            g.fillRect(323, 631, 363, 80);
             g.setColor(Color.BLACK);
-            g.drawRect(323, 628, 360, 80);
+            g.drawRect(323, 631, 363, 80);
             //(Separator) look above
         }
         //profile of player 3
-        if (isMouseOver(new Rectangle(323, 708, 360, 30))) {
+        if (isMouseOver(new Rectangle(323, 711, 363, 30))) {
             g.setColor(Color.GREEN);
-            g.fillRect(323, 708, 360, 80);
+            g.fillRect(323, 711, 363, 80);
             g.setColor(Color.BLACK);
-            g.drawRect(323, 708, 360, 80);
+            g.drawRect(323, 711, 363, 80);
         } else {
             //Profile of player should be here!
             g.setColor(Color.RED);
-            g.fillRect(323, 708, 360, 80);
+            g.fillRect(323, 711, 363, 80);
             g.setColor(Color.BLACK);
-            g.drawRect(323, 708, 360, 80);
+            g.drawRect(323, 711, 363, 80);
             //(Separator) look above
         }
     }

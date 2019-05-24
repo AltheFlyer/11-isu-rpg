@@ -15,14 +15,19 @@ abstract public class Ability {
         this.yRange = yRange;
         this.status = status;
         this.damage = damage;
+
     }
 
     public void indicate() {
 
     }
 
-    public void act(EnemyMap enemyMap, int x, int y) {
-        enemyMap.target(x,y,damage,status);
+    public void actEnemy(EnemyMap enemyMap, int x, int y) {
+        enemyMap.target(y,x,damage,status);
+    }
+
+    public void actPlayer(PlayerMap playerMap, int x, int y) {
+        playerMap.target(y,x,damage,status);
     }
 
     public int getXRange() {

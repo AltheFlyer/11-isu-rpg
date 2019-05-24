@@ -6,7 +6,7 @@ public class EnemyMap {
     EnemyMap() {
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
-                enemyArray[i][j] = new EnemyTile(683+j*120, 108+i*120);
+                enemyArray[i][j] = new EnemyTile(686+j*121, 108+i*121, j, i);
             }
         }
     }
@@ -30,9 +30,41 @@ public class EnemyMap {
     }
 
     public boolean tileExists(int i, int j) {
-        if (i < 3 && i >= 0 && j < 3 && j >= 0){
+        if (i < 3 && i >= 0 && j < 3 && j >= 0) {
             return true;
         }
         return false;
+    }
+
+    public void indicate(int x, int y){
+        enemyArray[y][x].indicate();
+    }
+
+    public void unIndicate(int x, int y){
+        enemyArray[y][x].unIndicate();
+    }
+
+    public void indicateAll(){
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++){
+                enemyArray[i][j].indicate();
+            }
+        }
+    }
+
+    public void unIndicateAll(){
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++){
+                enemyArray[i][j].unIndicate();
+            }
+        }
+    }
+
+    public boolean getIndication(int x, int y){
+        return enemyArray[y][x].getIndication();
+    }
+
+    public boolean isEmpty(int x, int y){
+        return enemyArray[y][x].isEmpty();
     }
 }
