@@ -1,5 +1,6 @@
 import java.awt.*;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
 
 public class LevelScreen extends GameScreen{
     Player selectedPlayer;
@@ -39,19 +40,56 @@ public class LevelScreen extends GameScreen{
         } else if(e.getKeyChar() == 'w' ){
             System.out.println("up");
             selectedPlayer = playerMap.findPlayer(kevin); /////////////////////////////////////////
-            
+
         } else if(e.getKeyChar() == 'x' ){
-            System.out.println("bam!");
-            enemyMap.target(1,1,5,1);
+
         }
     }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+        super.mouseReleased(e);
+
+        if (isFullyClicked(new Rectangle(323, 468, 360, 100))) {
+            selectedPlayer = playerMap.findPlayer(kevin);
+        }
+        if (isFullyClicked(new Rectangle(323, 588, 360, 100))) {
+            selectedPlayer = null;
+        }
+        if (selectedPlayer != null && isFullyClicked(new Rectangle(10, 40, 60, 15))) {
+            System.out.println("bam!");
+            enemyMap.target(1,1,3,1);
+        }
+    }
+
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         playerMap.draw(g);
         enemyMap.draw(g);
+        //Profile of person 1
+        if (isMouseOver(new Rectangle(323, 468, 360, 100))) {
+            g.setColor(Color.GREEN);
+            g.fillRect(323, 468, 360, 100);
+            g.setColor(Color.BLACK);
+            g.drawRect(323, 468, 360, 100);
+        } else {
+            //Profile of player should be here!
+            g.setColor(Color.RED);
+            g.fillRect(323, 468, 360, 100);
+            g.setColor(Color.BLACK);
+            g.drawRect(323, 468, 360, 100);
+            //(Separator) look above
+        }
         if (selectedPlayer != null) {
             selectedPlayer.drawAbilities(g);
             selectedPlayer = playerMap.findPlayer(selectedPlayer);
+            //Ability selection
+            if (isMouseOver(new Rectangle(10, 40, 60, 15))) {
+                g.setColor(Color.GREEN);
+                g.fillRect(10, 40, 60, 15);
+                g.setColor(Color.BLACK);
+                g.drawRect(10, 40, 60, 15);
+            }
         }
         repaint();
     }

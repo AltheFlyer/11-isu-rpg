@@ -7,7 +7,10 @@ public class Player extends Entity{
 
     public void drawAbilities(Graphics g){
         g.setColor(Color.GRAY);
-        g.fillRect(0,0,120,120);
+        g.fillRect(0,0,323,768);
+        g.setColor(Color.BLACK);
+        g.drawRect(0,0,323,768);
+        g.drawString("ATTACK", 10, 50);
     }
 
     public void draw(int x, int y, Graphics g){
