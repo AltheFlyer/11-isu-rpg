@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><project name="11 CS ISU" company="" webLink="http://" view-date="2019-05-19" view-index="0" gantt-divider-location="300" resource-divider-location="300" version="2.8.10" locale="en_CA">
+<?xml version="1.0" encoding="UTF-8"?><project name="11 CS ISU" company="" webLink="http://" view-date="2019-05-21" view-index="0" gantt-divider-location="300" resource-divider-location="300" version="2.8.10" locale="en_CA">
     <description><![CDATA[help]]></description>
     <view zooming-state="default:1" id="gantt-chart">
         <field id="tpd3" name="Name" width="154" order="0"/>
@@ -62,6 +62,7 @@ Comp sci: logic gates]]></notes>
                     <notes><![CDATA[Physics: collision interactions
 Music: rhythm game]]></notes>
                 </task>
+                <task id="245" name="Map to Level Connections Formed" color="#8cb6ce" meeting="true" start="2019-05-29" duration="0" complete="0" thirdDate="2019-05-20" thirdDate-constraint="0" expand="true"/>
             </task>
             <task id="112" name="Internal Utilities" meeting="false" start="2019-05-23" duration="5" complete="0" expand="true">
                 <task id="113" name="GameManager Logic" color="#8cb6ce" meeting="false" start="2019-05-23" duration="1" complete="0" thirdDate="2019-05-18" thirdDate-constraint="0" expand="true">
@@ -82,6 +83,7 @@ Hover Method
                 <task id="90" name="Text Logic" color="#8cb6ce" meeting="false" start="2019-05-24" duration="2" complete="0" thirdDate="2019-05-22" thirdDate-constraint="0" expand="true">
                     <depend id="71" type="2" difference="0" hardness="Strong"/>
                 </task>
+                <task id="247" name="V1 Internal Logic Finished" color="#8cb6ce" meeting="true" start="2019-05-28" duration="0" complete="0" thirdDate="2019-05-21" thirdDate-constraint="0" expand="true"/>
             </task>
             <task id="114" name="Battle Logic" color="#8cb6ce" meeting="false" start="2019-05-23" duration="10" complete="0" thirdDate="2019-05-20" thirdDate-constraint="0" expand="true">
                 <task id="14" name="Level Screen Outline/Shapes" color="#8cb6ce" meeting="false" start="2019-05-23" duration="2" complete="0" thirdDate="2019-05-21" thirdDate-constraint="0" expand="true"/>
@@ -96,6 +98,7 @@ Hover Method
                 <task id="109" name="Enemy Intent + Action" color="#8cb6ce" meeting="false" start="2019-05-28" duration="3" complete="0" thirdDate="2019-05-22" thirdDate-constraint="0" expand="true"/>
                 <task id="101" name="Tile Abilities" color="#8cb6ce" meeting="false" start="2019-05-31" duration="2" complete="0" thirdDate="2019-05-22" thirdDate-constraint="0" expand="true" cost-manual-value="50.0" cost-calculated="false"/>
                 <task id="102" name="AOE abilities + hovering" color="#8cb6ce" meeting="false" start="2019-05-31" duration="2" complete="0" thirdDate="2019-05-22" thirdDate-constraint="0" expand="true"/>
+                <task id="250" name="Battle Framework Complete" color="#8cb6ce" meeting="true" start="2019-06-02" duration="0" complete="0" thirdDate="2019-05-24" thirdDate-constraint="0" expand="true"/>
             </task>
         </task>
         <task id="131" name="Content Creation" color="#8cb6ce" meeting="false" start="2019-06-01" duration="13" complete="0" thirdDate="2019-05-23" thirdDate-constraint="0" expand="true">
@@ -127,6 +130,8 @@ Creating abilitities for enemies]]></notes>
             <task id="147" name="Encounter Creation" color="#8cb6ce" meeting="false" start="2019-06-03" duration="1" complete="0" thirdDate="2019-05-19" thirdDate-constraint="0" expand="true">
                 <task id="178" name="Tutorial Encounter" color="#8cb6ce" meeting="false" start="2019-06-03" duration="1" complete="0" thirdDate="2019-05-27" thirdDate-constraint="0" expand="true"/>
             </task>
+            <task id="252" name="First Full Level Complete!" color="#8cb6ce" meeting="true" start="2019-06-04" duration="0" complete="0" thirdDate="2019-05-29" thirdDate-constraint="0" expand="true"/>
+            <task id="256" name="1 Day of Encounters Complete!" color="#8cb6ce" meeting="true" start="2019-06-06" duration="0" complete="0" thirdDate="2019-05-31" thirdDate-constraint="0" expand="true"/>
             <task id="228" name="Character recruitment" color="#8cb6ce" meeting="false" start="2019-06-06" duration="1" complete="0" thirdDate="2019-06-06" thirdDate-constraint="0" expand="true">
                 <notes><![CDATA[managing party?]]></notes>
             </task>
