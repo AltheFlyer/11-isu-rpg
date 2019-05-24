@@ -7,6 +7,10 @@ abstract public class Entity {
         this.name = name;
     }
 
+    Entity(double health){
+        this.health = health;
+    }
+
     public String getName(){
         return name;
     }
