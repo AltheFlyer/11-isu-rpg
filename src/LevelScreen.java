@@ -4,19 +4,24 @@ import java.awt.event.MouseEvent;
 
 public class LevelScreen extends GameScreen{
     Player selectedPlayer;
+    Ability selectedAbility;
     PlayerMap playerMap;
     Player kevin;
     Player allen;
     EnemyMap enemyMap;
     Enemy ack;
 
+    SingleAbility ability1;
+
     LevelScreen(GameManager game){
         super(game);
+        ability1 = new SingleAbility("basic",3,6,1,2);
         playerMap = new PlayerMap();
         enemyMap = new EnemyMap();
-        kevin = new Player(10,"kevin");
-        allen = new Player(10,"allen");
+        kevin = new Player(10,"kevin",ability1);
+        allen = new Player(10,"allen",ability1);
         ack = new Enemy(10);
+
 
         //Add things onto the map
         playerMap.addPlayer(1,1,kevin);
@@ -55,21 +60,27 @@ public class LevelScreen extends GameScreen{
     public void mouseReleased(MouseEvent e) {
         super.mouseReleased(e);
 
-        if (isFullyClicked(new Rectangle(323, 468, 360, 100))) {
+        if (isFullyClicked(new Rectangle(323, 468, 360, 80))) {
             selectedPlayer = playerMap.findPlayer(kevin);
         }
 
-        if (isFullyClicked(new Rectangle(323, 568, 360, 100))) {
+        if (isFullyClicked(new Rectangle(323, 548, 360, 80))) {
             selectedPlayer = playerMap.findPlayer(allen);
         }
 
-        if (isFullyClicked(new Rectangle(323, 668, 360, 100))) {
+        if (isFullyClicked(new Rectangle(323, 628, 360, 80))) {
             selectedPlayer = null;
         }
         //Use an ability here
         if (selectedPlayer != null && isFullyClicked(new Rectangle(10, 40, 60, 15))) {
+            selectedAbility = playerMap.findPlayer(selectedPlayer).getAbility1();
+        }
+
+        //CLEAN UP!!!!!
+        if (selectedAbility != null && isFullyClicked(new Rectangle(803, 228, 120, 120))) {
+            ability1.act(enemyMap,1,1);
             System.out.println("bam!");
-            enemyMap.target(1,1,3,1);
+            selectedAbility = null;
         }
     }
 
@@ -77,36 +88,16 @@ public class LevelScreen extends GameScreen{
         super.paintComponent(g);
         playerMap.draw(g);
         enemyMap.draw(g);
+        drawPlayerProfiles(g);
+        if (selectedAbility != null){
+            if (isMouseOver(new Rectangle(803, 228, 120, 120))) {
+                g.setColor(Color.GREEN);
+                g.drawRect(803, 228, 120, 120);
+            }
+        }
         //Profile of person 1
-        if (isMouseOver(new Rectangle(323, 568, 360, 100))) {
-            g.setColor(Color.GREEN);
-            g.fillRect(323, 568, 360, 100);
-            g.setColor(Color.BLACK);
-            g.drawRect(323, 568, 360, 100);
-        } else {
-            //Profile of player should be here!
-            g.setColor(Color.RED);
-            g.fillRect(323, 568, 360, 100);
-            g.setColor(Color.BLACK);
-            g.drawRect(323, 568, 360, 100);
-            //(Separator) look above
-        }
-        // profile of person 2
-        if (isMouseOver(new Rectangle(323, 468, 360, 100))) {
-            g.setColor(Color.GREEN);
-            g.fillRect(323, 468, 360, 100);
-            g.setColor(Color.BLACK);
-            g.drawRect(323, 468, 360, 100);
-        } else {
-            //Profile of player should be here!
-            g.setColor(Color.RED);
-            g.fillRect(323, 468, 360, 100);
-            g.setColor(Color.BLACK);
-            g.drawRect(323, 468, 360, 100);
-            //(Separator) look above
-        }
         if (selectedPlayer != null) {
-            selectedPlayer.drawAbilities(g);
+            selectedPlayer.drawAbilities(g, selectedAbility == ability1);
             selectedPlayer = playerMap.findPlayer(selectedPlayer);
             //Ability selection
             if (isMouseOver(new Rectangle(10, 40, 60, 15))) {
@@ -122,5 +113,64 @@ public class LevelScreen extends GameScreen{
     public void attack(){
         playerMap.target(1,1,1,0);
         System.out.println("attacked!");
+    }
+
+    public void drawPlayerProfiles(Graphics g){
+        // profile of person 1
+        if (isMouseOver(new Rectangle(323, 468, 360, 80))) {
+            g.setColor(Color.GREEN);
+            g.fillRect(323, 468, 360, 80);
+            g.setColor(Color.BLACK);
+            g.drawRect(323, 468, 360, 80);
+        } else {
+            //Profile of player should be here!
+            g.setColor(Color.RED);
+            g.fillRect(323, 468, 360, 80);
+            g.setColor(Color.BLACK);
+            g.drawRect(323, 468, 360, 80);
+            //(Separator) look above
+        }
+        //Profile of player 2
+        if (isMouseOver(new Rectangle(323, 548, 360, 80))) {
+            g.setColor(Color.GREEN);
+            g.fillRect(323, 548, 360, 80);
+            g.setColor(Color.BLACK);
+            g.drawRect(323, 548, 360, 80);
+        } else {
+            //Profile of player should be here!
+            g.setColor(Color.RED);
+            g.fillRect(323, 548, 360, 80);
+            g.setColor(Color.BLACK);
+            g.drawRect(323, 548, 360, 80);
+            //(Separator) look above
+        }
+        //profile of player 3
+        if (isMouseOver(new Rectangle(323, 628, 360, 80))) {
+            g.setColor(Color.GREEN);
+            g.fillRect(323, 628, 360, 80);
+            g.setColor(Color.BLACK);
+            g.drawRect(323, 628, 360, 80);
+        } else {
+            //Profile of player should be here!
+            g.setColor(Color.RED);
+            g.fillRect(323, 628, 360, 80);
+            g.setColor(Color.BLACK);
+            g.drawRect(323, 628, 360, 80);
+            //(Separator) look above
+        }
+        //profile of player 3
+        if (isMouseOver(new Rectangle(323, 708, 360, 30))) {
+            g.setColor(Color.GREEN);
+            g.fillRect(323, 708, 360, 80);
+            g.setColor(Color.BLACK);
+            g.drawRect(323, 708, 360, 80);
+        } else {
+            //Profile of player should be here!
+            g.setColor(Color.RED);
+            g.fillRect(323, 708, 360, 80);
+            g.setColor(Color.BLACK);
+            g.drawRect(323, 708, 360, 80);
+            //(Separator) look above
+        }
     }
 }

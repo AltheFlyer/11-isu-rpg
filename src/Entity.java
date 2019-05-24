@@ -2,7 +2,10 @@ abstract public class Entity {
     private double health;
     private String name;
     private double energy;
-    Entity(double health, String name) {
+    public Ability ability1;
+
+    Entity(double health, String name, Ability ability1) {
+        this.ability1 = ability1;
         this.health = health;
         this.name = name;
     }

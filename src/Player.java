@@ -1,11 +1,15 @@
 import java.awt.*;
 
 public class Player extends Entity{
-    Player(double health, String name){
-        super(health,name);
+    Player(double health, String name, Ability ability1){
+        super(health,name,ability1);
     }
 
-    public void drawAbilities(Graphics g){
+    public Ability getAbility1(){
+        return ability1;
+    }
+
+    public void drawAbilities(Graphics g, boolean selected){
         g.setColor(Color.GRAY);
         if (getName().equals("allen")){
             g.setColor(Color.LIGHT_GRAY);
@@ -14,6 +18,9 @@ public class Player extends Entity{
         g.setColor(Color.BLACK);
         g.drawRect(0,0,323,768);
         g.drawString("ATTACK", 10, 50);
+        if (selected) {
+            g.drawRect(10, 40, 60, 15);
+        }
     }
 
     public void draw(int x, int y, Graphics g){
