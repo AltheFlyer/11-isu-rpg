@@ -5,7 +5,7 @@ import java.awt.event.*;
 
 /**
  * [GameScreen.java]
- * Abstract class for game screens
+ * Abstract class for all game screens
  * @version 1.1
  * @author Allen Liu
  * @since May 22, 2019
@@ -41,9 +41,10 @@ abstract public class GameScreen extends JPanel
 
     /**
      * [isFullyClicked]
-     * checks if a rectangular region has both a starting press and release within its bounds
+     * Checks if a rectangular region has both a starting press and release within its bounds.
+     * This should only be called during a mouseReleased method, or continuous triggering will occur.
      * @param rect the rectangular region to check clicks for
-     * @return boolean, whether the region has been fully clicked
+     * @return boolean, whether the region has been clicked in and contains the mouse when the method is called.
      */
     public boolean isFullyClicked(Rectangle rect) {
         return rect.contains(mouseX, mouseY) && rect.contains(clickX, clickY);
@@ -61,7 +62,7 @@ abstract public class GameScreen extends JPanel
 
     /**
      * [setMusic]
-     * Sets the music for the screen, and starts its loop
+     * Sets the music for the screen, and starts its loop.
      * @param path the file path of the audio source
      */
     public void setMusic(String path) {
@@ -70,7 +71,8 @@ abstract public class GameScreen extends JPanel
 
     /**
      * [setScreen]
-     * Sets the currently active screen
+     * Sets the currently active screen for the currently active GameManager.
+     * This will close the current active screen.
      * @param s The game screen to set as the visible panel
      */
     public void setScreen(GameScreen s) {
@@ -153,9 +155,6 @@ abstract public class GameScreen extends JPanel
     public void mouseDragged(MouseEvent e) {}
 
     @Override
-    public void mouseWheelMoved(MouseWheelEvent e) {
-
-    }
-
+    public void mouseWheelMoved(MouseWheelEvent e) {}
 
 }

@@ -4,16 +4,16 @@ public class EnemyMap {
     EnemyTile[][] enemyArray = new EnemyTile[3][3];
 
     EnemyMap() {
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
-                enemyArray[i][j] = new EnemyTile(686+j*121, 108+i*121, j, i);
+        for (int j = 0; j < 3; j++) {
+            for (int i = 0; i < 3; i++) {
+                enemyArray[i][j] = new EnemyTile(686+i*121, 108+j*121, i, j);
             }
         }
     }
 
     public void draw(Graphics g) {
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
+        for (int j = 0; j < 3; j++) {
+            for (int i = 0; i < 3; i++) {
                 enemyArray[i][j].draw(g);
             }
         }
@@ -30,41 +30,38 @@ public class EnemyMap {
     }
 
     public boolean tileExists(int i, int j) {
-        if (i < 3 && i >= 0 && j < 3 && j >= 0) {
-            return true;
-        }
-        return false;
+        return (i < 3) && (i >= 0) && (j < 3) && (j >= 0);
     }
 
     public void indicate(int x, int y){
-        enemyArray[y][x].indicate();
+        enemyArray[x][y].indicate();
     }
 
     public void unIndicate(int x, int y){
-        enemyArray[y][x].unIndicate();
+        enemyArray[x][y].unIndicate();
     }
 
     public void indicateAll(){
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++){
+        for (int j = 0; j < 3; j++) {
+            for (int i = 0; i < 3; i++) {
                 enemyArray[i][j].indicate();
             }
         }
     }
 
     public void unIndicateAll(){
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++){
+        for (int j = 0; j < 3; j++) {
+            for (int i = 0; i < 3; i++) {
                 enemyArray[i][j].unIndicate();
             }
         }
     }
 
     public boolean getIndication(int x, int y){
-        return enemyArray[y][x].getIndication();
+        return enemyArray[x][y].getIndication();
     }
 
     public boolean isEmpty(int x, int y){
-        return enemyArray[y][x].isEmpty();
+        return enemyArray[x][y].isEmpty();
     }
 }

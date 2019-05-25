@@ -1,3 +1,5 @@
+import java.awt.*;
+
 abstract public class Ability {
     private String name;
     private String desc;
@@ -34,11 +36,11 @@ abstract public class Ability {
     }
 
     public void actEnemy(EnemyMap enemyMap, int x, int y) {
-        enemyMap.target(y,x,damage,status);
+        enemyMap.target(x, y, damage, status);
     }
 
     public void actPlayer(PlayerMap playerMap, int x, int y) {
-        playerMap.target(y,x,damage,status);
+        playerMap.target(x, y, damage, status);
     }
 
     public int getXRange() {
@@ -92,6 +94,25 @@ abstract public class Ability {
     public boolean getPlayerOnly(){
         return playerOnly;
     }
+
+    //Just a little bit radical here
+
+    /**
+     * [drawSelectedArea]
+     * Draws the area that will be affected by an ability
+     * @param g the graphics object to draw with
+     */
+    public void drawSelectedArea(Graphics g) {
+
+    }
+
+    /**
+     * [drawValidTargets]
+     * Draws valid selection regions for the center of an ability
+     * @param g the graphics object to draw with
+     */
+    public void drawValidTargets(Graphics g) {
+
 
     public int getMoves() {
         return moves;
