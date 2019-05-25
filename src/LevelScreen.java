@@ -16,8 +16,8 @@ public class LevelScreen extends GameScreen{
 
     LevelScreen(GameManager game){
         super(game);
-        ability1 = new SingleAbility("basic",6,0,1,2);
-        heal = new AOEAbility("heal",0,3,0,1,1,-2.0);
+        ability1 = new SingleAbility("basic",6,0,1,2,true);
+        heal = new AOEAbility("heal",0,3,0,1,1,-2.0,false);
         playerMap = new PlayerMap();
         enemyMap = new EnemyMap();
         kevin = new Player(10,"kevin",ability1);
@@ -109,7 +109,7 @@ public class LevelScreen extends GameScreen{
 
             for (int i = rangeUp; i <= rangeDown; i++) {
                 for (int j = rangeBehind; j <= rangeAhead; j++) {
-                    if (playerMap.tileExists(i, j)) {
+                    if (playerMap.tileExists(i, j) && !selectedAbility.getEnemyOnly()) {
                         playerMap.indicate(j, i);
                     }
                 }

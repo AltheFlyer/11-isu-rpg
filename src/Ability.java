@@ -9,13 +9,16 @@ abstract public class Ability {
     private int xAOE;
     private int yAOE;
     private Tile[][] getValidTiles;
+    private boolean enemyOnly;
+    private boolean playerOnly;
 
-    Ability(String name, int xRange, int yRange, int status, double damage) {
+    Ability(String name, int xRange, int yRange, int status, double damage, boolean enemyOnly) {
         this.name = name;
         this.xRange = xRange;
         this.yRange = yRange;
         this.status = status;
         this.damage = damage;
+        this.enemyOnly = enemyOnly;
 
     }
 
@@ -65,5 +68,21 @@ abstract public class Ability {
 
     public void setYAOE(int yAOE){
         this.yAOE = yAOE;
+    }
+
+    public void setEnemyOnly(){
+        enemyOnly = true;
+    }
+
+    public void setPlayerOnly(){
+        playerOnly = true;
+    }
+
+    public boolean getEnemyOnly(){
+        return enemyOnly;
+    }
+
+    public boolean getPlayerOnly(){
+        return playerOnly;
     }
 }
