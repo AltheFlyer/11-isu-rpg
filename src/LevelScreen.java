@@ -28,6 +28,7 @@ public class LevelScreen extends GameScreen{
 
 
         //Add things onto the map
+        //i is x, j is y
         playerMap.addPlayer(1,2,kevin);
         playerMap.addPlayer(2,1,allen);
         enemyMap.addEnemy(1,2,ack);
