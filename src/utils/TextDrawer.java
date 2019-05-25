@@ -39,13 +39,15 @@ public class TextDrawer {
 
     /**
      * [generateTextLines]
-     * Takes in a string and breaks it apart into lines
+     * Takes in an unstyled string and breaks it apart into lines
      * @param g The graphics object to draw with
      * @param text The text to draw
      * @param maxWidth The maximum width (wrapping widt) of a line of text
      */
     private void generateTextLines(Graphics g, String text, int maxWidth) {
+        //Font data
         FontMetrics fontData = g.getFontMetrics();
+        //Stores the list of lines
         ArrayList<String> tempLines = new ArrayList<>();
 
         int widthMarker = 0;
@@ -53,12 +55,15 @@ public class TextDrawer {
         String line = "";
 
         while (text.length() > 0) {
+            //Find the closest space and newline character
             int spaceIndex = text.indexOf(" ");
             int newLineIndex = text.indexOf("\n");
 
+            //The next word in the sentence
             String word;
 
-            if (newLineIndex != -1 && newLineIndex < spaceIndex) {
+            //Create the word by breaking at the nearest space or newline
+            if ((newLineIndex != -1) && (newLineIndex < spaceIndex)) {
                 word = text.substring(0, newLineIndex + 2);
                 text = text.substring(newLineIndex + 2);
             } else if (spaceIndex == -1) {
@@ -69,27 +74,33 @@ public class TextDrawer {
                 text = text.substring(spaceIndex + 1);
             }
 
+            //Get width of the word with the current graphics
             int wordWidth = (int) fontData.getStringBounds(word, g).getWidth();
 
+            //If width of word would overflow, move to another line
             if (widthMarker + wordWidth > maxWidth) {
                 widthMarker = 0;
                 tempLines.add(line);
                 line = "";
             }
 
+            //Add word to the current line
             line += word;
 
+            //Increment the width marker for the current line
             widthMarker += wordWidth;
         }
 
         //Final incomplete line
         tempLines.add(line);
 
+        //Create array of strings, one string for each line
         lines = new String[tempLines.size()];
 
         for (int i = 0; i < tempLines.size(); ++i) {
             lines[i] = tempLines.get(i);
         }
     }
+
 
 }
