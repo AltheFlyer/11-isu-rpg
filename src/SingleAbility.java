@@ -3,5 +3,5 @@ public class SingleAbility extends Ability {
         super (name, xRange, yRange, status, damage);
         setXAOE(0);
         setYAOE(0);
-    }
+    }                                                                
 }

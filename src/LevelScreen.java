@@ -130,6 +130,7 @@ public class LevelScreen extends GameScreen{
                 g.setColor(Color.BLACK);
                 g.drawRect(10, 40, 60, 15);
             }
+            selectedPlayer = playerMap.findPlayer(selectedPlayer);
         }
 
         repaint();
@@ -141,6 +142,9 @@ public class LevelScreen extends GameScreen{
                 for (int l = j-selectedAbility.getXAOE(); l <= j+selectedAbility.getXAOE(); l++){
                     if (enemyMap.tileExists(k,l)){
                         ability1.actEnemy(enemyMap, l,k);
+                    }
+                    if (playerMap.tileExists(k,l+3)){
+                        ability1.actPlayer(playerMap, l+3,k);
                     }
                 }
             }
@@ -157,6 +161,9 @@ public class LevelScreen extends GameScreen{
                 for (int l = j-selectedAbility.getXAOE(); l <= j+selectedAbility.getXAOE(); l++){
                     if (playerMap.tileExists(k,l)){
                         selectedAbility.actPlayer(playerMap, l,k);
+                    }
+                    if (enemyMap.tileExists(k,l-3)){
+                        ability1.actEnemy(enemyMap, l-3,k);
                     }
                 }
             }
@@ -180,6 +187,10 @@ public class LevelScreen extends GameScreen{
                                     g.setColor(Color.GREEN);
                                     g.drawRect(323 + 121 * l, 108 + 121 * k, 120, 120);
                                 }
+                                if (enemyMap.tileExists(k,l-3)){
+                                    g.setColor(Color.GREEN);
+                                    g.drawRect(686 + 121 * (l-3), 108 + 121 * k, 120, 120);
+                                }
                             }
                         }
                     }
@@ -196,6 +207,10 @@ public class LevelScreen extends GameScreen{
                                 if (enemyMap.tileExists(k,l)){
                                     g.setColor(Color.GREEN);
                                     g.drawRect(686 + 121 * l, 108 + 121 * k, 120, 120);
+                                }
+                                if (playerMap.tileExists(k,l+3)){
+                                    g.setColor(Color.GREEN);
+                                    g.drawRect(323 + 121 * (l+3), 108 + 121 * k, 120, 120);
                                 }
                             }
                         }
