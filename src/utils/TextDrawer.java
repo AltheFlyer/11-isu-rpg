@@ -16,19 +16,29 @@ public class TextDrawer {
     int x, y;
     int lineHeight;
 
+    /**
+     * [TextDrawer]
+     * Use this for generic text with the text set by a graphics object.
+     * @param g the graphics object to draw with
+     * @param text the text to draw
+     * @param x the x position to draw from
+     * @param y the y position to draw from
+     * @param maxWidth the maximum width of a line of text (this is NOT enforced by words that exceed this width)
+     */
     public TextDrawer(Graphics g, String text, int x, int y, int maxWidth) {
         FontMetrics fontData = g.getFontMetrics();
         this.x = x;
         this.y = y;
 
-        lineHeight = fontData.getAscent() + fontData.getLeading() + fontData.getDescent();
+        //This is: the height above baseline, the height below baseline, and the font's recommended spacing between lines
+        lineHeight = fontData.getAscent() + fontData.getDescent() + fontData.getLeading();
 
         this.generateTextLines(g, text, maxWidth);
     }
 
     /**
      * [drawText]
-     * Draws the text across multiple lines
+     * Draws the text across multiple lines.
      * @param g The graphics object to draw with
      */
     public void drawText(Graphics g) {

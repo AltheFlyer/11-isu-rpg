@@ -24,7 +24,7 @@ public class AnimatedSprite {
 
     /**
      * [AnimatedSprite]
-     * @param path the relative file path, not including base source folder for all animated sprites
+     * @param path the relative file path, not including universal source folder for all animated sprites
      * @param rows the number of rows in the file
      * @param cols the number of columns in the file
      * @param width the width of each sprite
@@ -67,7 +67,8 @@ public class AnimatedSprite {
 
     /**
      * [getSprite]
-     * returns the current frame from of the animated sprite
+     * Returns the current frame from of the animated sprite, for use with any sprite manipulation.
+     * If drawing is the only required operation, use draw() instead.
      * @return BufferedImage, the current frame of the animated sprite
      */
     public BufferedImage getSprite() {
