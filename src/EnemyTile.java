@@ -18,7 +18,7 @@ public class EnemyTile extends Tile{
 
     public void draw(Graphics g){
         if (isEmpty()) {
-            g.setColor(Color.RED);
+            g.setColor(new Color(255, 204, 204));
             g.fillRect(getX(), getY(), 120, 120);
             g.setColor(Color.BLACK);
             if (getIndication()){

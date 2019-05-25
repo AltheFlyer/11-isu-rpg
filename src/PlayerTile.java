@@ -18,7 +18,7 @@ public class PlayerTile extends Tile{
 
     public void draw(Graphics g){
         if (isEmpty()) {
-            g.setColor(Color.BLUE);
+            g.setColor(new Color(204, 255, 255));
             g.fillRect(getX(), getY(), 120, 120);
             g.setColor(Color.BLACK);
             if (getIndication()){

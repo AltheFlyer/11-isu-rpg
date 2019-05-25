@@ -30,7 +30,7 @@ public class Player extends Entity{
     public void draw(int x, int y, Graphics g, boolean indicated){
         g.setColor(Color.MAGENTA);
         if (getName().equals("allen")){
-            g.setColor(Color.PINK);
+            g.setColor(Color.yellow);
         }
         g.fillRect(x,y,120,120);
         g.setColor(Color.BLACK);
