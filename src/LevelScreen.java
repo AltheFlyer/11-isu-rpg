@@ -70,24 +70,21 @@ public class LevelScreen extends GameScreen{
         }
 
         //Use an ability here
-        if (selectedPlayer != null && isFullyClicked(new Rectangle(10, 40, 60, 15))) {
+        if (selectedPlayer != null && isFullyClicked(new Rectangle(30, 30, 263, 80))) {
             selectedAbility = selectedPlayer.getAbility1();
-            if (selectedPlayer != null && isFullyClicked(new Rectangle(30, 30, 263, 80))) {
-                selectedAbility = selectedPlayer.getAbility1();
-            }
+        }
 
-            //Action attack!
-            for (int j = 0; j < 3; j++) {
-                for (int i = 0; i < 3; i++) {
-                    if (selectedPlayer != null && selectedAbility != null && isFullyClicked(new Rectangle(686 + 121 * i, 108 + 121 * j, 120, 120))) {
-                        actionEnemy(i, j);
-                    } else if (selectedPlayer != null && selectedAbility != null && isFullyClicked(new Rectangle(323 + 121 * i, 108 + 121 * j, 120, 120))) {
-                        actionPlayer(i, j);
-                    }
+        //Action attack!
+        for (int j = 0; j < 3; j++) {
+            for (int i = 0; i < 3; i++) {
+                if (selectedPlayer != null && selectedAbility != null && isFullyClicked(new Rectangle(686 + 121 * i, 108 + 121 * j, 120, 120))) {
+                    actionEnemy(i, j);
+                } else if (selectedPlayer != null && selectedAbility != null && isFullyClicked(new Rectangle(323 + 121 * i, 108 + 121 * j, 120, 120))) {
+                    actionPlayer(i, j);
                 }
             }
-            //Moving move move move Actions!
         }
+        //Moving move move move Actions!
     }
 
     public void paintComponent(Graphics g) {
@@ -105,7 +102,6 @@ public class LevelScreen extends GameScreen{
                 }
             }
         } else if (selectedAbility != null && selectedPlayer != null) {
-
             //Calculate Range of Ability!
             int rangeAhead = playerMap.findPlayerX(selectedPlayer) + selectedAbility.getXRange();
             int rangeBehind = playerMap.findPlayerX(selectedPlayer) - selectedAbility.getXRange();
@@ -113,48 +109,41 @@ public class LevelScreen extends GameScreen{
             int rangeUp = playerMap.findPlayerY(selectedPlayer) - selectedAbility.getYRange();
 
             //Create Indications for ability
-            //TODO FIX THIS
-            for (int j = rangeUp; j <= rangeDown; j++) {
-                for (int i = rangeBehind; i <= rangeAhead; i++) {
-                    if (enemyMap.tileExists(i - 3, j)) {
-                        enemyMap.indicate(i - 3, j);
-                        for (int i = rangeUp; i <= rangeDown; i++) {
-                            for (int j = rangeBehind; j <= rangeAhead; j++) {
-                                if (enemyMap.tileExists(i, j - 3) && !selectedAbility.getPlayerOnly()) {
-                                    enemyMap.indicate(j - 3, i);
-                                }
-                            }
-                        }
-
-                        for (int j = rangeUp; j <= rangeDown; j++) {
-                            for (int i = rangeBehind; i <= rangeAhead; i++) {
-                                if (playerMap.tileExists(i, j) && !selectedAbility.getEnemyOnly()) {
-                                    playerMap.indicate(i, j);
-                                }
-                            }
-                        }
-
-                        //Draw hover if you hover a spot you can attack
-                        drawHoverAttack(g);
+            for (int i = rangeUp; i <= rangeDown; i++) {
+                for (int j = rangeBehind; j <= rangeAhead; j++) {
+                    if (enemyMap.tileExists(i, j - 3) && !selectedAbility.getPlayerOnly()) {
+                        enemyMap.indicate(j - 3, i);
                     }
-
-                    //Profile of person 1
-                    if (selectedPlayer != null) {
-                        selectedPlayer.drawAbilities(g, selectedAbility == selectedPlayer.getAbility1());
-                        //selectedPlayer = playerMap.findPlayer(selectedPlayer);
-                        //Ability selection
-                        if (isMouseOver(new Rectangle(30, 30, 263, 80))) {
-                            g.setColor(new Color(0, 0, 0, 100));
-                            g.fillRect(30, 30, 263, 80);
-                        }
-                        //selectedPlayer = playerMap.findPlayer(selectedPlayer);
-                    }
-
-                    repaint();
                 }
             }
+
+            for (int j = rangeUp; j <= rangeDown; j++) {
+                for (int i = rangeBehind; i <= rangeAhead; i++) {
+                    if (playerMap.tileExists(i, j) && !selectedAbility.getEnemyOnly()) {
+                        playerMap.indicate(i, j);
+                    }
+                }
+            }
+
+            //Draw hover if you hover a spot you can attack
+            drawHoverAttack(g);
         }
+
+        //Profile of person 1
+        if (selectedPlayer != null) {
+            selectedPlayer.drawAbilities(g, selectedAbility == selectedPlayer.getAbility1());
+            //selectedPlayer = playerMap.findPlayer(selectedPlayer);
+            //Ability selection
+            if (isMouseOver(new Rectangle(30, 30, 263, 80))) {
+                g.setColor(new Color(0, 0, 0, 100));
+                g.fillRect(30, 30, 263, 80);
+            }
+            //selectedPlayer = playerMap.findPlayer(selectedPlayer);
+        }
+
+        repaint();
     }
+
 
     public void actionEnemy ( int i, int j){
         if (enemyMap.getIndication(i, j) && !enemyMap.isEmpty(i, j)) {

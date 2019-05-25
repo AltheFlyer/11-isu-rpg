@@ -113,6 +113,8 @@ abstract public class Ability {
      */
     public void drawValidTargets(Graphics g) {
 
+    }
+
 
     public int getMoves() {
         return moves;
