@@ -22,7 +22,8 @@ public class PlayerTile extends Tile{
             g.fillRect(getX(), getY(), 120, 120);
             g.setColor(Color.BLACK);
             if (getIndication()){
-                g.setColor(Color.GRAY);
+                g.setColor(new Color(0, 0, 0, 100));
+                g.fillRect(getX(), getY(),120,120);
             }
             g.drawRect(getX(), getY(), 120, 120);
         } else {

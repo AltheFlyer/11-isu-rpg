@@ -15,7 +15,8 @@ public class Enemy extends Entity{
         g.fillRect(x,y,120,120);
         g.setColor(Color.BLACK);
         if (indicated){
-            g.setColor(Color.GRAY);
+            g.setColor(new Color(0, 0, 0, 100));
+            g.fillRect(x,y,120,120);
         }
         g.drawRect(x, y, 120, 120);
     }
