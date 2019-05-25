@@ -111,7 +111,7 @@ abstract public class Ability {
      * Draws valid selection regions for the center of an ability
      * @param g the graphics object to draw with
      */
-    public void drawValidTargets(Graphics g) {
+    public void drawValidTargets(Graphics g) {}
 
     }
 
