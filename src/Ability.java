@@ -6,7 +6,8 @@ abstract public class Ability {
     private int status;
     private double damage;
     private int cost;
-
+    private int xAOE;
+    private int yAOE;
     private Tile[][] getValidTiles;
 
     Ability(String name, int xRange, int yRange, int status, double damage) {
@@ -48,5 +49,21 @@ abstract public class Ability {
 
     public String getDesc(){
         return desc;
+    }
+
+    public int getXAOE(){
+        return xAOE;
+    }
+
+    public int getYAOE(){
+        return yAOE;
+    }
+
+    public void setXAOE(int xAOE){
+        this.xAOE = xAOE;
+    }
+
+    public void setYAOE(int yAOE){
+        this.yAOE = yAOE;
     }
 }

@@ -12,12 +12,12 @@ public class LevelScreen extends GameScreen{
     Enemy ack;
 
     SingleAbility ability1;
-    SingleAbility heal;
+    AOEAbility heal;
 
     LevelScreen(GameManager game){
         super(game);
         ability1 = new SingleAbility("basic",6,0,1,2);
-        heal = new SingleAbility("heal",0,3,1,-2.0);
+        heal = new AOEAbility("heal",0,3,0,1,1,-2.0);
         playerMap = new PlayerMap();
         enemyMap = new EnemyMap();
         kevin = new Player(10,"kevin",ability1);
@@ -137,7 +137,13 @@ public class LevelScreen extends GameScreen{
 
     public void actionEnemy(int j, int i) {
         if (enemyMap.getIndication(j, i) && !enemyMap.isEmpty(j, i)) {
-            ability1.actEnemy(enemyMap, j, i);
+            for (int k = i-selectedAbility.getYAOE(); k <= i+selectedAbility.getYAOE(); k++){
+                for (int l = j-selectedAbility.getXAOE(); l <= j+selectedAbility.getXAOE(); l++){
+                    if (enemyMap.tileExists(k,l)){
+                        ability1.actEnemy(enemyMap, l,k);
+                    }
+                }
+            }
             System.out.println("bam!");
             selectedAbility = null;
             enemyMap.unIndicateAll();
@@ -146,8 +152,14 @@ public class LevelScreen extends GameScreen{
     }
 
     public void actionPlayer(int j, int i) {
-        if (playerMap.getIndication(j, i) && !playerMap.isEmpty(j, i)) {
-            selectedAbility.actPlayer(playerMap, j, i);
+        if (playerMap.getIndication(j, i) && !playerMap.isEmpty(j, i) || playerMap.getIndication(j,i) && (selectedAbility instanceof AOEAbility)) {
+            for (int k = i-selectedAbility.getYAOE(); k <= i+selectedAbility.getYAOE(); k++){
+                for (int l = j-selectedAbility.getXAOE(); l <= j+selectedAbility.getXAOE(); l++){
+                    if (playerMap.tileExists(k,l)){
+                        selectedAbility.actPlayer(playerMap, l,k);
+                    }
+                }
+            }
             System.out.println("bam?");
             selectedAbility = null;
             System.out.println(selectedPlayer.getHealth());
@@ -162,8 +174,14 @@ public class LevelScreen extends GameScreen{
             for (int j = 0; j < 3; j++) {
                 if (isMouseOver(new Rectangle(323 + 121 * j, 108 + 121 * i, 120, 120))) {
                     if (playerMap.getIndication(j, i)) {
-                        g.setColor(Color.GREEN);
-                        g.drawRect(323 + 121 * j, 108 + 121 * i, 120, 120);
+                        for (int k = i-selectedAbility.getYAOE(); k <= i+selectedAbility.getYAOE(); k++){
+                            for (int l = j-selectedAbility.getXAOE(); l <= j+selectedAbility.getXAOE(); l++){
+                                if (playerMap.tileExists(k,l)){
+                                    g.setColor(Color.GREEN);
+                                    g.drawRect(323 + 121 * l, 108 + 121 * k, 120, 120);
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -173,13 +191,20 @@ public class LevelScreen extends GameScreen{
             for (int j = 0; j < 3; j++) {
                 if (isMouseOver(new Rectangle(686+121*j, 108+121*i, 120, 120))) {
                     if (enemyMap.getIndication(j,i)) {
-                        g.setColor(Color.GREEN);
-                        g.drawRect(686 + 121 * j, 108 + 121 * i, 120, 120);
+                        for (int k = i-selectedAbility.getYAOE(); k <= i+selectedAbility.getYAOE(); k++){
+                            for (int l = j-selectedAbility.getXAOE(); l <= j+selectedAbility.getXAOE(); l++){
+                                if (enemyMap.tileExists(k,l)){
+                                    g.setColor(Color.GREEN);
+                                    g.drawRect(686 + 121 * l, 108 + 121 * k, 120, 120);
+                                }
+                            }
+                        }
                     }
                 }
             }
         }
     }
+
     public void drawPlayerProfiles(Graphics g){
         // profile of person 1
         if (isMouseOver(new Rectangle(323, 471, 363, 80))) {
