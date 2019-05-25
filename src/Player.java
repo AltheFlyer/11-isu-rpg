@@ -10,6 +10,7 @@ public class Player extends Entity{
     }
 
     public void drawAbilities(Graphics g, boolean selected){
+        //BACKGROUND
         g.setColor(Color.GRAY);
         if (getName().equals("allen")){
             g.setColor(Color.LIGHT_GRAY);
@@ -17,13 +18,24 @@ public class Player extends Entity{
         g.fillRect(0,0,323,768);
         g.setColor(Color.BLACK);
         g.drawRect(0,0,323,768);
+
+        //ABILITY ICONS
+
+        for (int i = 0; i < 4; i++) {
+            g.setColor(Color.CYAN);
+            g.fillRect(30,30+90*i,263,80);
+            g.setColor(Color.BLACK);
+            g.drawRect(30,30+90*i,263,80);
+        }
+
         if (getName().equals("allen")){
-            g.drawString("HEAL", 10, 50);
+            g.drawString("HEAL", 40, 50);
         } else {
-            g.drawString("ATTACK", 10, 50);
+            g.drawString("ATTACK", 40, 50);
         }
         if (selected) {
-            g.drawRect(10, 40, 60, 15);
+            g.setColor(new Color(0,0,0,100));
+            g.fillRect(30, 30, 263, 80);
         }
     }
 

@@ -24,7 +24,6 @@ public class LevelScreen extends GameScreen{
         allen = new Player(10,"allen",heal);
         ack = new Enemy(10);
 
-
         //Add things onto the map
         playerMap.addPlayer(1,1,kevin);
         playerMap.addPlayer(2,1,allen);
@@ -68,7 +67,7 @@ public class LevelScreen extends GameScreen{
         }
 
         //Use an ability here
-        if (selectedPlayer != null && isFullyClicked(new Rectangle(10, 40, 60, 15))) {
+        if (selectedPlayer != null && isFullyClicked(new Rectangle(30, 30, 263, 80))) {
             selectedAbility = playerMap.findPlayer(selectedPlayer).getAbility1();
         }
 
@@ -101,7 +100,7 @@ public class LevelScreen extends GameScreen{
             //Create Indications for ability
             for (int i = rangeUp; i <= rangeDown; i++) {
                 for (int j = rangeBehind; j <= rangeAhead; j++) {
-                    if (enemyMap.tileExists(i,j-3)){
+                    if (enemyMap.tileExists(i,j-3) && !selectedAbility.getPlayerOnly()){
                         enemyMap.indicate(j-3,i);
                     }
                 }
@@ -124,11 +123,9 @@ public class LevelScreen extends GameScreen{
             selectedPlayer.drawAbilities(g, selectedAbility == selectedPlayer.getAbility1());
             //selectedPlayer = playerMap.findPlayer(selectedPlayer);
             //Ability selection
-            if (isMouseOver(new Rectangle(10, 40, 60, 15))) {
-                g.setColor(Color.GREEN);
-                g.fillRect(10, 40, 60, 15);
-                g.setColor(Color.BLACK);
-                g.drawRect(10, 40, 60, 15);
+            if (isMouseOver(new Rectangle(30, 30, 263, 80))) {
+                g.setColor(new Color(0,0,0,100));
+                g.fillRect(30, 30, 263, 80);
             }
             selectedPlayer = playerMap.findPlayer(selectedPlayer);
         }
