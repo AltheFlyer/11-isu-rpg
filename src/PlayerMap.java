@@ -4,16 +4,16 @@ public class PlayerMap {
     private PlayerTile[][] playerArray = new PlayerTile[3][3];
 
     PlayerMap() {
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
-                playerArray[i][j] = new PlayerTile(323 + j * 121, 108 + i * 121, j, i);
+        for (int j = 0; j < 3; j++) {
+            for (int i = 0; i < 3; i++) {
+                playerArray[i][j] = new PlayerTile(323 + i * 121, 108 + j * 121, i, j);
             }
         }
     }
 
     public void draw(Graphics g) {
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
+        for (int j = 0; j < 3; j++) {
+            for (int i = 0; i < 3; i++) {
                 playerArray[i][j].draw(g);
             }
         }
@@ -30,15 +30,13 @@ public class PlayerMap {
     }
 
     public boolean tileExists(int i, int j) {
-        if (i < 3 && i >= 0 && j < 3 && j >= 0){
-            return true;
-        }
-        return false;
+        return (i < 3) && (i >= 0) && (j < 3) && (j >= 0);
     }
 
+    /*
     public Player findPlayer(Player player){
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
+        for (int j = 0; j < 3; j++) {
+            for (int i = 0; i < 3; i++) {
                 if (!playerArray[i][j].isEmpty()){
                     if (playerArray[i][j].getPlayer().getName().equals(player.getName())) {
                         return playerArray[i][j].getPlayer();
@@ -48,23 +46,11 @@ public class PlayerMap {
         }
         return null;
     }
+    */
 
     public int findPlayerX(Player player){
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
-                if (!playerArray[i][j].isEmpty()){
-                    if (playerArray[i][j].getPlayer().getName().equals(player.getName())) {
-                        return j;
-                    }
-                }
-            }
-        }
-        return 0;
-    }
-
-    public int findPlayerY(Player player){
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
+        for (int j = 0; j < 3; j++) {
+            for (int i = 0; i < 3; i++) {
                 if (!playerArray[i][j].isEmpty()){
                     if (playerArray[i][j].getPlayer().getName().equals(player.getName())) {
                         return i;
@@ -75,35 +61,48 @@ public class PlayerMap {
         return 0;
     }
 
+    public int findPlayerY(Player player){
+        for (int j = 0; j < 3; j++) {
+            for (int i = 0; i < 3; i++) {
+                if (!playerArray[i][j].isEmpty()){
+                    if (playerArray[i][j].getPlayer().getName().equals(player.getName())) {
+                        return j;
+                    }
+                }
+            }
+        }
+        return 0;
+    }
+
     public void indicate(int x, int y){
-        playerArray[y][x].indicate();
+        playerArray[x][y].indicate();
     }
 
     public void unIndicate(int x, int y){
-        playerArray[y][x].unIndicate();
+        playerArray[x][y].unIndicate();
     }
 
     public void indicateAll(){
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++){
+        for (int j = 0; j < 3; j++) {
+            for (int i = 0; i < 3; i++) {
                 playerArray[i][j].indicate();
             }
         }
     }
 
     public void unIndicateAll(){
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++){
+        for (int j = 0; j < 3; j++) {
+            for (int i = 0; i < 3; i++) {
                 playerArray[i][j].unIndicate();
             }
         }
     }
 
     public boolean getIndication(int x, int y){
-        return playerArray[y][x].getIndication();
+        return playerArray[x][y].getIndication();
     }
 
     public boolean isEmpty(int x, int y){
-        return playerArray[y][x].isEmpty();
+        return playerArray[x][y].isEmpty();
     }
 }

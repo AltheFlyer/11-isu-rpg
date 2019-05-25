@@ -26,18 +26,18 @@ public class LevelScreen extends GameScreen{
 
 
         //Add things onto the map
-        playerMap.addPlayer(1,1,kevin);
+        playerMap.addPlayer(1,2,kevin);
         playerMap.addPlayer(2,1,allen);
-        enemyMap.addEnemy(1,1,ack);
+        enemyMap.addEnemy(1,2,ack);
     }
 
     @Override
     public void keyPressed(KeyEvent e) {
         if(e.getKeyChar() == 's' ){
             System.out.println("down");
-            playerMap.addPlayer(1,1,kevin);
+            playerMap.addPlayer(1,2,kevin);
             kevin.setHealth(10);
-            enemyMap.addEnemy(1,1,ack);
+            enemyMap.addEnemy(1,2,ack);
             ack.setHealth(10);
         }
     }
@@ -46,15 +46,16 @@ public class LevelScreen extends GameScreen{
     public void mouseReleased(MouseEvent e) {
         super.mouseReleased(e);
 
+        //Yay for hardcoding
         if (isFullyClicked(new Rectangle(323, 468, 360, 80))) {
-            selectedPlayer = playerMap.findPlayer(kevin);
+            selectedPlayer = kevin;
             selectedAbility = null;
             enemyMap.unIndicateAll();
             playerMap.unIndicateAll();
         }
 
         if (isFullyClicked(new Rectangle(323, 548, 360, 80))) {
-            selectedPlayer = playerMap.findPlayer(allen);
+            selectedPlayer = allen;
             selectedAbility = null;
             enemyMap.unIndicateAll();
             playerMap.unIndicateAll();
@@ -69,16 +70,16 @@ public class LevelScreen extends GameScreen{
 
         //Use an ability here
         if (selectedPlayer != null && isFullyClicked(new Rectangle(10, 40, 60, 15))) {
-            selectedAbility = playerMap.findPlayer(selectedPlayer).getAbility1();
+            selectedAbility = selectedPlayer.getAbility1();
         }
 
         //Action attack!
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
-                if (selectedPlayer != null && selectedAbility != null && isFullyClicked(new Rectangle(686 + 121 * j, 108 + 121 * i, 120, 120))) {
-                    actionEnemy(j,i);
-                } else if (selectedPlayer != null && selectedAbility != null && isFullyClicked(new Rectangle(323 + 121 * j, 108 + 121 * i, 120, 120))) {
-                    actionPlayer(j,i);
+        for (int j = 0; j < 3; j++) {
+            for (int i = 0; i < 3; i++) {
+                if (selectedPlayer != null && selectedAbility != null && isFullyClicked(new Rectangle(686 + 121 * i, 108 + 121 * j, 120, 120))) {
+                    actionEnemy(i,j);
+                } else if (selectedPlayer != null && selectedAbility != null && isFullyClicked(new Rectangle(323 + 121 * i, 108 + 121 * j, 120, 120))) {
+                    actionPlayer(i,j);
                 }
             }
         }
@@ -90,7 +91,6 @@ public class LevelScreen extends GameScreen{
         enemyMap.draw(g);
         drawPlayerProfiles(g);
 
-
         if (selectedAbility != null && selectedPlayer != null){
             //Calculate Range of Ability!
             int rangeAhead = playerMap.findPlayerX(selectedPlayer) + selectedAbility.getXRange();
@@ -99,18 +99,18 @@ public class LevelScreen extends GameScreen{
             int rangeUp = playerMap.findPlayerY(selectedPlayer) - selectedAbility.getYRange();
 
             //Create Indications for ability
-            for (int i = rangeUp; i <= rangeDown; i++) {
-                for (int j = rangeBehind; j <= rangeAhead; j++) {
-                    if (enemyMap.tileExists(i,j-3)){
-                        enemyMap.indicate(j-3,i);
+            for (int j = rangeUp; j <= rangeDown; j++) {
+                for (int i = rangeBehind; i <= rangeAhead; i++) {
+                    if (enemyMap.tileExists(i-3,j)){
+                        enemyMap.indicate(i-3, j);
                     }
                 }
             }
 
-            for (int i = rangeUp; i <= rangeDown; i++) {
-                for (int j = rangeBehind; j <= rangeAhead; j++) {
+            for (int j = rangeUp; j <= rangeDown; j++) {
+                for (int i = rangeBehind; i <= rangeAhead; i++) {
                     if (playerMap.tileExists(i, j) && !selectedAbility.getEnemyOnly()) {
-                        playerMap.indicate(j, i);
+                        playerMap.indicate(i, j);
                     }
                 }
             }
@@ -130,20 +130,20 @@ public class LevelScreen extends GameScreen{
                 g.setColor(Color.BLACK);
                 g.drawRect(10, 40, 60, 15);
             }
-            selectedPlayer = playerMap.findPlayer(selectedPlayer);
+            //selectedPlayer = playerMap.findPlayer(selectedPlayer);
         }
 
         repaint();
     }
 
-    public void actionEnemy(int j, int i) {
-        if (enemyMap.getIndication(j, i) && !enemyMap.isEmpty(j, i)) {
-            for (int k = i-selectedAbility.getYAOE(); k <= i+selectedAbility.getYAOE(); k++){
-                for (int l = j-selectedAbility.getXAOE(); l <= j+selectedAbility.getXAOE(); l++){
-                    if (enemyMap.tileExists(k,l)){
-                        ability1.actEnemy(enemyMap, l,k);
+    public void actionEnemy(int i, int j) {
+        if (enemyMap.getIndication(i, j) && !enemyMap.isEmpty(i, j)) {
+            for (int k = j-selectedAbility.getYAOE(); k <= j+selectedAbility.getYAOE(); k++){
+                for (int l = i-selectedAbility.getXAOE(); l <= i+selectedAbility.getXAOE(); l++){
+                    if (enemyMap.tileExists(l, k)){
+                        ability1.actEnemy(enemyMap, l, k);
                     }
-                    if (playerMap.tileExists(k,l+3)){
+                    if (playerMap.tileExists(k+3,l)){
                         ability1.actPlayer(playerMap, l+3,k);
                     }
                 }
@@ -155,15 +155,15 @@ public class LevelScreen extends GameScreen{
         }
     }
 
-    public void actionPlayer(int j, int i) {
-        if (playerMap.getIndication(j, i) && !playerMap.isEmpty(j, i) || playerMap.getIndication(j,i) && (selectedAbility instanceof AOEAbility)) {
-            for (int k = i-selectedAbility.getYAOE(); k <= i+selectedAbility.getYAOE(); k++){
-                for (int l = j-selectedAbility.getXAOE(); l <= j+selectedAbility.getXAOE(); l++){
-                    if (playerMap.tileExists(k,l)){
-                        selectedAbility.actPlayer(playerMap, l,k);
+    public void actionPlayer(int i, int j) {
+        if (playerMap.getIndication(i, j) && !playerMap.isEmpty(i, j) || playerMap.getIndication(i, j) && (selectedAbility instanceof AOEAbility)) {
+            for (int k = j-selectedAbility.getYAOE(); k <= j+selectedAbility.getYAOE(); k++){
+                for (int l = i-selectedAbility.getXAOE(); l <= i+selectedAbility.getXAOE(); l++){
+                    if (playerMap.tileExists(l, k)){
+                        selectedAbility.actPlayer(playerMap, l, k);
                     }
-                    if (enemyMap.tileExists(k,l-3)){
-                        ability1.actEnemy(enemyMap, l-3,k);
+                    if (enemyMap.tileExists(l-3,k)){
+                        ability1.actEnemy(enemyMap, l-3, k);
                     }
                 }
             }
@@ -177,17 +177,17 @@ public class LevelScreen extends GameScreen{
 
 
     public void drawHoverAttack(Graphics g){
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
-                if (isMouseOver(new Rectangle(323 + 121 * j, 108 + 121 * i, 120, 120))) {
-                    if (playerMap.getIndication(j, i)) {
-                        for (int k = i-selectedAbility.getYAOE(); k <= i+selectedAbility.getYAOE(); k++){
-                            for (int l = j-selectedAbility.getXAOE(); l <= j+selectedAbility.getXAOE(); l++){
-                                if (playerMap.tileExists(k,l)){
+        for (int j = 0; j < 3; j++) {
+            for (int i = 0; i < 3; i++) {
+                if (isMouseOver(new Rectangle(323 + 121 * i, 108 + 121 * j, 120, 120))) {
+                    if (playerMap.getIndication(i, j)) {
+                        for (int k = j-selectedAbility.getYAOE(); k <= j+selectedAbility.getYAOE(); k++){
+                            for (int l = i-selectedAbility.getXAOE(); l <= i+selectedAbility.getXAOE(); l++){
+                                if (playerMap.tileExists(l, k)){
                                     g.setColor(Color.GREEN);
                                     g.drawRect(323 + 121 * l, 108 + 121 * k, 120, 120);
                                 }
-                                if (enemyMap.tileExists(k,l-3)){
+                                if (enemyMap.tileExists(l,k-3)){
                                     g.setColor(Color.GREEN);
                                     g.drawRect(686 + 121 * (l-3), 108 + 121 * k, 120, 120);
                                 }
@@ -198,17 +198,17 @@ public class LevelScreen extends GameScreen{
             }
         }
 
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
-                if (isMouseOver(new Rectangle(686+121*j, 108+121*i, 120, 120))) {
-                    if (enemyMap.getIndication(j,i)) {
-                        for (int k = i-selectedAbility.getYAOE(); k <= i+selectedAbility.getYAOE(); k++){
-                            for (int l = j-selectedAbility.getXAOE(); l <= j+selectedAbility.getXAOE(); l++){
-                                if (enemyMap.tileExists(k,l)){
+        for (int j = 0; j < 3; j++) {
+            for (int i = 0; i < 3; i++) {
+                if (isMouseOver(new Rectangle(686+121*i, 108+121*j, 120, 120))) {
+                    if (enemyMap.getIndication(i,j)) {
+                        for (int k = j-selectedAbility.getYAOE(); k <= j+selectedAbility.getYAOE(); k++){
+                            for (int l = i-selectedAbility.getXAOE(); l <= i+selectedAbility.getXAOE(); l++){
+                                if (enemyMap.tileExists(l,k)){
                                     g.setColor(Color.GREEN);
                                     g.drawRect(686 + 121 * l, 108 + 121 * k, 120, 120);
                                 }
-                                if (playerMap.tileExists(k,l+3)){
+                                if (playerMap.tileExists(l,k+3)){
                                     g.setColor(Color.GREEN);
                                     g.drawRect(323 + 121 * (l+3), 108 + 121 * k, 120, 120);
                                 }

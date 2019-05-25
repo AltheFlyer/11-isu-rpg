@@ -1,3 +1,5 @@
+import java.awt.*;
+
 abstract public class Ability {
     private String name;
     private String desc;
@@ -84,5 +86,14 @@ abstract public class Ability {
 
     public boolean getPlayerOnly(){
         return playerOnly;
+    }
+
+    //Just a little bit radical here
+    public void drawSelectedArea(Graphics g) {
+
+    }
+
+    public void drawValidTargets(Graphics g) {
+
     }
 }

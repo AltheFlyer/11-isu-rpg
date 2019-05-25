@@ -21,7 +21,7 @@ public class GameIO {
 
     /**
      * [getBattleLayout]
-     * gets the saved character layout on a 3x3 grid for battles
+     * Gets the saved character layout on a 3x3 grid for battles from a file.
      * @return String[][] the 3x3 arrangement of characters
      */
     static public String[][] getBattleLayout() {
@@ -46,7 +46,7 @@ public class GameIO {
 
     /**
      * [setBattleLayout]
-     * saves a battle layout configuration for later use
+     * Saves a 3x3 battle layout for later use. The grid is expected to have only 3 characters.
      * @param grid the 3x3 grid of players to save
      */
     static public void setBattleLayout(String[][] grid) {
