@@ -28,11 +28,8 @@ public class Player extends Entity{
             g.drawRect(30,30+90*i,263,80);
         }
 
-        if (getName().equals("allen")){
-            g.drawString("HEAL", 40, 50);
-        } else {
-            g.drawString("ATTACK", 40, 50);
-        }
+        g.drawString(ability1.getName(), 40, 50);
+
         if (selected) {
             g.setColor(new Color(0,0,0,100));
             g.fillRect(30, 30, 263, 80);

@@ -106,4 +106,9 @@ public class PlayerMap {
     public boolean isEmpty(int x, int y){
         return playerArray[y][x].isEmpty();
     }
+
+    public void swapTiles(int x, int y, int xNow, int yNow){
+        playerArray[y][x].setPlayer(playerArray[yNow][xNow].getPlayer());
+        playerArray[yNow][xNow].setPlayer(null);
+    }
 }

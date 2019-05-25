@@ -13,15 +13,17 @@ public class LevelScreen extends GameScreen{
 
     SingleAbility ability1;
     AOEAbility heal;
+    MoveAbility move;
 
     LevelScreen(GameManager game){
         super(game);
         ability1 = new SingleAbility("basic",6,0,1,2,true);
         heal = new AOEAbility("heal",0,3,0,1,1,-2.0,false);
+        move = new MoveAbility("step",1);
         playerMap = new PlayerMap();
         enemyMap = new EnemyMap();
         kevin = new Player(10,"kevin",ability1);
-        allen = new Player(10,"allen",heal);
+        allen = new Player(10,"allen",move);
         ack = new Enemy(10);
 
         //Add things onto the map
@@ -81,6 +83,8 @@ public class LevelScreen extends GameScreen{
                 }
             }
         }
+
+        //Moving move move move Actions!
     }
 
     public void paintComponent(Graphics g) {
@@ -88,9 +92,15 @@ public class LevelScreen extends GameScreen{
         playerMap.draw(g);
         enemyMap.draw(g);
         drawPlayerProfiles(g);
-
-
-        if (selectedAbility != null && selectedPlayer != null){
+        if (selectedAbility instanceof MoveAbility && selectedPlayer != null) {
+            for (int i = 0; i < 3; i++){
+                for (int j = 0;j < 3; j++){
+                    if ((Math.abs(i - playerMap.findPlayerY(selectedPlayer)) + Math.abs(j - playerMap.findPlayerX(selectedPlayer))) <= selectedAbility.getMoves()){
+                        playerMap.indicate(j, i);
+                    }
+                }
+            }
+        } else if (selectedAbility != null && selectedPlayer != null){
             //Calculate Range of Ability!
             int rangeAhead = playerMap.findPlayerX(selectedPlayer) + selectedAbility.getXRange();
             int rangeBehind = playerMap.findPlayerX(selectedPlayer) - selectedAbility.getXRange();
@@ -172,6 +182,7 @@ public class LevelScreen extends GameScreen{
         }
     }
 
+    //MOVE ENEMY AND MOVE PLAYER HERE!!!
 
     public void drawHoverAttack(Graphics g){
         for (int i = 0; i < 3; i++) {
