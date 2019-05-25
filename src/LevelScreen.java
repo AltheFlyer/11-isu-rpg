@@ -176,19 +176,32 @@ public class LevelScreen extends GameScreen{
 
 
     public void drawHoverAttack(Graphics g){
+        //Magic number storage
+        int playerGridX = 323;
+        int playerGridY = 108;
+
+        int enemyGridX = 686;
+        int enemyGridY = 108;
+
+        int gridWidth = 120;
+        int gridHeight = 120;
+
+        int gridWidthSpace = 121;
+        int gridHeightSpace = 121;
+
         for (int j = 0; j < 3; j++) {
             for (int i = 0; i < 3; i++) {
-                if (isMouseOver(new Rectangle(323 + 121 * i, 108 + 121 * j, 120, 120))) {
+                if (isMouseOver(new Rectangle(playerGridX + gridWidthSpace * i, playerGridY + gridHeightSpace * j, gridWidth, gridHeight))) {
                     if (playerMap.getIndication(i, j)) {
                         for (int k = j-selectedAbility.getYAOE(); k <= j+selectedAbility.getYAOE(); k++){
                             for (int l = i-selectedAbility.getXAOE(); l <= i+selectedAbility.getXAOE(); l++){
                                 if (playerMap.tileExists(l, k)){
                                     g.setColor(Color.GREEN);
-                                    g.drawRect(323 + 121 * l, 108 + 121 * k, 120, 120);
+                                    g.drawRect(playerGridX + gridWidthSpace * l, playerGridY + gridHeightSpace * k, gridWidth, gridHeight);
                                 }
                                 if (enemyMap.tileExists(l,k-3)){
                                     g.setColor(Color.GREEN);
-                                    g.drawRect(686 + 121 * (l-3), 108 + 121 * k, 120, 120);
+                                    g.drawRect(enemyGridX + gridWidthSpace * (l-3), enemyGridY + gridHeightSpace * k, gridWidth, gridHeight);
                                 }
                             }
                         }
@@ -199,17 +212,17 @@ public class LevelScreen extends GameScreen{
 
         for (int j = 0; j < 3; j++) {
             for (int i = 0; i < 3; i++) {
-                if (isMouseOver(new Rectangle(686+121*i, 108+121*j, 120, 120))) {
+                if (isMouseOver(new Rectangle(enemyGridX+gridWidthSpace*i, enemyGridY+gridHeightSpace*j, gridWidth, gridHeight))) {
                     if (enemyMap.getIndication(i,j)) {
                         for (int k = j-selectedAbility.getYAOE(); k <= j+selectedAbility.getYAOE(); k++){
                             for (int l = i-selectedAbility.getXAOE(); l <= i+selectedAbility.getXAOE(); l++){
                                 if (enemyMap.tileExists(l,k)){
                                     g.setColor(Color.GREEN);
-                                    g.drawRect(686 + 121 * l, 108 + 121 * k, 120, 120);
+                                    g.drawRect(enemyGridX + gridWidthSpace * l, enemyGridY + gridHeightSpace * k, gridWidth, gridHeight);
                                 }
                                 if (playerMap.tileExists(l,k+3)){
                                     g.setColor(Color.GREEN);
-                                    g.drawRect(323 + 121 * (l+3), 108 + 121 * k, 120, 120);
+                                    g.drawRect(playerGridX + gridWidthSpace * (l+3), playerGridY + gridHeightSpace * k, gridWidth, gridHeight);
                                 }
                             }
                         }
