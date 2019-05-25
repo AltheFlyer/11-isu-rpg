@@ -11,6 +11,8 @@ public class LevelScreen extends GameScreen{
     EnemyMap enemyMap;
     Enemy ack;
 
+    Player[] players;
+
     SingleAbility ability1;
     AOEAbility heal;
 
@@ -29,6 +31,10 @@ public class LevelScreen extends GameScreen{
         playerMap.addPlayer(1,2,kevin);
         playerMap.addPlayer(2,1,allen);
         enemyMap.addEnemy(1,2,ack);
+
+        players = new Player[3];
+        players[0] = kevin;
+        players[1] = allen;
     }
 
     @Override
@@ -46,26 +52,19 @@ public class LevelScreen extends GameScreen{
     public void mouseReleased(MouseEvent e) {
         super.mouseReleased(e);
 
-        //Yay for hardcoding
-        if (isFullyClicked(new Rectangle(323, 468, 360, 80))) {
-            selectedPlayer = kevin;
-            selectedAbility = null;
-            enemyMap.unIndicateAll();
-            playerMap.unIndicateAll();
-        }
+        //Magic number storage
+        int selectX = 323;
+        int selectY = 468;
+        int selectWidth = 360;
+        int selectHeight = 80;
 
-        if (isFullyClicked(new Rectangle(323, 548, 360, 80))) {
-            selectedPlayer = allen;
-            selectedAbility = null;
-            enemyMap.unIndicateAll();
-            playerMap.unIndicateAll();
-        }
-
-        if (isFullyClicked(new Rectangle(323, 628, 360, 80))) {
-            selectedPlayer = null;
-            selectedAbility = null;
-            enemyMap.unIndicateAll();
-            playerMap.unIndicateAll();
+        for (int i = 0; i < players.length; ++i) {
+            if (isFullyClicked(new Rectangle(selectX, selectY + i * selectHeight, selectWidth, selectHeight))) {
+                selectedPlayer = players[i];
+                selectedAbility = null;
+                enemyMap.unIndicateAll();
+                playerMap.unIndicateAll();
+            }
         }
 
         //Use an ability here
@@ -221,61 +220,25 @@ public class LevelScreen extends GameScreen{
     }
 
     public void drawPlayerProfiles(Graphics g){
-        // profile of person 1
-        if (isMouseOver(new Rectangle(323, 471, 363, 80))) {
-            g.setColor(Color.GREEN);
-            g.fillRect(323, 471, 363, 80);
-            g.setColor(Color.BLACK);
-            g.drawRect(323, 471, 363, 80);
-        } else {
-            //Profile of player should be here!
-            g.setColor(Color.RED);
-            g.fillRect(323, 471, 363, 80);
-            g.setColor(Color.BLACK);
-            g.drawRect(323, 471, 363, 80);
-            //(Separator) look above
-        }
-        //Profile of player 2
-        if (isMouseOver(new Rectangle(323, 551, 363, 80))) {
-            g.setColor(Color.GREEN);
-            g.fillRect(323, 551, 363, 80);
-            g.setColor(Color.BLACK);
-            g.drawRect(323, 551, 363, 80);
-        } else {
-            //Profile of player should be here!
-            g.setColor(Color.RED);
-            g.fillRect(323, 551, 363, 80);
-            g.setColor(Color.BLACK);
-            g.drawRect(323, 551, 363, 80);
-            //(Separator) look above
-        }
-        //profile of player 3
-        if (isMouseOver(new Rectangle(323, 631, 363, 80))) {
-            g.setColor(Color.GREEN);
-            g.fillRect(323, 631, 363, 80);
-            g.setColor(Color.BLACK);
-            g.drawRect(323, 631, 363, 80);
-        } else {
-            //Profile of player should be here!
-            g.setColor(Color.RED);
-            g.fillRect(323, 631, 363, 80);
-            g.setColor(Color.BLACK);
-            g.drawRect(323, 631, 363, 80);
-            //(Separator) look above
-        }
-        //profile of player 3
-        if (isMouseOver(new Rectangle(323, 711, 363, 30))) {
-            g.setColor(Color.GREEN);
-            g.fillRect(323, 711, 363, 80);
-            g.setColor(Color.BLACK);
-            g.drawRect(323, 711, 363, 80);
-        } else {
-            //Profile of player should be here!
-            g.setColor(Color.RED);
-            g.fillRect(323, 711, 363, 80);
-            g.setColor(Color.BLACK);
-            g.drawRect(323, 711, 363, 80);
-            //(Separator) look above
+        //Magic number storage
+        int profileX = 323;
+        int profileY = 471;
+        int profileWidth = 363;
+        int profileHeight = 80;
+
+        //Draw a selection for each of the players
+        for (int i = 0; i < players.length; ++i) {
+            if (isMouseOver(new Rectangle(profileX, profileY + i * profileHeight, profileWidth, profileHeight))) {
+                g.setColor(Color.GREEN);
+                g.fillRect(profileX, profileY + i * profileHeight, profileWidth, profileHeight);
+                g.setColor(Color.BLACK);
+                g.drawRect(profileX, profileY + i * profileHeight, profileWidth, profileHeight);
+            } else {
+                g.setColor(Color.RED);
+                g.fillRect(profileX, profileY + i * profileHeight, profileWidth, profileHeight);
+                g.setColor(Color.BLACK);
+                g.drawRect(profileX, profileY + i * profileHeight, profileWidth, profileHeight);
+            }
         }
     }
 }
