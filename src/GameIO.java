@@ -1,7 +1,11 @@
-package utils;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.BufferedReader;
+import java.io.IOException;
 
-import java.io.*;
-import java.util.*;
+import java.util.HashMap;
+import java.util.Iterator;
 
 /**
  * [GameIO.java]
@@ -18,6 +22,25 @@ public class GameIO {
      * acting as a universal accessor
      */
     private final static String TEXT_SRC = "data/";
+
+    private static HashMap<String, Boolean> tileWalkability;
+
+    /**
+     * [setTileWalkability]
+     * loads all tile types, and saves whether they can be walked on or not
+     * @param path the file path of the text file with all walkability values, not including source folder
+     */
+    static public void setTileWalkability(String path) {
+        tileWalkability = new HashMap<String, Boolean>();
+        String allData = readFile(path);
+
+        String[] lines = allData.split("\n");
+
+        for (int i = 0; i < lines.length; ++i) {
+            int spaceIndex = lines[i].indexOf(" ");
+            tileWalkability.put(lines[i].substring(0, spaceIndex), Boolean.valueOf(lines[i].substring(spaceIndex + 1)));
+        }
+    }
 
     /**
      * [getBattleLayout]
@@ -101,6 +124,34 @@ public class GameIO {
         }
 
         writeFile("inventory.txt", toWrite);
+    }
+
+    /**
+     * [getMap]
+     * Gets a 2d array of tiles from a specified map file.
+     * WARNING: setTileWalkability must be called first in order to establish walkabilities of each given tile.
+     * @param path the path of the map file (not including source folder)
+     * @return OverworldTile[][] a 2d array of form [x][y] of Overworld tiles
+     */
+    static public OverworldTile[][] getMap(String path) {
+        String mapText = readFile(path);
+        OverworldTile[][] tileMap;
+
+        String[] lines = mapText.split("\n");
+
+        String[] tokens = lines[0].split(" ");
+        int width = Integer.parseInt(tokens[0]);
+        int height = Integer.parseInt(tokens[1]);
+        tileMap = new OverworldTile[width][height];
+
+        for (int y = 0; y < height; ++y) {
+            tokens = lines[y + 1].split(" ");
+            for (int x = 0; x < width; ++x) {
+                tileMap[x][y] = new OverworldTile(x, y, tileWalkability.get(tokens[x]));
+            }
+        }
+
+        return tileMap;
     }
 
     /**

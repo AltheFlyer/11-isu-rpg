@@ -1,12 +1,12 @@
-package utils;
-
 import java.util.HashMap;
 
 public class IOTester {
 
     public static void main(String[] args) {
+        GameIO.setTileWalkability("maps/tile_walkability.txt");
         testBattleLayout();
         testInventory();
+        testMap();
     }
 
     static void testBattleLayout() {
@@ -35,5 +35,15 @@ public class IOTester {
         tab2.put("holy_hand_grenade", 5);
 
         GameIO.setInventory(tab2);
+    }
+
+    static void testMap() {
+        OverworldTile[][] map = GameIO.getMap("/maps/test.txt");
+        for (int y = 0; y < map[0].length; ++y) {
+            for (int x = 0; x < map.length; ++x) {
+                System.out.print(map[x][y].isWalkable + " ");
+            }
+            System.out.println();
+        }
     }
 }
