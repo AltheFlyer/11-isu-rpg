@@ -26,10 +26,10 @@ public class TextTester {
             super.paintComponent(g);
 
             if (t == null) {
-                t = new TextDrawer(g, "a b c d e f g h i j k l m n o p q r s t u v w x y z", 10, 10, 200);
+                t = new TextDrawer(g, "Hey guys, it's good to know that text drawing works right now!\nNext stop, *special* text drawing!", 10, 10, 200);
             }
 
-            t.drawText(g);
+            t.speakText(g);
             repaint();
         }
     }
