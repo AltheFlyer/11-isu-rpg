@@ -27,4 +27,5 @@ abstract public class OverworldEntity {
     public void setY(int newY) {
         this.y = newY;
     }
+
 }

@@ -11,4 +11,18 @@ public class OverworldPlayer extends OverworldEntity {
         g.fillRect(this.getX(),this.getY(),10,10); //modify size
     }
 
+    public void moveUp(){
+        y += 1;
+    }
+
+    public void moveDown(){
+        y -= 1;
+    }
+
+    public void moveRight(){ x += 1; }
+
+    public void moveLeft(){
+        x -= 1;
+    }
+
 }

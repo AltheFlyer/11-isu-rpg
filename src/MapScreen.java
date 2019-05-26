@@ -1,4 +1,6 @@
 import java.awt.*;
+import java.awt.event.KeyListener;
+import java.awt.event.KeyEvent;
 
 public class MapScreen extends GameScreen {
 
@@ -20,4 +22,20 @@ public class MapScreen extends GameScreen {
         rando.draw(g);
         repaint();
     }
+
+    public void keyTyped(KeyEvent e) {
+        if(e.getKeyCode() == e.VK_UP){
+            player.moveUp();
+        }
+        if(e.getKeyCode() == e.VK_DOWN){
+            player.moveDown();
+        }
+        if(e.getKeyCode() == e.VK_RIGHT){
+            player.moveRight();
+        }
+        if(e.getKeyCode() == e.VK_LEFT){
+            player.moveLeft();
+        }
+    }
+
 }
