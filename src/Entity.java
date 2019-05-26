@@ -2,7 +2,29 @@ abstract public class Entity {
     private double health;
     private String name;
     private double energy;
+
+    //CREATE A GETTER FOR THIS LATER
     public Ability ability1;
+    private int xGrid;
+    private int yGrid;
+
+    //Will get the stored x or y location of certain entities
+    public int getXGrid(){
+        return xGrid;
+    }
+
+    public int getYGrid(){
+        return yGrid;
+    }
+
+    //Will set the x or y location of certain entities
+    public void setXGrid(int xGrid){
+        this.xGrid = xGrid;
+    }
+
+    public void setYGrid(int yGrid){
+        this.yGrid = yGrid;
+    }
 
     Entity(double health, String name, Ability ability1) {
         this.ability1 = ability1;

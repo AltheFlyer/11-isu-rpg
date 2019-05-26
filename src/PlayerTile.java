@@ -3,12 +3,14 @@ import java.awt.*;
 public class PlayerTile extends Tile{
     private Player player;
 
-    PlayerTile(int x, int y, int xTile, int yTile){
-        super(x,y);
+    PlayerTile(int xGraphic, int yGraphic, int xGrid, int yGrid){
+        super(xGraphic,yGraphic, xGrid, yGrid);
     }
 
     public void setPlayer(Player player){
         this.player = player;
+        player.setXGrid(getXGrid());
+        player.setYGrid(getYGrid());
         setEntity(player);
     }
 
@@ -19,22 +21,22 @@ public class PlayerTile extends Tile{
     public void draw(Graphics g){
         if (isEmpty()) {
             g.setColor(new Color(204, 255, 255));
-            g.fillRect(getX(), getY(), 120, 120);
+            g.fillRect(getXGraphic(), getYGraphic(), 120, 120);
             g.setColor(Color.BLACK);
             if (getIndication()){
                 g.setColor(new Color(0, 0, 0, 100));
-                g.fillRect(getX(), getY(),120,120);
+                g.fillRect(getXGraphic(), getYGraphic(),120,120);
             }
-            g.drawRect(getX(), getY(), 120, 120);
+            g.drawRect(getXGraphic(), getYGraphic(), 120, 120);
         } else {
-            player.draw(getX(), getY(),g, getIndication());
+            player.draw(getXGraphic(), getYGraphic(),g, getIndication());
         }
     }
 
     /**
      * RETURNS THE TYPE OF TILE IT IS, 'p' for Player 'e' for Enemy
      */
-    
+
     public char getType(){
         return 'p';
     }

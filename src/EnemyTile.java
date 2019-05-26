@@ -3,12 +3,14 @@ import java.awt.*;
 public class EnemyTile extends Tile{
     private Enemy enemy;
 
-    EnemyTile(int x, int y, int xTile, int yTile){
-        super(x,y);
+    EnemyTile(int xGraphic, int yGraphic, int xGrid, int yGrid){
+        super(xGraphic,yGraphic, xGrid, yGrid);
     }
 
     public void setEnemy(Enemy enemy){
         this.enemy = enemy;
+        enemy.setXGrid(getXGrid());
+        enemy.setYGrid(getYGrid());
         setEntity(enemy);
     }
 
@@ -19,15 +21,15 @@ public class EnemyTile extends Tile{
     public void draw(Graphics g){
         if (isEmpty()) {
             g.setColor(new Color(255, 204, 204));
-            g.fillRect(getX(), getY(), 120, 120);
+            g.fillRect(getXGraphic(), getYGraphic(), 120, 120);
             g.setColor(Color.BLACK);
             if (getIndication()){
                 g.setColor(new Color(0, 0, 0, 100));
-                g.fillRect(getX(), getY(),120,120);
+                g.fillRect(getXGraphic(), getYGraphic(),120,120);
             }
-            g.drawRect(getX(), getY(), 120, 120);
+            g.drawRect(getXGraphic(), getYGraphic(), 120, 120);
         } else {
-            enemy.draw(getX(), getY(),g, getIndication());
+            enemy.draw(getXGraphic(), getYGraphic() ,g, getIndication());
         }
     }
 

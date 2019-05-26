@@ -3,32 +3,34 @@ import java.awt.*;
 abstract public class Tile {
     private Entity entity;
     private Rectangle boundingBox;
-    private int xTile;
-    private int yTile;
-    private int x;
-    private int y;
+    private int xGrid;
+    private int yGrid;
+    private int xGraphic;
+    private int yGraphic;
     private boolean indicated;
 
-    Tile(int x, int y){
-        this.x = x;
+    Tile(int xGraphic, int yGraphic, int xGrid, int yGrid){
+        this.xGraphic = xGraphic;
         indicated = false;
-        this.y = y;
+        this.yGraphic = yGraphic;
+        this.xGrid = xGrid;
+        this.yGrid = yGrid;
     }
 
-    public int getX(){
-        return x;
+    public int getXGraphic(){
+        return xGraphic;
     }
 
-    public int getXTile(){
-        return xTile;
+    public int getXGrid(){
+        return xGrid;
     }
 
-    public int getYTile(){
-        return yTile;
+    public int getYGrid(){
+        return yGrid;
     }
 
-    public int getY(){
-        return y;
+    public int getYGraphic(){
+        return yGraphic;
     }
 
 

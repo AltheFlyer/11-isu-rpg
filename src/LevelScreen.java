@@ -97,6 +97,7 @@ public class LevelScreen extends GameScreen{
         jointMap.draw(g);
         drawPlayerProfiles(g);
 
+        /*
         if (selectedAbility instanceof MoveAbility && selectedPlayer != null) {
             for (int j = 0; j < 3; j++) {
                 for (int i = 0; i < 3; i++) {
@@ -105,12 +106,14 @@ public class LevelScreen extends GameScreen{
                     }
                 }
             }
-        } else if (selectedAbility != null && selectedPlayer != null) {
+        } else
+        */
+        if (selectedAbility != null && selectedPlayer != null) {
             //Calculate Range of Ability!
-            int rangeAhead = jointMap.findPlayerX(selectedPlayer) + selectedAbility.getXRange();
-            int rangeBehind = jointMap.findPlayerX(selectedPlayer) - selectedAbility.getXRange();
-            int rangeDown = jointMap.findPlayerY(selectedPlayer) + selectedAbility.getYRange();
-            int rangeUp = jointMap.findPlayerY(selectedPlayer) - selectedAbility.getYRange();
+            int rangeAhead = selectedPlayer.getXGrid() + selectedAbility.getXRange();
+            int rangeBehind = selectedPlayer.getXGrid() - selectedAbility.getXRange();
+            int rangeDown = selectedPlayer.getYGrid() + selectedAbility.getYRange();
+            int rangeUp = selectedPlayer.getYGrid() - selectedAbility.getYRange();
 
             //Create Indications for ability
             for (int j = rangeUp; j <= rangeDown; j++) {
