@@ -34,7 +34,7 @@ public class PlayerTile extends Tile{
     /**
      * RETURNS THE TYPE OF TILE IT IS, 'p' for Player 'e' for Enemy
      */
-
+    
     public char getType(){
         return 'p';
     }
