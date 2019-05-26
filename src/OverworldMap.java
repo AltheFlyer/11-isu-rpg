@@ -17,7 +17,7 @@ public class OverworldMap {
                     g.fillRect(i*tileSize,j*tileSize,tileSize,tileSize);
                 } else {
                     g.setColor(Color.DARK_GRAY);
-                    g.fillRect(i*tileSize,j*tileSize,tileSize,tileSize)
+                    g.fillRect(i*tileSize,j*tileSize,tileSize,tileSize);
                 }
             }
         }

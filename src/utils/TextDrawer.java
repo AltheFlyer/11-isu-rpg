@@ -20,6 +20,7 @@ public class TextDrawer {
     int x, y;
     int lineHeight;
 
+    //Spoken text values
     int charactersWritten;
     long characterDelay;
     long lastTextUpdate;
@@ -31,8 +32,8 @@ public class TextDrawer {
      * Use this for generic text with the text set by a graphics object.
      * @param g the graphics object to draw with
      * @param text the text to draw
-     * @param x the x position to draw from
-     * @param y the y position to draw from
+     * @param x the x position of the baseline of the text
+     * @param y the y position of the baseline of the text
      * @param maxWidth the maximum width of a line of text (this is NOT enforced by words that exceed this width)
      */
     public TextDrawer(Graphics g, String text, int x, int y, int maxWidth) {
@@ -49,8 +50,30 @@ public class TextDrawer {
         textLength = text.length();
     }
 
+    /**
+     * [TextDrawer]
+     * Use this for generic text with the text set by a graphics object, where the text is displayed as it it were 'spoken'
+     * @param g the graphics object to draw with
+     * @param text the text to draw
+     * @param x the x position of the baseline of the text
+     * @param y the y position of the baseline of the text
+     * @param maxWidth the maximum width of a line of text (this is NOT enforced by words that exceed this width)
+     * @param characterDelay the delay in milliseconds between each character being drawn (this only has an effect when
+     *                       the draw() method is called multiple times)
+     */
     public TextDrawer(Graphics g, String text, int x, int y, int maxWidth, int characterDelay) {
+        FontMetrics fontData = g.getFontMetrics();
+        this.x = x;
+        this.y = y;
 
+        //This is: the height above baseline, the height below baseline, and the font's recommended spacing between lines
+        lineHeight = fontData.getAscent() + fontData.getDescent() + fontData.getLeading();
+
+        this.generateTextLines(g, text, maxWidth);
+
+        charactersWritten = 0;
+        textLength = text.length();
+        this.characterDelay = characterDelay;
     }
 
     /**
