@@ -47,12 +47,8 @@ abstract public class Ability {
     }
 
 
-    public void actEnemy(EnemyMap enemyMap, int x, int y) {
-        enemyMap.target(x, y, damage, status);
-    }
-
-    public void actPlayer(PlayerMap playerMap, int x, int y) {
-        playerMap.target(x, y, damage, status);
+    public void act(JointMap jointMap, int x, int y) {
+        jointMap.target(x, y, damage, status);
     }
 
     public int getXRange() {

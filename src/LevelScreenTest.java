@@ -2,7 +2,11 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
-public class LevelScreen extends GameScreen{
+/**
+ * This class is only used for creating dupes of level screen and testing, this class will not be used in the future
+ */
+
+public class LevelScreenTest extends GameScreen{
     Player selectedPlayer;
     Ability selectedAbility;
     JointMap jointMap;
@@ -15,7 +19,7 @@ public class LevelScreen extends GameScreen{
     AOEAbility heal;
     MoveAbility move;
 
-    LevelScreen(GameManager game){
+    LevelScreenTest(GameManager game){
         super(game);
         ability1 = new SingleAbility("basic",6,0,1,2,true);
         heal = new AOEAbility("heal",0,3,0,1,1,-2.0,false);

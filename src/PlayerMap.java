@@ -82,14 +82,6 @@ public class PlayerMap {
         playerArray[x][y].unIndicate();
     }
 
-    public void indicateAll(){
-        for (int j = 0; j < 3; j++) {
-            for (int i = 0; i < 3; i++) {
-                playerArray[i][j].indicate();
-            }
-        }
-    }
-
     public void unIndicateAll(){
         for (int j = 0; j < 3; j++) {
             for (int i = 0; i < 3; i++) {
@@ -107,7 +99,7 @@ public class PlayerMap {
     }
 
     public void swapTiles(int x, int y, int xNow, int yNow){
-        playerArray[y][x].setPlayer(playerArray[yNow][xNow].getPlayer());
-        playerArray[yNow][xNow].setPlayer(null);
+        playerArray[x][y].setPlayer(playerArray[yNow][xNow].getPlayer());
+        playerArray[xNow][yNow].setPlayer(null);
     }
 }

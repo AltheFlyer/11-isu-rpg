@@ -31,5 +31,13 @@ public class EnemyTile extends Tile{
         }
     }
 
+    /**
+    * RETURNS THE TYPE OF TILE IT IS, 'p' for Player 'e' for Enemy
+    */
+
+    public char getType(){
+        return 'e';
+    }
+
     //There is also damageEntity here!
 }

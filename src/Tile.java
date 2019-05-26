@@ -69,4 +69,8 @@ abstract public class Tile {
     public boolean getIndication(){
         return indicated;
     }
+
+    abstract void draw(Graphics g);
+
+    abstract char getType();
 }
