@@ -35,6 +35,18 @@ abstract public class Ability {
 
     }
 
+    //Should know where the person is casting is
+    //Give entity information
+    //Get entitySource (Entity entitySource)
+    //have access to jointMap
+    //getValidTiles - call indicate
+    //drawAffectedTiles(x,y) (indicate for AOE) - drawHoverAttack
+    //DO EVERYTHING IN HERE NOT LEVEL SCREEN
+    public void act(){
+
+    }
+
+
     public void actEnemy(EnemyMap enemyMap, int x, int y) {
         enemyMap.target(x, y, damage, status);
     }
@@ -112,8 +124,6 @@ abstract public class Ability {
      * @param g the graphics object to draw with
      */
     public void drawValidTargets(Graphics g) {}
-
-    }
 
 
     public int getMoves() {

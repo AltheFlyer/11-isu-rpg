@@ -10,9 +10,7 @@ public class LevelScreen extends GameScreen{
     Player allen;
     EnemyMap enemyMap;
     Enemy ack;
-
     Player[] players;
-
     SingleAbility ability1;
     AOEAbility heal;
     MoveAbility move;
@@ -22,10 +20,12 @@ public class LevelScreen extends GameScreen{
         ability1 = new SingleAbility("basic",6,0,1,2,true);
         heal = new AOEAbility("heal",0,3,0,1,1,-2.0,false);
         move = new MoveAbility("step",1);
+
         playerMap = new PlayerMap();
         enemyMap = new EnemyMap();
+
         kevin = new Player(10,"kevin",ability1);
-        allen = new Player(10,"allen",move);
+        allen = new Player(10,"allen",heal);
         ack = new Enemy(10);
 
         //Add things onto the map
@@ -75,12 +75,14 @@ public class LevelScreen extends GameScreen{
         }
 
         //Action attack!
-        for (int j = 0; j < 3; j++) {
-            for (int i = 0; i < 3; i++) {
-                if (selectedPlayer != null && selectedAbility != null && isFullyClicked(new Rectangle(686 + 121 * i, 108 + 121 * j, 120, 120))) {
-                    actionEnemy(i, j);
-                } else if (selectedPlayer != null && selectedAbility != null && isFullyClicked(new Rectangle(323 + 121 * i, 108 + 121 * j, 120, 120))) {
-                    actionPlayer(i, j);
+        if (selectedPlayer != null && selectedAbility != null) {
+            for (int j = 0; j < 3; j++) {
+                for (int i = 0; i < 3; i++) {
+                    if (isFullyClicked(new Rectangle(686 + 121 * i, 108 + 121 * j, 120, 120))) {
+                        actionEnemy(i, j);
+                    } else if (isFullyClicked(new Rectangle(323 + 121 * i, 108 + 121 * j, 120, 120))) {
+                        actionPlayer(i, j);
+                    }
                 }
             }
         }
@@ -94,10 +96,10 @@ public class LevelScreen extends GameScreen{
         drawPlayerProfiles(g);
 
         if (selectedAbility instanceof MoveAbility && selectedPlayer != null) {
-            for (int i = 0; i < 3; i++) {
-                for (int j = 0; j < 3; j++) {
-                    if ((Math.abs(i - playerMap.findPlayerY(selectedPlayer)) + Math.abs(j - playerMap.findPlayerX(selectedPlayer))) <= selectedAbility.getMoves()) {
-                        playerMap.indicate(j, i);
+            for (int j = 0; j < 3; j++) {
+                for (int i = 0; i < 3; i++) {
+                    if ((Math.abs(j - playerMap.findPlayerY(selectedPlayer)) + Math.abs(j - playerMap.findPlayerX(selectedPlayer))) <= selectedAbility.getMoves()) {
+                        playerMap.indicate(i,j);
                     }
                 }
             }
@@ -109,10 +111,10 @@ public class LevelScreen extends GameScreen{
             int rangeUp = playerMap.findPlayerY(selectedPlayer) - selectedAbility.getYRange();
 
             //Create Indications for ability
-            for (int i = rangeUp; i <= rangeDown; i++) {
-                for (int j = rangeBehind; j <= rangeAhead; j++) {
-                    if (enemyMap.tileExists(i, j - 3) && !selectedAbility.getPlayerOnly()) {
-                        enemyMap.indicate(j - 3, i);
+            for (int j = rangeUp; j <= rangeDown; j++) {
+                for (int i = rangeBehind; i <= rangeAhead; i++) {
+                    if (enemyMap.tileExists(i-3, j) && !selectedAbility.getPlayerOnly()) {
+                        enemyMap.indicate(i - 3, j);
                     }
                 }
             }
@@ -145,14 +147,14 @@ public class LevelScreen extends GameScreen{
     }
 
 
-    public void actionEnemy ( int i, int j){
+    public void actionEnemy (int i, int j){
         if (enemyMap.getIndication(i, j) && !enemyMap.isEmpty(i, j)) {
             for (int k = j - selectedAbility.getYAOE(); k <= j + selectedAbility.getYAOE(); k++) {
                 for (int l = i - selectedAbility.getXAOE(); l <= i + selectedAbility.getXAOE(); l++) {
                     if (enemyMap.tileExists(l, k)) {
                         ability1.actEnemy(enemyMap, l, k);
                     }
-                    if (playerMap.tileExists(k + 3, l)) {
+                    if (playerMap.tileExists(l+3, k)) {
                         ability1.actPlayer(playerMap, l + 3, k);
                     }
                 }
@@ -201,6 +203,7 @@ public class LevelScreen extends GameScreen{
         int gridWidthSpace = 121;
         int gridHeightSpace = 121;
 
+        //getX or getY
         for (int j = 0; j < 3; j++) {
             for (int i = 0; i < 3; i++) {
                 if (isMouseOver(new Rectangle(playerGridX + gridWidthSpace * i, playerGridY + gridHeightSpace * j, gridWidth, gridHeight))) {
@@ -211,7 +214,7 @@ public class LevelScreen extends GameScreen{
                                     g.setColor(Color.GREEN);
                                     g.drawRect(playerGridX + gridWidthSpace * l, playerGridY + gridHeightSpace * k, gridWidth, gridHeight);
                                 }
-                                if (enemyMap.tileExists(l,k-3)){
+                                if (enemyMap.tileExists(l-3,k)){
                                     g.setColor(Color.GREEN);
                                     g.drawRect(enemyGridX + gridWidthSpace * (l-3), enemyGridY + gridHeightSpace * k, gridWidth, gridHeight);
                                 }
@@ -232,7 +235,7 @@ public class LevelScreen extends GameScreen{
                                     g.setColor(Color.GREEN);
                                     g.drawRect(enemyGridX + gridWidthSpace * l, enemyGridY + gridHeightSpace * k, gridWidth, gridHeight);
                                 }
-                                if (playerMap.tileExists(l,k+3)){
+                                if (playerMap.tileExists(l+3,k)){
                                     g.setColor(Color.GREEN);
                                     g.drawRect(playerGridX + gridWidthSpace * (l+3), playerGridY + gridHeightSpace * k, gridWidth, gridHeight);
                                 }

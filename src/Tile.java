@@ -31,6 +31,7 @@ abstract public class Tile {
         return y;
     }
 
+
     public void setEntity(Entity entity){
         this.entity = entity;
     }

@@ -9,6 +9,7 @@ public class Player extends Entity{
         return ability1;
     }
 
+    //pass list of abilities into levelScreen, select based on rect hovering
     public void drawAbilities(Graphics g, boolean selected){
         //BACKGROUND
         g.setColor(Color.GRAY);
