@@ -3,7 +3,7 @@ import java.awt.*;
 public class OverworldTile {
     private int x;
     private int y;
-    boolean walkable;
+    private boolean walkable;
     private Rectangle boundingBox;
 
     OverworldTile(int x, int y, boolean walkable){
