@@ -13,7 +13,7 @@ public class OverworldTile {
         this.boundingBox = new Rectangle(x,y,10,10); //again graphics particulars
     }
 
-    private boolean isWalkable() {
+    public boolean isWalkable() {
         return walkable;
     }
 }

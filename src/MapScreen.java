@@ -8,7 +8,7 @@ public class MapScreen extends GameScreen {
     private OverworldPlayer player;
     private OverworldNPC rando;
 
-    MapScreen(GameManager game, OverworldMap map){
+    MapScreen(GameManager game){
         super(game);
         map = new OverworldMap("five_by_five_map.txt");
         player = new OverworldPlayer(25,25);
