@@ -15,19 +15,20 @@ abstract public class Ability {
     private int xAOE;
     private int yAOE;
     private Tile[][] getValidTiles;
-    private boolean enemyOnly;
-    private boolean playerOnly;
+    private boolean enemyTarget;
+    private boolean friendTarget;
     private int moves;
     private Entity entitySource;
 
     //Constructor for Single target and AOE abilities
-    Ability(String name, int xRange, int yRange, int status, double damage, boolean enemyOnly) {
+    Ability(String name, int xRange, int yRange, int status, double damage, boolean enemyTarget, boolean friendTarget) {
         this.name = name;
         this.xRange = xRange;
         this.yRange = yRange;
         this.status = status;
         this.damage = damage;
-        this.enemyOnly = enemyOnly;
+        this.enemyTarget = enemyTarget;
+        this.friendTarget = friendTarget;
     }
 
     //Constructor for movement abilities
@@ -101,19 +102,19 @@ abstract public class Ability {
     }
 
     public void setEnemyOnly(){
-        enemyOnly = true;
+        enemyTarget = true;
     }
 
     public void setPlayerOnly(){
-        playerOnly = true;
+        friendTarget = true;
     }
 
     public boolean getEnemyOnly(){
-        return enemyOnly;
+        return enemyTarget;
     }
 
     public boolean getPlayerOnly(){
-        return playerOnly;
+        return friendTarget;
     }
 
     //Just a little bit radical here
@@ -159,9 +160,10 @@ abstract public class Ability {
         for (int j = rangeUp; j <= rangeDown; j++) {
             for (int i = rangeBehind; i <= rangeAhead; i++) {
                 if (jointMap.tileExists(i, j)) {
-                    if (jointMap.getTileType(i, j) == 'e' && !this.getPlayerOnly()) {
+                    if (friendTarget && jointMap.getTileType(i, j) == jointMap.getTileType(entitySource.getXGrid(),entitySource.getYGrid())) {
                         jointMap.indicate(i, j);
-                    } else if (jointMap.getTileType(i, j) == 'p' && !this.getEnemyOnly()) {
+                    }
+                    if (enemyTarget && jointMap.getTileType(i, j) != jointMap.getTileType(entitySource.getXGrid(),entitySource.getYGrid())) {
                         jointMap.indicate(i, j);
                     }
                 }

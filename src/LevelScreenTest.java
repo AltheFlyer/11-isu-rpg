@@ -21,15 +21,15 @@ public class LevelScreenTest extends GameScreen{
 
     LevelScreenTest(GameManager game){
         super(game);
-        ability1 = new SingleAbility("basic",6,0,1,2,true);
-        heal = new AOEAbility("heal",0,3,0,1,1,-2.0,false);
+        ability1 = new SingleAbility("basic",6,0,1,2,true, false);
+        heal = new AOEAbility("heal",0,3,0,1,1,-2.0,false, true);
         move = new MoveAbility("step",1);
 
         jointMap = new JointMap();
 
         kevin = new Player(10,"kevin",ability1);
         allen = new Player(10,"allen",heal);
-        ack = new Enemy(10);
+        ack = new Enemy(10,"ack", ability1);
 
         //Add things onto the map
         //i is x, j is y

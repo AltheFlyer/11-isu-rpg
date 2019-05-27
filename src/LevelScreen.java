@@ -15,21 +15,20 @@ public class LevelScreen extends GameScreen{
 
     Enemy ack;
     Player[] players;
-    SingleAbility ability1;
-    AOEAbility heal;
-    MoveAbility move;
 
     LevelScreen(GameManager game){
         super(game);
-        ability1 = new SingleAbility("basic",6,0,1,2,true);
-        heal = new AOEAbility("heal",0,3,0,1,1,-2.0,false);
+        /*
+        ability1 = new SingleAbility("basic",6,0,1,2,true, false);
+        heal = new AOEAbility("heal",2,0,0,1,1,-2.0,false, true);
         move = new MoveAbility("step",1);
-
+        */
         jointMap = new JointMap();
 
-        kevin = new Player(10,"kevin",ability1);
-        allen = new Player(10,"allen",heal);
-        ack = new Enemy(10);
+        // TODO There is probably a better way to do this just saying
+        kevin = new Player(10,"kevin",new SingleAbility("basic",6,0,1,2,true, false));
+        allen = new Player(10,"allen",new AOEAbility("heal",2,0,0,1,1,-2.0,false, true));
+        ack = new Enemy(10, "ack", new SingleAbility("basic",6,0,1,2,true, false));
 
         //Add things onto the map
         //i is x, j is y
@@ -77,6 +76,23 @@ public class LevelScreen extends GameScreen{
                 selectedAbility = null;
                 jointMap.unIndicateAll();
             }
+        }
+
+        //TODO yay i'm yellow so remove this right now it's for ending turn and letting enemies act
+        //Also right now they are targeting all indicated tiles, change this, this is 100% experiment
+        if (isFullyClicked(new Rectangle(selectX, selectY + 3 * selectHeight, selectWidth, selectHeight))) {
+            selectedAbility = null;
+            jointMap.unIndicateAll();
+            System.out.println("End turn enemy time!");
+            ack.getAbility1().indicateValidTiles(jointMap);
+            for (int j = 0; j < 3; j++) {
+                for (int i = 0; i < 6; i++) {
+                    if (ack.getAbility1().action(jointMap, i, j)){
+                        System.out.println("bam!");
+                    }
+                }
+            }
+            jointMap.unIndicateAll();
         }
 
         //Use an ability here, Click on the ability to select it for use, it will bring up indications

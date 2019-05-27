@@ -1,8 +1,13 @@
 import java.awt.*;
 
 public class Enemy extends Entity{
-    Enemy(double health){
-        super(health);
+    Enemy(double health, String name, Ability ability1){
+        super(health,name,ability1);
+        ability1.setEntitySource(this);
+    }
+
+    public Ability getAbility1(){
+        return ability1;
     }
 
     public void drawAbilities(Graphics g){
