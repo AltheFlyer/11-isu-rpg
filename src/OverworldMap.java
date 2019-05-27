@@ -1,6 +1,6 @@
 import java.awt.*;
 
-public class OverworldMap {
+abstract public class OverworldMap {
 
     private OverworldTile[][] map;
 
@@ -24,5 +24,8 @@ public class OverworldMap {
         }
     }
 
+    public OverworldTile[][] getMap(){
+        return map;
+    }
 
 }
