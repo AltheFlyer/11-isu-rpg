@@ -3,6 +3,7 @@ import java.awt.*;
 /**
  * This class is only used for creating dupes of Ability and testing, this class will not be used in the future
  */
+
 abstract public class AbilityTest {
     private String name;
     private String desc;
@@ -17,6 +18,7 @@ abstract public class AbilityTest {
     private boolean enemyOnly;
     private boolean playerOnly;
     private int moves;
+    private Entity entitySource;
 
     //Constructor for Single target and AOE abilities
     AbilityTest(String name, int xRange, int yRange, int status, double damage, boolean enemyOnly) {
@@ -118,12 +120,37 @@ abstract public class AbilityTest {
     }
 
     /**
-     * [drawValidTargets]
+     * [indicateValidTiles]
      * Draws valid selection regions for the center of an ability
-     * @param g the graphics object to draw with
+     * @param
      */
-    public void drawValidTargets(Graphics g) {}
+    public void indicateValidTiles(JointMap jointMap) {
+        //Calculate Range of Ability!
+        int rangeAhead = entitySource.getXGrid() + xRange;
+        int rangeBehind = entitySource.getXGrid() - xRange;
+        int rangeDown = entitySource.getYGrid() + yRange;
+        int rangeUp = entitySource.getYGrid() - yRange;
 
+        //Draw out indications for ability
+        for (int j = rangeUp; j <= rangeDown; j++) {
+            for (int i = rangeBehind; i <= rangeAhead; i++) {
+                if (jointMap.tileExists(i, j)) {
+                    if (jointMap.getTileType(i, j) == 'e' && !this.getPlayerOnly()) {
+                        jointMap.indicate(i, j);
+                    } else if (jointMap.getTileType(i, j) == 'p' && !this.getEnemyOnly()) {
+                        jointMap.indicate(i, j);
+                    }
+                }
+            }
+        }
+    }
+
+    public void setEntitySource(Entity entitySource){
+        this.entitySource = entitySource;
+    }
+    public Entity getEntitySource(){
+        return entitySource;
+    }
 
     public int getMoves() {
         return moves;

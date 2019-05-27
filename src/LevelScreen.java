@@ -2,6 +2,10 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
+/**
+ * This class is only used for creating dupes of level screen and testing, this class will not be used in the future
+ */
+
 public class LevelScreen extends GameScreen{
     Player selectedPlayer;
     Ability selectedAbility;
@@ -60,6 +64,7 @@ public class LevelScreen extends GameScreen{
         int selectWidth = 360;
         int selectHeight = 80;
 
+        //Click on the player profiles to select them and use abilities
         for (int i = 0; i < players.length; ++i) {
             if (isFullyClicked(new Rectangle(selectX, selectY + i * selectHeight, selectWidth, selectHeight))) {
                 if (players[i] == null) {
@@ -74,12 +79,12 @@ public class LevelScreen extends GameScreen{
             }
         }
 
-        //Use an ability here
+        //Use an ability here, Click on the ability to select it for use, it will bring up indications
         if (selectedPlayer != null && isFullyClicked(new Rectangle(30, 30, 263, 80))) {
             selectedAbility = selectedPlayer.getAbility1();
         }
 
-        //Action attack!
+        //Attempt to run an action when clicking on a certain tile,
         if (selectedPlayer != null && selectedAbility != null) {
             for (int j = 0; j < 3; j++) {
                 for (int i = 0; i < 6; i++) {
@@ -94,86 +99,59 @@ public class LevelScreen extends GameScreen{
 
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
+
+        //Draw out the map and all of the tiles on it
         jointMap.draw(g);
+
+        //Draw out the profile selection area
         drawPlayerProfiles(g);
 
-        /*
-        if (selectedAbility instanceof MoveAbility && selectedPlayer != null) {
-            for (int j = 0; j < 3; j++) {
-                for (int i = 0; i < 3; i++) {
-                    if ((Math.abs(j - jointMap.findPlayerY(selectedPlayer)) + Math.abs(j - jointMap.findPlayerX(selectedPlayer))) <= selectedAbility.getMoves()) {
-                        jointMap.indicate(i,j);
-                    }
-                }
-            }
-        } else
-        */
-        if (selectedAbility != null && selectedPlayer != null) {
-            //Calculate Range of Ability!
-            int rangeAhead = selectedPlayer.getXGrid() + selectedAbility.getXRange();
-            int rangeBehind = selectedPlayer.getXGrid() - selectedAbility.getXRange();
-            int rangeDown = selectedPlayer.getYGrid() + selectedAbility.getYRange();
-            int rangeUp = selectedPlayer.getYGrid() - selectedAbility.getYRange();
 
-            //Create Indications for ability
-            for (int j = rangeUp; j <= rangeDown; j++) {
-                for (int i = rangeBehind; i <= rangeAhead; i++) {
-                    if (jointMap.tileExists(i, j)) {
-                        if (jointMap.getTileType(i,j) == 'e' && !selectedAbility.getPlayerOnly()) {
-                            jointMap.indicate(i, j);
-                        } else if (jointMap.getTileType(i,j) == 'p' && !selectedAbility.getEnemyOnly()) {
-                            jointMap.indicate(i, j);
-                        }
-                    }
-                }
-            }
-
-            //Draw hover if you hover a spot you can attack
+        //Calculate the range for certain abilities and create indications telling you where it will hit based on the currently selected ability
+        if (selectedAbility != null){
+            selectedAbility.indicateValidTiles(jointMap);
             drawHoverAttack(g);
         }
-
-        //Profile of person 1
+        //Draw the profile of the player who is selected
         if (selectedPlayer != null) {
             selectedPlayer.drawAbilities(g, selectedAbility == selectedPlayer.getAbility1());
-            //selectedPlayer = playerMap.findPlayer(selectedPlayer);
-            //Ability selection
+
+            //Ability selection (Only first one works right now!)
             if (isMouseOver(new Rectangle(30, 30, 263, 80))) {
                 g.setColor(new Color(0, 0, 0, 100));
                 g.fillRect(30, 30, 263, 80);
             }
-            //selectedPlayer = playerMap.findPlayer(selectedPlayer);
         }
 
         repaint();
     }
 
     //FIX THIS LATER ESPECIALLY THE SPECIFIC ACTS
+    //This piece of code will run after a person has clicked tile after an ability has been selected, it will attempt to cast the ability selected on the hovered tiles
     public void action (int i, int j){
         if (jointMap.getIndication(i, j) && !jointMap.isEmpty(i, j) || jointMap.getIndication(i, j) && selectedAbility instanceof AOEAbility) {
             for (int k = j - selectedAbility.getYAOE(); k <= j + selectedAbility.getYAOE(); k++) {
                 for (int l = i - selectedAbility.getXAOE(); l <= i + selectedAbility.getXAOE(); l++) {
                     if (jointMap.tileExists(l, k)) {
-                        //Here I know it's the same but it's just a proof of concept that you can act on enemies or players
                         selectedAbility.act(jointMap, l, k);
                     }
                 }
             }
             System.out.println("bam!");
             System.out.println(selectedPlayer.getHealth());
+
+            //Deselect the ability
             selectedAbility = null;
             jointMap.unIndicateAll();
         }
     }
 
     //MOVE ENEMY AND MOVE PLAYER HERE!!!
-
+    //If you are hovering over a space you can attack, this will highlight those spaces
     public void drawHoverAttack(Graphics g){
         //Magic number storage
-        int playerGridX = 323;
-        int playerGridY = 108;
-
-        //int enemyGridX = 686;
-        //int enemyGridY = 108;
+        int gridX = 323;
+        int gridY = 108;
 
         int gridWidth = 120;
         int gridHeight = 120;
@@ -184,13 +162,13 @@ public class LevelScreen extends GameScreen{
         //getX or getY
         for (int j = 0; j < 3; j++) {
             for (int i = 0; i < 6; i++) {
-                if (isMouseOver(new Rectangle(playerGridX + gridWidthSpace * i, playerGridY + gridHeightSpace * j, gridWidth, gridHeight))) {
+                if (isMouseOver(new Rectangle(gridX + gridWidthSpace * i, gridY + gridHeightSpace * j, gridWidth, gridHeight))) {
                     if (jointMap.getIndication(i, j)) {
                         for (int k = j-selectedAbility.getYAOE(); k <= j+selectedAbility.getYAOE(); k++){
                             for (int l = i-selectedAbility.getXAOE(); l <= i+selectedAbility.getXAOE(); l++){
                                 if (jointMap.tileExists(l, k)){
                                     g.setColor(Color.GREEN);
-                                    g.drawRect(playerGridX + gridWidthSpace * l, playerGridY + gridHeightSpace * k, gridWidth, gridHeight);
+                                    g.drawRect(gridX + gridWidthSpace * l, gridY + gridHeightSpace * k, gridWidth, gridHeight);
                                 }
                             }
                         }
@@ -200,6 +178,7 @@ public class LevelScreen extends GameScreen{
         }
     }
 
+    //If you hover over a player profile, it will highlight and turn green!
     public void drawPlayerProfiles(Graphics g){
         //Magic number storage
         int profileX = 323;

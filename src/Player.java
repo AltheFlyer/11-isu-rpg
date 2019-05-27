@@ -3,6 +3,7 @@ import java.awt.*;
 public class Player extends Entity{
     Player(double health, String name, Ability ability1){
         super(health,name,ability1);
+        ability1.setEntitySource(this);
     }
 
     public Ability getAbility1(){
