@@ -155,6 +155,34 @@ public class GameIO {
     }
 
     /**
+     * [getMapAsString]
+     * Gets a 2d array of strings representing tiles from a specified map tile
+     * NOTE: setTileWalkability need not be called to get the tile names.
+     * @param path the path of the map file (not including source folder)
+     * @return String[][], the array of map tiles as strings
+     */
+    static public String[][] getMapAsString(String path) {
+        String mapText = readFile(path);
+        String[][] tileMap;
+
+        String[] lines = mapText.split("\n");
+
+        String[] tokens = lines[0].split(" ");
+        int width = Integer.parseInt(tokens[0]);
+        int height = Integer.parseInt(tokens[1]);
+        tileMap = new String[width][height];
+
+        for (int y = 0; y < height; ++y) {
+            tokens = lines[y + 1].split(" ");
+            for (int x = 0; x < width; ++x) {
+                tileMap[x][y] = tokens[x];
+            }
+        }
+
+        return tileMap;
+    }
+
+    /**
      * [readFile]
      * reads an entire file from the files source folder
      * @param path the file path, ignoring source folder
