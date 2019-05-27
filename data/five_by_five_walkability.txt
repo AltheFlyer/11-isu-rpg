@@ -1,5 +1,8 @@
 top_left false
 wall_up false
+wall_left false
+wall_right false
+wall_down false
 top_right false
 floor true
 bottom_left false

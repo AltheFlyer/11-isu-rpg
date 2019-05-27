@@ -11,8 +11,8 @@ public class MapScreen extends GameScreen {
     MapScreen(GameManager game){
         super(game);
         map = new OverworldMap("five_by_five_map.txt");
-        player = new OverworldPlayer(25,25);
-        rando = new OverworldNPC(13,43);
+        player = new OverworldPlayer(250,250);
+        rando = new OverworldNPC(130,430);
     }
 
     public void paintComponent(Graphics g){
@@ -36,6 +36,8 @@ public class MapScreen extends GameScreen {
         if(e.getKeyChar() =='a'){
             player.moveLeft();
         }
+        System.out.println(player.getX());
+        System.out.println(player.getY());
     }
 
 }

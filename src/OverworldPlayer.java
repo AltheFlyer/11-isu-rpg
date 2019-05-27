@@ -8,15 +8,15 @@ public class OverworldPlayer extends OverworldEntity {
 
     public void draw(Graphics g){
         g.setColor(Color.RED);
-        g.fillRect(this.getX(),this.getY(),10,10); //modify size
+        g.fillRect(this.getX(),this.getY(),50,50); //modify size
     }
 
     public void moveUp(){
-        this.setY(this.getY() + 1);
+        this.setY(this.getY() - 1);
     }
 
     public void moveDown(){
-        this.setY(this.getY() - 1);
+        this.setY(this.getY() + 1);
     }
 
     public void moveRight(){

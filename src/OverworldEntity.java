@@ -9,7 +9,7 @@ abstract public class OverworldEntity {
     public OverworldEntity(int x, int y){
         this.x = x;
         this.y = y;
-        this.boundingBox = new Rectangle(x,y,10,10); //modify size as we decide on graphics
+        this.boundingBox = new Rectangle(x,y,50,50); //modify size as we decide on graphics
     }
 
     public int getX() {

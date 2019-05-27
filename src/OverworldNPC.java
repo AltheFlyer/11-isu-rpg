@@ -8,7 +8,7 @@ public class OverworldNPC extends OverworldEntity {
 
     public void draw(Graphics g){
         g.setColor(Color.BLUE);
-        g.fillRect(this.getX(),this.getY(),10,10); //modify size
+        g.fillRect(this.getX(),this.getY(),50,50); //modify size
     }
 
 }
