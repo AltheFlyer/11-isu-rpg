@@ -89,7 +89,13 @@ public class LevelScreen extends GameScreen{
             for (int j = 0; j < 3; j++) {
                 for (int i = 0; i < 6; i++) {
                     if (isFullyClicked(new Rectangle(323 + 121 * i, 108 + 121 * j, 120, 120))) {
-                        action(i, j);
+                        if (selectedAbility.action(jointMap, i, j)){
+                            System.out.println("bam!");
+                            System.out.println(selectedPlayer.getHealth());
+                            //Deselect the ability
+                            selectedAbility = null;
+                            jointMap.unIndicateAll();
+                        }
                     }
                 }
             }
@@ -124,26 +130,6 @@ public class LevelScreen extends GameScreen{
         }
 
         repaint();
-    }
-
-    //FIX THIS LATER ESPECIALLY THE SPECIFIC ACTS
-    //This piece of code will run after a person has clicked tile after an ability has been selected, it will attempt to cast the ability selected on the hovered tiles
-    public void action (int i, int j){
-        if (jointMap.getIndication(i, j) && !jointMap.isEmpty(i, j) || jointMap.getIndication(i, j) && selectedAbility instanceof AOEAbility) {
-            for (int k = j - selectedAbility.getYAOE(); k <= j + selectedAbility.getYAOE(); k++) {
-                for (int l = i - selectedAbility.getXAOE(); l <= i + selectedAbility.getXAOE(); l++) {
-                    if (jointMap.tileExists(l, k)) {
-                        selectedAbility.act(jointMap, l, k);
-                    }
-                }
-            }
-            System.out.println("bam!");
-            System.out.println(selectedPlayer.getHealth());
-
-            //Deselect the ability
-            selectedAbility = null;
-            jointMap.unIndicateAll();
-        }
     }
 
     //MOVE ENEMY AND MOVE PLAYER HERE!!!

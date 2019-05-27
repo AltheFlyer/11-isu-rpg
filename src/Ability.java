@@ -47,13 +47,21 @@ abstract public class Ability {
     //getValidTiles - call indicate
     //drawAffectedTiles(x,y) (indicate for AOE) - drawHoverAttack
     //DO EVERYTHING IN HERE NOT LEVEL SCREEN
-    public void act(){
 
-    }
-
-
-    public void act(JointMap jointMap, int x, int y) {
-        jointMap.target(x, y, damage, status);
+    //This piece of code will run after a person has clicked tile after an ability has been selected, it will attempt to cast the ability selected on the hovered tiles
+    //The boolean return is for if the action was taken or not
+    public boolean action(JointMap jointMap, int i, int j){
+        if (jointMap.getIndication(i, j) && !jointMap.isEmpty(i, j) || jointMap.getIndication(i, j) && this instanceof AOEAbility) {
+            for (int k = j - yAOE; k <= j + yAOE; k++) {
+                for (int l = i - xAOE; l <= i + xAOE; l++) {
+                    if (jointMap.tileExists(l, k)) {
+                        jointMap.target(l, k, damage, status);
+                    }
+                }
+            }
+            return true;
+        }
+        return false;
     }
 
     public int getXRange() {
