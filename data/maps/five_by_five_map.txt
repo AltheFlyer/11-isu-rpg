@@ -1,0 +1,7 @@
+5
+5
+top_left wall_up wall_up wall_up top_right
+wall_left floor floor floor wall_right
+wall_left floor floor floor wall_right
+wall_left floor floor floor wall_right
+bottom_left floor floor floor bottom_right

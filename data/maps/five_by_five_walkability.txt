@@ -1,0 +1,6 @@
+top_left false
+wall_up false
+top_right false
+floor true
+bottom_left false
+bottom_right false
