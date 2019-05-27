@@ -123,8 +123,24 @@ abstract public class Ability {
      * Draws the area that will be affected by an ability
      * @param g the graphics object to draw with
      */
-    public void drawSelectedArea(Graphics g) {
+    public void drawHoverAttack(int i, int j, Graphics g, JointMap jointMap) {
+        //What to do here???
+        int gridX = 323;
+        int gridY = 108;
 
+        int gridWidth = 120;
+        int gridHeight = 120;
+
+        int gridWidthSpace = 121;
+        int gridHeightSpace = 121;
+        for (int k = j-yAOE; k <= j+yAOE; k++){
+            for (int l = i-xAOE; l <= i+xAOE; l++){
+                if (jointMap.tileExists(l, k)){
+                    g.setColor(Color.GREEN);
+                    g.drawRect(gridX + gridWidthSpace * l, gridY + gridHeightSpace * k, gridWidth, gridHeight);
+                }
+            }
+        }
     }
 
     /**

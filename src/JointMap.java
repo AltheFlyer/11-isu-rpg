@@ -42,33 +42,6 @@ public class JointMap {
         return (x < 6) && (x >= 0) && (y < 3) && (y >= 0);
     }
 
-    //PROBABLY REPLACE LATER WITH THE STORED PLAYER LOCATION SINCE ENTITIES NOW STORE LOCATION
-    public int findPlayerX(Player player){
-        for (int j = 0; j < 3; j++) {
-            for (int i = 0; i < 3; i++) {
-                if (!tileArray[i][j].isEmpty()){
-                    if (((PlayerTile)tileArray[i][j]).getPlayer().getName().equals(player.getName())) {
-                        return i;
-                    }
-                }
-            }
-        }
-        return 0;
-    }
-
-    public int findPlayerY(Player player){
-        for (int j = 0; j < 3; j++) {
-            for (int i = 0; i < 3; i++) {
-                if (!tileArray[i][j].isEmpty()){
-                    if (((PlayerTile)tileArray[i][j]).getPlayer().getName().equals(player.getName())) {
-                        return j;
-                    }
-                }
-            }
-        }
-        return 0;
-    }
-
     public void indicate(int x, int y){
         tileArray[x][y].indicate();
     }

@@ -133,6 +133,7 @@ public class LevelScreen extends GameScreen{
     }
 
     //MOVE ENEMY AND MOVE PLAYER HERE!!!
+
     //If you are hovering over a space you can attack, this will highlight those spaces
     public void drawHoverAttack(Graphics g){
         //Magic number storage
@@ -150,14 +151,7 @@ public class LevelScreen extends GameScreen{
             for (int i = 0; i < 6; i++) {
                 if (isMouseOver(new Rectangle(gridX + gridWidthSpace * i, gridY + gridHeightSpace * j, gridWidth, gridHeight))) {
                     if (jointMap.getIndication(i, j)) {
-                        for (int k = j-selectedAbility.getYAOE(); k <= j+selectedAbility.getYAOE(); k++){
-                            for (int l = i-selectedAbility.getXAOE(); l <= i+selectedAbility.getXAOE(); l++){
-                                if (jointMap.tileExists(l, k)){
-                                    g.setColor(Color.GREEN);
-                                    g.drawRect(gridX + gridWidthSpace * l, gridY + gridHeightSpace * k, gridWidth, gridHeight);
-                                }
-                            }
-                        }
+                        selectedAbility.drawHoverAttack(i,j,g,jointMap);
                     }
                 }
             }
