@@ -11,16 +11,25 @@ public class GlassPaneTest {
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setSize(1366, 768);
 
-        window.add(new BasicPanel());
+        window.getContentPane().add(new BasicPanel());
 
-        window.setGlassPane(new Glass());
+
         window.setVisible(true);
+
+        Glass gl = new Glass();
+        window.setGlassPane(gl);
+
+        window.revalidate();
+
+        System.out.println(window.getGlassPane().toString());
     }
 
     static class Glass extends JComponent implements MouseListener {
 
         public Glass() {
             addMouseListener(this);
+
+            System.out.println("FORM");
         }
 
 
@@ -31,7 +40,9 @@ public class GlassPaneTest {
 
         @Override
         public void mousePressed(MouseEvent e) {
+            System.out.println("GLASS");
             e.consume();
+            dispatchEvent(e);
         }
 
         @Override
