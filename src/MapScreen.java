@@ -10,7 +10,7 @@ public class MapScreen extends GameScreen {
 
     MapScreen(GameManager game, OverworldMap map){
         super(game);
-        this.map = map;
+        map = new OverworldMap("five_by_five_map.txt");
         player = new OverworldPlayer(25,25);
         rando = new OverworldNPC(13,43);
     }
@@ -24,16 +24,16 @@ public class MapScreen extends GameScreen {
     }
 
     public void keyTyped(KeyEvent e) {
-        if(e.getKeyCode() == e.VK_UP){
+        if(e.getKeyChar() == 'w'){
             player.moveUp();
         }
-        if(e.getKeyCode() == e.VK_DOWN){
+        if(e.getKeyChar() == 's'){
             player.moveDown();
         }
-        if(e.getKeyCode() == e.VK_RIGHT){
+        if(e.getKeyChar() == 'd'){
             player.moveRight();
         }
-        if(e.getKeyCode() == e.VK_LEFT){
+        if(e.getKeyChar() =='a'){
             player.moveLeft();
         }
     }
