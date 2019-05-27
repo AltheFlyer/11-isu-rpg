@@ -2,12 +2,13 @@ import java.awt.*;
 
 public class RoomMap extends OverworldMap{
 
-    public RoomMap(String path){
-        super(path);
+    private int tileSize = 100;
+
+    public RoomMap(String mapPath, String walkabilityKey){
+        super(mapPath,walkabilityKey);
     }
 
     public void draw(Graphics g){
-        int tileSize = 50;
         for (int i = 0; i < this.getMap().length; i++){
             for (int j = 0; j < this.getMap()[0].length; j++){
                 if (this.getMap()[i][j].isWalkable()){
