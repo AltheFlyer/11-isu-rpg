@@ -4,8 +4,8 @@ import java.io.FileWriter;
 import java.io.BufferedReader;
 import java.io.IOException;
 
+import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 
 /**
  * [GameIO.java]
@@ -111,13 +111,13 @@ public class GameIO {
      * @param inventory the inventory of the party, formatted as the list of items in inventory, and count of each item
      */
     static public void setInventory(HashMap<String, Integer> inventory) {
-        Iterator<String> items = inventory.keySet().iterator();
-        Iterator<Integer> count = inventory.values().iterator();
+        ArrayList<String> items = new ArrayList<>(inventory.keySet());
+        ArrayList<Integer> count = new ArrayList<>(inventory.values());
 
         String toWrite = "";
 
         for (int i = 0; i < inventory.size(); ++i) {
-            toWrite += items.next() + " " + count.next();
+            toWrite += items.get(i) + " " + count.get(i);
             if (i != inventory.size() - 1) {
                 toWrite += "\n";
             }
