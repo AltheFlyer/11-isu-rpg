@@ -4,6 +4,6 @@ public class MapMainTest {
         GameManager game = new GameManager();
 
         //game.setScreen(new DebugScreen(game));
-        game.setScreen(new MapScreen(game,"five_by_five_map.txt","five_by_five_walkability.txt"));
+        game.setScreen(new MapScreen(game,"test_hallway.txt","five_by_five_walkability.txt"));
     }
 }

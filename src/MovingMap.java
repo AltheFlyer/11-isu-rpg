@@ -15,22 +15,23 @@ public class MovingMap extends OverworldMap{
     }
 
     public void draw(Graphics g, OverworldPlayer player){
-        int leftmostVisible = player.getX() - visibleWidth * tileSize;
+        int leftmostVisible = player.getX() - visibleWidth / 2 * tileSize;
         int leftmostTile = leftmostVisible / tileSize;
-        int highestVisible = player.getY() - visibleHeight * tileSize;
+        int highestVisible = player.getY() - visibleHeight / 2 * tileSize;
         int highestTile = highestVisible / tileSize;
 
         for (int i = 0; i < visibleHeight + 1; i++){
             for (int j = 0; j < visibleWidth + 1; j++){
-                if (((leftmostVisible + j * tileSize < 0) || (leftmostVisible + j * tileSize > mapWidth))
-                || ((highestVisible + i * tileSize < 0) || (highestVisible + i * tileSize > mapHeight))) {
+                if (((leftmostVisible + j * tileSize < 0) || (leftmostVisible + j * tileSize > mapWidth - tileSize))
+                || ((highestVisible + i * tileSize < 0) || (highestVisible + i * tileSize > mapHeight - tileSize))) {
                     g.setColor(Color.BLACK);
                 } else if (this.getMap()[highestTile + i][leftmostTile + j].isWalkable()){
                     g.setColor(Color.LIGHT_GRAY);
                 } else {
                     g.setColor(Color.DARK_GRAY);
                 }
-                g.fillRect(leftmostVisible + j * tileSize,highestVisible + i * tileSize,tileSize,tileSize);
+                g.fillRect(-(leftmostVisible - leftmostTile * tileSize) + j * tileSize,
+                        -(highestVisible - highestTile * tileSize) + i * tileSize, tileSize, tileSize);
             }
         }
     }
