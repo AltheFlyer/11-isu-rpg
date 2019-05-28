@@ -3,7 +3,7 @@ import java.awt.*;
 abstract public class OverworldMap {
 
     private OverworldTile[][] map;
-    private int tileSize = 100;
+    private int tileSize = 50;
 
     public OverworldMap(String path) {
         GameIO.readTileWalkability("five_by_five_walkability.txt");

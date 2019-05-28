@@ -12,7 +12,7 @@ public class MapScreen extends GameScreen {
 
     public MapScreen(GameManager game, String mapPath, String walkabilityKey){
         super(game);
-        map = new RoomMap(mapPath,walkabilityKey);
+        map = new MovingMap(mapPath,walkabilityKey);
         player = new OverworldPlayer((int)(Math.random()*map.getTileSize()*length),
                 (int)(Math.random()*map.getTileSize()*width));
         rando = new OverworldNPC((int)(Math.random()*map.getTileSize()*length),
@@ -21,7 +21,7 @@ public class MapScreen extends GameScreen {
         width = map.getMap()[0].length;
     }
 
-    public void paintComponent(Graphics g){
+    public void paintComponent(Graphics g, OverworldPlayer player){
         super.paintComponent(g);
         map.draw(g);
      //   checkCollisions(player);
