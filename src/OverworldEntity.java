@@ -28,4 +28,8 @@ abstract public class OverworldEntity {
         this.y = newY;
     }
 
+    public Rectangle interactionPane(){
+        return this.boundingBox;
+    }
+
 }
