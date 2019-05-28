@@ -8,6 +8,7 @@ abstract public class Tile {
     private int xGraphic;
     private int yGraphic;
     private boolean indicated;
+    private boolean targetable;
 
     Tile(int xGraphic, int yGraphic, int xGrid, int yGrid){
         this.xGraphic = xGraphic;
@@ -15,6 +16,7 @@ abstract public class Tile {
         this.yGraphic = yGraphic;
         this.xGrid = xGrid;
         this.yGrid = yGrid;
+        targetable = false;
     }
 
     public int getXGraphic(){
@@ -70,6 +72,19 @@ abstract public class Tile {
 
     public boolean getIndication(){
         return indicated;
+    }
+
+    //Is targetable means that there is a target in the location and you can target that location using your ability
+    public void isTargetable(){
+        targetable = true;
+    }
+
+    public void unTargetable(){
+        targetable = false;
+    }
+
+    public boolean getTargetable(){
+        return targetable;
     }
 
     abstract void draw(Graphics g);

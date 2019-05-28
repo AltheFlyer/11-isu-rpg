@@ -27,9 +27,20 @@ public class EnemyTile extends Tile{
                 g.setColor(new Color(0, 0, 0, 100));
                 g.fillRect(getXGraphic(), getYGraphic(),120,120);
             }
+            if (getTargetable()){
+                g.setColor(new Color(0, 0, 255));
+                g.drawRect(getXGraphic(), getYGraphic(),120,120);
+            }
+
             g.drawRect(getXGraphic(), getYGraphic(), 120, 120);
         } else {
             enemy.draw(getXGraphic(), getYGraphic() ,g, getIndication());
+
+            //Draw blue square around if it is a targetable space
+            if (getTargetable()){
+                g.setColor(new Color(0, 0, 255));
+                g.drawRect(getXGraphic(), getYGraphic(),120,120);
+            }
         }
     }
 

@@ -12,6 +12,7 @@ public class LevelScreen extends GameScreen{
     JointMap jointMap;
     Player kevin;
     Player allen;
+    Player bryan;
 
     Enemy ack;
     Player[] players;
@@ -27,18 +28,23 @@ public class LevelScreen extends GameScreen{
 
         // TODO There is probably a better way to do this just saying
         kevin = new Player(10,"kevin",new SingleAbility("basic",6,0,1,2,true, false));
-        allen = new Player(10,"allen",new AOEAbility("heal",2,0,0,1,1,-2.0,false, true));
+        //allen = new Player(10,"allen",new AOEAbility("heal",2,0,0,1,1,-2.0,false, true));
+        allen = new Player(10,"allen",new StarAbility("star",3,0,1,2.0,true, false));
+        bryan = new Player(10,"bryan",new AOEAbility("die",3,2,6, 0,1,5,true, false));
+
         ack = new Enemy(10, "ack", new SingleAbility("basic",6,0,1,2,true, false));
 
         //Add things onto the map
         //i is x, j is y
         jointMap.addEntity(1,2,kevin);
+        jointMap.addEntity(0,0,bryan);
         jointMap.addEntity(2,1,allen);
         jointMap.addEntity(4,2,ack);
 
         players = new Player[3];
         players[0] = kevin;
         players[1] = allen;
+        players[2] = bryan;
     }
 
     @Override
@@ -75,14 +81,16 @@ public class LevelScreen extends GameScreen{
                 }
                 selectedAbility = null;
                 jointMap.unIndicateAll();
+                jointMap.unTargetableAll();
             }
         }
 
         //TODO yay i'm yellow so remove this right now it's for ending turn and letting enemies act
         //Also right now they are targeting all indicated tiles, change this, this is 100% experiment
-        if (isFullyClicked(new Rectangle(selectX, selectY + 3 * selectHeight, selectWidth, selectHeight))) {
+        if (isFullyClicked(new Rectangle(323, 708, selectWidth, selectHeight))) {
             selectedAbility = null;
             jointMap.unIndicateAll();
+            jointMap.unTargetableAll();
             System.out.println("End turn enemy time!");
             ack.getAbility1().indicateValidTiles(jointMap);
             for (int j = 0; j < 3; j++) {
@@ -93,6 +101,7 @@ public class LevelScreen extends GameScreen{
                 }
             }
             jointMap.unIndicateAll();
+            jointMap.unTargetableAll();
         }
 
         //Use an ability here, Click on the ability to select it for use, it will bring up indications
@@ -111,6 +120,7 @@ public class LevelScreen extends GameScreen{
                             //Deselect the ability
                             selectedAbility = null;
                             jointMap.unIndicateAll();
+                            jointMap.unTargetableAll();
                         }
                     }
                 }
@@ -128,12 +138,16 @@ public class LevelScreen extends GameScreen{
         //Draw out the profile selection area
         drawPlayerProfiles(g);
 
+        //Ending turn
+        g.drawString("end turn",323,724);
+
 
         //Calculate the range for certain abilities and create indications telling you where it will hit based on the currently selected ability
         if (selectedAbility != null){
             selectedAbility.indicateValidTiles(jointMap);
             drawHoverAttack(g);
         }
+
         //Draw the profile of the player who is selected
         if (selectedPlayer != null) {
             selectedPlayer.drawAbilities(g, selectedAbility == selectedPlayer.getAbility1());

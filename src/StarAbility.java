@@ -1,21 +1,20 @@
 import java.awt.*;
 
-public class AOEAbility extends Ability{
-    AOEAbility(String name, int xRange, int yRange, int xAOE, int yAOE, int status, double damage, boolean enemyTarget, boolean friendTarget){
+public class StarAbility extends Ability {
+    StarAbility(String name, int xRange, int yRange, int status, double damage, boolean enemyTarget, boolean friendTarget){
         super (name, xRange, yRange, status, damage, enemyTarget, friendTarget);
-        setXAOE(xAOE);
-        setYAOE(yAOE);
     }
 
     public boolean action(JointMap jointMap, int i, int j){
-        if (jointMap.getIndication(i, j)) {
-            for (int k = j - getYAOE(); k <= j + getYAOE(); k++) {
-                for (int l = i - getXAOE(); l <= i + getXAOE(); l++) {
-                    if (jointMap.tileExists(l, k)) {
-                        if (getFriendTarget() && jointMap.getTileType(l, k) == jointMap.getTileType(getEntitySource().getXGrid(), getEntitySource().getYGrid())) {
+        if (jointMap.getTargetable(i, j)) {
+            for (int k = 0; k < 3; k++){
+                for (int l = 0; l < 6; l++){
+                    //Yeah might need to revamp Single and AOE ability so one can do empty tiles, one cannot do that
+                    if (Math.abs(k-j) + Math.abs(l-i) <= 1 && jointMap.tileExists(l,k)){
+                        if (getFriendTarget() && jointMap.getTileType(l,k) == jointMap.getTileType(getEntitySource().getXGrid(),getEntitySource().getYGrid())) {
                             jointMap.target(l, k, getDamage(), getStatus());
                         }
-                        if (getEnemyTarget() && jointMap.getTileType(l, k) != jointMap.getTileType(getEntitySource().getXGrid(), getEntitySource().getYGrid())) {
+                        if (getEnemyTarget() && jointMap.getTileType(l,k) != jointMap.getTileType(getEntitySource().getXGrid(),getEntitySource().getYGrid())) {
                             jointMap.target(l, k, getDamage(), getStatus());
                         }
                     }
@@ -25,6 +24,7 @@ public class AOEAbility extends Ability{
         }
         return false;
     }
+
     /**
      * [drawSelectedArea]
      * Draws the area that will be affected by an ability
@@ -40,22 +40,26 @@ public class AOEAbility extends Ability{
 
         int gridWidthSpace = 121;
         int gridHeightSpace = 121;
-        for (int k = j-getYAOE(); k <= j+getYAOE(); k++){
-            for (int l = i-getXAOE(); l <= i+getXAOE(); l++){
+        for (int k = 0; k < 3; k++){
+            for (int l = 0; l < 6; l++){
                 //Yeah might need to revamp Single and AOE ability so one can do empty tiles, one cannot do that
-                if (jointMap.tileExists(l,k)){
-                    if (getFriendTarget() && jointMap.getTileType(l, k) == jointMap.getTileType(getEntitySource().getXGrid(), getEntitySource().getYGrid())) {
-                        g.setColor(Color.GREEN);
-                        g.drawRect(gridX + gridWidthSpace * l, gridY + gridHeightSpace * k, gridWidth, gridHeight);
-                    }
-                    if (getEnemyTarget() && jointMap.getTileType(l, k) != jointMap.getTileType(getEntitySource().getXGrid(), getEntitySource().getYGrid())) {
-                        g.setColor(Color.GREEN);
-                        g.drawRect(gridX + gridWidthSpace * l, gridY + gridHeightSpace * k, gridWidth, gridHeight);
+                if (Math.abs(k-j) + Math.abs(l-i) <= 1){
+
+                    if (jointMap.tileExists(l,k)){
+                        if (getFriendTarget() && jointMap.getTileType(l,k) == jointMap.getTileType(getEntitySource().getXGrid(),getEntitySource().getYGrid())) {
+                            g.setColor(Color.GREEN);
+                            g.drawRect(gridX + gridWidthSpace * l, gridY + gridHeightSpace * k, gridWidth, gridHeight);
+                        }
+                        if (getEnemyTarget() && jointMap.getTileType(l,k) != jointMap.getTileType(getEntitySource().getXGrid(),getEntitySource().getYGrid())) {
+                            g.setColor(Color.GREEN);
+                            g.drawRect(gridX + gridWidthSpace * l, gridY + gridHeightSpace * k, gridWidth, gridHeight);
+                        }
                     }
                 }
             }
         }
     }
+
     public void indicateValidTiles(JointMap jointMap){
         int rangeAhead = getEntitySource().getXGrid() + getXRange();
         int rangeBehind = getEntitySource().getXGrid() - getXRange();
@@ -67,12 +71,10 @@ public class AOEAbility extends Ability{
                 if (jointMap.tileExists(i, j)) {
                     if (getFriendTarget() && jointMap.getTileType(i, j) == jointMap.getTileType(getEntitySource().getXGrid(),getEntitySource().getYGrid())) {
                         jointMap.indicate(i, j);
-                        //Indicate if the tile is targetable or not, at this point Single and AOE ability are used for if they can target empty tiles
                         jointMap.isTargetable(i,j);
                     }
                     if (getEnemyTarget() && jointMap.getTileType(i, j) != jointMap.getTileType(getEntitySource().getXGrid(),getEntitySource().getYGrid())) {
                         jointMap.indicate(i, j);
-                        //Indicate if the tile is targetable or not, at this point Single and AOE ability are used for if they can target empty tiles
                         jointMap.isTargetable(i,j);
                     }
                 }

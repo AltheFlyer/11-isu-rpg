@@ -16,6 +16,8 @@ public class Player extends Entity{
         g.setColor(Color.GRAY);
         if (getName().equals("allen")){
             g.setColor(Color.LIGHT_GRAY);
+        } else if (getName().equals("bryan")){
+            g.setColor(Color.BLACK);
         }
         g.fillRect(0,0,323,768);
         g.setColor(Color.BLACK);
@@ -42,6 +44,8 @@ public class Player extends Entity{
         g.setColor(Color.MAGENTA);
         if (getName().equals("allen")){
             g.setColor(Color.yellow);
+        } else if (getName().equals("bryan")){
+            g.setColor(Color.GREEN);
         }
         g.fillRect(x,y,120,120);
         g.setColor(Color.BLACK);

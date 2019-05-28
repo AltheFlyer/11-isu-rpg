@@ -1,3 +1,4 @@
+/*
 public class MoveAbility extends Ability{
     private int moves;
     private int direction;
@@ -13,3 +14,4 @@ public class MoveAbility extends Ability{
 
     }
 }
+*/

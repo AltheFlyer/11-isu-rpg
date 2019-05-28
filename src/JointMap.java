@@ -66,6 +66,26 @@ public class JointMap {
         return tileArray[x][y].isEmpty();
     }
 
+    public void isTargetable(int x, int y){
+        tileArray[x][y].isTargetable();
+    }
+
+    public void unTargetable(int x, int y){
+        tileArray[x][y].unTargetable();
+    }
+
+    public void unTargetableAll(){
+        for (int j = 0; j < 3; j++) {
+            for (int i = 0; i < 6; i++) {
+                tileArray[i][j].unTargetable();
+            }
+        }
+    }
+
+    public boolean getTargetable(int x, int y){
+        return tileArray[x][y].getTargetable();
+    }
+
     /*
     public void swapTiles(int x, int y, int xNow, int yNow){
         playerArray[x][y].setPlayer(playerArray[yNow][xNow].getPlayer());
