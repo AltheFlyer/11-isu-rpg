@@ -8,6 +8,11 @@ public class IOTester {
         testInventory();
         testMap();
         testAccess();
+        testPlayers();
+    }
+
+    static void testPlayers() {
+        GameIO.getPlayer("players/test_player.txt");
     }
 
     static void testAccess() {

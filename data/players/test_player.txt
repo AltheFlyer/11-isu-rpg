@@ -1,0 +1,15 @@
+display_name Testing Player
+health 120
+energy 150
+attack 100
+defense 20
+EQUIP
+equip1 null
+equip2 null
+equip3 infinity_gauntlet
+ABILITIES 5
+ability_1
+ability_2
+ability_3
+ability_4
+ability_5
