@@ -21,11 +21,11 @@ public class MapScreen extends GameScreen {
         width = map.getMap()[0].length;
     }
 
-    public void paintComponent(Graphics g){
+    public void paintComponent(Graphics g) {
         super.paintComponent(g);
         map.draw(g, player);
-     //   checkCollisions(player);
-        player.draw(g);
+        //   checkCollisions(player);
+        player.draw(g, map);
         rando.draw(g);
         repaint();
     }

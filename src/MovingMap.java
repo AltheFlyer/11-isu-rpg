@@ -22,13 +22,15 @@ public class MovingMap extends OverworldMap{
 
         for (int i = 0; i < visibleHeight + 1; i++){
             for (int j = 0; j < visibleWidth + 1; j++){
-                if (this.getMap()[highestTile - i][leftmostTile + j].isWalkable()){
+                if (((leftmostVisible + j * tileSize < 0) || (leftmostVisible + j * tileSize > mapWidth))
+                || ((highestVisible + i * tileSize < 0) || (highestVisible + i * tileSize > mapHeight))) {
+                    g.setColor(Color.BLACK);
+                } else if (this.getMap()[highestTile + i][leftmostTile + j].isWalkable()){
                     g.setColor(Color.LIGHT_GRAY);
-                    g.fillRect(leftmostVisible + j * tileSize,highestVisible + i * tileSize,tileSize,tileSize);
                 } else {
                     g.setColor(Color.DARK_GRAY);
-                    g.fillRect(leftmostVisible + j * tileSize,highestVisible + i * tileSize,tileSize,tileSize);
                 }
+                g.fillRect(leftmostVisible + j * tileSize,highestVisible + i * tileSize,tileSize,tileSize);
             }
         }
     }

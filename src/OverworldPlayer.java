@@ -6,17 +6,21 @@ public class OverworldPlayer extends OverworldEntity {
         super(x, y);
     }
 
-    public void draw(Graphics g){
+    public void draw(Graphics g, OverworldMap map){
         g.setColor(Color.RED);
-        g.fillRect(this.getX(),this.getY(),50,50); //modify size
+        if (map instanceof RoomMap) {
+            g.fillRect(this.getX(), this.getY(), 50, 50); //modify size
+        } else {
+            g.fillRect(683 - 50, 384 - 50, 50, 50); //modify size
+        }
     }
 
-    public void moveUp(){ this.setY(this.getY() - 10); }
+    public void moveUp(){ this.setY(this.getY() - 5); }
 
-    public void moveDown(){ this.setY(this.getY() + 10); }
+    public void moveDown(){ this.setY(this.getY() + 5); }
 
-    public void moveLeft(){ this.setX(this.getX() - 10); }
+    public void moveLeft(){ this.setX(this.getX() - 5); }
 
-    public void moveRight(){ this.setX(this.getX() + 10); }
+    public void moveRight(){ this.setX(this.getX() + 5); }
 
 }

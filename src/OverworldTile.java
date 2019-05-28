@@ -15,6 +15,10 @@ public class OverworldTile {
         this.boundingBox = new Rectangle(x,y,100,100); //again graphics particulars
     }
 
+    public Rectangle collisionWindow() {
+        return boundingBox;
+    }
+
     public boolean isWalkable() {
         return walkable;
     }
