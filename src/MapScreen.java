@@ -21,9 +21,9 @@ public class MapScreen extends GameScreen {
         width = map.getMap()[0].length;
     }
 
-    public void paintComponent(Graphics g, OverworldPlayer player){
+    public void paintComponent(Graphics g){
         super.paintComponent(g);
-        map.draw(g);
+        map.draw(g, player);
      //   checkCollisions(player);
         player.draw(g);
         rando.draw(g);

@@ -1,7 +1,17 @@
-10 6
-top_left wall_up wall_up wall_up wall_up wall_up wall_up wall_up wall_up top_right
-wall_left floor floor floor floor floor floor floor floor wall_right
-wall_left floor floor floor floor floor floor floor floor wall_right
-wall_left floor floor floor floor floor floor floor floor wall_right
-wall_left floor floor floor floor floor floor floor floor wall_right
-bottom_left wall_down wall_down wall_down wall_down wall_down wall_down wall_down wall_down bottom_right
+16 16
+top_left wall_up wall_up wall_up wall_up wall_up wall_up wall_up wall_up wall_up wall_up wall_up wall_up wall_up wall_up top_right
+top_left wall_up wall_up wall_up wall_up wall_up wall_up wall_up wall_up wall_up wall_up wall_up wall_up wall_up wall_up top_right
+top_left wall_up wall_up wall_up wall_up wall_up wall_up wall_up wall_up wall_up wall_up wall_up wall_up wall_up wall_up top_right
+top_left wall_up wall_up wall_up wall_up wall_up wall_up wall_up wall_up wall_up wall_up wall_up wall_up wall_up wall_up top_right
+top_left wall_up wall_up wall_up wall_up wall_up wall_up wall_up wall_up wall_up wall_up wall_up wall_up wall_up wall_up top_right
+top_left wall_up wall_up wall_up wall_up wall_up wall_up wall_up wall_up wall_up wall_up wall_up wall_up wall_up wall_up top_right
+wall_left wall_left wall_left wall_left floor floor floor floor floor floor floor floor wall_right wall_right wall_right wall_right
+wall_left wall_left wall_left wall_left floor floor floor floor floor floor floor floor wall_right wall_right wall_right wall_right
+wall_left wall_left wall_left wall_left floor floor floor floor floor floor floor floor wall_right wall_right wall_right wall_right
+wall_left wall_left wall_left wall_left floor floor floor floor floor floor floor floor wall_right wall_right wall_right wall_right
+bottom_left wall_up wall_up wall_up wall_up wall_up wall_up wall_up wall_up wall_up wall_up wall_up wall_up wall_up wall_up bottom_right
+bottom_left wall_up wall_up wall_up wall_up wall_up wall_up wall_up wall_up wall_up wall_up wall_up wall_up wall_up wall_up bottom_right
+bottom_left wall_up wall_up wall_up wall_up wall_up wall_up wall_up wall_up wall_up wall_up wall_up wall_up wall_up wall_up bottom_right
+bottom_left wall_up wall_up wall_up wall_up wall_up wall_up wall_up wall_up wall_up wall_up wall_up wall_up wall_up wall_up bottom_right
+bottom_left wall_up wall_up wall_up wall_up wall_up wall_up wall_up wall_up wall_up wall_up wall_up wall_up wall_up wall_up bottom_right
+bottom_left wall_up wall_up wall_up wall_up wall_up wall_up wall_up wall_up wall_up wall_up wall_up wall_up wall_up wall_up bottom_right
