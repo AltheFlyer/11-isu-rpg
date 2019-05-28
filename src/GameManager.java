@@ -17,6 +17,9 @@ public class GameManager {
 
     private Clip music;
 
+    //I have a feeling it might be a good idea to store this:
+    //TODO Add Map Position variables + methods
+
     public GameManager() {
         window = new JFrame();
 
@@ -68,6 +71,17 @@ public class GameManager {
         music.loop(Clip.LOOP_CONTINUOUSLY);
 
         music.start();
+    }
+
+    /**
+     * [stopMusic]
+     * stops the currently playing music
+     */
+    public void stopMusic() {
+        if (music != null) {
+            music.stop();
+            music.close();
+        }
     }
 
     /**

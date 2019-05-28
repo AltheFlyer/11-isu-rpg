@@ -1,0 +1,2 @@
+current_period 10
+current_day 4

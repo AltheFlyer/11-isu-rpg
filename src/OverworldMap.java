@@ -5,7 +5,7 @@ abstract public class OverworldMap {
     private OverworldTile[][] map;
 
     public OverworldMap(String path){
-        GameIO.setTileWalkability("five_by_five_walkability.txt");
+        GameIO.readTileWalkability("five_by_five_walkability.txt");
         map = GameIO.getMap(path);
     }
 

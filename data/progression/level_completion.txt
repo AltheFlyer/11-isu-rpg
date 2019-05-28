@@ -1,0 +1,3 @@
+period3_a false
+period1_a true
+period2_a true
