@@ -22,4 +22,13 @@ public class OverworldTile {
     public boolean isWalkable() {
         return walkable;
     }
+
+    public int getX(){
+        return this.x;
+    }
+
+    public int getY(){
+        return this.y;
+    }
+
 }

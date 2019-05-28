@@ -32,4 +32,9 @@ abstract public class OverworldEntity {
         return this.boundingBox;
     }
 
+    public void setBoundingBox(int x, int y) {
+        this.boundingBox.x = x;
+        this.boundingBox.y = y;
+    }
+
 }
