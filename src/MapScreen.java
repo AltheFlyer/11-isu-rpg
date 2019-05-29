@@ -23,6 +23,7 @@ public class MapScreen extends GameScreen {
 
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
+        setBackground(Color.BLACK);
         map.draw(g, player);
         //   checkCollisions(player);
         player.draw(g, map);
