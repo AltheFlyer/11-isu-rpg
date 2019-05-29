@@ -3,6 +3,7 @@ import java.awt.*;
 public class Enemy extends Entity{
 
     private Icon testIntent;
+    private Ability action;
 
     Enemy(double health, String name, Ability ability1){
         super(health,name,ability1);
@@ -31,7 +32,30 @@ public class Enemy extends Entity{
         g.drawRect(x, y, 120, 120);
     }
 
+    /**
+     * [act]
+     * contrary to the method name, this doesn't cause enemies to act, rather it
+     * generates a next move (Ability and intent) (should be overriden)
+     */
+    public void act() {
+        //For testing/theory purposes only...
+        /*
+       if (this.getHealth() < this.maxHealth() / 2) {
+            intent = new Icon(new Rectangle(), "assets/icons/crush");
+            ability = abilities[1];
+       } else {
+            intent = new Icon(new Rectangle(), "assets/icons/attack");
+            ability = abilities[0];
+       }
+
+         */
+    }
+
     public Icon getIntent() {
         return testIntent;
+    }
+
+    public Ability getAction() {
+        return action;
     }
 }
