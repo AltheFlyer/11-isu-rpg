@@ -1,5 +1,8 @@
+import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
 /**
  * [Icon.java]
@@ -19,6 +22,26 @@ public class Icon {
 
     private String name;
     private String description;
+
+    /**
+     * Creates an icon with a bounding box and sprite
+     * @param boundingBox the icon's bounding box for mouse interactions
+     * @param path the full path to use for the sprite
+     */
+    public Icon(Rectangle boundingBox, String path) {
+        try {
+            this.sprite = ImageIO.read(new File(path));
+        } catch (IOException e) {
+            e.printStackTrace();
+            this.sprite = new BufferedImage(0, 0, 0);
+        }
+        this.boundingBox = boundingBox;
+
+        this.centerX = boundingBox.x;
+        this.centerY = boundingBox.y;
+        this.graphicsWidth = boundingBox.width;
+        this.graphicsHeight = boundingBox.height;
+    }
 
     /**
      * Creates an icon with a bounding box and sprite
@@ -144,4 +167,16 @@ public class Icon {
         this.graphicsHeight = graphicsHeight;
     }
 
+    /**
+     * [setPosition]
+     * sets the graphical and bounding box positions (by center)
+     * @param xCenter the x value of the new center
+     * @param yCenter the y value of the new center
+     */
+    public void setPosition(int xCenter, int yCenter) {
+        centerX = xCenter;
+        centerY = yCenter;
+
+        boundingBox.setLocation(xCenter - (boundingBox.width / 2), yCenter - (boundingBox.height / 2));
+    }
 }

@@ -1,9 +1,14 @@
 import java.awt.*;
 
 public class Enemy extends Entity{
+
+    private Icon testIntent;
+
     Enemy(double health, String name, Ability ability1){
         super(health,name,ability1);
         ability1.setEntitySource(this);
+        testIntent = new Icon(new Rectangle(0, 0, 40, 40), "assets/icons/test.png");
+        testIntent.setName("Special");
     }
 
     public Ability getAbility1(){
@@ -24,5 +29,9 @@ public class Enemy extends Entity{
             g.fillRect(x,y,120,120);
         }
         g.drawRect(x, y, 120, 120);
+    }
+
+    public Icon getIntent() {
+        return testIntent;
     }
 }

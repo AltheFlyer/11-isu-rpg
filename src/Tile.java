@@ -75,4 +75,8 @@ abstract public class Tile {
     abstract void draw(Graphics g);
 
     abstract char getType();
+
+    public void drawIcons(Graphics g) {
+
+    }
 }

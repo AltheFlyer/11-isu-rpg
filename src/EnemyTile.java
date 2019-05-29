@@ -42,4 +42,13 @@ public class EnemyTile extends Tile{
     }
 
     //There is also damageEntity here!
+
+    @Override
+    public void drawIcons(Graphics g) {
+        if (!isEmpty()) {
+            Icon intent = enemy.getIntent();
+            intent.setPosition(getXGraphic() + 60, getYGraphic() - 40);
+            intent.draw(g);
+        }
+    }
 }
