@@ -1,6 +1,12 @@
 import java.awt.*;
 
 abstract public class Entity {
+
+    //Base stats
+    private double maxHealth;
+    private double maxEnergy;
+
+    //Dynamic stats
     private double health;
     private String name;
     private double energy;
@@ -13,6 +19,7 @@ abstract public class Entity {
 
     Entity(double health, String name, Ability ability1) {
         this.ability1 = ability1;
+        this.maxHealth = health;
         this.health = health;
         this.name = name;
         alive = true;
@@ -60,5 +67,9 @@ abstract public class Entity {
 
     public void drawIcons(Graphics g) {
 
+    }
+
+    public double getMaxHealth() {
+        return maxHealth;
     }
 }

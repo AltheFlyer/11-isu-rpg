@@ -107,4 +107,12 @@ abstract public class Tile {
 
     }
 
+    public void drawHealthbar(Graphics g) {
+        if (!isEmpty()) {
+            double ratio = entity.getHealth() / entity.getMaxHealth();
+
+            g.fillRect(getXGraphic(), getYGraphic(), (int) (120 * ratio), 10);
+        }
+    }
+
 }
