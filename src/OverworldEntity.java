@@ -5,11 +5,13 @@ abstract public class OverworldEntity {
     private int x;
     private int y;
     private Rectangle boundingBox;
+    private String direction;
 
     public OverworldEntity(int x, int y){
         this.x = x;
         this.y = y;
         this.boundingBox = new Rectangle(x,y,50,50); //modify size as we decide on graphics
+        direction = "down";
     }
 
     public int getX() {
@@ -39,5 +41,13 @@ abstract public class OverworldEntity {
 
     public int getSize(){
         return this.boundingBox.height;
+    }
+
+    public String getDirection() {
+        return direction;
+    }
+
+    public void setDirection(String d) {
+        this.direction = d;
     }
 }

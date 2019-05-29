@@ -47,17 +47,6 @@ public class MapScreen extends GameScreen {
         //System.out.println(player.getY());
     }
     private void checkCollisions(){
-        /*
-        for (int i = 0; i < map.getMap().length - 1; i++) {
-            for (int j = 0; j < map.getMap()[0].length - 1; j++) {
-                if (map.getMap()[i][j].collisionWindow().intersects(player.collisionWindow()) &&
-                        map.getMap()[i][j].isNotWalkable()) {
-                    System.out.println("bam");
-                }
-            }
-        }
-*/
-
         int playerXCenter = player.getX() + player.collisionWindow().width/2;
         int playerYCenter = player.getY() + player.collisionWindow().height/2;
         int centerTileX = playerXCenter/map.getTileSize();
@@ -74,6 +63,17 @@ public class MapScreen extends GameScreen {
 
     }
     private void collide(int playerX, int playerY, OverworldTile tile){
+        if (player.getDirection().equals("down")) {
+            player.moveUp();
+        } else if (player.getDirection().equals("up")) {
+            player.moveDown();
+        } else if (player.getDirection().equals("right")) {
+            player.moveLeft();
+        } else if (player.getDirection().equals("left")) {
+            player.moveRight();
+        }
+
+        /**
         if (playerY + player.getSize() >= tile.getY()*map.getTileSize()) {
             System.out.println("down");
             //player.setY(tile.getY()*map.getTileSize() - map.getTileSize());
@@ -87,5 +87,6 @@ public class MapScreen extends GameScreen {
             //player.setX(tile.getX()*map.getTileSize() + map.getTileSize());
             System.out.println("left");
         }
+         */
     }
 }
