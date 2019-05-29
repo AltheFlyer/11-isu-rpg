@@ -19,6 +19,7 @@ abstract public class Ability {
     private boolean friendTarget;
     private int moves;
     private Entity entitySource;
+    private double energyCost;
 
     //Constructor for Single target and AOE abilities
     Ability(String name, int xRange, int yRange, int status, double damage, boolean enemyTarget, boolean friendTarget) {
@@ -52,6 +53,14 @@ abstract public class Ability {
     //This piece of code will run after a person has clicked tile after an ability has been selected, it will attempt to cast the ability selected on the hovered tiles
     //The boolean return is for if the action was taken or not
     abstract public boolean action(JointMap jointMap, int i, int j);
+
+    public double getEnergyCost(){
+        return energyCost;
+    }
+
+    public void setEnergyCost(double energyCost){
+        this.energyCost = energyCost;
+    }
 
     public int getXRange() {
         return xRange;

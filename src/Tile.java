@@ -127,4 +127,20 @@ abstract public class Tile {
         }
     }
 
+    public void drawEnergybar(Graphics g){
+        if (!isEmpty()) {
+            double ratio = entity.getEnergy() / entity.getMaxEnergy();
+
+            //Set healthbar color based on if friendly or not
+            if (getType() == 'p') {
+                //Grey backing bar
+                g.setColor(Color.GRAY);
+                g.fillRect(getXGraphic(), getYGraphic() + 120 - 20, 120, 10);
+                g.setColor(Color.BLUE);
+                //Draw at bottom of screen, -10 is for the height of the bar
+                g.fillRect(getXGraphic(), getYGraphic() + 120 - 20, (int) (120 * ratio), 10);
+            }
+        }
+    }
+
 }

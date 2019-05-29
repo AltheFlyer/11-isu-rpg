@@ -15,14 +15,8 @@ public class SingleAbility extends Ability {
      * @return: it will return a value based on if an action was valid or not, if it was, it will unindicate everything and reset selectedAbility on levelscreen
      */
     public boolean action(JointMap jointMap, int i, int j){
-        if (jointMap.getIndication(i, j) && !jointMap.isEmpty(i, j)) {
-            for (int k = j - getYAOE(); k <= j + getYAOE(); k++) {
-                for (int l = i - getXAOE(); l <= i + getXAOE(); l++) {
-                    if (jointMap.tileExists(l, k)) {
-                        jointMap.target(l, k, getDamage(), getStatus());
-                    }
-                }
-            }
+        if (jointMap.getTargetable(i, j)) {
+            jointMap.target(i, j, getDamage(), getStatus());
             return true;
         }
         return false;

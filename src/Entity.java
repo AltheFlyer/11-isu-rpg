@@ -27,6 +27,16 @@ abstract public class Entity {
         alive = true;
     }
 
+    Entity(double health, double energy, String name, Ability[] abilities) {
+        this.abilities = abilities;
+        this.energy = energy;
+        this.maxEnergy = energy;
+        this.maxHealth = health;
+        this.health = health;
+        this.name = name;
+        alive = true;
+    }
+
     public int totalAbilities(){
         return abilities.length;
     }
@@ -76,5 +86,13 @@ abstract public class Entity {
 
     public double getMaxHealth() {
         return maxHealth;
+    }
+
+    public double getEnergy(){
+        return energy;
+    }
+
+    public double getMaxEnergy(){
+        return maxEnergy;
     }
 }

@@ -4,8 +4,8 @@ public class Player extends Entity{
 
     Icon ico;
 
-    Player(double health, String name, Ability[] abilities){
-        super(health,name,abilities);
+    Player(double health, double energy, String name, Ability[] abilities){
+        super(health,energy,name,abilities);
         for (int i = 0; i < abilities.length; i++){
             abilities[i].setEntitySource(this);
         }
@@ -54,7 +54,7 @@ public class Player extends Entity{
         if (getName().equals("allen")){
             g.setColor(Color.yellow);
         } else if (getName().equals("bryan")){
-            g.setColor(Color.GREEN);
+            g.setColor(Color.CYAN);
         }
         g.fillRect(x,y,120,120);
         g.setColor(Color.BLACK);

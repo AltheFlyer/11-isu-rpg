@@ -15,11 +15,7 @@ public class BasicMoveAbility extends Ability {
      */
     public boolean action(JointMap jointMap, int i, int j) {
         if (jointMap.getTargetable(i, j) && jointMap.isEmpty(i, j)) {
-            for (int k = j - getYAOE(); k <= j + getYAOE(); k++) {
-                for (int l = i - getXAOE(); l <= i + getXAOE(); l++) {
-                    jointMap.moveOnTile(getEntitySource().getXGrid(), getEntitySource().getYGrid(), l, k);
-                }
-            }
+            jointMap.moveOnTile(getEntitySource().getXGrid(), getEntitySource().getYGrid(), i, j);
             return true;
         }
         return false;

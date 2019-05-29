@@ -51,10 +51,10 @@ public class LevelScreen extends GameScreen{
         };
 
         // TODO There is probably a better way to do this just saying
-        kevin = new Player(10,"kevin",kevinAbilities);
+        kevin = new Player(10,100,"kevin",kevinAbilities);
         //allen = new Player(10,"allen",new AOEAbility("heal",2,0,0,1,1,-2.0,false, true));
-        allen = new Player(10,"allen",allenAbilities);
-        bryan = new Player(10,"bryan",bryanAbilities);
+        allen = new Player(10,100,"allen",allenAbilities);
+        bryan = new Player(10,100,"bryan",bryanAbilities);
 
         ack = new Enemy(10, "ack",ackAbilities);
 
@@ -143,6 +143,7 @@ public class LevelScreen extends GameScreen{
                 }
             }
         }
+
         //Attempt to run an action when clicking on a certain tile,
         if (selectedPlayer != null && selectedAbility != null) {
             for (int j = 0; j < 3; j++) {
@@ -182,7 +183,7 @@ public class LevelScreen extends GameScreen{
             drawHoverAttack(g);
         }
 
-        //Draw the profile of the player who is selected
+        //Draw the abilities of the profile of the player who is selected
         if (selectedPlayer != null) {
             selectedPlayer.drawAbilities(g, selectedAbility);
 

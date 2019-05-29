@@ -21,6 +21,7 @@ public class JointMap {
             for (int i = 0; i < 6; i++) {
                 tileArray[i][j].draw(g);
                 tileArray[i][j].drawHealthbar(g);
+                tileArray[i][j].drawEnergybar(g);
             }
         }
     }
