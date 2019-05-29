@@ -16,11 +16,18 @@ public class OverworldTile {
     }
 
     public Rectangle collisionWindow() {
-        return boundingBox;
+        return this.boundingBox;
     }
 
     public boolean isWalkable() {
-        return walkable;
+        return this.walkable;
+    }
+
+    public boolean isNotWalkable() {
+        if (walkable) {
+            return false;
+        }
+        return true;
     }
 
     public int getX(){
@@ -29,6 +36,10 @@ public class OverworldTile {
 
     public int getY(){
         return this.y;
+    }
+
+    public int getBBY(){
+        return boundingBox.y;
     }
 
 }

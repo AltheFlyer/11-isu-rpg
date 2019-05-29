@@ -28,7 +28,7 @@ abstract public class OverworldEntity {
         this.y = newY;
     }
 
-    public Rectangle interactionPane(){
+    public Rectangle collisionWindow(){
         return this.boundingBox;
     }
 

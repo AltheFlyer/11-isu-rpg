@@ -12,11 +12,10 @@ public class MapScreen extends GameScreen {
 
     public MapScreen(GameManager game, String mapPath, String walkabilityKey){
         super(game);
-        map = new MovingMap(mapPath,walkabilityKey);
-        player = new OverworldPlayer((int)(Math.random()*map.getTileSize()*length),
-                (int)(Math.random()*map.getTileSize()*width));
-        rando = new OverworldNPC((int)(Math.random()*map.getTileSize()*length),
-                (int)(Math.random()*map.getTileSize()*width));
+        map = new RoomMap(mapPath,walkabilityKey);
+        player = new OverworldPlayer(500,500);
+        //rando = new OverworldNPC((int)(Math.random()*map.getTileSize()*length),
+        //        (int)(Math.random()*map.getTileSize()*width));
         length = map.getMap().length;
         width = map.getMap()[0].length;
     }
@@ -24,14 +23,14 @@ public class MapScreen extends GameScreen {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         setBackground(Color.BLACK);
+        checkCollisions();
         map.draw(g, player);
-        //   checkCollisions(player);
         player.draw(g, map);
-        rando.draw(g);
+//        rando.draw(g);
         repaint();
     }
 
-    public void keyTyped(KeyEvent e) {
+    public void keyPressed(KeyEvent e) {
         if(e.getKeyChar() == 'w'){
             player.moveUp();
         }
@@ -47,11 +46,34 @@ public class MapScreen extends GameScreen {
         //System.out.println(player.getX());
         //System.out.println(player.getY());
     }
-/**
-    public void checkCollisions(OverworldPlayer player){
-        int playerX = player.getX();
-        int playerY = player.getY();
+    private void checkCollisions(){
+        int playerXCenter = player.getX() + player.collisionWindow().width/2;
+        int playerYCenter = player.getY() + player.collisionWindow().height/2;
+        int centerTileX = playerXCenter/map.getTileSize();
+        int centerTileY = playerYCenter/map.getTileSize();
+        for (int i = centerTileX - 1; i < centerTileX + 2; i++) {
+            for (int j = centerTileY - 1; j < centerTileY + 2; j++) {
+                if (map.getMap()[i][j].isNotWalkable() &&
+                        (map.getMap()[i][j].collisionWindow().intersects(player.collisionWindow()))) {
+                    System.out.println("bam");
+                    //reject(playerXCenter,playerYCenter,map.getMap()[i][j]);
+                }
+            }
+        }
 
     }
-*/
+    private void reject(int playerX, int playerY, OverworldTile tile){
+        if (playerX < tile.getX()*map.getTileSize()) {
+            player.setX(tile.getX()*map.getTileSize() - map.getTileSize());
+        }
+        if (playerX > tile.getX()*map.getTileSize()) {
+            player.setX(tile.getX()*map.getTileSize() + map.getTileSize());
+        }
+        if (playerY < tile.getY()*map.getTileSize()) {
+            player.setY(tile.getY()*map.getTileSize() - map.getTileSize());
+        }
+        if (playerY > tile.getY()*map.getTileSize()) {
+            player.setY(tile.getY()*map.getTileSize() + map.getTileSize());
+        }
+    }
 }

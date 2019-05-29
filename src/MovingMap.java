@@ -22,7 +22,8 @@ public class MovingMap extends OverworldMap{
 
         for (int i = 0; i < mapHeight + 1; i++){
             for (int j = 0; j < mapWidth + 1; j++){
-                if ((0 > leftmostTile + j) || (leftmostTile + j >= getMap()[0].length) || (0 > highestTile + i) || (highestTile + i >= getMap().length)) {
+                if ((0 > leftmostTile + j) || (leftmostTile + j >= getMap()[0].length) ||
+                        (0 > highestTile + i) || (highestTile + i >= getMap().length)) {
                     g.setColor(Color.BLACK);
                 } else if (this.getMap()[highestTile + i][leftmostTile + j].isWalkable()){
                     g.setColor(Color.LIGHT_GRAY);
