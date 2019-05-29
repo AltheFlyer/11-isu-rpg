@@ -32,24 +32,7 @@ public class BasicMoveAbility extends Ability {
      * @param g the graphics object to draw with
      */
     public void drawHoverAttack(int i, int j, Graphics g, JointMap jointMap) {
-        //What to do here???
-        int gridX = 323;
-        int gridY = 108;
-
-        int gridWidth = 120;
-        int gridHeight = 120;
-
-        int gridWidthSpace = 121;
-        int gridHeightSpace = 121;
-        for (int k = j - getYAOE(); k <= j + getYAOE(); k++) {
-            for (int l = i - getXAOE(); l <= i + getXAOE(); l++) {
-                //Yeah might need to revamp Single and AOE ability so one can do empty tiles, one cannot do that
-                if (jointMap.getTargetable(l, k)) {
-                    g.setColor(Color.GREEN);
-                    g.drawRect(gridX + gridWidthSpace * l, gridY + gridHeightSpace * k, gridWidth, gridHeight);
-                }
-            }
-        }
+        drawHoverAttackSingleHelper(i,j,g,jointMap);
     }
 
     /**

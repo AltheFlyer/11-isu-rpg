@@ -42,7 +42,7 @@ public class JointMap {
         return (x < 6) && (x >= 0) && (y < 3) && (y >= 0);
     }
 
-    public void indicate(int x, int y){
+    public void indicate(int x, int y) {
         tileArray[x][y].indicate();
     }
 
@@ -87,7 +87,7 @@ public class JointMap {
     }
 
     public void moveOnTile(int x, int y, int xMove, int yMove) {
-        if (tileExists(xMove, yMove)) {
+        if (tileExists(xMove, yMove) && isEmpty(xMove, yMove)) {
             if (getTileType(x, y) == 'p' && tileExists(xMove, yMove)) {
                 ((PlayerTile) tileArray[x][y]).getPlayer().setXGrid(xMove);
                 ((PlayerTile) tileArray[x][y]).getPlayer().setYGrid(yMove);

@@ -5,15 +5,17 @@ public class Enemy extends Entity{
     private Icon testIntent;
     private Ability action;
 
-    Enemy(double health, String name, Ability ability1){
-        super(health,name,ability1);
-        ability1.setEntitySource(this);
+    Enemy(double health, String name, Ability[] abilities){
+        super(health,name,abilities);
+        for (int i = 0; i < abilities.length; i++){
+            abilities[i].setEntitySource(this);
+        }
         testIntent = new Icon(new Rectangle(0, 0, 40, 40), "assets/icons/test.png");
         testIntent.setName("Special");
     }
 
-    public Ability getAbility1(){
-        return ability1;
+    public Ability getAbility(int index){
+        return abilities[index];
     }
 
     public void drawAbilities(Graphics g){

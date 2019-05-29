@@ -7,17 +7,20 @@ abstract public class Entity {
     private boolean alive;
 
     //CREATE A GETTER FOR THIS LATER
-    public Ability ability1;
+    public Ability[] abilities;
     private int xGrid;
     private int yGrid;
 
-    Entity(double health, String name, Ability ability1) {
-        this.ability1 = ability1;
+    Entity(double health, String name, Ability[] abilities) {
+        this.abilities = abilities;
         this.health = health;
         this.name = name;
         alive = true;
     }
 
+    public int totalAbilities(){
+        return abilities.length;
+    }
     public boolean isAlive(){
         return alive;
     }

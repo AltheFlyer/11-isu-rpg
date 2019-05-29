@@ -29,13 +29,34 @@ public class LevelScreen extends GameScreen{
         */
         jointMap = new JointMap();
 
-        // TODO There is probably a better way to do this just saying
-        kevin = new Player(10,"kevin",new SingleAbility("basic",6,0,1,2,true, false));
-        //allen = new Player(10,"allen",new AOEAbility("heal",2,0,0,1,1,-2.0,false, true));
-        allen = new Player(10,"allen",new CombinationAbility("back",5,2,1,4,true, false));
-        bryan = new Player(10,"bryan",new BasicMoveAbility("step",1));
+        Ability[] kevinAbilities = new Ability[]{
+            new SingleAbility("basic",6,0,1,2,true, false),
+            new BasicMoveAbility("step",1),
+            new AOEAbility("heal",2,0,0,1,1,-2.0,false, true)
+        };
 
-        ack = new Enemy(10, "ack", new SingleAbility("basic",6,0,1,2,true, false));
+        Ability[] allenAbilities = new Ability[]{
+            new CombinationAbility("back",5,2,1,4,true, false),
+            new BasicMoveAbility("step",1),
+        };
+
+        Ability[] bryanAbilities = new Ability[]{
+            new StarAbility("star",3,0,1,2.0,true, false),
+            new BasicMoveAbility("step",1),
+            new SpearAbility("spear", 100)
+        };
+
+        Ability[] ackAbilities = new Ability[]{
+            new SingleAbility("basic",6,0,1,2,true, false)
+        };
+
+        // TODO There is probably a better way to do this just saying
+        kevin = new Player(10,"kevin",kevinAbilities);
+        //allen = new Player(10,"allen",new AOEAbility("heal",2,0,0,1,1,-2.0,false, true));
+        allen = new Player(10,"allen",allenAbilities);
+        bryan = new Player(10,"bryan",bryanAbilities);
+
+        ack = new Enemy(10, "ack",ackAbilities);
 
         //Add things onto the map
         //i is x, j is y
@@ -98,10 +119,10 @@ public class LevelScreen extends GameScreen{
             jointMap.unIndicateAll();
             jointMap.unTargetableAll();
             System.out.println("End turn enemy time!");
-            ack.getAbility1().indicateValidTiles(jointMap);
+            ack.getAbility(0).indicateValidTiles(jointMap);
             for (int j = 0; j < 3; j++) {
                 for (int i = 0; i < 6; i++) {
-                    if (ack.getAbility1().action(jointMap, i, j)){
+                    if (ack.getAbility(0).action(jointMap, i, j)){
                         System.out.println("bam!");
                     }
                 }
@@ -113,10 +134,15 @@ public class LevelScreen extends GameScreen{
         }
 
         //Use an ability here, Click on the ability to select it for use, it will bring up indications
-        if (selectedPlayer != null && isFullyClicked(new Rectangle(30, 30, 263, 80))) {
-            selectedAbility = selectedPlayer.getAbility1();
+        if (selectedPlayer != null) {
+            for (int i = 0; i < selectedPlayer.totalAbilities(); i++) {
+                if (isFullyClicked(new Rectangle(30, 30+90*i, 263, 80))) {
+                    jointMap.unIndicateAll();
+                    jointMap.unTargetableAll();
+                    selectedAbility = selectedPlayer.getAbility(i);
+                }
+            }
         }
-
         //Attempt to run an action when clicking on a certain tile,
         if (selectedPlayer != null && selectedAbility != null) {
             for (int j = 0; j < 3; j++) {
@@ -158,13 +184,16 @@ public class LevelScreen extends GameScreen{
 
         //Draw the profile of the player who is selected
         if (selectedPlayer != null) {
-            selectedPlayer.drawAbilities(g, selectedAbility == selectedPlayer.getAbility1());
+            selectedPlayer.drawAbilities(g, selectedAbility);
 
-            //Ability selection (Only first one works right now!)
-            if (isMouseOver(new Rectangle(30, 30, 263, 80))) {
-                g.setColor(new Color(0, 0, 0, 100));
-                g.fillRect(30, 30, 263, 80);
+            for (int i = 0; i < selectedPlayer.totalAbilities(); ++i) {
+                if (isMouseOver(new Rectangle(30, 30+90*i, 263, 80))) {
+                    g.setColor(new Color(0, 0, 0, 100));
+                    g.fillRect(30, 30+90*i, 263, 80);
+                }
             }
+            //Ability selection (Only first one works right now!)
+
         }
 
         repaint();

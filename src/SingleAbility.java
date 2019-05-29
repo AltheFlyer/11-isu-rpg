@@ -34,23 +34,7 @@ public class SingleAbility extends Ability {
      */
     public void drawHoverAttack(int i, int j, Graphics g, JointMap jointMap) {
         //What to do here???
-        int gridX = 323;
-        int gridY = 108;
-
-        int gridWidth = 120;
-        int gridHeight = 120;
-
-        int gridWidthSpace = 121;
-        int gridHeightSpace = 121;
-        for (int k = j-getYAOE(); k <= j+getYAOE(); k++){
-            for (int l = i-getXAOE(); l <= i+getXAOE(); l++){
-                //Yeah might need to revamp Single and AOE ability so one can do empty tiles, one cannot do that
-                if (jointMap.getTargetable(l, k)){
-                    g.setColor(Color.GREEN);
-                    g.drawRect(gridX + gridWidthSpace * l, gridY + gridHeightSpace * k, gridWidth, gridHeight);
-                }
-            }
-        }
+        drawHoverAttackSingleHelper(i,j,g,jointMap);
     }
 
     /**
@@ -63,25 +47,6 @@ public class SingleAbility extends Ability {
         int rangeDown = getEntitySource().getYGrid() + getYRange();
         int rangeUp = getEntitySource().getYGrid() - getYRange();
 
-        for (int j = rangeUp; j <= rangeDown; j++) {
-            for (int i = rangeBehind; i <= rangeAhead; i++) {
-                if (jointMap.tileExists(i, j)&& getEntitySource().isAlive()) {
-                    if (getFriendTarget() && jointMap.getTileType(i, j) == jointMap.getTileType(getEntitySource().getXGrid(),getEntitySource().getYGrid())) {
-                        jointMap.indicate(i, j);
-                        //Indicate if the tile is targetable or not, at this point Single and AOE ability are used for if they can target empty tiles
-                        if (!jointMap.isEmpty(i,j)){
-                            jointMap.isTargetable(i,j);
-                        }
-                    }
-                    if (getEnemyTarget() && jointMap.getTileType(i, j) != jointMap.getTileType(getEntitySource().getXGrid(),getEntitySource().getYGrid())) {
-                        jointMap.indicate(i, j);
-                        //Indicate if the tile is targetable or not, at this point Single and AOE ability are used for if they can target empty tiles
-                        if (!jointMap.isEmpty(i,j)){
-                            jointMap.isTargetable(i,j);
-                        }
-                    }
-                }
-            }
-        }
+        indicateValidTileHelper(jointMap, rangeAhead, rangeBehind, rangeDown, rangeUp, false, false);
     }
 }

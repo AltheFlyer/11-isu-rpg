@@ -135,4 +135,50 @@ abstract public class Ability {
     public int getMoves() {
         return moves;
     }
+
+    //BELOW ARE SOME ABILITY CREATING ASSISTANCE METHODS!
+    public void indicateValidTileHelper(JointMap jointMap, int rangeAhead, int rangeBehind, int rangeDown, int rangeUp, boolean targetEmpty, boolean showInvalidTiles){
+        for (int j = rangeUp; j <= rangeDown; j++) {
+            for (int i = rangeBehind; i <= rangeAhead; i++) {
+                if (jointMap.tileExists(i, j)&& getEntitySource().isAlive()) {
+                    if (showInvalidTiles){
+                        jointMap.indicate(i,j);
+                    }
+                    if (getFriendTarget() && jointMap.getTileType(i, j) == jointMap.getTileType(getEntitySource().getXGrid(),getEntitySource().getYGrid())) {
+                        jointMap.indicate(i, j);
+                        //Indicate if the tile is targetable or not, at this point Single and AOE ability are used for if they can target empty tiles
+                        if (targetEmpty){
+                            jointMap.isTargetable(i,j);
+                        } else if (!jointMap.isEmpty(i,j)){
+                            jointMap.isTargetable(i,j);
+                        }
+                    }
+                    if (getEnemyTarget() && jointMap.getTileType(i, j) != jointMap.getTileType(getEntitySource().getXGrid(),getEntitySource().getYGrid())) {
+                        jointMap.indicate(i, j);
+                        //Indicate if the tile is targetable or not, at this point Single and AOE ability are used for if they can target empty tiles
+                        if (targetEmpty){
+                            jointMap.isTargetable(i,j);
+                        } else if (!jointMap.isEmpty(i,j)){
+                            jointMap.isTargetable(i,j);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    public void drawHoverAttackSingleHelper(int i, int j, Graphics g, JointMap jointMap){
+        int gridX = 323;
+        int gridY = 108;
+
+        int gridWidth = 120;
+        int gridHeight = 120;
+
+        int gridWidthSpace = 121;
+        int gridHeightSpace = 121;
+        if (jointMap.getTargetable(i,j)){
+            g.setColor(Color.GREEN);
+            g.drawRect(gridX + gridWidthSpace * i, gridY + gridHeightSpace * j, gridWidth, gridHeight);
+        }
+    }
 }

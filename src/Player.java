@@ -4,18 +4,20 @@ public class Player extends Entity{
 
     Icon ico;
 
-    Player(double health, String name, Ability ability1){
-        super(health,name,ability1);
-        ability1.setEntitySource(this);
+    Player(double health, String name, Ability[] abilities){
+        super(health,name,abilities);
+        for (int i = 0; i < abilities.length; i++){
+            abilities[i].setEntitySource(this);
+        }
         ico = new Icon(new Rectangle(0, 0, 40, 40), "assets/icons/test.png");
     }
 
-    public Ability getAbility1(){
-        return ability1;
+    public Ability getAbility(int index){
+        return abilities[index];
     }
 
     //pass list of abilities into levelScreen, select based on rect hovering
-    public void drawAbilities(Graphics g, boolean selected){
+    public void drawAbilities(Graphics g, Ability ability){
         //BACKGROUND
         g.setColor(Color.GRAY);
         if (getName().equals("allen")){
@@ -29,18 +31,21 @@ public class Player extends Entity{
 
         //ABILITY ICONS
 
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < abilities.length; i++) {
             g.setColor(Color.CYAN);
             g.fillRect(30,30+90*i,263,80);
             g.setColor(Color.BLACK);
+            g.drawString(abilities[i].getName(), 40, 50+90*i);
             g.drawRect(30,30+90*i,263,80);
         }
 
-        g.drawString(ability1.getName(), 40, 50);
-
-        if (selected) {
-            g.setColor(new Color(0,0,0,100));
-            g.fillRect(30, 30, 263, 80);
+        for (int i = 0; i < abilities.length; i++){
+            if (ability != null) {
+                if (ability.getName().equals(abilities[i].getName())) {
+                    g.setColor(new Color(0, 0, 0, 100));
+                    g.fillRect(30, 30 + 90 * i, 263, 80);
+                }
+            }
         }
     }
 
@@ -63,5 +68,4 @@ public class Player extends Entity{
     public void drawIcons(Graphics g) {
         ico.draw(g);
     }
-
 }

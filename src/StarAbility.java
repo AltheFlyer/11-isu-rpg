@@ -77,19 +77,6 @@ public class StarAbility extends Ability {
         int rangeDown = getEntitySource().getYGrid() + getYRange();
         int rangeUp = getEntitySource().getYGrid() - getYRange();
 
-        for (int j = rangeUp; j <= rangeDown; j++) {
-            for (int i = rangeBehind; i <= rangeAhead; i++) {
-                if (jointMap.tileExists(i, j)) {
-                    if (getFriendTarget() && jointMap.getTileType(i, j) == jointMap.getTileType(getEntitySource().getXGrid(),getEntitySource().getYGrid())) {
-                        jointMap.indicate(i, j);
-                        jointMap.isTargetable(i,j);
-                    }
-                    if (getEnemyTarget() && jointMap.getTileType(i, j) != jointMap.getTileType(getEntitySource().getXGrid(),getEntitySource().getYGrid())) {
-                        jointMap.indicate(i, j);
-                        jointMap.isTargetable(i,j);
-                    }
-                }
-            }
-        }
+        indicateValidTileHelper(jointMap, rangeAhead, rangeBehind, rangeDown, rangeUp, true, false);
     }
 }
