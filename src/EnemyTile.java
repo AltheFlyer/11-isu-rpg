@@ -61,26 +61,48 @@ public class EnemyTile extends Tile{
 
     //There is also damageEntity here!
 
+    /**
+     * [drawIcons]
+     * draws icons for the enemy tile, used to show intents
+     * @param g the graphics object to draw with
+     * @param mouseX the mouse x coordinate
+     * @param mouseY the mouse y coordinate
+     */
     @Override
     public void drawIcons(Graphics g, int mouseX, int mouseY) {
         int tileDimension = 120;
         int textBackwidth = 150;
 
+        int boxOffset = 25; //Icons tend to be 40 pixels wide
+        //Space between text box edge and text
+        int padding = 10;
+
         if (!isEmpty()) {
             Icon intent = enemy.getIntent();
             intent.setPosition(getXGraphic() + (tileDimension / 2), getYGraphic() - (tileDimension / 3));
             intent.draw(g);
+
             //If the mouse is hovering over the icon, draw text
             if (intent.getBoundingBox().contains(mouseX, mouseY)) {
                 //Create a text drawer that will draw the intent name and description.
-                TextDrawer t = new TextDrawer(g, intent.getName() + "\n\n" + intent.getDescription(), getXGraphic() + (tileDimension / 2) + 10, getYGraphic() - (tileDimension / 3), 130);
+                //In order: draw at halfway point in tile, then offset by fixed constant plus padding
+                //Draw a third of a tile's height above the current one
+                //Set text width to width of textbox minus left and right side padding
+                TextDrawer t = new TextDrawer(g,
+                        intent.getName() + "\n\n" + intent.getDescription(),
+                        getXGraphic() + (tileDimension / 2) + padding + boxOffset,
+                        getYGraphic() - (tileDimension / 3),
+                        textBackwidth - (2 * padding));
 
                 //Grey background box for contrast
                 g.setColor(new Color(50, 50, 50, 200));
-                g.fillRect(getXGraphic() + (tileDimension / 2),
-                        getYGraphic() - (tileDimension / 2),
+                //In order: draw at halfway point in tile, then offset by fixed constant
+                //Draw half a tile's height above the current one plus the text's line height and padding
+                //Fixed constant width, dynamic height based on text height and padding
+                g.fillRect(getXGraphic() + (tileDimension / 2) + boxOffset,
+                        getYGraphic() - (tileDimension / 3) - t.getLineHeight() - padding,
                         textBackwidth,
-                        t.getTotalHeight() + 20);
+                        t.getTotalHeight() + (padding * 2));
 
                 //Draw text
                 g.setColor(Color.WHITE);

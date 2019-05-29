@@ -161,6 +161,15 @@ public class TextDrawer {
     }
 
     /**
+     * [getLineHeight]
+     * gets the height of a single line of text
+     * @return int lineHeight, the computed height of a line of text based on ascent, descent, and leading
+     */
+    public int getLineHeight() {
+        return lineHeight;
+    }
+
+    /**
      * [getTotalHeight]
      * @return the total height of the string, when converted into a set of lines
      */
