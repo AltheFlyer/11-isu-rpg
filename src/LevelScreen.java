@@ -127,6 +127,10 @@ public class LevelScreen extends GameScreen{
                     }
                 }
             }
+
+            //Enemy turn run through
+            jointMap.runEnemyTurnActions();
+
             selectedPlayer = null;
             selectedAbility = null;
             jointMap.unIndicateAll();
@@ -176,7 +180,6 @@ public class LevelScreen extends GameScreen{
         //Ending turn
         g.drawString("end turn",323,724);
 
-
         //Calculate the range for certain abilities and create indications telling you where it will hit based on the currently selected ability
         if (selectedAbility != null){
             selectedAbility.indicateValidTiles(jointMap);
@@ -193,9 +196,11 @@ public class LevelScreen extends GameScreen{
                     g.fillRect(30, 30+90*i, 263, 80);
                 }
             }
-            //Ability selection (Only first one works right now!)
 
         }
+
+        //Draw icons from entities (enemy intents, etc)
+        jointMap.drawIcons(g, getMouseX(), getMouseY());
 
         repaint();
     }

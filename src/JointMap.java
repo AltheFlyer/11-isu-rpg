@@ -124,4 +124,23 @@ public class JointMap {
             }
         }
     }
+
+    /**
+     * [runEnemyTurnActions]
+     * runs all enemy turn actions and intents to preserve encapsulation standards (for now)
+     */
+    public void runEnemyTurnActions() {
+        for (int j = 0; j < 3; j++) {
+            //Enemy side only
+            for (int i = 3; i < 6; i++) {
+                if (!tileArray[i][j].isEmpty()) {
+                    Enemy enemy = ((EnemyTile) tileArray[i][j]).getEnemy();
+                    if (enemy.getAbility(0).action(this, i, j)){
+                        System.out.println("bam!");
+                    }
+                    enemy.act(this);
+                }
+            }
+        }
+    }
 }

@@ -42,18 +42,20 @@ public class Enemy extends Entity{
      */
     public void act(JointMap map) {
         //For testing/theory purposes only...
-        /*
-       if (this.getHealth() < this.maxHealth() / 2) {
-            intent = new Icon(new Rectangle(), "assets/icons/crush");
-            ability = abilities[1];
-       } else {
-            intent = new Icon(new Rectangle(), "assets/icons/attack");
-            ability = abilities[0];
-       }
 
-        */
+        if (this.getHealth() < this.getMaxHealth() / 2) {
+            testIntent = new Icon("assets/icons/medic.png");
+            testIntent.setName("Medic");
+            testIntent.setDescription("This enemy intends to restore health to itself.");
+            //I don't know if there are multiple attacks yet so...
+            //action = abilities[0];
+        } else {
+            testIntent = new Icon("assets/icons/sword.png");
+            testIntent.setName("Attack");
+            testIntent.setDescription("A basic attack that will deal damage to a player.");
+            action = abilities[0];
+        }
 
-        testIntent.setDescription("Wow this is a different icon. Still does big damage.");
     }
 
     public Icon getIntent() {

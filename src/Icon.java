@@ -65,6 +65,30 @@ public class Icon {
     }
 
     /**
+     * [Icon]
+     * generates an icon using only an image, making the bounding box identical to the image's specified width and height
+     * @param path
+     */
+    public Icon(String path) {
+        try {
+            this.sprite = ImageIO.read(new File(path));
+        } catch (IOException e) {
+            e.printStackTrace();
+            this.sprite = new BufferedImage(0, 0, 0);
+        }
+        this.boundingBox = new Rectangle(0, 0, sprite.getWidth(), sprite.getHeight());
+
+        this.centerX = boundingBox.x + (boundingBox.width / 2);
+        this.centerY = boundingBox.y + (boundingBox.height / 2);
+
+        graphicsWidth = boundingBox.width;
+        graphicsHeight = boundingBox.height;
+
+        this.name = "";
+        this.description = "";
+    }
+
+    /**
      * [draw]
      * draws the icon
      * @param g the graphics object to draw with
