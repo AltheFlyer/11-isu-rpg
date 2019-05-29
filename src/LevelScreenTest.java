@@ -1,13 +1,13 @@
-/*
+
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
-*/
+
 /**
  * This class is only used for creating dupes of level screen and testing, this class will not be used in the future
- *//*
+ */
 
 
 public class LevelScreenTest extends GameScreen{
@@ -21,19 +21,21 @@ public class LevelScreenTest extends GameScreen{
     Player[] players;
     SingleAbility ability1;
     AOEAbility heal;
-    MoveAbility move;
+    BasicMoveAbility move;
 
     LevelScreenTest(GameManager game){
         super(game);
         ability1 = new SingleAbility("basic",6,0,1,2,true, false);
         heal = new AOEAbility("heal",0,3,0,1,1,-2.0,false, true);
-        move = new MoveAbility("step",1);
+        move = new BasicMoveAbility("step",1);
 
         jointMap = new JointMap();
 
         kevin = new Player(10,"kevin",ability1);
         allen = new Player(10,"allen",heal);
         ack = new Enemy(10,"ack", ability1);
+
+        ack.act(jointMap);
 
         //Add things onto the map
         //i is x, j is y
@@ -135,7 +137,7 @@ public class LevelScreenTest extends GameScreen{
             }
         }
 
-        jointMap.drawIcons(g);
+        jointMap.drawIcons(g, getMouseX(), getMouseY());
 
         repaint();
     }
@@ -196,4 +198,4 @@ public class LevelScreenTest extends GameScreen{
         }
     }
 }
-*/
+

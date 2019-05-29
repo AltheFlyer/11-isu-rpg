@@ -115,10 +115,10 @@ public class JointMap {
 
 
 
-    public void drawIcons(Graphics g) {
+    public void drawIcons(Graphics g, int mouseX, int mouseY) {
         for (int j = 0; j < 3; j++) {
             for (int i = 0; i < 6; i++) {
-                tileArray[i][j].drawIcons(g);
+                tileArray[i][j].drawIcons(g, mouseX, mouseY);
             }
         }
     }

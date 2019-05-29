@@ -160,4 +160,12 @@ public class TextDrawer {
         }
     }
 
+    /**
+     * [getTotalHeight]
+     * @return the total height of the string, when converted into a set of lines
+     */
+    public int getTotalHeight() {
+        return lineHeight * lines.length;
+    }
+
 }

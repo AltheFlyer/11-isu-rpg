@@ -41,6 +41,9 @@ public class Icon {
         this.centerY = boundingBox.y;
         this.graphicsWidth = boundingBox.width;
         this.graphicsHeight = boundingBox.height;
+
+        this.name = "";
+        this.description = "";
     }
 
     /**
@@ -56,6 +59,9 @@ public class Icon {
         this.centerY = boundingBox.y;
         this.graphicsWidth = boundingBox.width;
         this.graphicsHeight = boundingBox.height;
+
+        this.name = "";
+        this.description = "";
     }
 
     /**

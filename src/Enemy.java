@@ -10,6 +10,7 @@ public class Enemy extends Entity{
         ability1.setEntitySource(this);
         testIntent = new Icon(new Rectangle(0, 0, 40, 40), "assets/icons/test.png");
         testIntent.setName("Special");
+        testIntent.setDescription("A *really* powerful attack. I need more text to test newline drawing.\n\n\n\n\n\nI hope this works");
     }
 
     public Ability getAbility1(){
@@ -37,7 +38,7 @@ public class Enemy extends Entity{
      * contrary to the method name, this doesn't cause enemies to act, rather it
      * generates a next move (Ability and intent) (should be overriden)
      */
-    public void act() {
+    public void act(JointMap map) {
         //For testing/theory purposes only...
         /*
        if (this.getHealth() < this.maxHealth() / 2) {
@@ -48,7 +49,9 @@ public class Enemy extends Entity{
             ability = abilities[0];
        }
 
-         */
+        */
+
+        testIntent.setDescription("Wow this is a different icon. Still does big damage.");
     }
 
     public Icon getIntent() {
@@ -58,4 +61,7 @@ public class Enemy extends Entity{
     public Ability getAction() {
         return action;
     }
+
+
+
 }

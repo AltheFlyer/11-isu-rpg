@@ -97,7 +97,13 @@ abstract public class Tile {
 
     abstract char getType();
 
-    public void drawIcons(Graphics g) {
+    /**
+     * [drawIcons]
+     * @param g the graphics object to draw with
+     * @param mouseX the mouse x coordinate
+     * @param mouseY the mouse y coordinate
+     */
+    public void drawIcons(Graphics g, int mouseX, int mouseY) {
 
     }
 
