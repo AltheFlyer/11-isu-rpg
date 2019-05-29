@@ -1,3 +1,5 @@
+import utils.TextDrawer;
+
 import java.awt.*;
 
 public class EnemyTile extends Tile{
@@ -60,11 +62,30 @@ public class EnemyTile extends Tile{
     //There is also damageEntity here!
 
     @Override
-    public void drawIcons(Graphics g) {
+    public void drawIcons(Graphics g, int mouseX, int mouseY) {
+        int tileDimension = 120;
+        int textBackwidth = 150;
+
         if (!isEmpty()) {
             Icon intent = enemy.getIntent();
-            intent.setPosition(getXGraphic() + 60, getYGraphic() - 40);
+            intent.setPosition(getXGraphic() + (tileDimension / 2), getYGraphic() - (tileDimension / 3));
             intent.draw(g);
+            //If the mouse is hovering over the icon, draw text
+            if (intent.getBoundingBox().contains(mouseX, mouseY)) {
+                //Create a text drawer that will draw the intent name and description.
+                TextDrawer t = new TextDrawer(g, intent.getName() + "\n\n" + intent.getDescription(), getXGraphic() + (tileDimension / 2) + 10, getYGraphic() - (tileDimension / 3), 130);
+
+                //Grey background box for contrast
+                g.setColor(new Color(50, 50, 50, 200));
+                g.fillRect(getXGraphic() + (tileDimension / 2),
+                        getYGraphic() - (tileDimension / 2),
+                        textBackwidth,
+                        t.getTotalHeight() + 20);
+
+                //Draw text
+                g.setColor(Color.WHITE);
+                t.drawText(g);
+            }
         }
     }
 }
