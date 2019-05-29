@@ -76,7 +76,7 @@ public class AOEAbility extends Ability{
 
         for (int j = rangeUp; j <= rangeDown; j++) {
             for (int i = rangeBehind; i <= rangeAhead; i++) {
-                if (jointMap.tileExists(i, j)) {
+                if (jointMap.tileExists(i, j)&& getEntitySource().isAlive()) {
                     if (getFriendTarget() && jointMap.getTileType(i, j) == jointMap.getTileType(getEntitySource().getXGrid(),getEntitySource().getYGrid())) {
                         jointMap.indicate(i, j);
                         //Indicate if the tile is targetable or not, at this point Single and AOE ability are used for if they can target empty tiles

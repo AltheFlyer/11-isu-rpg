@@ -44,6 +44,10 @@ abstract public class Tile {
         return entity;
     }
 
+    public void nullEntity(){
+        entity = null;
+    }
+
     public boolean isEmpty() {
         if (entity == null) {
             return true;
@@ -51,15 +55,17 @@ abstract public class Tile {
         return false;
     }
 
+    /*
     public void die(){
         entity = null;
     }
+    */
 
     public void damageTile(double damage, int status){
         if (!isEmpty()) {
             entity.damageEntity(damage);
             if (entity.getHealth() <= 0) {
-                die();
+                nullEntity();
             }
         }
     }
@@ -94,4 +100,5 @@ abstract public class Tile {
     public void drawIcons(Graphics g) {
 
     }
+
 }

@@ -52,7 +52,7 @@ public class StarAbility extends Ability {
                 //Yeah might need to revamp Single and AOE ability so one can do empty tiles, one cannot do that
                 if (Math.abs(k-j) + Math.abs(l-i) <= 1){
 
-                    if (jointMap.tileExists(l,k)){
+                    if (jointMap.tileExists(l,k)&& getEntitySource().isAlive()){
                         if (getFriendTarget() && jointMap.getTileType(l,k) == jointMap.getTileType(getEntitySource().getXGrid(),getEntitySource().getYGrid())) {
                             g.setColor(Color.GREEN);
                             g.drawRect(gridX + gridWidthSpace * l, gridY + gridHeightSpace * k, gridWidth, gridHeight);

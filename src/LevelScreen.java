@@ -23,14 +23,17 @@ public class LevelScreen extends GameScreen{
         ability1 = new SingleAbility("basic",6,0,1,2,true, false);
         heal = new AOEAbility("heal",2,0,0,1,1,-2.0,false, true);
         move = new MoveAbility("step",1);
+        new AOEAbility("die",3,2,6, 0,1,5,true, false)
+        new StarAbility("star",3,0,1,2.0,true, false)
+        new CombinationAbility("back",5,2,1,4,true, false);
         */
         jointMap = new JointMap();
 
         // TODO There is probably a better way to do this just saying
         kevin = new Player(10,"kevin",new SingleAbility("basic",6,0,1,2,true, false));
         //allen = new Player(10,"allen",new AOEAbility("heal",2,0,0,1,1,-2.0,false, true));
-        allen = new Player(10,"allen",new StarAbility("star",3,0,1,2.0,true, false));
-        bryan = new Player(10,"bryan",new AOEAbility("die",3,2,6, 0,1,5,true, false));
+        allen = new Player(10,"allen",new CombinationAbility("back",5,2,1,4,true, false));
+        bryan = new Player(10,"bryan",new BasicMoveAbility("step",1));
 
         ack = new Enemy(10, "ack", new SingleAbility("basic",6,0,1,2,true, false));
 
@@ -51,7 +54,10 @@ public class LevelScreen extends GameScreen{
     public void keyPressed(KeyEvent e) {
         if(e.getKeyChar() == 's' ){
             System.out.println("down");
-            jointMap.addEntity(1,2,kevin);
+            if (jointMap.isEmpty(1,2)){
+                jointMap.addEntity(1,2,kevin);
+            }
+
             kevin.setHealth(10);
             players[0] = kevin;
             jointMap.addEntity(4,2,ack);
@@ -100,6 +106,8 @@ public class LevelScreen extends GameScreen{
                     }
                 }
             }
+            selectedPlayer = null;
+            selectedAbility = null;
             jointMap.unIndicateAll();
             jointMap.unTargetableAll();
         }

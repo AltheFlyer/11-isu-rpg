@@ -86,12 +86,21 @@ public class JointMap {
         return tileArray[x][y].getTargetable();
     }
 
-    /*
-    public void swapTiles(int x, int y, int xNow, int yNow){
-        playerArray[x][y].setPlayer(playerArray[yNow][xNow].getPlayer());
-        playerArray[xNow][yNow].setPlayer(null);
+    public void moveOnTile(int x, int y, int xMove, int yMove) {
+        if (tileExists(xMove, yMove)) {
+            if (getTileType(x, y) == 'p' && tileExists(xMove, yMove)) {
+                ((PlayerTile) tileArray[x][y]).getPlayer().setXGrid(xMove);
+                ((PlayerTile) tileArray[x][y]).getPlayer().setYGrid(yMove);
+                ((PlayerTile) tileArray[xMove][yMove]).setPlayer(((PlayerTile) tileArray[x][y]).getPlayer());
+                ((PlayerTile) tileArray[x][y]).nullPlayer();
+            } else if (getTileType(x, y) == 'e' && tileExists(xMove, yMove)) {
+                ((EnemyTile) tileArray[x][y]).getEnemy().setXGrid(xMove);
+                ((EnemyTile) tileArray[x][y]).getEnemy().setYGrid(yMove);
+                ((EnemyTile) tileArray[xMove][yMove]).setEnemy(((EnemyTile) tileArray[x][y]).getEnemy());
+                ((EnemyTile) tileArray[x][y]).nullEnemy();
+            }
+        }
     }
-    */
 
     /**
      * getTileType will return a char based on if a tile is a playerTile or an enemyTile

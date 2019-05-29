@@ -1,7 +1,7 @@
 import java.awt.*;
 
-public class SingleAbility extends Ability {
-    SingleAbility(String name, int xRange, int yRange, int status, double damage, boolean enemyTarget, boolean friendTarget){
+public class CombinationAbility extends Ability {
+    CombinationAbility(String name, int xRange, int yRange, int status, double damage, boolean enemyTarget, boolean friendTarget){
         super (name, xRange, yRange, status, damage, enemyTarget, friendTarget);
         setXAOE(0);
         setYAOE(0);
@@ -20,6 +20,7 @@ public class SingleAbility extends Ability {
                 for (int l = i - getXAOE(); l <= i + getXAOE(); l++) {
                     if (jointMap.tileExists(l, k)) {
                         jointMap.target(l, k, getDamage(), getStatus());
+                        jointMap.moveOnTile(getEntitySource().getXGrid(),getEntitySource().getYGrid(),getEntitySource().getXGrid()-1,getEntitySource().getYGrid());
                     }
                 }
             }

@@ -14,6 +14,11 @@ public class EnemyTile extends Tile{
         setEntity(enemy);
     }
 
+    public void nullEnemy(){
+        enemy = null;
+        nullEntity();
+    }
+
     public Enemy getEnemy(){
         return enemy;
     }

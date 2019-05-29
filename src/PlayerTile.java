@@ -14,6 +14,11 @@ public class PlayerTile extends Tile{
         setEntity(player);
     }
 
+    public void nullPlayer(){
+        player = null;
+        nullEntity();
+    }
+
     public Player getPlayer(){
         return player;
     }
