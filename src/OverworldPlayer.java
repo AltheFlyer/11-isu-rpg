@@ -16,22 +16,22 @@ public class OverworldPlayer extends OverworldEntity {
     }
 
     public void moveUp(){
-        this.setY(this.getY() - 1);
+        this.setY(this.getY() - 5);
         this.setBoundingBox(this.getX(),this.getY());
     }
 
     public void moveDown(){
-        this.setY(this.getY() + 1);
+        this.setY(this.getY() + 5);
         this.setBoundingBox(this.getX(),this.getY());
     }
 
     public void moveLeft(){
-        this.setX(this.getX() - 1);
+        this.setX(this.getX() - 5);
         this.setBoundingBox(this.getX(),this.getY());
     }
 
     public void moveRight(){
-        this.setX(this.getX() + 1);
+        this.setX(this.getX() + 5);
         this.setBoundingBox(this.getX(),this.getY());
     }
 

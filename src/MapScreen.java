@@ -47,6 +47,17 @@ public class MapScreen extends GameScreen {
         //System.out.println(player.getY());
     }
     private void checkCollisions(){
+        /*
+        for (int i = 0; i < map.getMap().length - 1; i++) {
+            for (int j = 0; j < map.getMap()[0].length - 1; j++) {
+                if (map.getMap()[i][j].collisionWindow().intersects(player.collisionWindow()) &&
+                        map.getMap()[i][j].isNotWalkable()) {
+                    System.out.println("bam");
+                }
+            }
+        }
+*/
+
         int playerXCenter = player.getX() + player.collisionWindow().width/2;
         int playerYCenter = player.getY() + player.collisionWindow().height/2;
         int centerTileX = playerXCenter/map.getTileSize();
@@ -55,25 +66,26 @@ public class MapScreen extends GameScreen {
             for (int j = centerTileY - 1; j < centerTileY + 2; j++) {
                 if (map.getMap()[i][j].isNotWalkable() &&
                         (map.getMap()[i][j].collisionWindow().intersects(player.collisionWindow()))) {
-                    System.out.println("bam");
-                    //reject(playerXCenter,playerYCenter,map.getMap()[i][j]);
+                    collide(playerXCenter,playerYCenter,map.getMap()[i][j]);
+                    //System.out.println("bam");
                 }
             }
         }
 
     }
-    private void reject(int playerX, int playerY, OverworldTile tile){
-        if (playerX < tile.getX()*map.getTileSize()) {
-            player.setX(tile.getX()*map.getTileSize() - map.getTileSize());
-        }
-        if (playerX > tile.getX()*map.getTileSize()) {
-            player.setX(tile.getX()*map.getTileSize() + map.getTileSize());
-        }
-        if (playerY < tile.getY()*map.getTileSize()) {
-            player.setY(tile.getY()*map.getTileSize() - map.getTileSize());
-        }
-        if (playerY > tile.getY()*map.getTileSize()) {
-            player.setY(tile.getY()*map.getTileSize() + map.getTileSize());
+    private void collide(int playerX, int playerY, OverworldTile tile){
+        if (playerY + player.getSize() >= tile.getY()*map.getTileSize()) {
+            System.out.println("down");
+            //player.setY(tile.getY()*map.getTileSize() - map.getTileSize());
+        } else if (playerY <= tile.getY()*map.getTileSize() + map.getTileSize()) {
+            //player.setY(tile.getY()*map.getTileSize() + map.getTileSize());
+            System.out.println("up");
+        } else if (playerX + player.getSize() >= tile.getX()*map.getTileSize()) {
+            //player.setX(tile.getX()*map.getTileSize() - map.getTileSize());
+            System.out.println("right");
+        } else if (playerX <= tile.getX()*map.getTileSize() + map.getTileSize()) {
+            //player.setX(tile.getX()*map.getTileSize() + map.getTileSize());
+            System.out.println("left");
         }
     }
 }

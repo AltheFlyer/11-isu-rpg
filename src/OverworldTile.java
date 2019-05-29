@@ -12,7 +12,7 @@ public class OverworldTile {
         this.x = x;
         this.y = y;
         this.walkable = walkable;
-        this.boundingBox = new Rectangle(x,y,100,100); //again graphics particulars
+        this.boundingBox = new Rectangle(x*100,y*100,100,100); //again graphics particulars
     }
 
     public Rectangle collisionWindow() {
