@@ -1,4 +1,4 @@
-
+/*
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 /**
  * This class is only used for creating dupes of level screen and testing, this class will not be used in the future
- */
+ *
 
 
 public class LevelScreenTest extends GameScreen{
@@ -198,4 +198,4 @@ public class LevelScreenTest extends GameScreen{
         }
     }
 }
-
+*/

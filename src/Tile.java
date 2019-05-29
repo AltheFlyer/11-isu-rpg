@@ -111,7 +111,19 @@ abstract public class Tile {
         if (!isEmpty()) {
             double ratio = entity.getHealth() / entity.getMaxHealth();
 
-            g.fillRect(getXGraphic(), getYGraphic(), (int) (120 * ratio), 10);
+            //Grey backing bar
+            g.setColor(Color.GRAY);
+            g.fillRect(getXGraphic(), getYGraphic() + 120 - 10, 120, 10);
+
+            //Set healthbar color based on if friendly or not
+            if (getType() == 'p') {
+                g.setColor(Color.GREEN);
+            } else {
+                g.setColor(Color.RED);
+            }
+
+            //Draw at bottom of screen, -10 is for the height of the bar
+            g.fillRect(getXGraphic(), getYGraphic() + 120 - 10, (int) (120 * ratio), 10);
         }
     }
 
