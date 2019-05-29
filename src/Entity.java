@@ -1,3 +1,5 @@
+import java.awt.*;
+
 abstract public class Entity {
     private double health;
     private String name;
@@ -50,5 +52,9 @@ abstract public class Entity {
 
     public void setHealth(double health){
         this.health = health;
+    }
+
+    public void drawIcons(Graphics g) {
+
     }
 }

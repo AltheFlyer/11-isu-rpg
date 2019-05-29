@@ -2,6 +2,7 @@
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 
 */
 /**
@@ -39,10 +40,12 @@ public class LevelScreenTest extends GameScreen{
         jointMap.addEntity(1,2,kevin);
         jointMap.addEntity(2,1,allen);
         jointMap.addEntity(4,2,ack);
+        jointMap.addEntity(5, 0, new Enemy(10,"ack", ability1));
 
         players = new Player[3];
         players[0] = kevin;
         players[1] = allen;
+
     }
 
     @Override
@@ -131,6 +134,8 @@ public class LevelScreenTest extends GameScreen{
                 g.fillRect(30, 30, 263, 80);
             }
         }
+
+        jointMap.drawIcons(g);
 
         repaint();
     }

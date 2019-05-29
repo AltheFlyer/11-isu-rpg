@@ -1,9 +1,13 @@
 import java.awt.*;
 
 public class Player extends Entity{
+
+    Icon ico;
+
     Player(double health, String name, Ability ability1){
         super(health,name,ability1);
         ability1.setEntitySource(this);
+        ico = new Icon(new Rectangle(0, 0, 40, 40), "assets/icons/test.png");
     }
 
     public Ability getAbility1(){
@@ -55,4 +59,9 @@ public class Player extends Entity{
         }
         g.drawRect(x, y, 120, 120);
     }
+
+    public void drawIcons(Graphics g) {
+        ico.draw(g);
+    }
+
 }
