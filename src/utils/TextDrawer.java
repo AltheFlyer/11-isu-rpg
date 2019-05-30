@@ -112,7 +112,7 @@ public class TextDrawer {
             //The next word in the sentence
             String word;
 
-            System.out.println(newLineIndex + " " + spaceIndex);
+            //System.out.println(newLineIndex + " " + spaceIndex);
 
             //Create the word by breaking at the nearest space or newline
             if ((newLineIndex != -1) && (newLineIndex < spaceIndex)) {

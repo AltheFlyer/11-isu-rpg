@@ -35,7 +35,7 @@ public class LevelScreenTest extends GameScreen{
         allen = new Player(10,"allen",heal);
         ack = new Enemy(10,"ack", ability1);
 
-        ack.act(jointMap);
+        ack.decide(jointMap);
 
         //Add things onto the map
         //i is x, j is y

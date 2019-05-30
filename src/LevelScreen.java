@@ -15,6 +15,7 @@ public class LevelScreen extends GameScreen{
     Player bryan;
 
     Enemy ack;
+    Enemy bck;
     Player[] players;
 
     LevelScreen(GameManager game){
@@ -50,6 +51,10 @@ public class LevelScreen extends GameScreen{
             new SingleAbility("basic",6,0,1,2,true, false)
         };
 
+        Ability[] bckAbilities = new Ability[]{
+            new SingleAbility("heal",3,3,1,-2,false, true)
+        };
+
         // TODO There is probably a better way to do this just saying
         kevin = new Player(10,100,"kevin",kevinAbilities);
         //allen = new Player(10,"allen",new AOEAbility("heal",2,0,0,1,1,-2.0,false, true));
@@ -57,6 +62,7 @@ public class LevelScreen extends GameScreen{
         bryan = new Player(10,100,"bryan",bryanAbilities);
 
         ack = new Enemy(10, "ack",ackAbilities);
+        bck = new Enemy(10, "bck",bckAbilities);
 
         //Add things onto the map
         //i is x, j is y
@@ -64,6 +70,7 @@ public class LevelScreen extends GameScreen{
         jointMap.addEntity(0,0,bryan);
         jointMap.addEntity(2,1,allen);
         jointMap.addEntity(4,2,ack);
+        jointMap.addEntity(3,1,bck);
 
         players = new Player[3];
         players[0] = kevin;
@@ -112,29 +119,15 @@ public class LevelScreen extends GameScreen{
             }
         }
 
-        //TODO yay i'm yellow so remove this right now it's for ending turn and letting enemies act
+        //TODO yay i'm yellow so remove this right now it's for ending turn and letting enemies decide
         //Also right now they are targeting all indicated tiles, change this, this is 100% experiment
         if (isFullyClicked(new Rectangle(323, 708, selectWidth, selectHeight))) {
             selectedAbility = null;
-            jointMap.unIndicateAll();
-            jointMap.unTargetableAll();
             System.out.println("End turn enemy time!");
-            ack.getAbility(0).indicateValidTiles(jointMap);
-            for (int j = 0; j < 3; j++) {
-                for (int i = 0; i < 6; i++) {
-                    if (ack.getAbility(0).action(jointMap, i, j)){
-                        System.out.println("bam!");
-                    }
-                }
-            }
-
             //Enemy turn run through
             jointMap.runEnemyTurnActions();
-
             selectedPlayer = null;
             selectedAbility = null;
-            jointMap.unIndicateAll();
-            jointMap.unTargetableAll();
         }
 
         //Use an ability here, Click on the ability to select it for use, it will bring up indications

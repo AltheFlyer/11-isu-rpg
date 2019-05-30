@@ -36,11 +36,11 @@ public class Enemy extends Entity{
     }
 
     /**
-     * [act]
-     * contrary to the method name, this doesn't cause enemies to act, rather it
+     * [decide]
+     * contrary to the method name, this doesn't cause enemies to decide, rather it
      * generates a next move (Ability and intent) (should be overriden)
      */
-    public void act(JointMap map) {
+    public void decide(JointMap map) {
         //For testing/theory purposes only...
 
         if (this.getHealth() < this.getMaxHealth() / 2) {
