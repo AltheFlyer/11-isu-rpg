@@ -131,6 +131,8 @@ abstract public class Tile {
 
             //Draw at bottom of screen, -10 is for the height of the bar
             g.fillRect(getXGraphic(), getYGraphic() + 120 - 10, (int) (120 * ratio), 10);
+            g.setColor(Color.BLACK);
+            g.drawString(entity.getHealth() + "/" + entity.getMaxHealth(), getXGraphic()+30, getYGraphic() + 120);
         }
     }
 
@@ -143,9 +145,13 @@ abstract public class Tile {
                 //Grey backing bar
                 g.setColor(Color.GRAY);
                 g.fillRect(getXGraphic(), getYGraphic() + 120 - 20, 120, 10);
-                g.setColor(Color.BLUE);
+                g.setColor(new Color(0,200,255));
                 //Draw at bottom of screen, -10 is for the height of the bar
                 g.fillRect(getXGraphic(), getYGraphic() + 120 - 20, (int) (120 * ratio), 10);
+                if (getType() == 'p') {
+                    g.setColor(Color.BLACK);
+                    g.drawString(entity.getEnergy() + "/" + entity.getMaxEnergy(), getXGraphic() + 30, getYGraphic() + 120 - 10);
+                }
             }
         }
     }

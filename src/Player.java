@@ -61,8 +61,8 @@ public class Player extends Entity{
             g.drawString("Cooldown: " + abilities[i].getCooldown(), 40, 54+105*i);
             g.drawRect(30,37+105*i,100,22);
 
-            //Drawing the turns until use for an ability
-            g.drawString("Turns until Usable: " + abilities[i].getCurrentCooldown(), 140, 54+105*i);
+            //Drawing the damage for an ability
+            g.drawString("Damage: " + abilities[i].getDamage(), 140, 54+105*i);
             g.drawRect(130,37+105*i,163,22);
 
             //Drawing the description
