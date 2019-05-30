@@ -120,10 +120,12 @@ abstract public class Entity {
      * [dispose]
      * dereferences all objects within the player/accessing the player
      */
+    /*
     public void dispose() {
         //Make all abilities null
         for (int i = 0; i < abilities.length; ++i) {
             abilities[i] = null;
         }
     }
+    */
 }

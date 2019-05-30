@@ -34,7 +34,7 @@ public class LevelScreen extends GameScreen{
         Ability[] kevinAbilities = new Ability[]{
             new SingleAbility("basic","a basic attack that will hit an enemy in front of you", 20,1,6,0,1,2,true, false),
             new BasicMoveAbility("step","movement to an adjacent tile", 30,1,1),
-            new AOEAbility("heal","a vertical AOE heal on allies",50,2,2,0,0,1,1,-2.0,false, true)
+            new AOEAbility("heal","a vertical AOE heal on allies",50,2,2,0,0,2,1,-2.0,false, true)
         };
 
         Ability[] allenAbilities = new Ability[]{
@@ -44,7 +44,7 @@ public class LevelScreen extends GameScreen{
         };
 
         Ability[] bryanAbilities = new Ability[]{
-            new StarAbility("star","An AOE ability that will hit in a star shaped area",50,2,3,0,1,2.0,true, false),
+            new StarAbility("star","An AOE ability that will hit in a star shaped area",50,2,5,0,1,2.0,true, false),
             new BasicMoveAbility("step","movement to an adjacent tile",30,1,1),
             new SpearAbility("spear","A very deadly single target spear with short range",100,10, 100)
         };
