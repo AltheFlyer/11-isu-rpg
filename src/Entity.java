@@ -123,9 +123,15 @@ abstract public class Entity {
         }
     }
 
+    /**
+     * [procStatus]
+     * triggers a status effect's status, then decreases its duration by 1
+     * @param map the jointmap that the game is in
+     */
     public void procStatus(JointMap map) {
         for (int i = 0; i < statuses.size(); ++i) {
             statuses.get(i).triggerEffect(map);
+            statuses.get(i).tickDuration();
         }
     }
 
