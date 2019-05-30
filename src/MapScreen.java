@@ -6,7 +6,6 @@ public class MapScreen extends GameScreen {
 
     private OverworldMap map;
     private OverworldPlayer player;
-    private OverworldNPC rando;
     int length;
     int width;
 
@@ -14,8 +13,6 @@ public class MapScreen extends GameScreen {
         super(game);
         map = new RoomMap(mapPath,walkabilityKey);
         player = new OverworldPlayer(200,200);
-        //rando = new OverworldNPC((int)(Math.random()*map.getTileSize()*length),
-        //        (int)(Math.random()*map.getTileSize()*width));
         length = map.getMap().length;
         width = map.getMap()[0].length;
     }
@@ -26,7 +23,6 @@ public class MapScreen extends GameScreen {
         checkCollisions();
         map.draw(g, player);
         player.draw(g, map);
-//        rando.draw(g);
         repaint();
         System.out.println(player.getX() + " " + player.getY());
     }
@@ -48,9 +44,8 @@ public class MapScreen extends GameScreen {
             player.moveLeft();
             player.setDirection("left");
         }
-        //System.out.println(player.getX());
-        //System.out.println(player.getY());
     }
+
     private void checkCollisions(){
         int playerXCenter = player.getX() + player.collisionWindow().width/2;
         int playerYCenter = player.getY() + player.collisionWindow().height/2;

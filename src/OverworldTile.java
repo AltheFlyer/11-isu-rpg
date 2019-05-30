@@ -38,8 +38,4 @@ public class OverworldTile {
         return this.y;
     }
 
-    public int getBBY(){
-        return boundingBox.y;
-    }
-
 }

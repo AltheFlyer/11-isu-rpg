@@ -39,10 +39,6 @@ abstract public class OverworldEntity {
         this.boundingBox.y = y;
     }
 
-    public int getSize(){
-        return this.boundingBox.height;
-    }
-
     public String getDirection() {
         return direction;
     }
