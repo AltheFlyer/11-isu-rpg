@@ -3,8 +3,8 @@ import java.awt.*;
 public class SpearAbility extends Ability {
 
 
-    SpearAbility(String name, double energyCost, int cooldown, double damage) {
-        super(name, energyCost, cooldown, 2, 1, 1, damage, true, false);
+    SpearAbility(String name, String desc, double energyCost, int cooldown, double damage) {
+        super(name, desc, energyCost, cooldown, 2, 1, 1, damage, true, false);
     }
 
     @Override

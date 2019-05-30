@@ -1,8 +1,8 @@
 import java.awt.*;
 
 public class StarAbility extends Ability {
-    StarAbility(String name, double energyCost, int cooldown, int xRange, int yRange, int status, double damage, boolean enemyTarget, boolean friendTarget){
-        super (name, energyCost, cooldown, xRange, yRange, status, damage, enemyTarget, friendTarget);
+    StarAbility(String name, String desc, double energyCost, int cooldown, int xRange, int yRange, int status, double damage, boolean enemyTarget, boolean friendTarget){
+        super (name, desc, energyCost, cooldown, xRange, yRange, status, damage, enemyTarget, friendTarget);
     }
 
     /**

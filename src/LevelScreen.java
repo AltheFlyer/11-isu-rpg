@@ -32,36 +32,36 @@ public class LevelScreen extends GameScreen{
         jointMap = new JointMap();
 
         Ability[] kevinAbilities = new Ability[]{
-            new SingleAbility("basic",20,1,6,0,1,2,true, false),
-            new BasicMoveAbility("step",30,1,1),
-            new AOEAbility("heal",50,2,2,0,0,1,1,-2.0,false, true)
+            new SingleAbility("basic","a basic attack that will hit an enemy in front of you", 20,1,6,0,1,2,true, false),
+            new BasicMoveAbility("step","movement to an adjacent tile", 30,1,1),
+            new AOEAbility("heal","a vertical AOE heal on allies",50,2,2,0,0,1,1,-2.0,false, true)
         };
 
         Ability[] allenAbilities = new Ability[]{
-            new CombinationAbility("back",60,3,5,2,1,4,true, false),
-            new BasicMoveAbility("step",30,1,1),
-            new AOEAbility("sacrifice",50,4,0,0,6,2,1,5,true, true)
+            new CombinationAbility("back","A single target attack that also pushes you back by 1", 60,3,5,2,1,4,true, false),
+            new BasicMoveAbility("step","movement to an adjacent tile",30,1,1),
+            new AOEAbility("sacrifice","A sacrifice that will deal massive damage to everyone",50,4,0,0,6,2,1,5,true, true)
         };
 
         Ability[] bryanAbilities = new Ability[]{
-            new StarAbility("star",50,2,3,0,1,2.0,true, false),
-            new BasicMoveAbility("step",30,1,1),
-            new SpearAbility("spear",100,10, 100)
+            new StarAbility("star","An AOE ability that will hit in a star shaped area",50,2,3,0,1,2.0,true, false),
+            new BasicMoveAbility("step","movement to an adjacent tile",30,1,1),
+            new SpearAbility("spear","A very deadly single target spear with short range",100,10, 100)
         };
 
         Ability[] ackAbilities = new Ability[]{
-            new SingleAbility("basic",0,0,6,0,1,2,true, false),
-            new SingleAbility("healSelf",0,0,0,0,1,-3,false, true)
+            new SingleAbility("basic","",0,0,6,0,1,2,true, false),
+            new SingleAbility("healSelf","",0,0,0,0,1,-3,false, true)
         };
 
         Ability[] bckAbilities = new Ability[]{
-            new SingleAbility("basic",0,0,6,0,1,2,true, false),
-            new SingleAbility("healSelf",0,0,0,0,1,-3,false, true)
+            new SingleAbility("basic","",0,0,6,0,1,2,true, false),
+            new SingleAbility("healSelf","",0,0,0,0,1,-3,false, true)
         };
 
         Ability[] cckAbilities = new Ability[]{
-                new SingleAbility("basic",0,0,6,0,1,2,true, false),
-                new SingleAbility("healSelf",0,0,0,0,1,-3,false, true)
+                new SingleAbility("basic","",0,0,6,0,1,2,true, false),
+                new SingleAbility("healSelf","",0,0,0,0,1,-3,false, true)
         };
 
         // TODO There is probably a better way to do this just saying
@@ -202,9 +202,9 @@ public class LevelScreen extends GameScreen{
             selectedPlayer.drawAbilities(g, selectedAbility);
 
             for (int i = 0; i < selectedPlayer.totalAbilities(); ++i) {
-                if (isMouseOver(new Rectangle(30, 30+90*i, 263, 80))) {
+                if (isMouseOver(new Rectangle(30, 15+105*i, 263, 100))) {
                     g.setColor(new Color(0, 0, 0, 100));
-                    g.fillRect(30, 30+90*i, 263, 80);
+                    g.fillRect(30, 15+105*i, 263, 100);
                 }
             }
 

@@ -1,8 +1,8 @@
 import java.awt.*;
 
 public class BasicMoveAbility extends Ability {
-    BasicMoveAbility(String name, double energyCost, int cooldown, int moves) {
-        super(name, energyCost, cooldown, moves);
+    BasicMoveAbility(String name, String desc, double energyCost, int cooldown, int moves) {
+        super(name, desc, energyCost, cooldown, moves);
     }
 
     /**

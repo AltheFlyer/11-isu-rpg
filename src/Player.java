@@ -1,3 +1,5 @@
+import utils.TextDrawer;
+
 import java.awt.*;
 
 public class Player extends Entity{
@@ -38,27 +40,41 @@ public class Player extends Entity{
             } else{
                 g.setColor(new Color(0, 200, 255));
             }
-            g.fillRect(30, 30 + 90 * i, 263, 80);
+            g.fillRect(30, 15 + 105 * i, 263, 100);
 
             //Cooldown bar! make it nicer please
             g.setColor(new Color(0, 0, 0, 50));
             if (abilities[i].getCurrentCooldown() > 0) {
-                g.fillRect(30, 30 + 90 * i, 264/abilities[i].getCooldown()*(abilities[i].getCurrentCooldown()), 80);
+                g.fillRect(30, 15 + 105 * i, 264/abilities[i].getCooldown()*(abilities[i].getCurrentCooldown()), 100);
             }
 
             g.setColor(Color.BLACK);
-            g.drawString(abilities[i].getName(), 40, 50+90*i);
-            g.drawString("Energy Cost: " + abilities[i].getEnergyCost(), 40, 70+90*i);
-            g.drawString("Cooldown: " + abilities[i].getCooldown(), 40, 90+90*i);
-            g.drawString("Turns until Usable: " + abilities[i].getCurrentCooldown(), 40, 110+90*i);
-            g.drawRect(30,30+90*i,263,80);
+            //Drawing the name of the ability and a box around it
+            g.drawString(abilities[i].getName(), 40, 32+105*i);
+            g.drawRect(30,15+105*i,100,22);
+
+            //Drawing the energy cost of an ability and a box around it
+            g.drawString("Energy Cost: " + abilities[i].getEnergyCost(), 140, 32+105*i);
+            g.drawRect(130,15+105*i,163,22);
+
+            //Drawing the cooldown of an ability and a box around it
+            g.drawString("Cooldown: " + abilities[i].getCooldown(), 40, 54+105*i);
+            g.drawRect(30,37+105*i,100,22);
+
+            //Drawing the turns until use for an ability
+            g.drawString("Turns until Usable: " + abilities[i].getCurrentCooldown(), 140, 54+105*i);
+            g.drawRect(130,37+105*i,163,22);
+
+            //Drawing the description
+            TextDrawer drawer = new TextDrawer(g,abilities[i].getDesc(), 40, 76+105*i,250);
+            drawer.drawText(g);
         }
 
         for (int i = 0; i < abilities.length; i++){
             if (ability != null) {
                 if (ability.getName().equals(abilities[i].getName())) {
                     g.setColor(new Color(0, 0, 0, 100));
-                    g.fillRect(30, 30 + 90 * i, 263, 80);
+                    g.fillRect(30, 15 + 105 * i, 263, 100);
                 }
             }
         }

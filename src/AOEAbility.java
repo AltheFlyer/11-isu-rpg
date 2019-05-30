@@ -1,8 +1,8 @@
 import java.awt.*;
 
 public class AOEAbility extends Ability{
-    AOEAbility(String name, double energyCost, int cooldown, int xRange, int yRange, int xAOE, int yAOE, int status, double damage, boolean enemyTarget, boolean friendTarget){
-        super (name, energyCost, cooldown, xRange, yRange, status, damage, enemyTarget, friendTarget);
+    AOEAbility(String name, String desc, double energyCost, int cooldown, int xRange, int yRange, int xAOE, int yAOE, int status, double damage, boolean enemyTarget, boolean friendTarget){
+        super (name, desc, energyCost, cooldown, xRange, yRange, status, damage, enemyTarget, friendTarget);
         setXAOE(xAOE);
         setYAOE(yAOE);
     }

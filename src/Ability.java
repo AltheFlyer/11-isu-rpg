@@ -24,8 +24,9 @@ abstract public class Ability {
     private int currentCooldown;
 
     //Constructor for Single target and AOE abilities
-    Ability(String name, double energyCost, int cooldown, int xRange, int yRange, int status, double damage, boolean enemyTarget, boolean friendTarget) {
+    Ability(String name, String desc, double energyCost, int cooldown, int xRange, int yRange, int status, double damage, boolean enemyTarget, boolean friendTarget) {
         this.name = name;
+        this.desc = desc;
         this.energyCost = energyCost;
         this.cooldown = cooldown;
         currentCooldown = 0;
@@ -38,8 +39,9 @@ abstract public class Ability {
     }
 
     //Constructor for movement abilities
-    Ability(String name, double energyCost, int cooldown, int moves){
+    Ability(String name, String desc, double energyCost, int cooldown, int moves){
         this.name = name;
+        this.desc = desc;
         this.energyCost = energyCost;
         this.cooldown = cooldown;
         currentCooldown = 0;

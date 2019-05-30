@@ -1,8 +1,8 @@
 import java.awt.*;
 
 public class SingleAbility extends Ability {
-    SingleAbility(String name, double energyCost, int cooldown,int xRange, int yRange, int status, double damage, boolean enemyTarget, boolean friendTarget){
-        super (name, energyCost, cooldown, xRange, yRange, status, damage, enemyTarget, friendTarget);
+    SingleAbility(String name, String desc, double energyCost, int cooldown,int xRange, int yRange, int status, double damage, boolean enemyTarget, boolean friendTarget){
+        super (name, desc, energyCost, cooldown, xRange, yRange, status, damage, enemyTarget, friendTarget);
         setXAOE(0);
         setYAOE(0);
     }
