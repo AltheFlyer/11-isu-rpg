@@ -16,6 +16,7 @@ public class LevelScreen extends GameScreen{
 
     Enemy ack;
     Enemy bck;
+    Enemy cck;
     Player[] players;
 
     LevelScreen(GameManager game){
@@ -31,28 +32,35 @@ public class LevelScreen extends GameScreen{
         jointMap = new JointMap();
 
         Ability[] kevinAbilities = new Ability[]{
-            new SingleAbility("basic",20,6,0,1,2,true, false),
-            new BasicMoveAbility("step",30,1),
-            new AOEAbility("heal",50,2,0,0,1,1,-2.0,false, true)
+            new SingleAbility("basic",20,1,6,0,1,2,true, false),
+            new BasicMoveAbility("step",30,1,11),
+            new AOEAbility("heal",50,2,2,0,0,1,1,-2.0,false, true)
         };
 
         Ability[] allenAbilities = new Ability[]{
-            new CombinationAbility("back",60,5,2,1,4,true, false),
-            new BasicMoveAbility("step",30,1),
+            new CombinationAbility("back",60,1,5,2,1,4,true, false),
+            new BasicMoveAbility("step",30,1,1),
         };
 
         Ability[] bryanAbilities = new Ability[]{
-            new StarAbility("star",50,3,0,1,2.0,true, false),
-            new BasicMoveAbility("step",30,1),
-            new SpearAbility("spear",100, 100)
+            new StarAbility("star",50,2,3,0,1,2.0,true, false),
+            new BasicMoveAbility("step",30,1,1),
+            new SpearAbility("spear",100,10, 100)
         };
 
         Ability[] ackAbilities = new Ability[]{
-            new SingleAbility("basic",0,6,0,1,2,true, false)
+            new SingleAbility("basic",0,0,6,0,1,2,true, false),
+            new SingleAbility("healSelf",0,0,0,0,1,-3,false, true)
         };
 
         Ability[] bckAbilities = new Ability[]{
-            new SingleAbility("heal",0,3,3,1,-2,false, true)
+            new SingleAbility("basic",0,0,6,0,1,2,true, false),
+            new SingleAbility("healSelf",0,0,0,0,1,-3,false, true)
+        };
+
+        Ability[] cckAbilities = new Ability[]{
+                new SingleAbility("basic",0,0,6,0,1,2,true, false),
+                new SingleAbility("healSelf",0,0,0,0,1,-3,false, true)
         };
 
         // TODO There is probably a better way to do this just saying
@@ -63,6 +71,7 @@ public class LevelScreen extends GameScreen{
 
         ack = new Enemy(10, "ack",ackAbilities);
         bck = new Enemy(10, "bck",bckAbilities);
+        cck = new Enemy(10, "cck",cckAbilities);
 
         //Add things onto the map
         //i is x, j is y
@@ -71,6 +80,7 @@ public class LevelScreen extends GameScreen{
         jointMap.addEntity(2,1,allen);
         jointMap.addEntity(4,2,ack);
         jointMap.addEntity(3,1,bck);
+        jointMap.addEntity(4,0,cck);
 
         players = new Player[3];
         players[0] = kevin;
@@ -128,6 +138,7 @@ public class LevelScreen extends GameScreen{
             jointMap.runEnemyTurnActions();
             for (int i = 0; i < players.length; i++){
                 players[i].gainEnergy(30);
+                players[i].endTurnLowerCooldown();
             }
             selectedPlayer = null;
             selectedAbility = null;
@@ -152,6 +163,7 @@ public class LevelScreen extends GameScreen{
                         if (selectedAbility.action(jointMap, i, j)){
                             //attacks will use up energy!
                             selectedPlayer.useEnergy(selectedAbility.getEnergyCost());
+                            selectedAbility.resetCooldown();
                             System.out.println("bam!");
                             System.out.println(selectedPlayer.getHealth());
                             //Deselect the ability

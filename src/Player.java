@@ -33,16 +33,24 @@ public class Player extends Entity{
 
         for (int i = 0; i < abilities.length; i++) {
             //draw the abilities cyan if usable
-            if (abilities[i].getEnergyCost() > getEnergy()) {
-                g.setColor(Color.RED);
+            if (abilities[i].getEnergyCost() > getEnergy() || abilities[i].getCurrentCooldown() > 0) {
+                g.setColor(new Color(255, 150, 200));
             } else{
-                g.setColor(Color.CYAN);
+                g.setColor(new Color(0, 200, 255));
             }
             g.fillRect(30, 30 + 90 * i, 263, 80);
 
+            //Cooldown bar! make it nicer please
+            g.setColor(new Color(0, 0, 0, 50));
+            if (abilities[i].getCurrentCooldown() > 0) {
+                g.fillRect(30, 30 + 90 * i, 263 / (abilities[i].getCooldown()-abilities[i].getCurrentCooldown()+1), 80);
+            }
+
             g.setColor(Color.BLACK);
             g.drawString(abilities[i].getName(), 40, 50+90*i);
-            g.drawString("Energy Cost: " + abilities[i].getEnergyCost(), 40, 105+90*i);
+            g.drawString("Energy Cost: " + abilities[i].getEnergyCost(), 40, 70+90*i);
+            g.drawString("Cooldown: " + abilities[i].getCooldown(), 40, 90+90*i);
+            g.drawString("Turns until Usable: " + abilities[i].getCurrentCooldown(), 40, 110+90*i);
             g.drawRect(30,30+90*i,263,80);
         }
 
@@ -70,6 +78,12 @@ public class Player extends Entity{
             g.fillRect(x,y,120,120);
         }
         g.drawRect(x, y, 120, 120);
+    }
+
+    public void endTurnLowerCooldown(){
+        for (int i = 0; i < abilities.length; i++){
+            abilities[i].lowerCooldown(1);
+        }
     }
 
     public void drawIcons(Graphics g) {

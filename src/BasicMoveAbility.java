@@ -1,8 +1,8 @@
 import java.awt.*;
 
 public class BasicMoveAbility extends Ability {
-    BasicMoveAbility(String name, double energyCost, int moves) {
-        super(name, energyCost, moves);
+    BasicMoveAbility(String name, double energyCost, int cooldown, int moves) {
+        super(name, energyCost, cooldown, moves);
     }
 
     /**
@@ -37,7 +37,7 @@ public class BasicMoveAbility extends Ability {
      * @param jointMap: The tiles on the jointMap array will be modified (some tiles will be indicated, some will become targetable)
      */
     public void indicateValidTiles(JointMap jointMap) {
-        if (getEntitySource().getEnergy() >= getEnergyCost()) {
+        if (getEntitySource().getEnergy() >= getEnergyCost() && getCurrentCooldown() <= 0) {
             for (int j = 0; j < 3; j++) {
                 for (int i = 0; i < 6; i++) {
                     if (Math.abs(getEntitySource().getXGrid() - i) + Math.abs(getEntitySource().getYGrid() - j) <= getMoves() && getEntitySource().isAlive()) {

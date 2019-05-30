@@ -146,7 +146,7 @@ public class JointMap {
             for (int i = 3; i < 6; i++) {
                 if (!tileArray[i][j].isEmpty()) {
                     Enemy enemy = ((EnemyTile) tileArray[i][j]).getEnemy();
-                    enemy.getAbility(0).indicateValidTiles(this);
+                    enemy.getDecide().indicateValidTiles(this);
 
                     //count up the number of targetable tiles
                     for (int k = 0; k < 3; k++) {
@@ -178,7 +178,7 @@ public class JointMap {
                         choice = (int)(Math.random()*counter);
 
                         //Use the chosen ability on the selected tile
-                        if (enemy.getAbility(0).action(this, xTargets[choice], yTargets[choice])){
+                        if (enemy.getDecide().action(this, xTargets[choice], yTargets[choice])){
                             System.out.println("bam!");
                         }
                     }

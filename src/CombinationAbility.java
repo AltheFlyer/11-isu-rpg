@@ -1,8 +1,8 @@
 import java.awt.*;
 
 public class CombinationAbility extends Ability {
-    CombinationAbility(String name, double energyCost, int xRange, int yRange, int status, double damage, boolean enemyTarget, boolean friendTarget){
-        super (name, energyCost, xRange, yRange, status, damage, enemyTarget, friendTarget);
+    CombinationAbility(String name, double energyCost, int cooldown, int xRange, int yRange, int status, double damage, boolean enemyTarget, boolean friendTarget){
+        super (name, energyCost, cooldown, xRange, yRange, status, damage, enemyTarget, friendTarget);
         setXAOE(0);
         setYAOE(0);
     }

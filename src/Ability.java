@@ -20,11 +20,15 @@ abstract public class Ability {
     private int moves;
     private Entity entitySource;
     private double energyCost;
+    private int cooldown;
+    private int currentCooldown;
 
     //Constructor for Single target and AOE abilities
-    Ability(String name, double energyCost, int xRange, int yRange, int status, double damage, boolean enemyTarget, boolean friendTarget) {
+    Ability(String name, double energyCost, int cooldown, int xRange, int yRange, int status, double damage, boolean enemyTarget, boolean friendTarget) {
         this.name = name;
         this.energyCost = energyCost;
+        this.cooldown = cooldown;
+        currentCooldown = 0;
         this.xRange = xRange;
         this.yRange = yRange;
         this.status = status;
@@ -34,9 +38,11 @@ abstract public class Ability {
     }
 
     //Constructor for movement abilities
-    Ability(String name, double energyCost, int moves){
+    Ability(String name, double energyCost, int cooldown, int moves){
         this.name = name;
         this.energyCost = energyCost;
+        this.cooldown = cooldown;
+        currentCooldown = 0;
         this.moves = moves;
     }
 
@@ -55,6 +61,26 @@ abstract public class Ability {
     //This piece of code will run after a person has clicked tile after an ability has been selected, it will attempt to cast the ability selected on the hovered tiles
     //The boolean return is for if the action was taken or not
     abstract public boolean action(JointMap jointMap, int i, int j);
+
+    public int getCooldown(){
+        return cooldown;
+    }
+
+    public int getCurrentCooldown(){
+        return currentCooldown;
+    }
+
+    public void lowerCooldown(int amountLower){
+        if (currentCooldown - amountLower < 0){
+            currentCooldown = 0;
+        } else {
+            currentCooldown -= amountLower;
+        }
+    }
+
+    public void resetCooldown(){
+        currentCooldown = cooldown;
+    }
 
     public double getEnergyCost(){
         return energyCost;
@@ -149,7 +175,7 @@ abstract public class Ability {
 
     //BELOW ARE SOME ABILITY CREATING ASSISTANCE METHODS!
     public void indicateValidTileHelper(JointMap jointMap, int rangeAhead, int rangeBehind, int rangeDown, int rangeUp, boolean targetEmpty, boolean showInvalidTiles){
-        if (entitySource.getEnergy() >= energyCost) {
+        if (entitySource.getEnergy() >= energyCost && currentCooldown <= 0) {
             for (int j = rangeUp; j <= rangeDown; j++) {
                 for (int i = rangeBehind; i <= rangeAhead; i++) {
                     if (jointMap.tileExists(i, j) && getEntitySource().isAlive()) {
