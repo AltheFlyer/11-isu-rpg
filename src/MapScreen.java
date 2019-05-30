@@ -13,7 +13,7 @@ public class MapScreen extends GameScreen {
     public MapScreen(GameManager game, String mapPath, String walkabilityKey){
         super(game);
         map = new RoomMap(mapPath,walkabilityKey);
-        player = new OverworldPlayer(500,500);
+        player = new OverworldPlayer(200,200);
         //rando = new OverworldNPC((int)(Math.random()*map.getTileSize()*length),
         //        (int)(Math.random()*map.getTileSize()*width));
         length = map.getMap().length;
@@ -28,20 +28,25 @@ public class MapScreen extends GameScreen {
         player.draw(g, map);
 //        rando.draw(g);
         repaint();
+        System.out.println(player.getX() + " " + player.getY());
     }
 
     public void keyPressed(KeyEvent e) {
         if(e.getKeyChar() == 'w'){
             player.moveUp();
+            player.setDirection("up");
         }
         if(e.getKeyChar() == 's'){
             player.moveDown();
+            player.setDirection("down");
         }
         if(e.getKeyChar() == 'd'){
             player.moveRight();
+            player.setDirection("right");
         }
         if(e.getKeyChar() =='a'){
             player.moveLeft();
+            player.setDirection("left");
         }
         //System.out.println(player.getX());
         //System.out.println(player.getY());
@@ -55,14 +60,13 @@ public class MapScreen extends GameScreen {
             for (int j = centerTileY - 1; j < centerTileY + 2; j++) {
                 if (map.getMap()[i][j].isNotWalkable() &&
                         (map.getMap()[i][j].collisionWindow().intersects(player.collisionWindow()))) {
-                    collide(playerXCenter,playerYCenter,map.getMap()[i][j]);
-                    //System.out.println("bam");
+                    collide(map.getMap()[i][j]);
                 }
             }
         }
-
     }
-    private void collide(int playerX, int playerY, OverworldTile tile){
+
+    private void collide(OverworldTile tile){
         if (player.getDirection().equals("down")) {
             player.moveUp();
         } else if (player.getDirection().equals("up")) {
@@ -72,21 +76,5 @@ public class MapScreen extends GameScreen {
         } else if (player.getDirection().equals("left")) {
             player.moveRight();
         }
-
-        /**
-        if (playerY + player.getSize() >= tile.getY()*map.getTileSize()) {
-            System.out.println("down");
-            //player.setY(tile.getY()*map.getTileSize() - map.getTileSize());
-        } else if (playerY <= tile.getY()*map.getTileSize() + map.getTileSize()) {
-            //player.setY(tile.getY()*map.getTileSize() + map.getTileSize());
-            System.out.println("up");
-        } else if (playerX + player.getSize() >= tile.getX()*map.getTileSize()) {
-            //player.setX(tile.getX()*map.getTileSize() - map.getTileSize());
-            System.out.println("right");
-        } else if (playerX <= tile.getX()*map.getTileSize() + map.getTileSize()) {
-            //player.setX(tile.getX()*map.getTileSize() + map.getTileSize());
-            System.out.println("left");
-        }
-         */
     }
 }

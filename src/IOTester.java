@@ -84,7 +84,7 @@ public class IOTester {
     }
 
     static void testMap() {
-        OverworldTile[][] map = GameIO.getMap("test.txt");
+        OverworldTile[][] map = GameIO.getMap("test.txt", 100);
         for (int y = 0; y < map[0].length; ++y) {
             for (int x = 0; x < map.length; ++x) {
                 System.out.print(map[x][y].isWalkable() + " ");

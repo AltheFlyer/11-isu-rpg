@@ -402,7 +402,7 @@ public class GameIO {
      * @param path the path of the map file (not including source folder)
      * @return OverworldTile[][] a 2d array of form [x][y] of Overworld tiles
      */
-    public static OverworldTile[][] getMap(String path) {
+    public static OverworldTile[][] getMap(String path, int tileSize) {
         String mapText = readFile(path);
         OverworldTile[][] tileMap;
 
@@ -416,7 +416,7 @@ public class GameIO {
         for (int y = 0; y < height; ++y) {
             tokens = lines[y + 1].split(" ");
             for (int x = 0; x < width; ++x) {
-                tileMap[x][y] = new OverworldTile(x, y, tileWalkability.get(tokens[x]));
+                tileMap[x][y] = new OverworldTile(x, y, tileWalkability.get(tokens[x]),tileSize);
             }
         }
 
