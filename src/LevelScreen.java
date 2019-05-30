@@ -44,7 +44,7 @@ public class LevelScreen extends GameScreen{
         };
 
         Ability[] bryanAbilities = new Ability[]{
-            new StarAbility("star","An AOE ability that will hit in a star shaped area",50,2,5,0,1,2.0,true, false),
+            new StarAbility("star","An AOE ability that will hit in a star shaped area",50,2,5,0,1,3.0,true, false),
             new BasicMoveAbility("step","movement to an adjacent tile",30,1,1),
             new SpearAbility("spear","A very deadly single target spear with short range",100,10, 100)
         };
@@ -205,6 +205,12 @@ public class LevelScreen extends GameScreen{
                 if (isMouseOver(new Rectangle(30, 15+105*i, 263, 100))) {
                     g.setColor(new Color(0, 0, 0, 100));
                     g.fillRect(30, 15+105*i, 263, 100);
+                    //Will make it easier to see which tiles can be targetable
+                    if (selectedAbility == null) {
+                        jointMap.unIndicateAll();
+                        selectedPlayer.getAbility(i).indicateValidTiles(jointMap);
+
+                    }
                 }
             }
 
