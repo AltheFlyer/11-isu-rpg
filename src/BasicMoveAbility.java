@@ -1,8 +1,8 @@
 import java.awt.*;
 
 public class BasicMoveAbility extends Ability {
-    BasicMoveAbility(String name, int moves) {
-        super(name, moves);
+    BasicMoveAbility(String name, double energyCost, int moves) {
+        super(name, energyCost, moves);
     }
 
     /**
@@ -37,14 +37,16 @@ public class BasicMoveAbility extends Ability {
      * @param jointMap: The tiles on the jointMap array will be modified (some tiles will be indicated, some will become targetable)
      */
     public void indicateValidTiles(JointMap jointMap) {
-        for (int j = 0; j < 3; j++) {
-            for (int i = 0; i < 6; i++) {
-                if (Math.abs(getEntitySource().getXGrid() - i) + Math.abs(getEntitySource().getYGrid() - j) <= getMoves() && getEntitySource().isAlive()) {
-                    if (jointMap.getTileType(i, j) == jointMap.getTileType(getEntitySource().getXGrid(), getEntitySource().getYGrid())) {
-                        jointMap.indicate(i, j);
-                        //Indicate if the tile is targetable or not, at this point Single and AOE ability are used for if they can target empty tiles
-                        if (jointMap.isEmpty(i, j)) {
-                            jointMap.isTargetable(i, j);
+        if (getEntitySource().getEnergy() >= getEnergyCost()) {
+            for (int j = 0; j < 3; j++) {
+                for (int i = 0; i < 6; i++) {
+                    if (Math.abs(getEntitySource().getXGrid() - i) + Math.abs(getEntitySource().getYGrid() - j) <= getMoves() && getEntitySource().isAlive()) {
+                        if (jointMap.getTileType(i, j) == jointMap.getTileType(getEntitySource().getXGrid(), getEntitySource().getYGrid())) {
+                            jointMap.indicate(i, j);
+                            //Indicate if the tile is targetable or not, at this point Single and AOE ability are used for if they can target empty tiles
+                            if (jointMap.isEmpty(i, j)) {
+                                jointMap.isTargetable(i, j);
+                            }
                         }
                     }
                 }

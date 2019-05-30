@@ -3,8 +3,8 @@ import java.awt.*;
 public class SpearAbility extends Ability {
 
 
-    SpearAbility(String name, double damage) {
-        super(name, 2, 1, 1, damage, true, false);
+    SpearAbility(String name, double energyCost, double damage) {
+        super(name, energyCost, 2, 1, 1, damage, true, false);
     }
 
     @Override
@@ -28,6 +28,6 @@ public class SpearAbility extends Ability {
         int rangeDown = getEntitySource().getYGrid();
         int rangeUp = getEntitySource().getYGrid();
 
-        indicateValidTileHelper(jointMap, rangeAhead, rangeBehind, rangeDown, rangeUp, false,true);
+        indicateValidTileHelper(jointMap, rangeAhead, rangeBehind, rangeDown, rangeUp, false, true);
     }
 }

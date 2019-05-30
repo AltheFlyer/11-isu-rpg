@@ -28,7 +28,11 @@ public class JointMap {
 
     //DO WE KEEP TARGET OR MOVE IT TO ATTACKS? DECIDE LATER
     public void target(int i, int j, double damage, int status) {
-        tileArray[i][j].damageTile(damage, status);
+        if (damage < 0) {
+            tileArray[i][j].healTile(-damage, status);
+        } else {
+            tileArray[i][j].damageTile(damage, status);
+        }
     }
 
     //Setting entities onto the grid

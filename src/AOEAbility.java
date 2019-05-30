@@ -1,8 +1,8 @@
 import java.awt.*;
 
 public class AOEAbility extends Ability{
-    AOEAbility(String name, int xRange, int yRange, int xAOE, int yAOE, int status, double damage, boolean enemyTarget, boolean friendTarget){
-        super (name, xRange, yRange, status, damage, enemyTarget, friendTarget);
+    AOEAbility(String name, double energyCost, int xRange, int yRange, int xAOE, int yAOE, int status, double damage, boolean enemyTarget, boolean friendTarget){
+        super (name, energyCost, xRange, yRange, status, damage, enemyTarget, friendTarget);
         setXAOE(xAOE);
         setYAOE(yAOE);
     }
@@ -74,6 +74,6 @@ public class AOEAbility extends Ability{
         int rangeDown = getEntitySource().getYGrid() + getYRange();
         int rangeUp = getEntitySource().getYGrid() - getYRange();
 
-        indicateValidTileHelper(jointMap, rangeAhead, rangeBehind, rangeDown, rangeUp, true,false);
+        indicateValidTileHelper(jointMap, rangeAhead, rangeBehind, rangeDown, rangeUp, true, false);
     }
 }

@@ -1,8 +1,8 @@
 import java.awt.*;
 
 public class CombinationAbility extends Ability {
-    CombinationAbility(String name, int xRange, int yRange, int status, double damage, boolean enemyTarget, boolean friendTarget){
-        super (name, xRange, yRange, status, damage, enemyTarget, friendTarget);
+    CombinationAbility(String name, double energyCost, int xRange, int yRange, int status, double damage, boolean enemyTarget, boolean friendTarget){
+        super (name, energyCost, xRange, yRange, status, damage, enemyTarget, friendTarget);
         setXAOE(0);
         setYAOE(0);
     }
@@ -41,6 +41,6 @@ public class CombinationAbility extends Ability {
         int rangeDown = getEntitySource().getYGrid() + getYRange();
         int rangeUp = getEntitySource().getYGrid() - getYRange();
 
-        indicateValidTileHelper(jointMap, rangeAhead, rangeBehind, rangeDown, rangeUp, false,false);
+        indicateValidTileHelper(jointMap, rangeAhead, rangeBehind, rangeDown, rangeUp, false, false);
     }
 }

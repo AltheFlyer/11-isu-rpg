@@ -22,8 +22,9 @@ abstract public class Ability {
     private double energyCost;
 
     //Constructor for Single target and AOE abilities
-    Ability(String name, int xRange, int yRange, int status, double damage, boolean enemyTarget, boolean friendTarget) {
+    Ability(String name, double energyCost, int xRange, int yRange, int status, double damage, boolean enemyTarget, boolean friendTarget) {
         this.name = name;
+        this.energyCost = energyCost;
         this.xRange = xRange;
         this.yRange = yRange;
         this.status = status;
@@ -33,8 +34,9 @@ abstract public class Ability {
     }
 
     //Constructor for movement abilities
-    Ability(String name, int moves){
+    Ability(String name, double energyCost, int moves){
         this.name = name;
+        this.energyCost = energyCost;
         this.moves = moves;
     }
 
@@ -147,28 +149,30 @@ abstract public class Ability {
 
     //BELOW ARE SOME ABILITY CREATING ASSISTANCE METHODS!
     public void indicateValidTileHelper(JointMap jointMap, int rangeAhead, int rangeBehind, int rangeDown, int rangeUp, boolean targetEmpty, boolean showInvalidTiles){
-        for (int j = rangeUp; j <= rangeDown; j++) {
-            for (int i = rangeBehind; i <= rangeAhead; i++) {
-                if (jointMap.tileExists(i, j)&& getEntitySource().isAlive()) {
-                    if (showInvalidTiles){
-                        jointMap.indicate(i,j);
-                    }
-                    if (getFriendTarget() && jointMap.getTileType(i, j) == jointMap.getTileType(getEntitySource().getXGrid(),getEntitySource().getYGrid())) {
-                        jointMap.indicate(i, j);
-                        //Indicate if the tile is targetable or not, at this point Single and AOE ability are used for if they can target empty tiles
-                        if (targetEmpty){
-                            jointMap.isTargetable(i,j);
-                        } else if (!jointMap.isEmpty(i,j)){
-                            jointMap.isTargetable(i,j);
+        if (entitySource.getEnergy() >= energyCost) {
+            for (int j = rangeUp; j <= rangeDown; j++) {
+                for (int i = rangeBehind; i <= rangeAhead; i++) {
+                    if (jointMap.tileExists(i, j) && getEntitySource().isAlive()) {
+                        if (showInvalidTiles) {
+                            jointMap.indicate(i, j);
                         }
-                    }
-                    if (getEnemyTarget() && jointMap.getTileType(i, j) != jointMap.getTileType(getEntitySource().getXGrid(),getEntitySource().getYGrid())) {
-                        jointMap.indicate(i, j);
-                        //Indicate if the tile is targetable or not, at this point Single and AOE ability are used for if they can target empty tiles
-                        if (targetEmpty){
-                            jointMap.isTargetable(i,j);
-                        } else if (!jointMap.isEmpty(i,j)){
-                            jointMap.isTargetable(i,j);
+                        if (getFriendTarget() && jointMap.getTileType(i, j) == jointMap.getTileType(getEntitySource().getXGrid(), getEntitySource().getYGrid())) {
+                            jointMap.indicate(i, j);
+                            //Indicate if the tile is targetable or not, at this point Single and AOE ability are used for if they can target empty tiles
+                            if (targetEmpty) {
+                                jointMap.isTargetable(i, j);
+                            } else if (!jointMap.isEmpty(i, j)) {
+                                jointMap.isTargetable(i, j);
+                            }
+                        }
+                        if (getEnemyTarget() && jointMap.getTileType(i, j) != jointMap.getTileType(getEntitySource().getXGrid(), getEntitySource().getYGrid())) {
+                            jointMap.indicate(i, j);
+                            //Indicate if the tile is targetable or not, at this point Single and AOE ability are used for if they can target empty tiles
+                            if (targetEmpty) {
+                                jointMap.isTargetable(i, j);
+                            } else if (!jointMap.isEmpty(i, j)) {
+                                jointMap.isTargetable(i, j);
+                            }
                         }
                     }
                 }

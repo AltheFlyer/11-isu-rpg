@@ -32,10 +32,17 @@ public class Player extends Entity{
         //ABILITY ICONS
 
         for (int i = 0; i < abilities.length; i++) {
-            g.setColor(Color.CYAN);
-            g.fillRect(30,30+90*i,263,80);
+            //draw the abilities cyan if usable
+            if (abilities[i].getEnergyCost() > getEnergy()) {
+                g.setColor(Color.RED);
+            } else{
+                g.setColor(Color.CYAN);
+            }
+            g.fillRect(30, 30 + 90 * i, 263, 80);
+
             g.setColor(Color.BLACK);
             g.drawString(abilities[i].getName(), 40, 50+90*i);
+            g.drawString("Energy Cost: " + abilities[i].getEnergyCost(), 40, 105+90*i);
             g.drawRect(30,30+90*i,263,80);
         }
 
@@ -51,9 +58,9 @@ public class Player extends Entity{
 
     public void draw(int x, int y, Graphics g, boolean indicated){
         g.setColor(Color.MAGENTA);
-        if (getName().equals("allen")){
+        if (getName().equals("yellow")){
             g.setColor(Color.yellow);
-        } else if (getName().equals("bryan")){
+        } else if (getName().equals("cyan")){
             g.setColor(Color.CYAN);
         }
         g.fillRect(x,y,120,120);

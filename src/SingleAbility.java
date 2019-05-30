@@ -1,8 +1,8 @@
 import java.awt.*;
 
 public class SingleAbility extends Ability {
-    SingleAbility(String name, int xRange, int yRange, int status, double damage, boolean enemyTarget, boolean friendTarget){
-        super (name, xRange, yRange, status, damage, enemyTarget, friendTarget);
+    SingleAbility(String name, double energyCost, int xRange, int yRange, int status, double damage, boolean enemyTarget, boolean friendTarget){
+        super (name, energyCost, xRange, yRange, status, damage, enemyTarget, friendTarget);
         setXAOE(0);
         setYAOE(0);
     }
@@ -36,6 +36,7 @@ public class SingleAbility extends Ability {
      * @param jointMap: The tiles on the jointMap array will be modified (some tiles will be indicated, some will become targetable)
      */
     public void indicateValidTiles(JointMap jointMap){
+
         int rangeAhead = getEntitySource().getXGrid() + getXRange();
         int rangeBehind = getEntitySource().getXGrid() - getXRange();
         int rangeDown = getEntitySource().getYGrid() + getYRange();

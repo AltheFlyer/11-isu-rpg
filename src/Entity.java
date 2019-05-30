@@ -76,6 +76,14 @@ abstract public class Entity {
         }
     }
 
+    public void healEntity(double healing){
+        if (health + healing >= maxHealth){
+            health = maxHealth;
+        } else {
+            health += healing;
+        }
+    }
+
     public void setHealth(double health){
         this.health = health;
     }
@@ -94,5 +102,17 @@ abstract public class Entity {
 
     public double getMaxEnergy(){
         return maxEnergy;
+    }
+
+    public void useEnergy(double energyUsed){
+        energy -= energyUsed;
+    }
+
+    public void gainEnergy(double energyGained){
+        if (energy + energyGained > 100){
+            energy = 100;
+        } else {
+            energy += energyGained;
+        }
     }
 }

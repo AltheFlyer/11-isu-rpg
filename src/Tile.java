@@ -69,6 +69,12 @@ abstract public class Tile {
             }
         }
     }
+
+    public void healTile(double healing, int status){
+        if (!isEmpty()) {
+            entity.healEntity(healing);
+        }
+    }
     public void indicate() {
         indicated = true;
     }

@@ -31,35 +31,35 @@ public class LevelScreen extends GameScreen{
         jointMap = new JointMap();
 
         Ability[] kevinAbilities = new Ability[]{
-            new SingleAbility("basic",6,0,1,2,true, false),
-            new BasicMoveAbility("step",1),
-            new AOEAbility("heal",2,0,0,1,1,-2.0,false, true)
+            new SingleAbility("basic",20,6,0,1,2,true, false),
+            new BasicMoveAbility("step",30,1),
+            new AOEAbility("heal",50,2,0,0,1,1,-2.0,false, true)
         };
 
         Ability[] allenAbilities = new Ability[]{
-            new CombinationAbility("back",5,2,1,4,true, false),
-            new BasicMoveAbility("step",1),
+            new CombinationAbility("back",60,5,2,1,4,true, false),
+            new BasicMoveAbility("step",30,1),
         };
 
         Ability[] bryanAbilities = new Ability[]{
-            new StarAbility("star",3,0,1,2.0,true, false),
-            new BasicMoveAbility("step",1),
-            new SpearAbility("spear", 100)
+            new StarAbility("star",50,3,0,1,2.0,true, false),
+            new BasicMoveAbility("step",30,1),
+            new SpearAbility("spear",100, 100)
         };
 
         Ability[] ackAbilities = new Ability[]{
-            new SingleAbility("basic",6,0,1,2,true, false)
+            new SingleAbility("basic",0,6,0,1,2,true, false)
         };
 
         Ability[] bckAbilities = new Ability[]{
-            new SingleAbility("heal",3,3,1,-2,false, true)
+            new SingleAbility("heal",0,3,3,1,-2,false, true)
         };
 
         // TODO There is probably a better way to do this just saying
-        kevin = new Player(10,100,"kevin",kevinAbilities);
+        kevin = new Player(10,100,"magenta",kevinAbilities);
         //allen = new Player(10,"allen",new AOEAbility("heal",2,0,0,1,1,-2.0,false, true));
-        allen = new Player(10,100,"allen",allenAbilities);
-        bryan = new Player(10,100,"bryan",bryanAbilities);
+        allen = new Player(10,100,"yellow",allenAbilities);
+        bryan = new Player(10,100,"cyan",bryanAbilities);
 
         ack = new Enemy(10, "ack",ackAbilities);
         bck = new Enemy(10, "bck",bckAbilities);
@@ -119,13 +119,16 @@ public class LevelScreen extends GameScreen{
             }
         }
 
-        //TODO yay i'm yellow so remove this right now it's for ending turn and letting enemies decide
+        //TODO end turn!
         //Also right now they are targeting all indicated tiles, change this, this is 100% experiment
         if (isFullyClicked(new Rectangle(323, 708, selectWidth, selectHeight))) {
             selectedAbility = null;
             System.out.println("End turn enemy time!");
             //Enemy turn run through
             jointMap.runEnemyTurnActions();
+            for (int i = 0; i < players.length; i++){
+                players[i].gainEnergy(30);
+            }
             selectedPlayer = null;
             selectedAbility = null;
         }
@@ -147,6 +150,8 @@ public class LevelScreen extends GameScreen{
                 for (int i = 0; i < 6; i++) {
                     if (isFullyClicked(new Rectangle(323 + 121 * i, 108 + 121 * j, 120, 120))) {
                         if (selectedAbility.action(jointMap, i, j)){
+                            //attacks will use up energy!
+                            selectedPlayer.useEnergy(selectedAbility.getEnergyCost());
                             System.out.println("bam!");
                             System.out.println(selectedPlayer.getHealth());
                             //Deselect the ability
@@ -239,11 +244,13 @@ public class LevelScreen extends GameScreen{
                 g.fillRect(profileX, profileY + i * profileHeight, profileWidth, profileHeight);
                 g.setColor(Color.BLACK);
                 g.drawRect(profileX, profileY + i * profileHeight, profileWidth, profileHeight);
+                g.drawString(players[i].getName(),profileX+10, profileY + 15 + i*80);
             } else {
                 g.setColor(Color.RED);
                 g.fillRect(profileX, profileY + i * profileHeight, profileWidth, profileHeight);
                 g.setColor(Color.BLACK);
                 g.drawRect(profileX, profileY + i * profileHeight, profileWidth, profileHeight);
+                g.drawString(players[i].getName(),profileX+10, profileY + 15 + i*80);
             }
         }
     }
