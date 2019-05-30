@@ -33,13 +33,14 @@ public class LevelScreen extends GameScreen{
 
         Ability[] kevinAbilities = new Ability[]{
             new SingleAbility("basic",20,1,6,0,1,2,true, false),
-            new BasicMoveAbility("step",30,1,11),
+            new BasicMoveAbility("step",30,1,1),
             new AOEAbility("heal",50,2,2,0,0,1,1,-2.0,false, true)
         };
 
         Ability[] allenAbilities = new Ability[]{
-            new CombinationAbility("back",60,1,5,2,1,4,true, false),
+            new CombinationAbility("back",60,3,5,2,1,4,true, false),
             new BasicMoveAbility("step",30,1,1),
+            new AOEAbility("sacrifice",50,4,0,0,6,2,1,5,true, true)
         };
 
         Ability[] bryanAbilities = new Ability[]{

@@ -43,7 +43,7 @@ public class Player extends Entity{
             //Cooldown bar! make it nicer please
             g.setColor(new Color(0, 0, 0, 50));
             if (abilities[i].getCurrentCooldown() > 0) {
-                g.fillRect(30, 30 + 90 * i, 263 / (abilities[i].getCooldown()-abilities[i].getCurrentCooldown()+1), 80);
+                g.fillRect(30, 30 + 90 * i, 264/abilities[i].getCooldown()*(abilities[i].getCurrentCooldown()), 80);
             }
 
             g.setColor(Color.BLACK);
