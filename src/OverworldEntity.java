@@ -46,4 +46,8 @@ abstract public class OverworldEntity {
     public void setDirection(String d) {
         this.direction = d;
     }
+
+    public int getSize() {
+        return this.boundingBox.height;
+    }
 }
