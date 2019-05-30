@@ -1,4 +1,5 @@
 import java.awt.*;
+import java.util.ArrayList;
 
 abstract public class Entity {
 
@@ -17,6 +18,8 @@ abstract public class Entity {
     private int xGrid;
     private int yGrid;
 
+    ArrayList<StatusEffect> statuses;
+
     Entity(double health, String name, Ability[] abilities) {
         this.abilities = abilities;
 
@@ -25,6 +28,8 @@ abstract public class Entity {
         this.health = health;
         this.name = name;
         alive = true;
+
+        statuses = new ArrayList<StatusEffect>();
     }
 
     Entity(double health, double energy, String name, Ability[] abilities) {
@@ -35,6 +40,8 @@ abstract public class Entity {
         this.health = health;
         this.name = name;
         alive = true;
+
+        statuses = new ArrayList<StatusEffect>();
     }
 
     public int totalAbilities(){
@@ -116,16 +123,23 @@ abstract public class Entity {
         }
     }
 
+    public void procStatus(JointMap map) {
+        for (int i = 0; i < statuses.size(); ++i) {
+            statuses.get(i).triggerEffect(map);
+        }
+    }
+
+
     /**
      * [dispose]
      * dereferences all objects within the player/accessing the player
      */
-    /*
     public void dispose() {
         //Make all abilities null
         for (int i = 0; i < abilities.length; ++i) {
             abilities[i] = null;
         }
+        statuses.clear();
     }
-    */
+
 }

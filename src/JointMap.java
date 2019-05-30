@@ -193,4 +193,28 @@ public class JointMap {
             }
         }
     }
+
+
+    public void procPlayerStatus() {
+        for (int j = 0; j < 3; j++) {
+            //player side only
+            for (int i = 0; i < 3; i++) {
+                if (!tileArray[i][j].isEmpty()) {
+                    tileArray[i][j].getEntity().procStatus(this);
+                }
+            }
+        }
+    }
+
+    public void procEnemyStatus() {
+        for (int j = 0; j < 3; j++) {
+            //Enemy side only
+            for (int i = 3; i < 6; i++) {
+                if (!tileArray[i][j].isEmpty()) {
+                    tileArray[i][j].getEntity().procStatus(this);
+                }
+            }
+        }
+    }
+
 }

@@ -87,6 +87,8 @@ public class LevelScreen extends GameScreen{
         players[0] = kevin;
         players[1] = allen;
         players[2] = bryan;
+
+        allen.statuses.add(new CursedStatus(allen, 1));
     }
 
     @Override
@@ -132,11 +134,19 @@ public class LevelScreen extends GameScreen{
 
         //TODO end turn!
         //Also right now they are targeting all indicated tiles, change this, this is 100% experiment
-        if (isFullyClicked(new Rectangle(323, 708, selectWidth, selectHeight))) {
+        if (isFullyClicked(new Rectangle(323, 8, selectWidth, selectHeight))) {
+            //End of player turn
+            jointMap.procPlayerStatus();
+
             selectedAbility = null;
             System.out.println("End turn enemy time!");
             //Enemy turn run through
             jointMap.runEnemyTurnActions();
+
+            //End of enemy turn
+            jointMap.procEnemyStatus();
+
+            //Start of new player turn
             for (int i = 0; i < players.length; i++){
                 players[i].gainEnergy(30);
                 players[i].endTurnLowerCooldown();
