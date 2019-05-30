@@ -45,6 +45,7 @@ abstract public class Tile {
     }
 
     public void nullEntity(){
+        entity.dispose();
         entity = null;
     }
 
