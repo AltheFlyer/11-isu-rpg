@@ -1,3 +1,5 @@
+import utils.TextDrawer;
+
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -96,6 +98,42 @@ public class Icon {
     public void draw(Graphics g) {
         //Draw sprite centered at specified point
         g.drawImage(sprite, centerX - (graphicsWidth / 2), centerY - (graphicsHeight / 2), null);
+    }
+
+    /**
+     * [drawText]
+     * draws the icon with a text box
+     * @param g the graphics object to draw with
+     * @param xOffset the amount to offset the text by the icon's center in the x axis
+     * @param yOffset the amount to offset the text by the icon's center in the y axis
+     * @param textBoxWidth the width of the textbox (text will be drawn in a smaller area to allow for text padding
+     */
+    public void drawText(Graphics g, int xOffset, int yOffset, int textBoxWidth) {
+        int padding = 10;
+
+        //Create a text drawer that will draw the intent name and description.
+        //In order: draw at halfway point in tile, then offset by fixed constant plus padding
+        //Draw a third of a tile's height above the current one
+        //Set text width to width of textbox minus left and right side padding
+        TextDrawer t = new TextDrawer(g,
+                name + "\n\n" +description,
+                centerX + padding + xOffset,
+                centerY + yOffset,
+                textBoxWidth - (2 * padding));
+
+        //Grey background box for contrast
+        g.setColor(new Color(50, 50, 50, 200));
+        //In order: draw at halfway point in tile, then offset by fixed constant
+        //Draw half a tile's height above the current one plus the text's line height and padding
+        //Fixed constant width, dynamic height based on text height and padding
+        g.fillRect(centerX + xOffset,
+                centerY - t.getLineHeight() - padding + yOffset,
+                textBoxWidth,
+                t.getTotalHeight() + (padding * 2));
+
+        //Draw text
+        g.setColor(Color.WHITE);
+        t.drawText(g);
     }
 
     /**

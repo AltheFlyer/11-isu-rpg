@@ -1,3 +1,5 @@
+import utils.TextDrawer;
+
 import java.awt.*;
 
 abstract public class Tile {
@@ -112,6 +114,26 @@ abstract public class Tile {
      */
     public void drawIcons(Graphics g, int mouseX, int mouseY) {
 
+    }
+
+    /**
+     * [drawStatus]
+     * helper method for drawing status icons, as these should be universal to all entities
+     * @param g the graphics object to draw with
+     */
+    public void drawStatus(Graphics g, int mouseX, int mouseY) {
+        if (!isEmpty()) {
+            for (int i = 0; i < getEntity().statuses.size(); ++i) {
+                Icon icon = getEntity().statuses.get(i).getIcon();
+                icon.setPosition(getXGraphic() + i * 40, getYGraphic() + 120 - 20);
+                icon.draw(g);
+
+                //If the mouse is hovering over the icon, draw text
+                if (icon.getBoundingBox().contains(mouseX, mouseY)) {
+                    icon.drawText(g, 25, 0, 150);
+                }
+            }
+        }
     }
 
     public void drawHealthbar(Graphics g) {
