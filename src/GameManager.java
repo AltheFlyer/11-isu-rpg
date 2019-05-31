@@ -17,6 +17,8 @@ public class GameManager {
 
     private Clip music;
 
+    private GameIO io;
+
     //I have a feeling it might be a good idea to store this:
     //TODO Add Map Position variables + methods
 
@@ -108,5 +110,14 @@ public class GameManager {
         }
 
         return clip;
+    }
+
+    /**
+     * [getIO]
+     * gets the file i/o manager for the running game
+     * @return GameIO, the file manager for the game
+     */
+    public GameIO getIO() {
+        return io;
     }
 }

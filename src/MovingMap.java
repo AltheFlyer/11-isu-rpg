@@ -6,8 +6,8 @@ public class MovingMap extends OverworldMap{
     private int visibleWidth = 1366;
     private int visibleHeight = 768;
 
-    public MovingMap(String mapPath, String walkabilityKey){
-        super(mapPath,walkabilityKey);
+    public MovingMap(GameIO fileManager, String mapPath, String walkabilityKey){
+        super(fileManager, mapPath,walkabilityKey);
     }
 
     public void draw(Graphics g, OverworldPlayer player){

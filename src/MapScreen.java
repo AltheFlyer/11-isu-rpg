@@ -12,7 +12,7 @@ public class MapScreen extends GameScreen {
 
     public MapScreen(GameManager game, String mapPath, String walkabilityKey) {
         super(game);
-        map = new MovingMap(mapPath,walkabilityKey);
+        map = new MovingMap(getIO(), mapPath,walkabilityKey);
         player = new OverworldPlayer(200,200);
         npc = new OverworldNPC(300,300, "Hey!");
         length = map.getMap().length;
