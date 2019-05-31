@@ -35,17 +35,18 @@ public class OverworldPlayer extends OverworldEntity {
         this.setBoundingBox(this.getX(),this.getY());
     }
 
-    public void interact() {
+    public Rectangle interact() {
         Rectangle interactChecker;
         if (this.getDirection().equals("down")) {
-            interactChecker = new Rectangle(this.getX(), this.getY() + this.getSize(), this.getSize(), this.getSize());
+            interactChecker = new Rectangle(this.getX(), this.getY() + this.getSize(), this.getSize(), this.getSize()/2);
         } else if (this.getDirection().equals("up")) {
-            interactChecker = new Rectangle(this.getX(), this.getY() - this.getSize(), this.getSize(), this.getSize());
+            interactChecker = new Rectangle(this.getX(), this.getY() - this.getSize()/2, this.getSize(), this.getSize()/2);
         } else if (this.getDirection().equals("right")) {
-            interactChecker = new Rectangle(this.getX() + this.getSize(), this.getY(), this.getSize(), this.getSize());
-        } else if (this.getDirection().equals("left")) {
-            interactChecker = new Rectangle(this.getX(), this.getY() - this.getSize(), this.getSize(), this.getSize());
+            interactChecker = new Rectangle(this.getX() + this.getSize(), this.getY(), this.getSize()/2, this.getSize());
+        } else { //(this.getDirection().equals("left"))
+            interactChecker = new Rectangle(this.getX() - this.getSize()/2, this.getY(), this.getSize()/2, this.getSize());
         }
+        return interactChecker;
     }
 
 }

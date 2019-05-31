@@ -14,7 +14,7 @@ public class MapScreen extends GameScreen {
         super(game);
         map = new MovingMap(mapPath,walkabilityKey);
         player = new OverworldPlayer(200,200);
-        npc = new OverworldNPC(300,300);
+        npc = new OverworldNPC(300,300, "Hey!");
         length = map.getMap().length;
         width = map.getMap()[0].length;
     }
@@ -27,7 +27,7 @@ public class MapScreen extends GameScreen {
         player.draw(g, map);
         npc.draw(g, map, player);
         repaint();
-        System.out.println(player.getX() + " " + player.getY());
+        //System.out.println(player.getX() + " " + player.getY());
     }
 
     public void keyPressed(KeyEvent e) {
@@ -48,7 +48,7 @@ public class MapScreen extends GameScreen {
             player.setDirection("left");
         }
         if(e.getKeyChar() == 'z') {
-            System.out.println("interact!");
+            checkInteractions(player.interact());
         }
     }
 
@@ -79,6 +79,12 @@ public class MapScreen extends GameScreen {
             player.moveLeft();
         } else if (player.getDirection().equals("left")) {
             player.moveRight();
+        }
+    }
+
+    private void checkInteractions(Rectangle playerBounds) {
+        if (playerBounds.intersects(npc.collisionWindow())) {
+            System.out.println(npc.getMessage());
         }
     }
 

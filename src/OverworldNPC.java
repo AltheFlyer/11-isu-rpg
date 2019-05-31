@@ -2,8 +2,11 @@ import java.awt.*;
 
 public class OverworldNPC extends OverworldEntity {
 
-    public OverworldNPC(int x, int y) {
+    private String message;
+
+    public OverworldNPC(int x, int y, String message) {
         super(x,y);
+        this.message = message;
     }
 
     public void draw(Graphics g, OverworldMap map, OverworldPlayer player) {
@@ -17,6 +20,10 @@ public class OverworldNPC extends OverworldEntity {
             int yLocation = 384 - 50 - yDifference;
             g.fillRect(xLocation, yLocation, 50, 50);
         }
+    }
+
+    public String getMessage() {
+        return this.message;
     }
 
 }
