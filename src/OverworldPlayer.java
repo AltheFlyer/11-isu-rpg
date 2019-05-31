@@ -15,7 +15,7 @@ public class OverworldPlayer extends OverworldEntity {
         }
     }
 
-    public void moveUp() {
+/*    public void moveUp() {
         this.setY(this.getY() - 5);
         this.setBoundingBox(this.getX(),this.getY());
     }
@@ -33,7 +33,7 @@ public class OverworldPlayer extends OverworldEntity {
     public void moveRight() {
         this.setX(this.getX() + 5);
         this.setBoundingBox(this.getX(),this.getY());
-    }
+    }*/
 
     public Rectangle interact() {
         Rectangle interactChecker;

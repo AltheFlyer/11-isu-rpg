@@ -4,12 +4,16 @@ abstract public class OverworldEntity {
 
     private int x;
     private int y;
+    private double xVelocity;
+    private double yVelocity;
     private Rectangle boundingBox;
     private String direction;
 
     public OverworldEntity(int x, int y){
         this.x = x;
         this.y = y;
+        this.xVelocity = 0;
+        this.yVelocity = 0;
         this.boundingBox = new Rectangle(x,y,50,50); //modify size as we decide on graphics
         direction = "down";
     }
@@ -28,6 +32,28 @@ abstract public class OverworldEntity {
 
     public void setY(int newY) {
         this.y = newY;
+    }
+
+    public double getXVelocity() {
+        return this.xVelocity;
+    }
+
+    public double getYVelocity() {
+        return this.yVelocity;
+    }
+
+    public void setXVelocity(double xVelocity) {
+        this.xVelocity = xVelocity;
+    }
+
+    public void setYVelocity(double yVelocity) {
+        this.yVelocity = yVelocity;
+    }
+
+    public void move() {
+        this.setX(this.getX() + (int)this.getXVelocity());
+        this.setY(this.getY() + (int)this.getYVelocity());
+        this.setBoundingBox(this.getX(),this.getY());
     }
 
     public Rectangle collisionWindow(){
