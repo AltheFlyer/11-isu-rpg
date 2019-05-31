@@ -44,6 +44,10 @@ public class JointMap {
         }
     }
 
+    public Entity getEntity(int x, int y){
+        return tileArray[x][y].getEntity();
+    }
+
     public boolean tileExists(int x, int y) {
         return (x < 6) && (x >= 0) && (y < 3) && (y >= 0);
     }
