@@ -132,9 +132,22 @@ public class LevelScreen extends GameScreen{
             }
         }
 
+        //If you click on player on map with no selected abilities, you can swap players
+        if (selectedAbility == null){
+            for (int j = 0; j < 3; j++) {
+                for (int i = 0; i < 3; i++) {
+                    if (isFullyClicked(new Rectangle(323 + 121 * i, 108 + 121 * j, 120, 120))) {
+                        selectedPlayer = ((Player)jointMap.getEntity(i,j));
+                        jointMap.unIndicateAll();
+                        jointMap.unTargetableAll();
+                    }
+                }
+            }
+        }
+
         //TODO end turn!
         //Also right now they are targeting all indicated tiles, change this, this is 100% experiment
-        if (isFullyClicked(new Rectangle(323, 8, selectWidth, selectHeight))) {
+        if (isFullyClicked(new Rectangle(323, 708, selectWidth, selectHeight))) {
             //End of player turn
             jointMap.procPlayerStatus();
 
