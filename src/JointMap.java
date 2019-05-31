@@ -44,6 +44,10 @@ public class JointMap {
         }
     }
 
+    public Enemy getEnemy(int x, int y){
+        return ((EnemyTile)tileArray[x][y]).getEnemy();
+    }
+
     public Entity getEntity(int x, int y){
         return tileArray[x][y].getEntity();
     }

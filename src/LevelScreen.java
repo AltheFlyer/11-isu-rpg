@@ -135,14 +135,13 @@ public class LevelScreen extends GameScreen{
         }
 
         //If you click on player on map with no selected abilities, you can swap players
-        if (selectedAbility == null){
-            for (int j = 0; j < 3; j++) {
-                for (int i = 0; i < 3; i++) {
-                    if (isFullyClicked(new Rectangle(323 + 121 * i, 108 + 121 * j, 120, 120))) {
-                        selectedPlayer = ((Player)jointMap.getEntity(i,j));
-                        jointMap.unIndicateAll();
-                        jointMap.unTargetableAll();
-                    }
+        for (int j = 0; j < 3; j++) {
+            for (int i = 0; i < 3; i++) {
+                if (isFullyClicked(new Rectangle(323 + 121 * i, 108 + 121 * j, 120, 120))&& !jointMap.getTargetable(i,j)) {
+                    selectedPlayer = ((Player)jointMap.getEntity(i,j));
+                    jointMap.unIndicateAll();
+                    jointMap.unTargetableAll();
+                    selectedAbility = null;
                 }
             }
         }
@@ -165,6 +164,10 @@ public class LevelScreen extends GameScreen{
             for (int i = 0; i < players.length; i++){
                 players[i].gainEnergy(30);
                 players[i].endTurnLowerCooldown();
+                //Execute if dies to status effect at the end of turn
+                if (!players[i].isAlive()){
+                    jointMap.target(players[i].getXGrid(), players[i].getYGrid(),0,0);
+                }
             }
             selectedPlayer = null;
             selectedAbility = null;
@@ -173,7 +176,7 @@ public class LevelScreen extends GameScreen{
         //Use an ability here, Click on the ability to select it for use, it will bring up indications
         if (selectedPlayer != null) {
             for (int i = 0; i < selectedPlayer.totalAbilities(); i++) {
-                if (isFullyClicked(new Rectangle(30, 30+90*i, 263, 80))) {
+                if (isFullyClicked(new Rectangle(30, 15+105*i, 263, 100))) {
                     jointMap.unIndicateAll();
                     jointMap.unTargetableAll();
 
@@ -226,6 +229,26 @@ public class LevelScreen extends GameScreen{
         if (selectedAbility != null){
             selectedAbility.indicateValidTiles(jointMap);
             drawHoverAttack(g);
+        }
+
+        int gridX = 323;
+        int gridY = 108;
+
+        int gridWidth = 120;
+        int gridHeight = 120;
+
+        int gridWidthSpace = 121;
+        int gridHeightSpace = 121;
+
+        //getX or getY
+        for (int j = 0; j < 3; j++) {
+            for (int i = 3; i < 6; i++) {
+                if (!jointMap.isEmpty(i,j)) {
+                    if (isMouseOver(new Rectangle(gridX + gridWidthSpace * i, gridY + gridHeightSpace * j, gridWidth, gridHeight))) {
+                        jointMap.getEnemy(i, j).drawAbilities(g);
+                    }
+                }
+            }
         }
 
         //Draw the abilities of the profile of the player who is selected
