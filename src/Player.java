@@ -77,7 +77,7 @@ public class Player extends Entity{
 
         for (int i = 0; i < abilities.length; i++){
             if (ability != null) {
-                if (ability.getName().equals(abilities[i].getName())) {
+                if (ability.equals(abilities[i])) {
                     g.setColor(new Color(0, 0, 0, 100));
                     g.fillRect(30, 15 + 105 * i, 263, 100);
                 }

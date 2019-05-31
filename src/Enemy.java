@@ -1,3 +1,5 @@
+import utils.TextDrawer;
+
 import java.awt.*;
 
 public class Enemy extends Entity{
@@ -22,8 +24,53 @@ public class Enemy extends Entity{
     }
 
     public void drawAbilities(Graphics g){
-        g.setColor(Color.GRAY);
-        g.fillRect(0,0,120,120);
+        int xOffset = 1043; //Offset from left side of screen
+
+        //BACKGROUND
+        g.setColor(Color.LIGHT_GRAY);
+        g.fillRect(xOffset,0,323,768);
+        g.setColor(Color.BLACK);
+        g.drawRect(xOffset,0,323,768);
+
+        //Draw the enemy as an image maybe
+
+        //ABILITY ICONS
+        for (int i = 0; i < abilities.length; i++) {
+            //draw the abilities cyan if usable
+            if (abilities[i].getEnergyCost() > getEnergy() || abilities[i].getCurrentCooldown() > 0) {
+                g.setColor(new Color(255, 150, 200));
+            } else{
+                g.setColor(new Color(0, 200, 255));
+            }
+            g.fillRect(xOffset + 30, 15 + 105 * i, 263, 100);
+
+            //Cooldown bar!
+            g.setColor(new Color(0, 0, 0, 50));
+            if (abilities[i].getCurrentCooldown() > 0) {
+                g.fillRect(xOffset + 30, 15 + 105 * i, 264/abilities[i].getCooldown()*(abilities[i].getCurrentCooldown()), 100);
+            }
+
+            g.setColor(Color.BLACK);
+            //Drawing the name of the ability and a box around it
+            g.drawString(abilities[i].getName(), xOffset + 40, 32+105*i);
+            g.drawRect(xOffset + 30,15+105*i,100,22);
+
+            //Drawing the energy cost of an ability and a box around it
+            g.drawString("Energy Cost: " + abilities[i].getEnergyCost(), xOffset + 140, 32+105*i);
+            g.drawRect(xOffset + 130,15+105*i,163,22);
+
+            //Drawing the cooldown of an ability and a box around it
+            g.drawString("Cooldown: " + abilities[i].getCooldown(), xOffset + 40, 54+105*i);
+            g.drawRect(xOffset + 30,37+105*i,100,22);
+
+            //Drawing the damage for an ability
+            g.drawString("Damage: " + abilities[i].getDamage(), xOffset + 140, 54+105*i);
+            g.drawRect(xOffset + 130,37+105*i,163,22);
+
+            //Drawing the description
+            TextDrawer drawer = new TextDrawer(g,abilities[i].getDesc(), xOffset + 40, 76+105*i,250);
+            drawer.drawText(g);
+        }
     }
 
     public void draw(int x, int y, Graphics g, boolean indicated){

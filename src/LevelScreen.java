@@ -9,6 +9,9 @@ import java.awt.event.MouseEvent;
 public class LevelScreen extends GameScreen{
     Player selectedPlayer;
     Ability selectedAbility;
+
+    Enemy selectedEnemy;
+
     JointMap jointMap;
     Player kevin;
     Player allen;
@@ -135,6 +138,7 @@ public class LevelScreen extends GameScreen{
         }
 
         //If you click on player on map with no selected abilities, you can swap players
+        //You can also select enemies this way
         if (selectedAbility == null){
             for (int j = 0; j < 3; j++) {
                 for (int i = 0; i < 3; i++) {
@@ -145,11 +149,21 @@ public class LevelScreen extends GameScreen{
                     }
                 }
             }
+
+            for (int j = 0; j < 3; j++) {
+                for (int i = 3; i < 6; i++) {
+                    if (isFullyClicked(new Rectangle(323 + 121 * i, 108 + 121 * j, 120, 120))) {
+                        selectedEnemy = ((Enemy)jointMap.getEntity(i,j));
+                        jointMap.unIndicateAll();
+                        jointMap.unTargetableAll();
+                    }
+                }
+            }
         }
 
         //TODO end turn!
         //Also right now they are targeting all indicated tiles, change this, this is 100% experiment
-        if (isFullyClicked(new Rectangle(323, 708, selectWidth, selectHeight))) {
+        if (isFullyClicked(new Rectangle(323, 8, selectWidth, selectHeight))) {
             //End of player turn
             jointMap.procPlayerStatus();
 
@@ -245,7 +259,11 @@ public class LevelScreen extends GameScreen{
                     }
                 }
             }
+        }
 
+        //Enemy info
+        if (selectedEnemy != null) {
+            selectedEnemy.drawAbilities(g);
         }
 
         //Draw icons from entities (enemy intents, etc)
@@ -292,17 +310,13 @@ public class LevelScreen extends GameScreen{
         for (int i = 0; i < players.length; ++i) {
             if (isMouseOver(new Rectangle(profileX, profileY + i * profileHeight, profileWidth, profileHeight))) {
                 g.setColor(Color.GREEN);
-                g.fillRect(profileX, profileY + i * profileHeight, profileWidth, profileHeight);
-                g.setColor(Color.BLACK);
-                g.drawRect(profileX, profileY + i * profileHeight, profileWidth, profileHeight);
-                g.drawString(players[i].getName(),profileX+10, profileY + 15 + i*80);
             } else {
                 g.setColor(Color.RED);
-                g.fillRect(profileX, profileY + i * profileHeight, profileWidth, profileHeight);
-                g.setColor(Color.BLACK);
-                g.drawRect(profileX, profileY + i * profileHeight, profileWidth, profileHeight);
-                g.drawString(players[i].getName(),profileX+10, profileY + 15 + i*80);
             }
+            g.fillRect(profileX, profileY + i * profileHeight, profileWidth, profileHeight);
+            g.setColor(Color.BLACK);
+            g.drawRect(profileX, profileY + i * profileHeight, profileWidth, profileHeight);
+            g.drawString(players[i].getName(),profileX+10, profileY + 15 + i*80);
         }
     }
 }
