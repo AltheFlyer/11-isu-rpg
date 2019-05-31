@@ -220,7 +220,7 @@ public class LevelScreen extends GameScreen{
         drawPlayerProfiles(g);
 
         //Ending turn
-        g.drawString("end turn",323,724);
+        g.drawString("end turn",323,/*7*/24);
 
         //Calculate the range for certain abilities and create indications telling you where it will hit based on the currently selected ability
         if (selectedAbility != null){

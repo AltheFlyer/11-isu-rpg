@@ -83,4 +83,8 @@ abstract public class StatusEffect {
         this.affected = affected;
     }
 
+    public Icon getIcon() {
+        return icon;
+    }
+
 }

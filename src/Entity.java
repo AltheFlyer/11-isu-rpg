@@ -95,10 +95,6 @@ abstract public class Entity {
         this.health = health;
     }
 
-    public void drawIcons(Graphics g) {
-
-    }
-
     public double getMaxHealth() {
         return maxHealth;
     }
