@@ -80,6 +80,15 @@ abstract public class GameScreen extends JPanel
     }
 
     /**
+     * [getIO]
+     * gets the current game's file i/o manager
+     * @return GameIO, the currently running io manager
+     */
+    public GameIO getIO() {
+        return game.getIO();
+    }
+
+    /**
      * [getMouseX]
      * gets the x position of the mouse
      * @return int mouseX, the x position of the mouse

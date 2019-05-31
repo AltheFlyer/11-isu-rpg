@@ -8,32 +8,31 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
- * [GameIO.java]
- * class that manages IO with text files for progression and saved data
- * TODO Change BattleLayouts to use a 2D Player array
+ * [DeprecatedGameIO.java]
+ * static class that manages IO with text files for progression and saved data
  * @version 1.0
  * @author Allen Liu
  * @since May 23, 2019
  */
-public class GameIO {
+public class DeprecatedGameIO {
 
     /**
      * The string of the folder that all text files are to be placed in,
      * acting as a universal accessor
      */
-    private final String TEXT_SRC = "data/";
+    private static final String TEXT_SRC = "data/";
 
-    private HashMap<String, Boolean> tileWalkability;
+    private static HashMap<String, Boolean> tileWalkability;
 
     //Dynamic game data
-    private HashMap<String, Boolean> abilityUnlocks;
+    private static HashMap<String, Boolean> abilityUnlocks;
 
-    private HashMap<String, Boolean> levelCompletion;
-    private HashMap<String, Boolean> equipUnlocks;
-    private HashMap<String, Integer> inventory;
+    private static HashMap<String, Boolean> levelCompletion;
+    private static HashMap<String, Boolean> equipUnlocks;
+    private static HashMap<String, Integer> inventory;
 
-    private int currentDay;
-    private int currentPeriod;
+    private static int currentDay;
+    private static int currentPeriod;
 
     //Game initialization (file reading) methods
 
@@ -42,7 +41,7 @@ public class GameIO {
      * loads all tile types, and saves whether they can be walked on or not
      * @param path the file path of the text file with all walkability values, not including source folder
      */
-    public void readTileWalkability(String path) {
+    public static void readTileWalkability(String path) {
         tileWalkability = new HashMap();
         String allData = readFile(path);
 
@@ -58,7 +57,7 @@ public class GameIO {
      * [readTimeState]
      * Gets the current ingame period and day
      */
-    public void readTimeState() {
+    public static void readTimeState() {
         String lines = readFile("progression/time_state.txt");
 
         //2 lines in file
@@ -74,7 +73,7 @@ public class GameIO {
      * [readLevelCompletion]
      * reads the current state of level completion
      */
-    public void readLevelCompletion() {
+    public static void readLevelCompletion() {
         levelCompletion = readFileAsHashMap("progression/level_completion.txt");
     }
 
@@ -82,7 +81,7 @@ public class GameIO {
      * [readAbilityUnlocks]
      * reads the currently unlocked abilities - used to find whether a character can use one or not
      */
-    public void readAbilityUnlocks() {
+    public static void readAbilityUnlocks() {
         abilityUnlocks = readFileAsHashMap("progression/ability_unlock.txt");
     }
 
@@ -90,7 +89,7 @@ public class GameIO {
      * [readEquipUnlocks]
      * reads the currently unlocked equips
      */
-    public void readEquipUnlocks() {
+    public static void readEquipUnlocks() {
         equipUnlocks = readFileAsHashMap("progression/equip_unlock.txt");
     }
 
@@ -99,7 +98,7 @@ public class GameIO {
      * gets the saved inventory from the inventory file
      * @return HashMap (String, Integer) containing a list of items in the inventory, along with the count of each item
      */
-    public void readInventory() {
+    public static void readInventory() {
         String fullText = readFile("inventory.txt");
         inventory = new HashMap();
 
@@ -118,7 +117,7 @@ public class GameIO {
      * gets the saved inventory (not necessarily what's saved)
      * @return HashMap String - Integer representing the inventory
      */
-    public HashMap<String, Integer> getInventory() {
+    public static HashMap<String, Integer> getInventory() {
         return inventory;
     }
 
@@ -127,7 +126,7 @@ public class GameIO {
      * gets the tile walkability data(not necessarily what's saved)
      * @return HashMap String - Boolean representing whether each tile is walkable
      */
-    public HashMap<String, Boolean> getTileWalkability() {
+    public static HashMap<String, Boolean> getTileWalkability() {
         return tileWalkability;
     }
 
@@ -136,7 +135,7 @@ public class GameIO {
      * gets the list of unlocked abilities
      * @return HashMap String - Boolean representing whether an ability is unlocked or not
      */
-    public HashMap<String, Boolean> getAbilityUnlocks() {
+    public static HashMap<String, Boolean> getAbilityUnlocks() {
         return abilityUnlocks;
     }
 
@@ -145,7 +144,7 @@ public class GameIO {
      * gets the list of completed levels
      * @return HashMap String - Boolean representing whether a level is completed or not
      */
-    public HashMap<String, Boolean> getLevelCompletion() {
+    public static HashMap<String, Boolean> getLevelCompletion() {
         return levelCompletion;
     }
 
@@ -154,7 +153,7 @@ public class GameIO {
      * gets the list of unlocked equipment
      * @return HashMap String - Boolean representing whether an equip is unlocked or not
      */
-    public HashMap<String, Boolean> getEquipUnlocks() {
+    public static HashMap<String, Boolean> getEquipUnlocks() {
         return equipUnlocks;
     }
 
@@ -163,7 +162,7 @@ public class GameIO {
      * gets the current day in game
      * @return int, the current day
      */
-    public int getCurrentDay() {
+    public static int getCurrentDay() {
         return currentDay;
     }
 
@@ -172,7 +171,7 @@ public class GameIO {
      * gets the current period in game
      * @return int, the current period
      */
-    public int getCurrentPeriod() {
+    public static int getCurrentPeriod() {
         return currentPeriod;
     }
 
@@ -185,8 +184,8 @@ public class GameIO {
      * use a write method to save it to an internal file
      * @param abilityUnlocks a Hashmap representing locked/unlocked abilities
      */
-    public void setAbilityUnlocks(HashMap<String, Boolean> abilityUnlocks) {
-        this.abilityUnlocks = abilityUnlocks;
+    public static void setAbilityUnlocks(HashMap<String, Boolean> abilityUnlocks) {
+        DeprecatedGameIO.abilityUnlocks = abilityUnlocks;
     }
 
     /**
@@ -195,8 +194,8 @@ public class GameIO {
      * use a write method to save it to an internal file
      * @param levelCompletion a Hashmap representing finished/unfinished levels
      */
-    public void setLevelCompletion(HashMap<String, Boolean> levelCompletion) {
-        this.levelCompletion = levelCompletion;
+    public static void setLevelCompletion(HashMap<String, Boolean> levelCompletion) {
+        DeprecatedGameIO.levelCompletion = levelCompletion;
     }
 
     /**
@@ -205,8 +204,8 @@ public class GameIO {
      * use a write method to save it to an internal file
      * @param equipUnlocks a Hashmap representing locked/unlocked equips
      */
-    public void setEquipUnlocks(HashMap<String, Boolean> equipUnlocks) {
-        this.equipUnlocks = equipUnlocks;
+    public static void setEquipUnlocks(HashMap<String, Boolean> equipUnlocks) {
+        DeprecatedGameIO.equipUnlocks = equipUnlocks;
     }
 
     /**
@@ -215,8 +214,8 @@ public class GameIO {
      * use a write method to save it to an internal file
      * @param inventory a Hashmap representing items and a count of each
      */
-    public void setInventory(HashMap<String, Integer> inventory) {
-        this.inventory = inventory;
+    public static void setInventory(HashMap<String, Integer> inventory) {
+        DeprecatedGameIO.inventory = inventory;
     }
 
     /**
@@ -225,7 +224,7 @@ public class GameIO {
      * @param period the current ingame period
      * @param day the current ingame day
      */
-    public void setTimeState(int period, int day) {
+    public static void setTimeState(int period, int day) {
         currentPeriod = period;
         currentDay = day;
     }
@@ -237,7 +236,7 @@ public class GameIO {
      * [writeTimeState]
      * writes the in game time and period to an internal file
      */
-    public void writeTimeState() {
+    public static void writeTimeState() {
         writeFile("progression/time_state.txt", String.format("current_period %d\ncurrent_day %d", currentPeriod, currentDay));
     }
 
@@ -245,7 +244,7 @@ public class GameIO {
      * [writeInventory]
      * writes the dynamic inventory to the internal inventory file
      */
-    public void writeInventory() {
+    public static void writeInventory() {
         writeHashMapToFile("inventory.txt", inventory);
     }
 
@@ -253,7 +252,7 @@ public class GameIO {
      * [writeLevelCompletion]
      * writes the dynamic level completion to an internal file
      */
-    public void writeLevelCompletion() {
+    public static void writeLevelCompletion() {
         writeHashMapToFile("progression/level_completion.txt", levelCompletion);
     }
 
@@ -261,7 +260,7 @@ public class GameIO {
      * [writeEquipUnlocks]
      * writes the dynamic equipment unlocks to an internal file
      */
-    public void writeEquipUnlocks() {
+    public static void writeEquipUnlocks() {
         writeHashMapToFile("progression/equip_unlock.txt", equipUnlocks);
     }
 
@@ -269,7 +268,7 @@ public class GameIO {
      * [writeAbilityUnlocks]
      * writes the dynamic ability unlocks to an internal file
      */
-    public void writeAbilityUnlocks() {
+    public static void writeAbilityUnlocks() {
         writeHashMapToFile("progression/ability_unlock.txt", abilityUnlocks);
     }
 
@@ -282,7 +281,7 @@ public class GameIO {
      * Gets the saved character layout on a 3x3 grid for battles from a file.
      * @return String[][] the 3x3 arrangement of characters
      */
-    public String[][] getBattleLayout() {
+    public static String[][] getBattleLayout() {
         String text = readFile("battle_layout.txt");
         String[][] data = new String[3][3];
 
@@ -314,7 +313,7 @@ public class GameIO {
      * Saves a 3x3 battle layout for later use. The grid is expected to have only 3 characters.
      * @param grid the 3x3 grid of players to save
      */
-    public void setBattleLayout(String[][] grid) {
+    public static void setBattleLayout(String[][] grid) {
         String toWrite = "";
         for (int y = 0; y < 3; ++y) {
             for (int x = 0; x < 3; ++x) {
@@ -340,7 +339,7 @@ public class GameIO {
      * @param path the file to read from, not including source folder
      * @return String, the player data as a String **NOTE: THIS WILL CHANGE SOON**
      */
-    public String getPlayer(String path) {
+    public static String getPlayer(String path) {
         String allText = readFile(path);
         String[] lines = allText.split("\n");
 
@@ -389,7 +388,7 @@ public class GameIO {
      * @param path the file to write to, not including source folder
      * @param data the character data as a string **NOTE: THIS WILL CHANGE SOON**
      */
-    public void setPlayer(String path, String data) {
+    public static void setPlayer(String path, String data) {
         writeFile(path, data);
     }
 
@@ -402,7 +401,7 @@ public class GameIO {
      * @param path the path of the map file (not including source folder)
      * @return OverworldTile[][] a 2d array of form [x][y] of Overworld tiles
      */
-    public OverworldTile[][] getMap(String path, int tileSize) {
+    public static OverworldTile[][] getMap(String path, int tileSize) {
         String mapText = readFile(path);
         OverworldTile[][] tileMap;
 
@@ -430,7 +429,7 @@ public class GameIO {
      * @param path the path of the map file (not including source folder)
      * @return String[][], the array of map tiles as strings
      */
-    public String[][] getMapAsString(String path) {
+    public static String[][] getMapAsString(String path) {
         String mapText = readFile(path);
         String[][] tileMap;
 
@@ -460,7 +459,7 @@ public class GameIO {
      * @param path the file path, ignoring source folder
      * @return String, the text within the file (to be parsed in other methods)
      */
-    private String readFile(String path){
+    private static String readFile(String path){
         String text = "";
         try {
             BufferedReader input = new BufferedReader(new FileReader(new File(TEXT_SRC + path)));
@@ -484,7 +483,7 @@ public class GameIO {
      * @param path the location of the file (excluding source folder)
      * @param s the text to write to the file
      */
-    private void writeFile(String path, String s) {
+    private static void writeFile(String path, String s) {
         try {
             FileWriter output = new FileWriter(new File(TEXT_SRC + path));
             output.write(s);
@@ -500,7 +499,7 @@ public class GameIO {
      * @param path the file to read from, not including source folder
      * @return HashMap of String to Boolean
      */
-    private HashMap<String, Boolean> readFileAsHashMap(String path) {
+    private static HashMap<String, Boolean> readFileAsHashMap(String path) {
         String fullText = readFile(path);
         HashMap<String, Boolean> map = new HashMap<>();
 
@@ -518,7 +517,7 @@ public class GameIO {
      * @param path the file path to write to
      * @param map the hashmap to write in form : key value\n...
      */
-    private void writeHashMapToFile(String path, HashMap<?, ?> map) {
+    private static void writeHashMapToFile(String path, HashMap<?, ?> map) {
         ArrayList keys = new ArrayList<>(map.keySet());
         ArrayList values = new ArrayList<>(map.values());
 
@@ -541,7 +540,7 @@ public class GameIO {
      * @param s the string to get the words from
      * @return String, the input string with the first word (everything up to the first space) removed
      */
-    private String cutFirstWord(String s) {
+    private static String cutFirstWord(String s) {
         return s.substring(s.indexOf(" ") + 1);
     }
 }

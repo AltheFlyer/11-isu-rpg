@@ -5,9 +5,9 @@ abstract public class OverworldMap {
     private OverworldTile[][] map;
     private int tileSize = 100;
 
-    public OverworldMap(String mapPath, String walkabilityKey){
-        GameIO.readTileWalkability(walkabilityKey);
-        map = GameIO.getMap(mapPath, tileSize);
+    public OverworldMap(GameIO fileManager, String mapPath, String walkabilityKey){
+        fileManager.readTileWalkability(walkabilityKey);
+        map = fileManager.getMap(mapPath, tileSize);
     }
 
     public void draw(Graphics g, OverworldPlayer player){
