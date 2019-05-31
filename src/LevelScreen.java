@@ -34,7 +34,9 @@ public class LevelScreen extends GameScreen{
         Ability[] kevinAbilities = new Ability[]{
             new SingleAbility("basic","a basic attack that will hit an enemy in front of you", 20,1,6,0,1,2,true, false),
             new BasicMoveAbility("step","movement to an adjacent tile", 30,1,1),
-            new AOEAbility("heal","a vertical AOE heal on allies",50,2,2,0,0,2,1,-2.0,false, true)
+            new AOEAbility("heal","a vertical AOE heal on allies",50,2,2,0,0,2,1,-2.0,false, true),
+            new SingleAbility("basic2","a basic attack that will hit an enemy in front of you", 20,1,6,0,1,2,true, false),
+            new SingleAbility("basic3","a basic attack that will hit an enemy in front of you", 20,1,6,0,1,2,true, false),
         };
 
         Ability[] allenAbilities = new Ability[]{
@@ -174,7 +176,13 @@ public class LevelScreen extends GameScreen{
                 if (isFullyClicked(new Rectangle(30, 30+90*i, 263, 80))) {
                     jointMap.unIndicateAll();
                     jointMap.unTargetableAll();
-                    selectedAbility = selectedPlayer.getAbility(i);
+
+                    //You can click on the ability again to deselect it
+                    if (selectedAbility == selectedPlayer.getAbility(i)) {
+                        selectedAbility = null;
+                    } else {
+                        selectedAbility = selectedPlayer.getAbility(i);
+                    }
                 }
             }
         }
@@ -231,6 +239,7 @@ public class LevelScreen extends GameScreen{
                     //Will make it easier to see which tiles can be targetable
                     if (selectedAbility == null) {
                         jointMap.unIndicateAll();
+                        jointMap.unTargetableAll();
                         selectedPlayer.getAbility(i).indicateValidTiles(jointMap);
 
                     }

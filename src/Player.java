@@ -21,18 +21,23 @@ public class Player extends Entity{
     //pass list of abilities into levelScreen, select based on rect hovering
     public void drawAbilities(Graphics g, Ability ability){
         //BACKGROUND
-        g.setColor(Color.GRAY);
-        if (getName().equals("allen")){
-            g.setColor(Color.LIGHT_GRAY);
-        } else if (getName().equals("bryan")){
-            g.setColor(Color.BLACK);
-        }
+        g.setColor(Color.LIGHT_GRAY);
         g.fillRect(0,0,323,768);
         g.setColor(Color.BLACK);
         g.drawRect(0,0,323,768);
 
-        //ABILITY ICONS
+        //Draw the player profile at the bottom so you know!
+        g.setColor(Color.MAGENTA);
+        if (getName().equals("yellow")){
+            g.setColor(Color.yellow);
+        } else if (getName().equals("cyan")){
+            g.setColor(Color.CYAN);
+        }
+        g.fillRect(30,15+105*abilities.length,60,60);
+        drawHealthBar(g);
+        drawEnergyBar(g);
 
+        //ABILITY ICONS
         for (int i = 0; i < abilities.length; i++) {
             //draw the abilities cyan if usable
             if (abilities[i].getEnergyCost() > getEnergy() || abilities[i].getCurrentCooldown() > 0) {
@@ -42,7 +47,7 @@ public class Player extends Entity{
             }
             g.fillRect(30, 15 + 105 * i, 263, 100);
 
-            //Cooldown bar! make it nicer please
+            //Cooldown bar!
             g.setColor(new Color(0, 0, 0, 50));
             if (abilities[i].getCurrentCooldown() > 0) {
                 g.fillRect(30, 15 + 105 * i, 264/abilities[i].getCooldown()*(abilities[i].getCurrentCooldown()), 100);
@@ -104,5 +109,38 @@ public class Player extends Entity{
 
     public void drawIcons(Graphics g) {
         ico.draw(g);
+    }
+
+    public void drawHealthBar(Graphics g){
+        //Drawing a health bar here to make it nicer
+        double ratio = getHealth() / getMaxHealth();
+        //Grey backing bar
+        g.setColor(Color.GRAY);
+        g.fillRect(100, 33+105*abilities.length,190, 12);
+
+        //Set healthbar color based on if friendly or not
+        g.setColor(Color.GREEN);
+
+        //Draw at bottom of screen, -10 is for the height of the bar
+        g.fillRect(100, 33+105*abilities.length, (int) (190 * ratio), 12);
+        g.setColor(Color.BLACK);
+        g.drawRect(100, 33+105*abilities.length,190, 12);
+        g.drawString(getHealth() + "/" + getMaxHealth(), 130, 44+105*abilities.length);
+    }
+
+    public void drawEnergyBar(Graphics g){
+        double ratio = getEnergy() / getMaxEnergy();
+        g.setColor(Color.GRAY);
+        g.fillRect(100, 45+105*abilities.length,190, 12);
+
+        //Set healthbar color based on if friendly or not
+        g.setColor(new Color(0,200,255));
+
+        //Draw at bottom of screen, -10 is for the height of the bar
+        g.fillRect(100, 45+105*abilities.length, (int) (190 * ratio), 12);
+        g.setColor(Color.BLACK);
+        g.drawRect(100, 45+105*abilities.length,190, 12);
+        g.drawString(getEnergy() + "/" + getMaxEnergy(), 130, 56+105*abilities.length);
+
     }
 }
