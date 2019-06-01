@@ -43,6 +43,7 @@ public class Enemy extends Entity{
             } else{
                 g.setColor(new Color(0, 200, 255));
             }
+            g.fillRect(1079, 15 + 105 * i, 264, 100);
 
             //Cooldown bar!
             g.setColor(new Color(0, 0, 0, 50));
