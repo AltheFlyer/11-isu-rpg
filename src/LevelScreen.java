@@ -56,18 +56,18 @@ public class LevelScreen extends GameScreen{
         };
 
         Ability[] ackAbilities = new Ability[]{
-            new SingleAbility("basic","asas",0,0,6,0,1,2,true, false),
-            new SingleAbility("healSelf","",0,0,0,0,1,-3,false, true)
+            new SingleAbility("basic","A basic attack that hits a random target in front",0,0,6,0,1,2,true, false),
+            new SingleAbility("healSelf","A basic self heal",0,0,0,0,1,-3,false, true)
         };
 
         Ability[] bckAbilities = new Ability[]{
-            new SingleAbility("basic","",0,0,6,0,1,2,true, false),
-            new SingleAbility("healSelf","",0,0,0,0,1,-3,false, true)
+            new SingleAbility("basic","A basic attack that hits a random target in front",0,0,6,0,1,2,true, false),
+            new SingleAbility("healSelf","A basic self heal",0,0,0,0,1,-3,false, true)
         };
 
         Ability[] cckAbilities = new Ability[]{
-                new SingleAbility("basic","",0,0,6,0,1,2,true, false),
-                new SingleAbility("healSelf","",0,0,0,0,1,-3,false, true)
+                new SingleAbility("basic","A basic attack that hits a random target in front",0,0,6,0,1,2,true, false),
+                new SingleAbility("healSelf","A basic self heal",0,0,0,0,1,-3,false, true)
         };
 
         // TODO There is probably a better way to do this just saying
@@ -309,7 +309,7 @@ public class LevelScreen extends GameScreen{
         }
 
         //Enemy info
-        if (selectedEnemy != null) {
+        if (selectedEnemy != null && selectedEnemy.isAlive()) {
             selectedEnemy.drawAbilities(g);
 
             for (int i = 0; i < selectedEnemy.totalAbilities(); ++i) {
