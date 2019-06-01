@@ -174,6 +174,7 @@ public class LevelScreen extends GameScreen{
                         selectedEnemyAbility = null;
                     } else {
                         selectedEnemyAbility = selectedEnemy.getAbility(i);
+                        selectedAbility = null;
                     }
                 }
             }
@@ -205,6 +206,7 @@ public class LevelScreen extends GameScreen{
                 }
             }
             selectedPlayer = null;
+            selectedEnemy = null;
             selectedAbility = null;
             selectedEnemyAbility = null;
         }
@@ -221,6 +223,7 @@ public class LevelScreen extends GameScreen{
                         selectedAbility = null;
                     } else {
                         selectedAbility = selectedPlayer.getAbility(i);
+                        selectedEnemyAbility = null;
                     }
                 }
             }
@@ -284,7 +287,7 @@ public class LevelScreen extends GameScreen{
             for (int i = 3; i < 6; i++) {
                 if (!jointMap.isEmpty(i,j)) {
                     if (isMouseOver(new Rectangle(gridX + gridWidthSpace * i, gridY + gridHeightSpace * j, gridWidth, gridHeight))) {
-                        jointMap.getEnemy(i, j).drawAbilities(g);
+                        jointMap.getEnemy(i, j).drawAbilities(g, selectedEnemyAbility);
                     }
                 }
             }
@@ -303,6 +306,7 @@ public class LevelScreen extends GameScreen{
                         jointMap.unIndicateAll();
                         jointMap.unTargetableAll();
                         selectedPlayer.getAbility(i).indicateValidTiles(jointMap);
+                        selectedEnemyAbility = null;
                     }
                 }
             }
@@ -310,17 +314,18 @@ public class LevelScreen extends GameScreen{
 
         //Enemy info
         if (selectedEnemy != null && selectedEnemy.isAlive()) {
-            selectedEnemy.drawAbilities(g);
+            selectedEnemy.drawAbilities(g, selectedEnemyAbility);
 
             for (int i = 0; i < selectedEnemy.totalAbilities(); ++i) {
-                if (isMouseOver(new Rectangle(1079, 15+105*i, 263, 100))) {
+                if (isMouseOver(new Rectangle(1069, 15+105*i, 263, 100))) {
                     g.setColor(new Color(0, 0, 0, 100));
-                    g.fillRect(1079, 15+105*i, 263, 100);
+                    g.fillRect(1069, 15+105*i, 263, 100);
                     //Will make it easier to see which tiles can be targetable
                     if (selectedEnemyAbility == null) {
                         jointMap.unIndicateAll();
                         jointMap.unTargetableAll();
                         selectedEnemy.getAbility(i).indicateValidTiles(jointMap);
+                        selectedAbility = null;
                     }
                 }
             }

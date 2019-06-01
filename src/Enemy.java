@@ -23,7 +23,7 @@ public class Enemy extends Entity{
         return abilities[index];
     }
 
-    public void drawAbilities(Graphics g){
+    public void drawAbilities(Graphics g, Ability ability){
         g.setColor(Color.LIGHT_GRAY);
         g.fillRect(1049,0,317,768);
         g.setColor(Color.BLACK);
@@ -64,6 +64,15 @@ public class Enemy extends Entity{
             //Drawing the description
             TextDrawer drawer = new TextDrawer(g,abilities[i].getDesc(), 1079, 54+105*i,250);
             drawer.drawText(g);
+        }
+
+        for (int i = 0; i < abilities.length; i++){
+            if (ability != null) {
+                if (ability.equals(abilities[i])) {
+                    g.setColor(new Color(0, 0, 0, 100));
+                    g.fillRect(1069, 15 + 105 * i, 263, 100);
+                }
+            }
         }
     }
 
