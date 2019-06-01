@@ -61,8 +61,8 @@ public class AnimatedSprite {
      * @param y the y position to draw the frame from
      */
     public void draw(Graphics g, int x, int y) {
-        tick();
         g.drawImage(sprites[frame], x, y, null);
+        tick();
     }
 
     /**
@@ -72,7 +72,6 @@ public class AnimatedSprite {
      * @return BufferedImage, the current frame of the animated sprite
      */
     public BufferedImage getSprite() {
-        tick();
         return sprites[frame];
     }
 
@@ -89,5 +88,15 @@ public class AnimatedSprite {
                 frame = 0;
             }
         }
+    }
+
+    /**
+     * [getTotalTime]
+     * gets the total time spent for one cycle of animation,
+     * equal to the sum of delays between each frame
+     * @return
+     */
+    public long getTotalTime() {
+        return frameDelay * (sprites.length - 1);
     }
 }

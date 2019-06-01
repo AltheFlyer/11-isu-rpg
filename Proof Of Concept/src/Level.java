@@ -66,6 +66,6 @@ public class Level extends GameScreen {
     @Override
     public void mousePressed(MouseEvent e) {
         super.mousePressed(e);
-        //enemyTiles[0][0].getEnemy().act();
+        //enemyTiles[0][0].getEnemy().decide();
     }
 }

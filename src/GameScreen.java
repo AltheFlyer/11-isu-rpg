@@ -161,7 +161,10 @@ abstract public class GameScreen extends JPanel
     public void mouseExited(MouseEvent e) {}
 
     @Override
-    public void mouseDragged(MouseEvent e) {}
+    public void mouseDragged(MouseEvent e) {
+        mouseX = e.getX();
+        mouseY = e.getY();
+    }
 
     @Override
     public void mouseWheelMoved(MouseWheelEvent e) {}

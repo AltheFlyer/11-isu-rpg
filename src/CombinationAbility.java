@@ -1,7 +1,7 @@
 import java.awt.*;
 
-public class SingleAbility extends Ability {
-    SingleAbility(String name, String desc, double energyCost, int cooldown,int xRange, int yRange, int status, double damage, boolean enemyTarget, boolean friendTarget){
+public class CombinationAbility extends Ability {
+    CombinationAbility(String name, String desc, double energyCost, int cooldown, int xRange, int yRange, int status, double damage, boolean enemyTarget, boolean friendTarget){
         super (name, desc, energyCost, cooldown, xRange, yRange, status, damage, enemyTarget, friendTarget);
         setXAOE(0);
         setYAOE(0);
@@ -16,7 +16,8 @@ public class SingleAbility extends Ability {
      */
     public boolean action(JointMap jointMap, int i, int j){
         if (jointMap.getTargetable(i, j)) {
-            jointMap.target(i, j, getDamage(), getStatus());
+            jointMap.target(i,j, getDamage(), getStatus());
+            jointMap.moveOnTile(getEntitySource().getXGrid(),getEntitySource().getYGrid(),getEntitySource().getXGrid()-1,getEntitySource().getYGrid());
             return true;
         }
         return false;
@@ -27,7 +28,6 @@ public class SingleAbility extends Ability {
      * @param g the graphics object to draw with
      */
     public void drawHoverAttack(int i, int j, Graphics g, JointMap jointMap) {
-        //What to do here???
         drawHoverAttackSingleHelper(i,j,g,jointMap);
     }
 
@@ -36,7 +36,6 @@ public class SingleAbility extends Ability {
      * @param jointMap: The tiles on the jointMap array will be modified (some tiles will be indicated, some will become targetable)
      */
     public void indicateValidTiles(JointMap jointMap){
-
         int rangeAhead = getEntitySource().getXGrid() + getXRange();
         int rangeBehind = getEntitySource().getXGrid() - getXRange();
         int rangeDown = getEntitySource().getYGrid() + getYRange();

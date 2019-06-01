@@ -135,7 +135,7 @@ public class TextDrawer {
             //The next word in the sentence
             String word;
 
-            System.out.println(newLineIndex + " " + spaceIndex);
+            //System.out.println(newLineIndex + " " + spaceIndex);
 
             //Create the word by breaking at the nearest space or newline
             if ((newLineIndex != -1) && (newLineIndex < spaceIndex)) {
@@ -181,6 +181,23 @@ public class TextDrawer {
         for (int i = 0; i < tempLines.size(); ++i) {
             lines[i] = tempLines.get(i);
         }
+    }
+
+    /**
+     * [getLineHeight]
+     * gets the height of a single line of text
+     * @return int lineHeight, the computed height of a line of text based on ascent, descent, and leading
+     */
+    public int getLineHeight() {
+        return lineHeight;
+    }
+
+    /**
+     * [getTotalHeight]
+     * @return the total height of the string, when converted into a set of lines
+     */
+    public int getTotalHeight() {
+        return lineHeight * lines.length;
     }
 
 }

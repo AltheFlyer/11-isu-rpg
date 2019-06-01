@@ -2,50 +2,113 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
+/**
+ * This class is only used for creating dupes of level screen and testing, this class will not be used in the future
+ */
+
 public class LevelScreen extends GameScreen{
     Player selectedPlayer;
     Ability selectedAbility;
-    PlayerMap playerMap;
+
+    Enemy selectedEnemy;
+
+    JointMap jointMap;
     Player kevin;
     Player allen;
-    EnemyMap enemyMap;
+    Player bryan;
+
     Enemy ack;
+    Enemy bck;
+    Enemy cck;
     Player[] players;
-    SingleAbility ability1;
-    AOEAbility heal;
-    MoveAbility move;
 
     LevelScreen(GameManager game){
         super(game);
-        ability1 = new SingleAbility("basic",6,0,1,2,true);
-        heal = new AOEAbility("heal",0,3,0,1,1,-2.0,false);
+        /*
+        ability1 = new SingleAbility("basic",6,0,1,2,true, false);
+        heal = new AOEAbility("heal",2,0,0,1,1,-2.0,false, true);
         move = new MoveAbility("step",1);
+        new AOEAbility("die",3,2,6, 0,1,5,true, false)
+        new StarAbility("star",3,0,1,2.0,true, false)
+        new CombinationAbility("back",5,2,1,4,true, false);
+        */
+        jointMap = new JointMap();
 
-        playerMap = new PlayerMap();
-        enemyMap = new EnemyMap();
+        Ability[] kevinAbilities = new Ability[]{
+            new SingleAbility("basic","a basic attack that will hit an enemy in front of you", 20,1,6,0,1,2,true, false),
+            new BasicMoveAbility("step","movement to an adjacent tile", 30,1,1),
+            new AOEAbility("heal","a vertical AOE heal on allies",50,2,2,0,0,2,1,-2.0,false, true),
+            new SingleAbility("basic2","a basic attack that will hit an enemy in front of you", 20,1,6,0,1,2,true, false),
+            new SingleAbility("basic3","a basic attack that will hit an enemy in front of you", 20,1,6,0,1,2,true, false),
+        };
 
-        kevin = new Player(10,"kevin",ability1);
-        allen = new Player(10,"allen",heal);
-        ack = new Enemy(10);
+        Ability[] allenAbilities = new Ability[]{
+            new CombinationAbility("back","A single target attack that also pushes you back by 1", 60,3,5,2,1,4,true, false),
+            new BasicMoveAbility("step","movement to an adjacent tile",30,1,1),
+            new AOEAbility("sacrifice","A sacrifice that will deal massive damage to everyone",50,4,0,0,6,2,1,5,true, true)
+        };
+
+        Ability[] bryanAbilities = new Ability[]{
+            new StarAbility("star","An AOE ability that will hit in a star shaped area",50,2,5,0,1,3.0,true, false),
+            new BasicMoveAbility("step","movement to an adjacent tile",30,1,1),
+            new SpearAbility("spear","A very deadly single target spear with short range",100,10, 100)
+        };
+
+        Ability[] ackAbilities = new Ability[]{
+            new SingleAbility("basic","A basic attack that hits a random target in front",0,0,6,0,1,2,true, false),
+            new SingleAbility("healSelf","A basic self heal",0,0,0,0,1,-3,false, true)
+        };
+
+        Ability[] bckAbilities = new Ability[]{
+            new SingleAbility("basic","A basic attack that hits a random target in front",0,0,6,0,1,2,true, false),
+            new SingleAbility("healSelf","A basic self heal",0,0,0,0,1,-3,false, true)
+        };
+
+        Ability[] cckAbilities = new Ability[]{
+                new SingleAbility("basic","A basic attack that hits a random target in front",0,0,6,0,1,2,true, false),
+                new SingleAbility("healSelf","A basic self heal",0,0,0,0,1,-3,false, true)
+        };
+
+        // TODO There is probably a better way to do this just saying
+        kevin = new Player(10,100,"magenta",kevinAbilities);
+        //allen = new Player(10,"allen",new AOEAbility("heal",2,0,0,1,1,-2.0,false, true));
+        allen = new Player(10,100,"yellow",allenAbilities);
+        bryan = new Player(10,100,"cyan",bryanAbilities);
+
+        ack = new Enemy(10, "ack",ackAbilities);
+        bck = new Enemy(10, "bck",bckAbilities);
+        cck = new Enemy(10, "cck",cckAbilities);
 
         //Add things onto the map
         //i is x, j is y
-        playerMap.addPlayer(1,2,kevin);
-        playerMap.addPlayer(2,1,allen);
-        enemyMap.addEnemy(1,2,ack);
+        jointMap.addEntity(1,2,kevin);
+        jointMap.addEntity(0,0,bryan);
+        jointMap.addEntity(2,1,allen);
+        jointMap.addEntity(4,2,ack);
+        jointMap.addEntity(3,1,bck);
+        jointMap.addEntity(4,0,cck);
+
+        jointMap.addEntity(5, 0, new TutorialEnemy());
 
         players = new Player[3];
         players[0] = kevin;
         players[1] = allen;
+        players[2] = bryan;
+
+        allen.statuses.add(new CursedStatus(allen, 1));
     }
 
     @Override
     public void keyPressed(KeyEvent e) {
         if(e.getKeyChar() == 's' ){
             System.out.println("down");
-            playerMap.addPlayer(1,2,kevin);
+            if (jointMap.isEmpty(1,2)){
+                jointMap.addEntity(1,2,kevin);
+            }
+
             kevin.setHealth(10);
-            enemyMap.addEnemy(1,2,ack);
+            players[0] = kevin;
+            jointMap.addEntity(4,2,ack);
             ack.setHealth(10);
         }
     }
@@ -60,28 +123,107 @@ public class LevelScreen extends GameScreen{
         int selectWidth = 360;
         int selectHeight = 80;
 
+        //Click on the player profiles to select them and use abilities
         for (int i = 0; i < players.length; ++i) {
             if (isFullyClicked(new Rectangle(selectX, selectY + i * selectHeight, selectWidth, selectHeight))) {
-                selectedPlayer = players[i];
+                if (players[i] == null) {
+                    selectedPlayer = null;
+                } else if (players[i].getHealth() > 0) {
+                    selectedPlayer = players[i];
+                } else {
+                    selectedPlayer = null;
+                }
                 selectedAbility = null;
-                enemyMap.unIndicateAll();
-                playerMap.unIndicateAll();
+                jointMap.unIndicateAll();
+                jointMap.unTargetableAll();
             }
         }
 
-        //Use an ability here
-        if (selectedPlayer != null && isFullyClicked(new Rectangle(30, 30, 263, 80))) {
-            selectedAbility = selectedPlayer.getAbility1();
+        //If you click on player on map with no selected abilities, you can swap players
+        for (int j = 0; j < 3; j++) {
+            for (int i = 0; i < 3; i++) {
+                if (isFullyClicked(new Rectangle(323 + 121 * i, 108 + 121 * j, 120, 120)) && !jointMap.getTargetable(i, j)) {
+                    selectedPlayer = ((Player) jointMap.getEntity(i, j));
+                    jointMap.unIndicateAll();
+                    jointMap.unTargetableAll();
+                    selectedAbility = null;
+                }
+            }
         }
 
-        //Action attack!
+        //Enemy selection by tile
+        for (int j = 0; j < 3; j++) {
+            for (int i = 3; i < 6; i++) {
+                if (isFullyClicked(new Rectangle(323 + 121 * i, 108 + 121 * j, 120, 120)) && !jointMap.getTargetable(i, j)) {
+                    selectedEnemy = ((Enemy)jointMap.getEntity(i,j));
+                    jointMap.unIndicateAll();
+                    jointMap.unTargetableAll();
+                }
+            }
+        }
+
+
+        //TODO end turn!
+        //Also right now they are targeting all indicated tiles, change this, this is 100% experiment
+        if (isFullyClicked(new Rectangle(323, 8, selectWidth, selectHeight))) {
+            //End of player turn
+            jointMap.procPlayerStatus();
+
+            selectedAbility = null;
+            System.out.println("End turn enemy time!");
+            //Enemy turn run through
+            jointMap.runEnemyTurnActions();
+
+            //End of enemy turn
+            jointMap.procEnemyStatus();
+
+            //Start of new player turn
+            for (int i = 0; i < players.length; i++){
+                players[i].gainEnergy(30);
+                players[i].endTurnLowerCooldown();
+                //Execute if dies to status effect at the end of turn
+                if (!players[i].isAlive()){
+                    jointMap.target(players[i].getXGrid(), players[i].getYGrid(),0,0);
+                }
+            }
+            selectedPlayer = null;
+            selectedEnemy = null;
+            selectedAbility = null;
+        }
+
+        //Use an ability here, Click on the ability to select it for use, it will bring up indications
+        if (selectedPlayer != null) {
+            for (int i = 0; i < selectedPlayer.totalAbilities(); i++) {
+                if (isFullyClicked(new Rectangle(30, 15+105*i, 263, 100))) {
+                    jointMap.unIndicateAll();
+                    jointMap.unTargetableAll();
+
+                    //You can click on the ability again to deselect it
+                    if (selectedAbility == selectedPlayer.getAbility(i)) {
+                        selectedAbility = null;
+                    } else {
+                        selectedAbility = selectedPlayer.getAbility(i);
+                    }
+                }
+            }
+        }
+
+        //Attempt to run an action when clicking on a certain tile,
         if (selectedPlayer != null && selectedAbility != null) {
             for (int j = 0; j < 3; j++) {
-                for (int i = 0; i < 3; i++) {
-                    if (isFullyClicked(new Rectangle(686 + 121 * i, 108 + 121 * j, 120, 120))) {
-                        actionEnemy(i, j);
-                    } else if (isFullyClicked(new Rectangle(323 + 121 * i, 108 + 121 * j, 120, 120))) {
-                        actionPlayer(i, j);
+                for (int i = 0; i < 6; i++) {
+                    if (isFullyClicked(new Rectangle(323 + 121 * i, 108 + 121 * j, 120, 120))) {
+                        if (selectedAbility.action(jointMap, i, j)){
+                            //attacks will use up energy!
+                            selectedPlayer.useEnergy(selectedAbility.getEnergyCost());
+                            selectedAbility.resetCooldown();
+                            System.out.println("bam!");
+                            System.out.println(selectedPlayer.getHealth());
+                            //Deselect the ability
+                            selectedAbility = null;
+                            jointMap.unIndicateAll();
+                            jointMap.unTargetableAll();
+                        }
                     }
                 }
             }
@@ -91,111 +233,24 @@ public class LevelScreen extends GameScreen{
 
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        playerMap.draw(g);
-        enemyMap.draw(g);
+        //Draw out the map and all of the tiles on it
+        jointMap.draw(g);
+
+        //Draw out the profile selection area
         drawPlayerProfiles(g);
 
-        if (selectedAbility instanceof MoveAbility && selectedPlayer != null) {
-            for (int j = 0; j < 3; j++) {
-                for (int i = 0; i < 3; i++) {
-                    if ((Math.abs(j - playerMap.findPlayerY(selectedPlayer)) + Math.abs(j - playerMap.findPlayerX(selectedPlayer))) <= selectedAbility.getMoves()) {
-                        playerMap.indicate(i,j);
-                    }
-                }
-            }
-        } else if (selectedAbility != null && selectedPlayer != null) {
-            //Calculate Range of Ability!
-            int rangeAhead = playerMap.findPlayerX(selectedPlayer) + selectedAbility.getXRange();
-            int rangeBehind = playerMap.findPlayerX(selectedPlayer) - selectedAbility.getXRange();
-            int rangeDown = playerMap.findPlayerY(selectedPlayer) + selectedAbility.getYRange();
-            int rangeUp = playerMap.findPlayerY(selectedPlayer) - selectedAbility.getYRange();
+        //Ending turn
+        g.drawString("end turn",323,/*7*/24);
 
-            //Create Indications for ability
-            for (int j = rangeUp; j <= rangeDown; j++) {
-                for (int i = rangeBehind; i <= rangeAhead; i++) {
-                    if (enemyMap.tileExists(i-3, j) && !selectedAbility.getPlayerOnly()) {
-                        enemyMap.indicate(i - 3, j);
-                    }
-                }
-            }
-
-            for (int j = rangeUp; j <= rangeDown; j++) {
-                for (int i = rangeBehind; i <= rangeAhead; i++) {
-                    if (playerMap.tileExists(i, j) && !selectedAbility.getEnemyOnly()) {
-                        playerMap.indicate(i, j);
-                    }
-                }
-            }
-
-            //Draw hover if you hover a spot you can attack
+        //Calculate the range for certain abilities and create indications telling you where it will hit based on the currently selected ability
+        if (selectedAbility != null){
+            jointMap.unIndicateAll();
+            selectedAbility.indicateValidTiles(jointMap);
             drawHoverAttack(g);
         }
 
-        //Profile of person 1
-        if (selectedPlayer != null) {
-            selectedPlayer.drawAbilities(g, selectedAbility == selectedPlayer.getAbility1());
-            //selectedPlayer = playerMap.findPlayer(selectedPlayer);
-            //Ability selection
-            if (isMouseOver(new Rectangle(30, 30, 263, 80))) {
-                g.setColor(new Color(0, 0, 0, 100));
-                g.fillRect(30, 30, 263, 80);
-            }
-            //selectedPlayer = playerMap.findPlayer(selectedPlayer);
-        }
-
-        repaint();
-    }
-
-
-    public void actionEnemy (int i, int j){
-        if (enemyMap.getIndication(i, j) && !enemyMap.isEmpty(i, j)) {
-            for (int k = j - selectedAbility.getYAOE(); k <= j + selectedAbility.getYAOE(); k++) {
-                for (int l = i - selectedAbility.getXAOE(); l <= i + selectedAbility.getXAOE(); l++) {
-                    if (enemyMap.tileExists(l, k)) {
-                        ability1.actEnemy(enemyMap, l, k);
-                    }
-                    if (playerMap.tileExists(l+3, k)) {
-                        ability1.actPlayer(playerMap, l + 3, k);
-                    }
-                }
-            }
-            System.out.println("bam!");
-            selectedAbility = null;
-            enemyMap.unIndicateAll();
-            playerMap.unIndicateAll();
-        }
-    }
-
-    public void actionPlayer ( int i, int j){
-        if (playerMap.getIndication(i, j) && !playerMap.isEmpty(i, j) || playerMap.getIndication(i, j) && (selectedAbility instanceof AOEAbility)) {
-            for (int k = j - selectedAbility.getYAOE(); k <= j + selectedAbility.getYAOE(); k++) {
-                for (int l = i - selectedAbility.getXAOE(); l <= i + selectedAbility.getXAOE(); l++) {
-                    if (playerMap.tileExists(l, k)) {
-                        selectedAbility.actPlayer(playerMap, l, k);
-                    }
-                    if (enemyMap.tileExists(l - 3, k)) {
-                        ability1.actEnemy(enemyMap, l - 3, k);
-                    }
-                }
-            }
-            System.out.println("bam?");
-            selectedAbility = null;
-            System.out.println(selectedPlayer.getHealth());
-            enemyMap.unIndicateAll();
-            playerMap.unIndicateAll();
-        }
-    }
-
-
-    //MOVE ENEMY AND MOVE PLAYER HERE!!!
-
-    public void drawHoverAttack(Graphics g){
-        //Magic number storage
-        int playerGridX = 323;
-        int playerGridY = 108;
-
-        int enemyGridX = 686;
-        int enemyGridY = 108;
+        int gridX = 323;
+        int gridY = 108;
 
         int gridWidth = 120;
         int gridHeight = 120;
@@ -205,48 +260,84 @@ public class LevelScreen extends GameScreen{
 
         //getX or getY
         for (int j = 0; j < 3; j++) {
-            for (int i = 0; i < 3; i++) {
-                if (isMouseOver(new Rectangle(playerGridX + gridWidthSpace * i, playerGridY + gridHeightSpace * j, gridWidth, gridHeight))) {
-                    if (playerMap.getIndication(i, j)) {
-                        for (int k = j-selectedAbility.getYAOE(); k <= j+selectedAbility.getYAOE(); k++){
-                            for (int l = i-selectedAbility.getXAOE(); l <= i+selectedAbility.getXAOE(); l++){
-                                if (playerMap.tileExists(l, k)){
-                                    g.setColor(Color.GREEN);
-                                    g.drawRect(playerGridX + gridWidthSpace * l, playerGridY + gridHeightSpace * k, gridWidth, gridHeight);
-                                }
-                                if (enemyMap.tileExists(l-3,k)){
-                                    g.setColor(Color.GREEN);
-                                    g.drawRect(enemyGridX + gridWidthSpace * (l-3), enemyGridY + gridHeightSpace * k, gridWidth, gridHeight);
-                                }
-                            }
-                        }
+            for (int i = 3; i < 6; i++) {
+                if (!jointMap.isEmpty(i,j)) {
+                    if (isMouseOver(new Rectangle(gridX + gridWidthSpace * i, gridY + gridHeightSpace * j, gridWidth, gridHeight))) {
                     }
                 }
             }
         }
 
+        //Draw the abilities of the profile of the player who is selected
+        if (selectedPlayer != null) {
+            selectedPlayer.drawAbilities(g, selectedAbility);
+
+            for (int i = 0; i < selectedPlayer.totalAbilities(); ++i) {
+                if (isMouseOver(new Rectangle(30, 15+105*i, 263, 100))) {
+                    g.setColor(new Color(0, 0, 0, 100));
+                    g.fillRect(30, 15+105*i, 263, 100);
+                    //Will make it easier to see which tiles can be targetable
+                    if (selectedAbility == null) {
+                        jointMap.unIndicateAll();
+                        jointMap.unTargetableAll();
+                        selectedPlayer.getAbility(i).indicateValidTiles(jointMap);
+                    }
+                }
+            }
+        }
+
+        //Enemy info
+        if (selectedEnemy != null && selectedEnemy.isAlive()) {
+            selectedEnemy.drawAbilities(g);
+
+            for (int i = 0; i < selectedEnemy.totalAbilities(); ++i) {
+                if (isMouseOver(new Rectangle(1069, 15+105*i, 263, 100))) {
+                    g.setColor(new Color(0, 0, 0, 100));
+                    g.fillRect(1069, 15+105*i, 263, 100);
+                    //Will make it easier to see which tiles can be targetable
+                    if (selectedAbility == null) {
+                        jointMap.unIndicateAll();
+                        jointMap.unTargetableAll();
+                        selectedEnemy.getAbility(i).indicateValidTiles(jointMap);
+                    }
+                }
+            }
+        }
+
+
+        //Draw icons from entities (enemy intents, etc)
+        jointMap.drawIcons(g, getMouseX(), getMouseY());
+
+        repaint();
+    }
+
+    //MOVE ENEMY AND MOVE PLAYER HERE!!!
+
+    //If you are hovering over a space you can attack, this will highlight those spaces
+    public void drawHoverAttack(Graphics g){
+        //Magic number storage
+        int gridX = 323;
+        int gridY = 108;
+
+        int gridWidth = 120;
+        int gridHeight = 120;
+
+        int gridWidthSpace = 121;
+        int gridHeightSpace = 121;
+
+        //getX or getY
         for (int j = 0; j < 3; j++) {
-            for (int i = 0; i < 3; i++) {
-                if (isMouseOver(new Rectangle(enemyGridX+gridWidthSpace*i, enemyGridY+gridHeightSpace*j, gridWidth, gridHeight))) {
-                    if (enemyMap.getIndication(i,j)) {
-                        for (int k = j-selectedAbility.getYAOE(); k <= j+selectedAbility.getYAOE(); k++){
-                            for (int l = i-selectedAbility.getXAOE(); l <= i+selectedAbility.getXAOE(); l++){
-                                if (enemyMap.tileExists(l,k)){
-                                    g.setColor(Color.GREEN);
-                                    g.drawRect(enemyGridX + gridWidthSpace * l, enemyGridY + gridHeightSpace * k, gridWidth, gridHeight);
-                                }
-                                if (playerMap.tileExists(l+3,k)){
-                                    g.setColor(Color.GREEN);
-                                    g.drawRect(playerGridX + gridWidthSpace * (l+3), playerGridY + gridHeightSpace * k, gridWidth, gridHeight);
-                                }
-                            }
-                        }
+            for (int i = 0; i < 6; i++) {
+                if (isMouseOver(new Rectangle(gridX + gridWidthSpace * i, gridY + gridHeightSpace * j, gridWidth, gridHeight))) {
+                    if (jointMap.getIndication(i, j)) {
+                        selectedAbility.drawHoverAttack(i,j,g,jointMap);
                     }
                 }
             }
         }
     }
 
+    //If you hover over a player profile, it will highlight and turn green!
     public void drawPlayerProfiles(Graphics g){
         //Magic number storage
         int profileX = 323;
@@ -258,15 +349,13 @@ public class LevelScreen extends GameScreen{
         for (int i = 0; i < players.length; ++i) {
             if (isMouseOver(new Rectangle(profileX, profileY + i * profileHeight, profileWidth, profileHeight))) {
                 g.setColor(Color.GREEN);
-                g.fillRect(profileX, profileY + i * profileHeight, profileWidth, profileHeight);
-                g.setColor(Color.BLACK);
-                g.drawRect(profileX, profileY + i * profileHeight, profileWidth, profileHeight);
             } else {
                 g.setColor(Color.RED);
-                g.fillRect(profileX, profileY + i * profileHeight, profileWidth, profileHeight);
-                g.setColor(Color.BLACK);
-                g.drawRect(profileX, profileY + i * profileHeight, profileWidth, profileHeight);
             }
+            g.fillRect(profileX, profileY + i * profileHeight, profileWidth, profileHeight);
+            g.setColor(Color.BLACK);
+            g.drawRect(profileX, profileY + i * profileHeight, profileWidth, profileHeight);
+            g.drawString(players[i].getName(),profileX+10, profileY + 15 + i*80);
         }
     }
 }

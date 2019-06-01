@@ -1,12 +1,10 @@
 import java.awt.*;
 
-public class AOEAbility extends Ability{
-    AOEAbility(String name, String desc, double energyCost, int cooldown, int xRange, int yRange, int xAOE, int yAOE, int status, double damage, boolean enemyTarget, boolean friendTarget){
+public class StarAbility extends Ability {
+    StarAbility(String name, String desc, double energyCost, int cooldown, int xRange, int yRange, int status, double damage, boolean enemyTarget, boolean friendTarget){
         super (name, desc, energyCost, cooldown, xRange, yRange, status, damage, enemyTarget, friendTarget);
-        setXAOE(xAOE);
-        setYAOE(yAOE);
     }
-    
+
     /**
      * action: This method will target and affect the selected tiles in a certain pattern
      * @param jointMap: The map that will be affected
@@ -15,14 +13,15 @@ public class AOEAbility extends Ability{
      * @return: it will return a value based on if an action was valid or not, if it was, it will unindicate everything and reset selectedAbility on levelscreen
      */
     public boolean action(JointMap jointMap, int i, int j){
-        if (jointMap.getIndication(i, j)) {
-            for (int k = j - getYAOE(); k <= j + getYAOE(); k++) {
-                for (int l = i - getXAOE(); l <= i + getXAOE(); l++) {
-                    if (jointMap.tileExists(l, k)) {
-                        if (getFriendTarget() && jointMap.getTileType(l, k) == jointMap.getTileType(getEntitySource().getXGrid(), getEntitySource().getYGrid())) {
+        if (jointMap.getTargetable(i, j)) {
+            for (int k = 0; k < 3; k++){
+                for (int l = 0; l < 6; l++){
+                    //Hits tiles in a star shape around the indicated tile
+                    if (Math.abs(k-j) + Math.abs(l-i) <= 1 && jointMap.tileExists(l,k)){
+                        if (getFriendTarget() && jointMap.getTileType(l,k) == jointMap.getTileType(getEntitySource().getXGrid(),getEntitySource().getYGrid())) {
                             jointMap.target(l, k, getDamage(), getStatus());
                         }
-                        if (getEnemyTarget() && jointMap.getTileType(l, k) != jointMap.getTileType(getEntitySource().getXGrid(), getEntitySource().getYGrid())) {
+                        if (getEnemyTarget() && jointMap.getTileType(l,k) != jointMap.getTileType(getEntitySource().getXGrid(),getEntitySource().getYGrid())) {
                             jointMap.target(l, k, getDamage(), getStatus());
                         }
                     }
@@ -32,6 +31,7 @@ public class AOEAbility extends Ability{
         }
         return false;
     }
+
     /**
      * [drawSelectedArea]
      * Draws the area that will be affected by an ability
@@ -47,17 +47,20 @@ public class AOEAbility extends Ability{
 
         int gridWidthSpace = 121;
         int gridHeightSpace = 121;
-        for (int k = j-getYAOE(); k <= j+getYAOE(); k++){
-            for (int l = i-getXAOE(); l <= i+getXAOE(); l++){
+        for (int k = 0; k < 3; k++){
+            for (int l = 0; l < 6; l++){
                 //Yeah might need to revamp Single and AOE ability so one can do empty tiles, one cannot do that
-                if (jointMap.tileExists(l,k)){
-                    if (getFriendTarget() && jointMap.getTileType(l, k) == jointMap.getTileType(getEntitySource().getXGrid(), getEntitySource().getYGrid())) {
-                        g.setColor(Color.GREEN);
-                        g.drawRect(gridX + gridWidthSpace * l, gridY + gridHeightSpace * k, gridWidth, gridHeight);
-                    }
-                    if (getEnemyTarget() && jointMap.getTileType(l, k) != jointMap.getTileType(getEntitySource().getXGrid(), getEntitySource().getYGrid())) {
-                        g.setColor(Color.GREEN);
-                        g.drawRect(gridX + gridWidthSpace * l, gridY + gridHeightSpace * k, gridWidth, gridHeight);
+                if (Math.abs(k-j) + Math.abs(l-i) <= 1){
+
+                    if (jointMap.tileExists(l,k)&& getEntitySource().isAlive()){
+                        if (getFriendTarget() && jointMap.getTileType(l,k) == jointMap.getTileType(getEntitySource().getXGrid(),getEntitySource().getYGrid())) {
+                            g.setColor(Color.GREEN);
+                            g.drawRect(gridX + gridWidthSpace * l, gridY + gridHeightSpace * k, gridWidth, gridHeight);
+                        }
+                        if (getEnemyTarget() && jointMap.getTileType(l,k) != jointMap.getTileType(getEntitySource().getXGrid(),getEntitySource().getYGrid())) {
+                            g.setColor(Color.GREEN);
+                            g.drawRect(gridX + gridWidthSpace * l, gridY + gridHeightSpace * k, gridWidth, gridHeight);
+                        }
                     }
                 }
             }
