@@ -4,7 +4,7 @@ import java.awt.*;
 
 public class Enemy extends Entity{
 
-    private Icon testIntent;
+    private Icon intent;
     private Ability decide;
 
     Enemy(double health, String name, Ability[] abilities){
@@ -14,16 +14,16 @@ public class Enemy extends Entity{
         }
         //The first ability is always the one that will be decided to be used first
         decide = abilities[0];
-        testIntent = new Icon(new Rectangle(0, 0, 40, 40), "assets/icons/test.png");
-        testIntent.setName("Special");
-        testIntent.setDescription("A *really* powerful attack. I need more text to test newline drawing.\n\n\n\n\n\nI hope this works");
+        intent = new Icon(new Rectangle(0, 0, 40, 40), "assets/icons/test.png");
+        intent.setName("Special");
+        intent.setDescription("A *really* powerful attack. I need more text to test newline drawing.\n\n\n\n\n\nI hope this works");
     }
 
     public Ability getAbility(int index){
         return abilities[index];
     }
 
-    public void drawAbilities(Graphics g, Ability ability){
+    public void drawAbilities(Graphics g){
         g.setColor(Color.LIGHT_GRAY);
         g.fillRect(1049,0,317,768);
         g.setColor(Color.BLACK);
@@ -65,15 +65,6 @@ public class Enemy extends Entity{
             TextDrawer drawer = new TextDrawer(g,abilities[i].getDesc(), 1079, 54+105*i,250);
             drawer.drawText(g);
         }
-
-        for (int i = 0; i < abilities.length; i++){
-            if (ability != null) {
-                if (ability.equals(abilities[i])) {
-                    g.setColor(new Color(0, 0, 0, 100));
-                    g.fillRect(1069, 15 + 105 * i, 263, 100);
-                }
-            }
-        }
     }
 
     public void draw(int x, int y, Graphics g, boolean indicated){
@@ -89,29 +80,37 @@ public class Enemy extends Entity{
 
     /**
      * [decide]
-     * contrary to the method name, this doesn't cause enemies to decide, rather it
-     * generates a next move (Ability and intent) (should be overriden)
+     * contrary to the method name, this doesn't cause enemies to decide an immediate move, rather it
+     * generates a next move (Ability and intent) - that the player can then react to (should be overriden).
      */
     public void decide(JointMap map) {
         //For testing/theory purposes only...
         if (this.getHealth() < this.getMaxHealth() / 2) {
             //A heal on itself
-            testIntent = new Icon("assets/icons/medic.png");
-            testIntent.setName("Medic");
-            testIntent.setDescription("This enemy intends to restore health to itself.");
+            intent = new Icon("assets/icons/medic.png");
+            intent.setName("Medic");
+            intent.setDescription("This enemy intends to restore health to itself.");
             //I don't know if there are multiple attacks yet so...
             decide = abilities[1];
         } else {
-            testIntent = new Icon("assets/icons/sword.png");
-            testIntent.setName("Attack");
-            testIntent.setDescription("A basic attack that will deal damage to a player.");
+            intent = new Icon("assets/icons/sword.png");
+            intent.setName("Attack");
+            intent.setDescription("A basic attack that will deal damage to a player.");
             decide = abilities[0];
         }
 
     }
 
+    public void setIntent(Icon icon) {
+        this.intent = icon;
+    }
+
     public Icon getIntent() {
-        return testIntent;
+        return intent;
+    }
+
+    public void setDecide(Ability ability) {
+        decide = ability;
     }
 
     public Ability getDecide() {

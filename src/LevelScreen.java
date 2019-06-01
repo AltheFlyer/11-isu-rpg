@@ -11,7 +11,6 @@ public class LevelScreen extends GameScreen{
     Ability selectedAbility;
 
     Enemy selectedEnemy;
-    Ability selectedEnemyAbility;
 
     JointMap jointMap;
     Player kevin;
@@ -89,6 +88,8 @@ public class LevelScreen extends GameScreen{
         jointMap.addEntity(3,1,bck);
         jointMap.addEntity(4,0,cck);
 
+        jointMap.addEntity(5, 0, new TutorialEnemy());
+
         players = new Player[3];
         players[0] = kevin;
         players[1] = allen;
@@ -146,7 +147,6 @@ public class LevelScreen extends GameScreen{
                     jointMap.unIndicateAll();
                     jointMap.unTargetableAll();
                     selectedAbility = null;
-                    selectedEnemyAbility = null;
                 }
             }
         }
@@ -158,24 +158,6 @@ public class LevelScreen extends GameScreen{
                     selectedEnemy = ((Enemy)jointMap.getEntity(i,j));
                     jointMap.unIndicateAll();
                     jointMap.unTargetableAll();
-                    selectedEnemyAbility = null;
-                }
-            }
-        }
-
-        //Select Enemy ability to see range
-        if (selectedEnemy != null) {
-            for (int i = 0; i < selectedEnemy.totalAbilities(); i++) {
-                if (isFullyClicked(new Rectangle(1079, 15+105*i, 263, 100))) {
-                    jointMap.unIndicateAll();
-                    jointMap.unTargetableAll();
-                    //You can click on the ability again to deselect it
-                    if (selectedEnemyAbility == selectedEnemy.getAbility(i)) {
-                        selectedEnemyAbility = null;
-                    } else {
-                        selectedEnemyAbility = selectedEnemy.getAbility(i);
-                        selectedAbility = null;
-                    }
                 }
             }
         }
@@ -188,7 +170,6 @@ public class LevelScreen extends GameScreen{
             jointMap.procPlayerStatus();
 
             selectedAbility = null;
-            selectedEnemyAbility = null;
             System.out.println("End turn enemy time!");
             //Enemy turn run through
             jointMap.runEnemyTurnActions();
@@ -208,7 +189,6 @@ public class LevelScreen extends GameScreen{
             selectedPlayer = null;
             selectedEnemy = null;
             selectedAbility = null;
-            selectedEnemyAbility = null;
         }
 
         //Use an ability here, Click on the ability to select it for use, it will bring up indications
@@ -223,7 +203,6 @@ public class LevelScreen extends GameScreen{
                         selectedAbility = null;
                     } else {
                         selectedAbility = selectedPlayer.getAbility(i);
-                        selectedEnemyAbility = null;
                     }
                 }
             }
@@ -265,12 +244,9 @@ public class LevelScreen extends GameScreen{
 
         //Calculate the range for certain abilities and create indications telling you where it will hit based on the currently selected ability
         if (selectedAbility != null){
+            jointMap.unIndicateAll();
             selectedAbility.indicateValidTiles(jointMap);
             drawHoverAttack(g);
-        }
-
-        if (selectedEnemyAbility != null) {
-            selectedEnemyAbility.indicateValidTiles(jointMap);
         }
 
         int gridX = 323;
@@ -287,7 +263,6 @@ public class LevelScreen extends GameScreen{
             for (int i = 3; i < 6; i++) {
                 if (!jointMap.isEmpty(i,j)) {
                     if (isMouseOver(new Rectangle(gridX + gridWidthSpace * i, gridY + gridHeightSpace * j, gridWidth, gridHeight))) {
-                        jointMap.getEnemy(i, j).drawAbilities(g, selectedEnemyAbility);
                     }
                 }
             }
@@ -306,7 +281,6 @@ public class LevelScreen extends GameScreen{
                         jointMap.unIndicateAll();
                         jointMap.unTargetableAll();
                         selectedPlayer.getAbility(i).indicateValidTiles(jointMap);
-                        selectedEnemyAbility = null;
                     }
                 }
             }
@@ -314,18 +288,17 @@ public class LevelScreen extends GameScreen{
 
         //Enemy info
         if (selectedEnemy != null && selectedEnemy.isAlive()) {
-            selectedEnemy.drawAbilities(g, selectedEnemyAbility);
+            selectedEnemy.drawAbilities(g);
 
             for (int i = 0; i < selectedEnemy.totalAbilities(); ++i) {
                 if (isMouseOver(new Rectangle(1069, 15+105*i, 263, 100))) {
                     g.setColor(new Color(0, 0, 0, 100));
                     g.fillRect(1069, 15+105*i, 263, 100);
                     //Will make it easier to see which tiles can be targetable
-                    if (selectedEnemyAbility == null) {
+                    if (selectedAbility == null) {
                         jointMap.unIndicateAll();
                         jointMap.unTargetableAll();
                         selectedEnemy.getAbility(i).indicateValidTiles(jointMap);
-                        selectedAbility = null;
                     }
                 }
             }
