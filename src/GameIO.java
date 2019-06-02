@@ -21,7 +21,7 @@ public class GameIO {
      * The string of the folder that all text files are to be placed in,
      * acting as a universal accessor
      */
-    private final String TEXT_SRC = "data/";
+    private static final String TEXT_SRC = "data/";
 
     private HashMap<String, Boolean> tileWalkability;
 
@@ -282,31 +282,26 @@ public class GameIO {
      * Gets the saved character layout on a 3x3 grid for battles from a file.
      * @return String[][] the 3x3 arrangement of characters
      */
-    public String[][] getBattleLayout() {
+    public static Player[] getBattleLayout() {
         String text = readFile("battle_layout.txt");
-        String[][] data = new String[3][3];
+        String[] lines = text.split("\n");
 
-        for (int i = 0; i < 3; ++i) {
-            int lineBreak = text.indexOf("\n");
-            //Final line reading (no trailing newline)
-            if (lineBreak == -1) {
-                lineBreak = text.length();
-            }
+        int playerNumber = 0;
+        Player[] layout = new Player[3];
 
-            String row = text.substring(0, lineBreak);
-            //Don't prep for next line if it don't exist
-            if (i < 2) {
-                text = text.substring(lineBreak + 1);
-            }
+        for (int j = 0; j < 3; ++j) {
+            String[] row = lines[j].split(" ");
 
-            String[] set = row.split(" ");
-
-            for (int j = 0; j < 3; ++j) {
-                data[j][i] = set[j];
+            for (int i = 0; i < 3; ++i) {
+                String tileData = row[i];
+                if (!tileData.equals("*")) {
+                    layout[playerNumber] = generatePlayer("players/" + tileData + ".txt");
+                    playerNumber++;
+                }
             }
         }
 
-        return data;
+        return layout;
     }
 
     /**
@@ -380,6 +375,110 @@ public class GameIO {
         System.out.println();
 
         return "";
+    }
+
+    /**
+     * [generatePlayer]
+     * generates a player character from a file
+     * @param path the player file to read from
+     * @return Player, the player with attributes specified by the provided file
+     */
+    public static Player generatePlayer(String path) {
+        String allText = readFile(path);
+        String[] lines = allText.split("\n");
+
+        String name = cutFirstWord(lines[0]);
+
+        double health = Double.parseDouble(cutFirstWord(lines[1]));
+        double energy = Double.parseDouble(cutFirstWord(lines[2]));
+
+        int numAbilities = Integer.parseInt(cutFirstWord(lines[3]));
+
+        Ability[] abilities = new Ability[numAbilities];
+        int lineNumber = 4;
+
+        for (int i = 0; i < numAbilities; ++i) {
+            abilities[i] = generateAbility(lines[lineNumber + i]);
+        }
+
+        return new Player(health, energy, name, abilities);
+    }
+
+    private static Ability generateAbility(String line) throws ArrayIndexOutOfBoundsException {
+        //Get the index of the next space
+        int spaceIndex = line.indexOf(" ");
+
+        //First word is ability type
+        String abilityType = line.substring(0, spaceIndex);
+
+        //Parse quoted text since it has spaces
+        //Skip the space and quote = 2 characters to skip from the original space index
+        String name = line.substring(spaceIndex + 2, line.indexOf("\"", spaceIndex + 2));
+        line = line.substring(line.indexOf("\"", spaceIndex + 2) + 1);
+
+        //Same as before, one other set of quoted text to parse
+        String desc = line.substring(2, line.indexOf("\"", 2));
+        line = line.substring(line.indexOf("\"", 2) + 2);
+
+        String[] args = line.split(" ");
+
+        //I hate myself so much
+        switch (abilityType) {
+            case "SingleAbility":
+                return new SingleAbility(name, desc,
+                        Double.parseDouble(args[0]),
+                        Integer.parseInt(args[1]),
+                        Integer.parseInt(args[2]),
+                        Integer.parseInt(args[3]),
+                        Integer.parseInt(args[4]),
+                        Double.parseDouble(args[5]),
+                        Boolean.parseBoolean(args[6]),
+                        Boolean.parseBoolean(args[7]));
+            case "BasicMoveAbility":
+                return new BasicMoveAbility(name, desc,
+                        Double.parseDouble(args[0]),
+                        Integer.parseInt(args[1]),
+                        Integer.parseInt(args[2]));
+            case "AOEAbility":
+                return new AOEAbility(name, desc,
+                        Double.parseDouble(args[0]),
+                        Integer.parseInt(args[1]),
+                        Integer.parseInt(args[2]),
+                        Integer.parseInt(args[3]),
+                        Integer.parseInt(args[4]),
+                        Integer.parseInt(args[5]),
+                        Integer.parseInt(args[6]),
+                        Double.parseDouble(args[7]),
+                        Boolean.parseBoolean(args[8]),
+                        Boolean.parseBoolean(args[9]));
+            case "CombinationAbility":
+                return new CombinationAbility(name, desc,
+                        Double.parseDouble(args[0]),
+                        Integer.parseInt(args[1]),
+                        Integer.parseInt(args[2]),
+                        Integer.parseInt(args[3]),
+                        Integer.parseInt(args[4]),
+                        Integer.parseInt(args[5]),
+                        Boolean.parseBoolean(args[6]),
+                        Boolean.parseBoolean(args[7]));
+            case "StarAbility":
+                return new StarAbility(name, desc,
+                        Double.parseDouble(args[0]),
+                        Integer.parseInt(args[1]),
+                        Integer.parseInt(args[2]),
+                        Integer.parseInt(args[3]),
+                        Integer.parseInt(args[4]),
+                        Double.parseDouble(args[5]),
+                        Boolean.parseBoolean(args[6]),
+                        Boolean.parseBoolean(args[7]));
+            case "SpearAbility":
+                return new SpearAbility(name, desc,
+                        Double.parseDouble(args[0]),
+                        Integer.parseInt(args[1]),
+                        Integer.parseInt(args[2]));
+            default:
+                return null;
+        }
     }
 
     /**
@@ -460,7 +559,7 @@ public class GameIO {
      * @param path the file path, ignoring source folder
      * @return String, the text within the file (to be parsed in other methods)
      */
-    private String readFile(String path){
+    private static String readFile(String path){
         String text = "";
         try {
             BufferedReader input = new BufferedReader(new FileReader(new File(TEXT_SRC + path)));
@@ -484,7 +583,7 @@ public class GameIO {
      * @param path the location of the file (excluding source folder)
      * @param s the text to write to the file
      */
-    private void writeFile(String path, String s) {
+    private static void writeFile(String path, String s) {
         try {
             FileWriter output = new FileWriter(new File(TEXT_SRC + path));
             output.write(s);
@@ -500,7 +599,7 @@ public class GameIO {
      * @param path the file to read from, not including source folder
      * @return HashMap of String to Boolean
      */
-    private HashMap<String, Boolean> readFileAsHashMap(String path) {
+    private static HashMap<String, Boolean> readFileAsHashMap(String path) {
         String fullText = readFile(path);
         HashMap<String, Boolean> map = new HashMap<>();
 
@@ -518,7 +617,7 @@ public class GameIO {
      * @param path the file path to write to
      * @param map the hashmap to write in form : key value\n...
      */
-    private void writeHashMapToFile(String path, HashMap<?, ?> map) {
+    private static void writeHashMapToFile(String path, HashMap<?, ?> map) {
         ArrayList keys = new ArrayList<>(map.keySet());
         ArrayList values = new ArrayList<>(map.values());
 
@@ -541,7 +640,7 @@ public class GameIO {
      * @param s the string to get the words from
      * @return String, the input string with the first word (everything up to the first space) removed
      */
-    private String cutFirstWord(String s) {
+    private static String cutFirstWord(String s) {
         return s.substring(s.indexOf(" ") + 1);
     }
 }

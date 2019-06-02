@@ -70,10 +70,13 @@ public class LevelScreen extends GameScreen{
         };
 
         // TODO There is probably a better way to do this just saying
-        kevin = new Player(10,100,"magenta",kevinAbilities);
+        //kevin = new Player(10,100,"magenta",kevinAbilities);
+        kevin = GameIO.generatePlayer("players/kevin.txt");
         //allen = new Player(10,"allen",new AOEAbility("heal",2,0,0,1,1,-2.0,false, true));
-        allen = new Player(10,100,"yellow",allenAbilities);
-        bryan = new Player(10,100,"cyan",bryanAbilities);
+        //allen = new Player(10,100,"yellow",allenAbilities);
+        allen = GameIO.generatePlayer("players/allen.txt");
+        //bryan = new Player(10,100,"cyan",bryanAbilities);
+        bryan = GameIO.generatePlayer("players/bryan.txt");
 
         ack = new Enemy(10, "ack",ackAbilities);
         bck = new Enemy(10, "bck",bckAbilities);
