@@ -24,6 +24,7 @@ public class GameManager {
 
     public GameManager() {
         window = new JFrame();
+        io = new GameIO();
 
         //Default window values
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
