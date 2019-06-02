@@ -8,13 +8,14 @@ abstract public class OverworldEntity {
     private double yVelocity;
     private Rectangle boundingBox;
     private String direction;
+    private int size = 50;
 
     public OverworldEntity(int x, int y){
         this.x = x;
         this.y = y;
         this.xVelocity = 0;
         this.yVelocity = 0;
-        this.boundingBox = new Rectangle(x,y,50,50); //modify size as we decide on graphics
+        this.boundingBox = new Rectangle(x,y,size,size); //modify size as we decide on graphics
         direction = "down";
     }
 

@@ -18,7 +18,7 @@ public class MapScreen extends GameScreen {
         super(game);
         clock = new Clock();
         framerate = new FrameRate();
-        map = new MovingMap(getIO(), mapPath,walkabilityKey);
+        map = new RoomMap(getIO(), mapPath,walkabilityKey);
         player = new OverworldPlayer(200,200);
         npc = new OverworldNPC(300,300, "Hey!");
         length = map.getMap().length;
@@ -33,11 +33,11 @@ public class MapScreen extends GameScreen {
         setBackground(Color.BLACK);
         checkCollisions();
         map.draw(g, player);
-        player.move(clock.getElapsedTime());
+        //player.move(clock.getElapsedTime());
         player.draw(g, map);
         npc.draw(g, map, player);
         repaint();
-        //System.out.println(player.getX() + " " + player.getY());
+        System.out.println(player.getX() + " " + player.getY());
     }
 
     public void keyPressed(KeyEvent e) {
@@ -72,9 +72,9 @@ public class MapScreen extends GameScreen {
     }
 
     private void checkCollisions() {
-        //if (player.collisionWindow().intersects(npc.collisionWindow())) {
-        //    collide();
-        //}
+        if (player.collisionWindow().intersects(npc.collisionWindow())) {
+            collide(npc.collisionWindow());
+        }
         int playerXCenter = player.getX() + player.collisionWindow().width/2;
         int playerYCenter = player.getY() + player.collisionWindow().height/2;
         int centerTileX = playerXCenter/map.getTileSize();
@@ -83,24 +83,33 @@ public class MapScreen extends GameScreen {
             for (int j = centerTileY - 1; j < centerTileY + 2; j++) {
                 if (map.getMap()[i][j].isNotWalkable() &&
                         (map.getMap()[i][j].collisionWindow().intersects(player.collisionWindow()))) {
+                    //System.out.println("bam");
                     collide(map.getMap()[i][j]);
+                    break;
                 }
             }
         }
+        player.move(clock.getElapsedTime());
     }
 
-    private void collide(OverworldTile tile) {
+    private void collide(Object object) {
+        if (object instanceof OverworldNPC) {
+            if (player.getDirection().equals("down")) {
+                player.setY(((OverworldNPC)object).getY() - player.getSize());
+            } else if (player.getDirection().equals("up")) {
+                player.setY(((OverworldNPC)object).getY() + ((OverworldNPC)object).getSize());
+            } else if (player.getDirection().equals("right")) {
+                player.setX(((OverworldNPC)object).getX() - player.getSize());
+            } else if (player.getDirection().equals("left")) {
+                player.setX(((OverworldNPC)object).getX() + ((OverworldNPC)object).getSize());
+            }
+        } else {
+            if (player.getDirection().equals("down")) {
+                player.setY((int) (((OverworldTile)object).getY() - player.getXVelocity() * clock.getElapsedTime() * 100));
+            }
+        }
         player.setXVelocity(0);
         player.setYVelocity(0);
-        if (player.getDirection().equals("down")) {
-            player.setY(tile.getY() - map.getTileSize());
-        } else if (player.getDirection().equals("up")) {
-            player.setY(tile.getY() + map.getTileSize());
-        } else if (player.getDirection().equals("right")) {
-            player.setX(tile.getX() - map.getTileSize());
-        } else if (player.getDirection().equals("left")) {
-            player.setX(tile.getX() + map.getTileSize());
-        }
     }
 
     private void checkInteractions(Rectangle playerBounds) {
