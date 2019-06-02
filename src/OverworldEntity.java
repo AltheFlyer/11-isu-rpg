@@ -46,13 +46,11 @@ abstract public class OverworldEntity {
         this.xVelocity = xVelocity;
     }
 
-    public void setYVelocity(double yVelocity) {
-        this.yVelocity = yVelocity;
-    }
+    public void setYVelocity(double yVelocity) { this.yVelocity = yVelocity; }
 
-    public void move() {
-        this.setX(this.getX() + (int)this.getXVelocity());
-        this.setY(this.getY() + (int)this.getYVelocity());
+    public void move(double elapsedTime) {
+        this.x = (int) (this.x + this.getXVelocity() * elapsedTime * 100);
+        this.y = (int) (this.y + this.getYVelocity() * elapsedTime * 100);
         this.setBoundingBox(this.getX(),this.getY());
     }
 

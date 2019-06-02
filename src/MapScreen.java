@@ -6,6 +6,8 @@ import java.awt.event.KeyEvent;
 
 public class MapScreen extends GameScreen {
 
+    public Clock clock;
+    private FrameRate framerate;
     private OverworldMap map;
     private OverworldPlayer player;
     private OverworldNPC npc;
@@ -14,6 +16,8 @@ public class MapScreen extends GameScreen {
 
     public MapScreen(GameManager game, String mapPath, String walkabilityKey) {
         super(game);
+        clock = new Clock();
+        framerate = new FrameRate();
         map = new MovingMap(getIO(), mapPath,walkabilityKey);
         player = new OverworldPlayer(200,200);
         npc = new OverworldNPC(300,300, "Hey!");
@@ -24,10 +28,12 @@ public class MapScreen extends GameScreen {
     public void paintComponent(Graphics g) {
         //private TextDrawer textDrawer = new TextDrawer(npc.getMessage(), )
         super.paintComponent(g);
+        clock.update();
+        framerate.update();
         setBackground(Color.BLACK);
         checkCollisions();
         map.draw(g, player);
-        player.move();
+        player.move(clock.getElapsedTime());
         player.draw(g, map);
         npc.draw(g, map, player);
         repaint();
