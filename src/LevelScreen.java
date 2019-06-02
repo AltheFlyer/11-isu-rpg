@@ -69,14 +69,19 @@ public class LevelScreen extends GameScreen{
                 new SingleAbility("healSelf","A basic self heal",0,0,0,0,1,-3,false, true)
         };
 
+        //TESTING GAME IO
+        //Generates array of players to be place on the grid
+        players = GameIO.getBattleLayout();
+
+
         // TODO There is probably a better way to do this just saying
         //kevin = new Player(10,100,"magenta",kevinAbilities);
-        kevin = GameIO.generatePlayer("players/kevin.txt");
+        kevin = players[0];//GameIO.generatePlayer("players/kevin.txt");
         //allen = new Player(10,"allen",new AOEAbility("heal",2,0,0,1,1,-2.0,false, true));
         //allen = new Player(10,100,"yellow",allenAbilities);
-        allen = GameIO.generatePlayer("players/allen.txt");
+        allen = players[1];//GameIO.generatePlayer("players/allen.txt");
         //bryan = new Player(10,100,"cyan",bryanAbilities);
-        bryan = GameIO.generatePlayer("players/bryan.txt");
+        bryan = players[2];//GameIO.generatePlayer("players/bryan.txt");
 
         ack = new Enemy(10, "ack",ackAbilities);
         bck = new Enemy(10, "bck",bckAbilities);
@@ -84,19 +89,27 @@ public class LevelScreen extends GameScreen{
 
         //Add things onto the map
         //i is x, j is y
+        /*
         jointMap.addEntity(1,2,kevin);
         jointMap.addEntity(0,0,bryan);
         jointMap.addEntity(2,1,allen);
+         */
+
+        //Adds players onto map
+        for (int i = 0; i < players.length; ++i) {
+            jointMap.addEntity(players[i].getXGrid(), players[i].getYGrid(), players[i]);
+        }
+
         jointMap.addEntity(4,2,ack);
         jointMap.addEntity(3,1,bck);
         jointMap.addEntity(4,0,cck);
 
         jointMap.addEntity(5, 0, new TutorialEnemy());
 
-        players = new Player[3];
-        players[0] = kevin;
-        players[1] = allen;
-        players[2] = bryan;
+        //players = new Player[3];
+        //players[0] = kevin;
+        //players[1] = allen;
+        //players[2] = bryan;
 
         allen.statuses.add(new CursedStatus(allen, 1));
     }

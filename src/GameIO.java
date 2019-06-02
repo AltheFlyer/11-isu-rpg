@@ -280,7 +280,7 @@ public class GameIO {
     /**
      * [getBattleLayout]
      * Gets the saved character layout on a 3x3 grid for battles from a file.
-     * @return String[][] the 3x3 arrangement of characters
+     * @return Player[] the list of players, including their positions
      */
     public static Player[] getBattleLayout() {
         String text = readFile("battle_layout.txt");
@@ -296,6 +296,8 @@ public class GameIO {
                 String tileData = row[i];
                 if (!tileData.equals("*")) {
                     layout[playerNumber] = generatePlayer("players/" + tileData + ".txt");
+                    layout[playerNumber].setXGrid(i);
+                    layout[playerNumber].setYGrid(j);
                     playerNumber++;
                 }
             }
@@ -329,55 +331,6 @@ public class GameIO {
     //Player file reading
 
     /**
-     * [getPlayer]
-     * gets player data from a specified file
-     * THIS METHOD IS NOT COMPLETE, WILL BE UPDATED WHEN PLAYER CLASS IS COMPLETE
-     * @param path the file to read from, not including source folder
-     * @return String, the player data as a String **NOTE: THIS WILL CHANGE SOON**
-     */
-    public String getPlayer(String path) {
-        String allText = readFile(path);
-        String[] lines = allText.split("\n");
-
-        //Name line
-        String fullName = cutFirstWord(lines[0]);
-        //Health
-        int maxHealth = Integer.parseInt(cutFirstWord(lines[1]));
-        //Energy
-        int baseEnergy = Integer.parseInt(cutFirstWord(lines[2]));
-        //Attack
-        int baseAttack = Integer.parseInt(cutFirstWord(lines[3]));
-        //Defense
-        int baseDefense = Integer.parseInt(cutFirstWord(lines[4]));
-
-        //Line 5 is for human readability
-        int numEquips = 3;
-        int lineNumber = 6;
-
-        String[] equips = new String[numEquips];
-
-        for (int i = 0; i < numEquips; ++i) {
-            equips[i] = cutFirstWord(lines[lineNumber]);
-            lineNumber++;
-        }
-
-        //Line 9 is for human readability and parsing
-        lineNumber = 9;
-        int numAbilities = Integer.parseInt(cutFirstWord(lines[lineNumber]));
-        lineNumber++;
-
-        String[] abilities = new String[numAbilities];
-        for (int i = 0; i < numAbilities; ++i) {
-            abilities[i] = lines[lineNumber];
-            lineNumber++;
-        }
-
-        System.out.println();
-
-        return "";
-    }
-
-    /**
      * [generatePlayer]
      * generates a player character from a file
      * @param path the player file to read from
@@ -404,23 +357,42 @@ public class GameIO {
         return new Player(health, energy, name, abilities);
     }
 
+    /**
+     * [generateAbility]
+     * generates an ability based on a string defining its type, and the valid parameters
+     * @param line the string that contains the ability type and arguments
+     * @return Ability, an ability defined by a type, and a set of arguments
+     * @throws ArrayIndexOutOfBoundsException when the list of args for a given ability is less than expected
+     */
     private static Ability generateAbility(String line) throws ArrayIndexOutOfBoundsException {
-        //Get the index of the next space
-        int spaceIndex = line.indexOf(" ");
+        //Get the index of the next space or string 'breaker'
+        int breakIndex = line.indexOf(" ");
 
         //First word is ability type
-        String abilityType = line.substring(0, spaceIndex);
+        String abilityType = line.substring(0, breakIndex);
+
+        //Skip the space and quote = 2 characters to skip from the original space index
+        breakIndex += 2;
 
         //Parse quoted text since it has spaces
-        //Skip the space and quote = 2 characters to skip from the original space index
-        String name = line.substring(spaceIndex + 2, line.indexOf("\"", spaceIndex + 2));
-        line = line.substring(line.indexOf("\"", spaceIndex + 2) + 1);
+        String name = line.substring(breakIndex, line.indexOf("\"", breakIndex));
+        //Skip quote, space, and then next quote = 3 spaces
+        line = line.substring(line.indexOf("\"", breakIndex) + 3);
 
         //Same as before, one other set of quoted text to parse
-        String desc = line.substring(2, line.indexOf("\"", 2));
-        line = line.substring(line.indexOf("\"", 2) + 2);
+        //We skip the starting quote already
+        String desc = line.substring(0, line.indexOf("\""));
+        //Skip the quote and space to get to args = 2 spaces
+        line = line.substring(line.indexOf("\"") + 2);
 
+        //Split the rest into args, hope that the length is equal to the amount required
         String[] args = line.split(" ");
+
+        System.out.print(name + " " + desc + "\n");
+        for (String s: args) {
+            System.out.print(s + " ");
+        }
+        System.out.println();
 
         //I hate myself so much
         switch (abilityType) {
