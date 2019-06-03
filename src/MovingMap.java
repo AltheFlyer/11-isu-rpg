@@ -10,6 +10,14 @@ public class MovingMap extends OverworldMap{
         super(fileManager, mapPath,walkabilityKey);
     }
 
+    @Override
+/**
+ * [draw]
+ * draws the moving map by tile around the player
+ * @param g
+ * @param player
+ * @return void
+ */
     public void draw(Graphics g, OverworldPlayer player){
         int leftmostVisible = player.getX() - (visibleWidth / 2);
         int leftmostTile = leftmostVisible / tileSize;
