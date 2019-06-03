@@ -1,5 +1,12 @@
 import java.awt.*;
 
+/**
+ * [FrameRate.java]
+ * Abstract class for any entity on any overworld map
+ * @version 1.1
+ * @author Jasmine Chu & Ethan Kwan
+ * @since May 22, 2019
+ */
 abstract public class OverworldEntity {
 
     private int x;
@@ -19,18 +26,38 @@ abstract public class OverworldEntity {
         direction = "down";
     }
 
+    /**
+     * [getX]
+     * returns the entity's x coordinate on the map
+     * @return int x the entity's x coordinate on the map
+     */
     public int getX() {
         return this.x;
     }
 
+    /**
+     * [getY]
+     * returns the entity's y coordinate on the map
+     * @return int x the entity's x coordinate on the map
+     */
     public int getY() {
         return this.y;
     }
 
+    /**
+     * [setX]
+     * @param newX the entity's new x coordinate on the map
+     * @return void
+     */
     public void setX(int newX) {
         this.x = newX;
     }
 
+    /**
+     * [setX]
+     * @param newY the entity's new y coordinate on the map
+     * @return void
+     */
     public void setY(int newY) {
         this.y = newY;
     }

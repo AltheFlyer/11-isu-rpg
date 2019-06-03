@@ -1,5 +1,12 @@
 import java.awt.*;
 
+/**
+ * [FrameRate.java]
+ * Class for NPCs on any overworld map
+ * @version 1.1
+ * @author Jasmine Chu & Ethan Kwan
+ * @since May 22, 2019
+ */
 public class OverworldNPC extends OverworldEntity {
 
     private String message;

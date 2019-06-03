@@ -1,5 +1,12 @@
 import java.awt.*;
 
+/**
+ * [RoomMap.java]
+ * Class for still room maps
+ * @version 1.1
+ * @author Jasmine Chu & Ethan Kwan
+ * @since May 23, 2019
+ */
 public class RoomMap extends OverworldMap{
 
     private int tileSize = 100;

@@ -1,5 +1,12 @@
 import java.awt.*;
 
+/**
+ * [FrameRate.java]
+ * Class for moving maps that move around the player
+ * @version 1.1
+ * @author Jasmine Chu & Ethan Kwan
+ * @since May 24, 2019
+ */
 public class MovingMap extends OverworldMap{
 
     private int tileSize = 100;
