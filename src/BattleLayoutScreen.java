@@ -10,11 +10,16 @@ import java.awt.event.MouseEvent;
  */
 public class BattleLayoutScreen extends GameScreen {
 
-    String[] playerDebugNames;
+    String[] playerDebugNames = {"allen", "kevin", "bryan"};
+    Player[] playerList;
     Player[][] grid;
     Player selectedPlayer;
 
+    String status;
+
     Rectangle gridSpace;
+    Rectangle playerListSpace;
+
     Rectangle resetButton;
     Rectangle saveButton;
 
@@ -22,8 +27,6 @@ public class BattleLayoutScreen extends GameScreen {
         super(game);
 
         Player[] currentLoadout = GameIO.getBattleLayout();
-
-        gridSpace = new Rectangle(323, 108, 121 * 3, 121 * 3);
 
         grid = new Player[3][3];
         for (int j = 0; j < 3; ++j) {
@@ -37,8 +40,19 @@ public class BattleLayoutScreen extends GameScreen {
             grid[p.getXGrid()][p.getYGrid()] = p;
         }
 
+        playerList = new Player[playerDebugNames.length];
+
+        for (int i = 0; i < playerDebugNames.length; ++i) {
+            playerList[i] = GameIO.generatePlayer(playerDebugNames[i]);
+        }
+
+        gridSpace = new Rectangle(323, 108, 121 * 3, 121 * 3);
+        playerListSpace = new Rectangle(1069, 108, 121, 121 * playerDebugNames.length);
+
         resetButton = new Rectangle(323, 500, 121 * 3, 60);
         saveButton = new Rectangle(323, 570, 121 * 3, 60);
+
+        status = "Drag the players to place them on the grid.";
     }
 
     @Override
@@ -51,7 +65,7 @@ public class BattleLayoutScreen extends GameScreen {
                 if (grid[i][j] != null) {
                     grid[i][j].draw(323 + 121 * i, 108 + 121 * j, g, false);
                     g.setColor(Color.BLACK);
-                    g.drawString(grid[i][j].getName(), 323 + 121 * i, 108 + 121 * j + 20);
+                    g.drawString(grid[i][j].getName(), 323 + 121 * i + 10, 108 + 121 * j + 20);
                 }
             }
         }
@@ -59,7 +73,7 @@ public class BattleLayoutScreen extends GameScreen {
         //Draw the selected player if they are currently being dragged
         if (selectedPlayer != null) {
             selectedPlayer.draw(getMouseX(), getMouseY(), g, false);
-            g.drawString(selectedPlayer.getName(), getMouseX(), getMouseY() + 20);
+            g.drawString(selectedPlayer.getName(), getMouseX() + 10, getMouseY() + 20);
         }
 
         //Draw reset button
@@ -84,6 +98,35 @@ public class BattleLayoutScreen extends GameScreen {
         g.setColor(Color.BLACK);
         g.drawString("Save Loadout", saveButton.x + 20, saveButton.y + 20);
 
+        //Draw the abilities of the profile of the player who is selected
+        if (selectedPlayer != null) {
+            selectedPlayer.drawAbilities(g, null);
+
+            for (int i = 0; i < selectedPlayer.totalAbilities(); ++i) {
+                if (isMouseOver(new Rectangle(30, 15+105*i, 263, 100))) {
+                    g.setColor(new Color(0, 0, 0, 100));
+                    g.fillRect(30, 15+105*i, 263, 100);
+                    //Will make it easier to see which tiles can be targetable
+                    /*
+                    if (selectedAbility == null) {
+                        jointMap.unIndicateAll();
+                        jointMap.unTargetableAll();
+                        selectedPlayer.getAbility(i).indicateValidTiles(jointMap);
+                    }
+
+                     */
+                }
+            }
+        }
+
+        //Draw status message
+        g.setColor(Color.BLACK);
+        g.drawString(status, 600, 100);
+
+        for (int i = 0; i < playerDebugNames.length; ++i) {
+            g.drawRect(1069, 108 + i * 121, 120, 120);
+            g.drawString(playerList[i].getName() ,1069 + 10, 108 + i * 121 + 20);
+        }
 
         repaint();
     }
@@ -103,6 +146,13 @@ public class BattleLayoutScreen extends GameScreen {
             selectedPlayer = grid[gridX][gridY];
             grid[gridX][gridY] = null;
         }
+
+        //Drag players from main player list
+        if (isMouseOver(playerListSpace)) {
+            int index = (getMouseY() - playerListSpace.y) / 121;
+
+            selectedPlayer = playerList[index];
+        }
     }
 
     @Override
@@ -118,9 +168,11 @@ public class BattleLayoutScreen extends GameScreen {
 
             grid[gridX][gridY] = selectedPlayer;
             selectedPlayer = null;
+        } else if (selectedPlayer != null){
+            selectedPlayer = null;
         }
 
-        ////Reset loadout button
+        //Reset loadout button
         if (isFullyClicked(resetButton)) {
             Player[] currentLoadout = GameIO.getBattleLayout();
 
@@ -139,7 +191,21 @@ public class BattleLayoutScreen extends GameScreen {
 
         //Save layout button
         if (isFullyClicked(saveButton)) {
-            GameIO.setBattleLayout(grid);
+            //Do a count to make sure there is a sane number of players
+            int numPlayers = 0;
+            for (int y = 0; y < 3; ++y) {
+                for (int x = 0; x < 3; ++x) {
+                    if (grid[x][y] != null) {
+                        numPlayers++;
+                    }
+                }
+            }
+            if (numPlayers == 3) {
+                GameIO.setBattleLayout(grid);
+                status = "Loadout saved.";
+            } else {
+                status = "You need 3 players to save a loadout!";
+            }
         }
     }
 }
