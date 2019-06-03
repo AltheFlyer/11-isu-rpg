@@ -4,6 +4,13 @@ import java.awt.*;
 import java.awt.event.KeyListener;
 import java.awt.event.KeyEvent;
 
+/**
+ * [MapScreen.java]
+ * Class for overworld map screen
+ * @version 1.1
+ * @author Jasmine Chu & Ethan Kwan
+ * @since May 22, 2019
+ */
 public class MapScreen extends GameScreen {
 
     public Clock clock;
@@ -36,6 +43,7 @@ public class MapScreen extends GameScreen {
         //player.move(clock.getElapsedTime());
         player.draw(g, map);
         npc.draw(g, map, player);
+        framerate.draw(g, 10, 10);
         repaint();
         System.out.println(player.getX() + " " + player.getY());
     }
