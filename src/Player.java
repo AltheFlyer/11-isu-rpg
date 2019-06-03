@@ -6,11 +6,22 @@ public class Player extends Entity{
 
     Icon ico;
 
+    private String debugName;
+
     Player(double health, double energy, String name, Ability[] abilities){
         super(health,energy,name,abilities);
         for (int i = 0; i < abilities.length; i++){
             abilities[i].setEntitySource(this);
         }
+        ico = new Icon(new Rectangle(0, 0, 40, 40), "assets/icons/test.png");
+    }
+
+    Player(double health, double energy, String debugName, String name, Ability[] abilities){
+        super(health,energy,name,abilities);
+        for (int i = 0; i < abilities.length; i++){
+            abilities[i].setEntitySource(this);
+        }
+        this.debugName = debugName;
         ico = new Icon(new Rectangle(0, 0, 40, 40), "assets/icons/test.png");
     }
 
@@ -142,5 +153,13 @@ public class Player extends Entity{
         g.drawRect(100, 45+105*abilities.length,190, 12);
         g.drawString(getEnergy() + "/" + getMaxEnergy(), 130, 56+105*abilities.length);
 
+    }
+
+    /**
+     * [getDebugName]
+     * Gets the player's debug name (the name used to load from files)
+     */
+    public String getDebugName() {
+        return debugName;
     }
 }

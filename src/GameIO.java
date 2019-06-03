@@ -11,7 +11,7 @@ import java.util.HashMap;
  * [GameIO.java]
  * class that manages IO with text files for progression and saved data
  * TODO Change BattleLayouts to use a 2D Player array
- * @version 1.0
+ * @version 1.4
  * @author Allen Liu
  * @since May 23, 2019
  */
@@ -295,7 +295,7 @@ public class GameIO {
             for (int i = 0; i < 3; ++i) {
                 String tileData = row[i];
                 if (!tileData.equals("*")) {
-                    layout[playerNumber] = generatePlayer("players/" + tileData + ".txt");
+                    layout[playerNumber] = generatePlayer(tileData);
                     layout[playerNumber].setXGrid(i);
                     layout[playerNumber].setYGrid(j);
                     playerNumber++;
@@ -308,36 +308,43 @@ public class GameIO {
 
     /**
      * [setBattleLayout]
-     * Saves a 3x3 battle layout for later use. The grid is expected to have only 3 characters.
+     * Saves a 3x3 battle layout for later use. The grid is expected to have only 3 characters but this is not strictly enforced.
      * @param grid the 3x3 grid of players to save
      */
-    public void setBattleLayout(String[][] grid) {
+    public static void setBattleLayout(Player[][] grid) {
         String toWrite = "";
         for (int y = 0; y < 3; ++y) {
             for (int x = 0; x < 3; ++x) {
-                toWrite += grid[x][y];
-                if (x != 2) {
+                if (grid[x][y] != null) {
+                    toWrite += grid[x][y].getDebugName();
+                } else {
+                    toWrite += "*";
+                }
+                //Avoid trailing whitespace
+                if (x < 2) {
                     toWrite += " ";
                 }
             }
-            toWrite += "\n";
+            //Avoid trailing newline
+            if (y < 2) {
+                toWrite += "\n";
+            }
         }
 
         writeFile("battle_layout.txt", toWrite);
         System.out.println(toWrite);
     }
 
-
     //Player file reading
 
     /**
      * [generatePlayer]
      * generates a player character from a file
-     * @param path the player file to read from
+     * @param debugName the debug name of the player to generate, should be equivalent to the player file name minus extension
      * @return Player, the player with attributes specified by the provided file
      */
-    public static Player generatePlayer(String path) {
-        String allText = readFile(path);
+    public static Player generatePlayer(String debugName) {
+        String allText = readFile("players/" + debugName+ ".txt");
         String[] lines = allText.split("\n");
 
         String name = cutFirstWord(lines[0]);
@@ -354,7 +361,7 @@ public class GameIO {
             abilities[i] = generateAbility(lines[lineNumber + i]);
         }
 
-        return new Player(health, energy, name, abilities);
+        return new Player(health, energy, debugName, name, abilities);
     }
 
     /**

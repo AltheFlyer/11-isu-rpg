@@ -4,6 +4,8 @@ public class Main {
         GameManager game = new GameManager();
 
         //game.setScreen(new DebugScreen(game));
-        game.setScreen(new LevelScreen(game));
+        //game.setScreen(new LevelScreen(game));
+
+        game.setScreen(new BattleLayoutScreen(game));
     }
 }

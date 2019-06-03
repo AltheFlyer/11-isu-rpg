@@ -69,9 +69,20 @@ public class Icon {
     /**
      * [Icon]
      * generates an icon using only an image, making the bounding box identical to the image's specified width and height
-     * @param path
+     * @param path the file path to use
      */
     public Icon(String path) {
+        this(path, "", "");
+    }
+
+    /**
+     * [Icon]
+     * generates an icon using only an image, making the bounding box identical to the image's specified width and height
+     * @param path the file path to use
+     * @param name the display name of the icon
+     * @param desc the descriptive text for the icon
+     */
+    public Icon(String path, String name, String desc) {
         try {
             this.sprite = ImageIO.read(new File(path));
         } catch (IOException e) {
@@ -86,8 +97,8 @@ public class Icon {
         graphicsWidth = boundingBox.width;
         graphicsHeight = boundingBox.height;
 
-        this.name = "";
-        this.description = "";
+        this.name = name;
+        this.description = desc;
     }
 
     /**

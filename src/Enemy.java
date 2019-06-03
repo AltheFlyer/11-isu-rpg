@@ -2,7 +2,7 @@ import utils.TextDrawer;
 
 import java.awt.*;
 
-public class Enemy extends Entity{
+abstract public class Enemy extends Entity{
 
     private Icon intent;
     private Ability decide;
@@ -12,6 +12,7 @@ public class Enemy extends Entity{
         for (int i = 0; i < abilities.length; i++){
             abilities[i].setEntitySource(this);
         }
+        //TODO generate first turn intent somewhere else
         //The first ability is always the one that will be decided to be used first
         decide = abilities[0];
         intent = new Icon(new Rectangle(0, 0, 40, 40), "assets/icons/test.png");
@@ -83,23 +84,7 @@ public class Enemy extends Entity{
      * contrary to the method name, this doesn't cause enemies to decide an immediate move, rather it
      * generates a next move (Ability and intent) - that the player can then react to (should be overriden).
      */
-    public void decide(JointMap map) {
-        //For testing/theory purposes only...
-        if (this.getHealth() < this.getMaxHealth() / 2) {
-            //A heal on itself
-            intent = new Icon("assets/icons/medic.png");
-            intent.setName("Medic");
-            intent.setDescription("This enemy intends to restore health to itself.");
-            //I don't know if there are multiple attacks yet so...
-            decide = abilities[1];
-        } else {
-            intent = new Icon("assets/icons/sword.png");
-            intent.setName("Attack");
-            intent.setDescription("A basic attack that will deal damage to a player.");
-            decide = abilities[0];
-        }
-
-    }
+    abstract public void decide(JointMap map);
 
     public void setIntent(Icon icon) {
         this.intent = icon;

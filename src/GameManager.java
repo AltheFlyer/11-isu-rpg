@@ -32,7 +32,7 @@ public class GameManager {
         window.setSize(1366, 768);
         window.setVisible(true);
 
-        setScreen(new DebugScreen(this));
+        setScreen(new LevelScreen(this));
         //Filler Panel
         //TODO change to whatever the start screen should be
     }
@@ -55,7 +55,9 @@ public class GameManager {
         window.revalidate();
         screen.setVisible(true);
 
+        //Prepare the window
         screen.requestFocusInWindow();
+        screen.repaint();
     }
 
     /**

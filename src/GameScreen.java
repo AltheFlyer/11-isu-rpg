@@ -80,6 +80,15 @@ abstract public class GameScreen extends JPanel
     }
 
     /**
+     * [getGame]
+     * gets the currently running GameManager
+     * @return GameManager, the currently running manager for the game
+     */
+    public GameManager getGame() {
+        return game;
+    }
+
+    /**
      * [getIO]
      * gets the current game's file i/o manager
      * @return GameIO, the currently running io manager

@@ -83,9 +83,9 @@ public class LevelScreen extends GameScreen{
         //bryan = new Player(10,100,"cyan",bryanAbilities);
         bryan = players[2];//GameIO.generatePlayer("players/bryan.txt");
 
-        ack = new Enemy(10, "ack",ackAbilities);
-        bck = new Enemy(10, "bck",bckAbilities);
-        cck = new Enemy(10, "cck",cckAbilities);
+        ack = new TestEnemy();//10, "ack",ackAbilities);
+        bck = new TestEnemy();//10, "bck",bckAbilities);
+        cck = new TestEnemy();//10, "cck",cckAbilities);
 
         //Add things onto the map
         //i is x, j is y
