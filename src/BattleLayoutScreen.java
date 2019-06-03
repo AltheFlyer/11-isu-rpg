@@ -10,7 +10,7 @@ import java.awt.event.MouseEvent;
  */
 public class BattleLayoutScreen extends GameScreen {
 
-    String[] playerDebugNames = {"allen", "kevin", "bryan"};
+    String[] playerDebugNames = {"allen", "kevin", "bryan", "jasmine", "ethan"};
     Player[] playerList;
     Player[][] grid;
     Player selectedPlayer;
@@ -141,17 +141,15 @@ public class BattleLayoutScreen extends GameScreen {
         g.setColor(Color.BLACK);
         g.drawString("To Battle", continueButton.x + 20, continueButton.y + 20);
 
-        repaint();
-
         if (isMouseOver(gridSpace)) {
             //Get grid x and y
             int gridX = (getMouseX() - gridSpace.x) / 121;
             int gridY = (getMouseY() - gridSpace.y) / 121;
             if (grid[gridX][gridY] != null) {
                 grid[gridX][gridY].drawSelectAbilities(g);
-                selectedPlayer = null;
             }
         }
+        repaint();
     }
 
     //Player dragging!
@@ -166,6 +164,7 @@ public class BattleLayoutScreen extends GameScreen {
             int gridX = (getMouseX() - gridSpace.x) / 121;
             int gridY = (getMouseY() - gridSpace.y) / 121;
 
+            //'grabs' the player from the tile space
             selectedPlayer = grid[gridX][gridY];
             grid[gridX][gridY] = null;
         }
@@ -189,8 +188,19 @@ public class BattleLayoutScreen extends GameScreen {
             int gridX = (getMouseX() - gridSpace.x) / 121;
             int gridY = (getMouseY() - gridSpace.y) / 121;
 
-            grid[gridX][gridY] = selectedPlayer;
-            selectedPlayer = null;
+            //Check if there are already 3 players
+            if ((!isPlayerInGrid(selectedPlayer) && (getNumPlayersInGrid() < 3))) {
+                //'drop' player into grid tile
+                grid[gridX][gridY] = selectedPlayer;
+                selectedPlayer = null;
+            } else if ((!isPlayerInGrid(selectedPlayer) && grid[gridX][gridY] != null)) {
+                //Special case if the player would be dropped to replace a another
+                grid[gridX][gridY] = selectedPlayer;
+                selectedPlayer = null;
+            } else {
+                status = "That player is already on the grid!";
+                selectedPlayer = null;
+            }
         } else if (selectedPlayer != null){
             selectedPlayer = null;
         }
@@ -210,19 +220,11 @@ public class BattleLayoutScreen extends GameScreen {
             }
         }
 
-
         //Save layout button
         if (isFullyClicked(saveButton)) {
             //Do a count to make sure there is a sane number of players
-            int numPlayers = 0;
-            for (int y = 0; y < 3; ++y) {
-                for (int x = 0; x < 3; ++x) {
-                    if (grid[x][y] != null) {
-                        numPlayers++;
-                    }
-                }
-            }
-            if (numPlayers == 3) {
+
+            if (getNumPlayersInGrid() == 3) {
                 GameIO.setBattleLayout(grid);
                 status = "Loadout saved.";
             } else {
@@ -234,5 +236,39 @@ public class BattleLayoutScreen extends GameScreen {
             //This piece of code to transition to levelScreen is completely experimental
             getGame().setScreen(new LevelScreen(getGame()));
         }
+    }
+
+    /**
+     * [isPlayerInGrid]
+     * checks if a player is in the battle loadout grid
+     * @return boolean, whether the specified player is in the loadout grid
+     */
+    private boolean isPlayerInGrid(Player p) {
+        for (int y = 0; y < 3; ++y) {
+            for (int x = 0; x < 3; ++x) {
+                //In theory, both players should be equal, but since one has a position, two 'identical' people
+                //woyuld be considered unequal
+                if (grid[x][y] != null && grid[x][y].getDebugName().equals(p.getDebugName())) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    /**
+     * [getNumPlayersInGrid]
+     * @return int, the number of players in the current loadout
+     */
+    private int getNumPlayersInGrid() {
+        int numPlayers = 0;
+        for (int y = 0; y < 3; ++y) {
+            for (int x = 0; x < 3; ++x) {
+                if (grid[x][y] != null) {
+                    numPlayers++;
+                }
+            }
+        }
+        return numPlayers;
     }
 }
