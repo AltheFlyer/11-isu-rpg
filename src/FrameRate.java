@@ -50,6 +50,7 @@ class FrameRate {
      * @return void
      */
     public void draw(Graphics g, int x, int y) {
+        g.setColor(Color.RED);
         g.drawString(frameRate,x,y); //display the frameRate
     }
 
