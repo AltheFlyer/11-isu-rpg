@@ -1,6 +1,14 @@
 import javax.swing.*;
 import java.awt.*;
 
+
+/**
+ * [FrameRate.java]
+ * Class for framerate
+ * @version 1.1
+ * @author Jasmine Chu & Ethan Kwan
+ * @since May 31, 2019
+ */
 class FrameRate {
 
     String frameRate; //to display the frame rate to the screen
@@ -14,6 +22,11 @@ class FrameRate {
         frameRate="0 fps";
     }
 
+    /**
+     * [update]
+     * calculates and updates the frameRate
+     * @return void
+     */
     public void update() {
         long currentTime = System.currentTimeMillis();  //get the current time
         deltaTime += currentTime - lastTimeCheck; //add to the elapsed time
@@ -28,6 +41,14 @@ class FrameRate {
         }
     }
 
+    /**
+     * [draw]
+     * draws the frameRate
+     * @param g
+     * @param x the x coordinate of the text to be drawn
+     * @param y the y coordinate of the text to be drawn
+     * @return void
+     */
     public void draw(Graphics g, int x, int y) {
         g.drawString(frameRate,x,y); //display the frameRate
     }

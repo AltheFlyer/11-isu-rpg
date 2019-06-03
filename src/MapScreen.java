@@ -32,6 +32,12 @@ public class MapScreen extends GameScreen {
         width = map.getMap()[0].length;
     }
 
+    /**
+     * [paintComponent]
+     * updates the screen
+     * @param g
+     * @return void
+     */
     public void paintComponent(Graphics g) {
         //private TextDrawer textDrawer = new TextDrawer(npc.getMessage(), )
         super.paintComponent(g);
@@ -48,6 +54,12 @@ public class MapScreen extends GameScreen {
         System.out.println(player.getX() + " " + player.getY());
     }
 
+    /**
+     * [keyPressed]
+     * checks if certain keys are pressed and changes player velocity accordingly
+     * @param e
+     * @return void
+     */
     public void keyPressed(KeyEvent e) {
         if(e.getKeyChar() == 'w') {
             player.setYVelocity(-5);
@@ -70,6 +82,12 @@ public class MapScreen extends GameScreen {
         }
     }
 
+    /**
+     * [keyReleased]
+     * checks if certain keys are released and changes player velocity accordingly
+     * @param e
+     * @return void
+     */
     public void keyReleased(KeyEvent e) {
         if((e.getKeyChar() == 'w') || (e.getKeyChar() == 's')) {
             player.setYVelocity(0);
