@@ -162,4 +162,55 @@ public class Player extends Entity{
     public String getDebugName() {
         return debugName;
     }
+
+    //Drawing out abilities on the selection screen
+    public void drawSelectAbilities(Graphics g){
+        //BACKGROUND
+        g.setColor(Color.LIGHT_GRAY);
+        g.fillRect(0,0,323,768);
+        g.setColor(Color.BLACK);
+        g.drawRect(0,0,323,768);
+
+        //Draw the player profile at the bottom so you know!
+        g.setColor(Color.MAGENTA);
+        g.fillRect(30,15+105*abilities.length,60,60);
+
+        //ABILITY ICONS
+        for (int i = 0; i < abilities.length; i++) {
+            //draw the abilities cyan if usable
+            if (abilities[i].getEnergyCost() > getEnergy() || abilities[i].getCurrentCooldown() > 0) {
+                g.setColor(new Color(255, 150, 200));
+            } else{
+                g.setColor(new Color(0, 200, 255));
+            }
+            g.fillRect(30, 15 + 105 * i, 263, 100);
+
+            //Cooldown bar!
+            g.setColor(new Color(0, 0, 0, 50));
+            if (abilities[i].getCurrentCooldown() > 0) {
+                g.fillRect(30, 15 + 105 * i, 264/abilities[i].getCooldown()*(abilities[i].getCurrentCooldown()), 100);
+            }
+
+            g.setColor(Color.BLACK);
+            //Drawing the name of the ability and a box around it
+            g.drawString(abilities[i].getName(), 40, 32+105*i);
+            g.drawRect(30,15+105*i,100,22);
+
+            //Drawing the energy cost of an ability and a box around it
+            g.drawString("Energy Cost: " + abilities[i].getEnergyCost(), 140, 32+105*i);
+            g.drawRect(130,15+105*i,163,22);
+
+            //Drawing the cooldown of an ability and a box around it
+            g.drawString("Cooldown: " + abilities[i].getCooldown(), 40, 54+105*i);
+            g.drawRect(30,37+105*i,100,22);
+
+            //Drawing the damage for an ability
+            g.drawString("Damage: " + abilities[i].getDamage(), 140, 54+105*i);
+            g.drawRect(130,37+105*i,163,22);
+
+            //Drawing the description
+            TextDrawer drawer = new TextDrawer(g,abilities[i].getDesc(), 40, 76+105*i,250);
+            drawer.drawText(g);
+        }
+    }
 }

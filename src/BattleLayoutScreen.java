@@ -22,6 +22,7 @@ public class BattleLayoutScreen extends GameScreen {
 
     Rectangle resetButton;
     Rectangle saveButton;
+    Rectangle continueButton;
 
     public BattleLayoutScreen(GameManager game) {
         super(game);
@@ -53,6 +54,7 @@ public class BattleLayoutScreen extends GameScreen {
         saveButton = new Rectangle(323, 570, 121 * 3, 60);
 
         status = "Drag the players to place them on the grid.";
+        continueButton = new Rectangle(323,640, 121*3, 60);
     }
 
     @Override
@@ -128,7 +130,28 @@ public class BattleLayoutScreen extends GameScreen {
             g.drawString(playerList[i].getName() ,1069 + 10, 108 + i * 121 + 20);
         }
 
+        //Draw continue button
+        if (isMouseOver(continueButton)) {
+            g.setColor(Color.GREEN);
+            g.fillRect(continueButton.x, continueButton.y, continueButton.width, continueButton.height);
+        } else {
+            g.setColor(Color.BLACK);
+            g.drawRect(continueButton.x, continueButton.y, continueButton.width, continueButton.height);
+        }
+        g.setColor(Color.BLACK);
+        g.drawString("To Battle", continueButton.x + 20, continueButton.y + 20);
+
         repaint();
+
+        if (isMouseOver(gridSpace)) {
+            //Get grid x and y
+            int gridX = (getMouseX() - gridSpace.x) / 121;
+            int gridY = (getMouseY() - gridSpace.y) / 121;
+            if (grid[gridX][gridY] != null) {
+                grid[gridX][gridY].drawSelectAbilities(g);
+                selectedPlayer = null;
+            }
+        }
     }
 
     //Player dragging!
@@ -175,7 +198,6 @@ public class BattleLayoutScreen extends GameScreen {
         //Reset loadout button
         if (isFullyClicked(resetButton)) {
             Player[] currentLoadout = GameIO.getBattleLayout();
-
             for (int j = 0; j < 3; ++j) {
                 for (int i = 0; i < 3; ++i) {
                     grid[i][j] = null;
@@ -206,6 +228,11 @@ public class BattleLayoutScreen extends GameScreen {
             } else {
                 status = "You need 3 players to save a loadout!";
             }
+        }
+
+        if (isFullyClicked(continueButton)) {
+            //This piece of code to transition to levelScreen is completely experimental
+            getGame().setScreen(new LevelScreen(getGame()));
         }
     }
 }
