@@ -28,7 +28,7 @@ class Clock {
     /**
      * [getElapsedTime]
      * gets the elapsed time between last time check and current time
-     * @return double elapsedTime/1.0E9, the elapsed time in seconds
+     * @return double elapsedTime/1.0E9, the elapsed time between the last time check and current time in seconds
      */
     public double getElapsedTime() {
         return elapsedTime/1.0E9;
