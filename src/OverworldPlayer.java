@@ -1,5 +1,12 @@
 import java.awt.*;
 
+/**
+ * [OverworldPlayer.java]
+ * Class for player on the overworld map
+ * @version 1.1
+ * @author Jasmine Chu & Ethan Kwan
+ * @since May 22, 2019
+ */
 public class OverworldPlayer extends OverworldEntity {
 
     public OverworldPlayer(int x, int y){
@@ -11,29 +18,9 @@ public class OverworldPlayer extends OverworldEntity {
         if (map instanceof RoomMap) {
             g.fillRect(this.getX(), this.getY(), 50, 50); //modify size
         } else {
-            g.fillRect(683 - 50, 384 - 50, 50, 50); //modify size
+            g.fillRect(683, 384, 50, 50); //modify size
         }
     }
-
-/*    public void moveUp() {
-        this.setY(this.getY() - 5);
-        this.setBoundingBox(this.getX(),this.getY());
-    }
-
-    public void moveDown() {
-        this.setY(this.getY() + 5);
-        this.setBoundingBox(this.getX(),this.getY());
-    }
-
-    public void moveLeft() {
-        this.setX(this.getX() - 5);
-        this.setBoundingBox(this.getX(),this.getY());
-    }
-
-    public void moveRight() {
-        this.setX(this.getX() + 5);
-        this.setBoundingBox(this.getX(),this.getY());
-    }*/
 
     public Rectangle interact() {
         Rectangle interactChecker;

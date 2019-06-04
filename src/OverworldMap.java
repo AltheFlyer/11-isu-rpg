@@ -1,5 +1,12 @@
 import java.awt.*;
 
+/**
+ * [OverworldMap.java]
+ * Abstract class for any overworld map
+ * @version 1.1
+ * @author Jasmine Chu & Ethan Kwan
+ * @since May 22, 2019
+ */
 abstract public class OverworldMap {
 
     private OverworldTile[][] map;
@@ -10,19 +17,7 @@ abstract public class OverworldMap {
         map = fileManager.getMap(mapPath, tileSize);
     }
 
-    public void draw(Graphics g, OverworldPlayer player){
-        for (int i = 0; i < map.length; i++){
-            for (int j = 0; j < map[0].length; j++){
-                if (map[i][j].isWalkable()){
-                    g.setColor(Color.LIGHT_GRAY);
-                    g.fillRect(i*tileSize,j*tileSize,tileSize,tileSize);
-                } else {
-                    g.setColor(Color.DARK_GRAY);
-                    g.fillRect(i*tileSize,j*tileSize,tileSize,tileSize);
-                }
-            }
-        }
-    }
+    public void draw(Graphics g, OverworldPlayer player){ }
 
     public OverworldTile[][] getMap(){
         return map;
