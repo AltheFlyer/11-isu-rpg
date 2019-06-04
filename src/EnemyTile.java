@@ -65,12 +65,10 @@ public class EnemyTile extends Tile{
      * [drawIcons]
      * draws icons for the enemy tile, used to show intents
      * @param g the graphics object to draw with
-     * @param mouseX the mouse x coordinate
-     * @param mouseY the mouse y coordinate
      */
     @Override
-    public void drawIcons(Graphics g, int mouseX, int mouseY) {
-        drawStatus(g, mouseX, mouseY);
+    public void drawIcons(Graphics g) {
+        drawStatus(g);
 
         int tileDimension = 120;
 
@@ -78,12 +76,17 @@ public class EnemyTile extends Tile{
             Icon intent = enemy.getIntent();
             intent.setPosition(getXGraphic() + (tileDimension / 2), getYGraphic() - (tileDimension / 3));
             intent.draw(g);
+        }
+    }
 
-            //If the mouse is hovering over the icon, draw text
+    public void drawIconText(Graphics g, int mouseX, int mouseY) {
+        super.drawIconText(g, mouseX, mouseY);
+
+        if (!isEmpty()) {
+            Icon intent = enemy.getIntent();
             if (intent.getBoundingBox().contains(mouseX, mouseY)) {
                 intent.drawText(g, 25, 0, 150);
             }
         }
-
     }
 }

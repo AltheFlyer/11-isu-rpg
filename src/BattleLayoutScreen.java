@@ -178,7 +178,7 @@ public class BattleLayoutScreen extends GameScreen {
         for (int y = 0; y < 3; ++y) {
             for (int x = 0; x < 3; ++x) {
                 //In theory, both players should be equal, but since one has a position, two 'identical' people
-                //woyuld be considered unequal
+                //would be considered unequal
                 if (grid[x][y] != null && grid[x][y].getDebugName().equals(p.getDebugName())) {
                     return true;
                 }
