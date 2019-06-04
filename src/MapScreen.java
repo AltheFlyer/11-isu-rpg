@@ -39,7 +39,7 @@ public class MapScreen extends GameScreen {
      * @return void
      */
     public void paintComponent(Graphics g) {
-        //private TextDrawer textDrawer = new TextDrawer(npc.getMessage(), )
+        //TextDrawer textDrawer = new TextDrawer(g,npc.getMessage(),500,100,500);
         super.paintComponent(g);
 
         //updating clock and frames
@@ -51,13 +51,15 @@ public class MapScreen extends GameScreen {
 
         //checking collisions with walls and NPCs
         checkWallCollisions();
-        //player.move(clock.getElapsedTime());
+        checkNPCCollisions();
 
         //drawing everything
         map.draw(g, player);
         player.draw(g, map);
         npc.draw(g, map, player);
         framerate.draw(g,10,10);
+
+
 
         //ask for repaint
         repaint();
@@ -124,7 +126,16 @@ public class MapScreen extends GameScreen {
                 }
             }
         }
-        player.move(clock.getElapsedTime());
+        if (playerNewBox.intersects(npc.collisionWindow())) {
+            player.setXVelocity(0);
+            player.setYVelocity(0);
+        } else {
+            player.move(clock.getElapsedTime());
+        }
+    }
+
+    private void checkNPCCollisions() {
+
     }
 
     private void checkInteractions(Rectangle playerBounds) {
