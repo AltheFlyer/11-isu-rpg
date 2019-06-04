@@ -31,7 +31,7 @@ class FrameRate {
         long currentTime = System.currentTimeMillis();  //get the current time
         deltaTime += currentTime - lastTimeCheck; //add to the elapsed time
         lastTimeCheck = currentTime; //update the last time var
-        if (frameCount < 200) {
+        if (frameCount < 100) {
             frameCount++; // every time this method is called it is a new frame
         }
         if (deltaTime>=1000) { //when a second has passed, update the string message
