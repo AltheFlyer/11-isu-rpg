@@ -1,7 +1,17 @@
-import javax.sound.sampled.*;
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.*;
+import javax.sound.sampled.Clip;
+
+import javax.swing.JPanel;
+
+import java.awt.Rectangle;
+
+import java.awt.event.MouseListener;
+import java.awt.event.KeyListener;
+import java.awt.event.MouseMotionListener;
+import java.awt.event.MouseWheelListener;
+
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseWheelEvent;
+import java.awt.event.KeyEvent;
 
 /**
  * [GameScreen.java]

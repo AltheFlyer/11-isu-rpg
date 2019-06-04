@@ -1,3 +1,10 @@
+/**
+ * [CursedStatus.java]
+ * a status effect that damages the entity at the end of each turn
+ * @version 1.0
+ * @author Allen Liu
+ * @since May 31, 2019
+ */
 public class CursedStatus extends StatusEffect {
 
     public CursedStatus(Entity target, int stacks) {
@@ -7,7 +14,7 @@ public class CursedStatus extends StatusEffect {
 
     @Override
     public void triggerEffect(JointMap map) {
-        getAffected().damageEntity(getStacks() * 1);
+        getAffected().damageEntity(getStacks());
     }
 
     @Override

@@ -2,10 +2,6 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
-/**
- * This class is only used for creating dupes of level screen and testing, this class will not be used in the future
- */
-
 public class LevelScreen extends GameScreen{
     Player selectedPlayer;
     Ability selectedAbility;
@@ -155,25 +151,41 @@ public class LevelScreen extends GameScreen{
             }
         }
 
-        //If you click on player on map with no selected abilities, you can swap players
-        for (int j = 0; j < 3; j++) {
-            for (int i = 0; i < 3; i++) {
-                if (isFullyClicked(new Rectangle(323 + 121 * i, 108 + 121 * j, 120, 120)) && !jointMap.getTargetable(i, j)) {
-                    selectedPlayer = ((Player) jointMap.getEntity(i, j));
-                    jointMap.unIndicateAll();
-                    jointMap.unTargetableAll();
-                    selectedAbility = null;
-                }
-            }
-        }
+        //Check for a click within the main grid to perform actions: entity selection or ability use
+        if (isFullyClicked(new Rectangle(323, 108, 121 * 6, 121 * 3))) {
+            //Get grid x and y within the 6x3 grid
+            int gridX = (getMouseX() - 323) / 121;
+            int gridY = (getMouseY() - 108) / 121;
 
-        //Enemy selection by tile
-        for (int j = 0; j < 3; j++) {
-            for (int i = 3; i < 6; i++) {
-                if (isFullyClicked(new Rectangle(323 + 121 * i, 108 + 121 * j, 120, 120)) && !jointMap.getTargetable(i, j)) {
-                    selectedEnemy = ((Enemy)jointMap.getEntity(i,j));
-                    jointMap.unIndicateAll();
-                    jointMap.unTargetableAll();
+            //Confirm that the tile was specifically chosen
+            if (isFullyClicked(new Rectangle(323 + gridX * 121, 108 + gridY * 121, 120, 120))) {
+                //Entity selection
+                if (!jointMap.getTargetable(gridX, gridY)){
+                    //Player selection on the left x = {0, 1, 2}
+                    if (gridX < 3) {
+                        selectedPlayer = ((Player) jointMap.getEntity(gridX, gridY));
+                        jointMap.unIndicateAll();
+                        jointMap.unTargetableAll();
+                        selectedAbility = null;
+                        //Enemy selection on the right x = {3, 4, 5}
+                    } else {
+                        selectedEnemy = ((Enemy) jointMap.getEntity(gridX, gridY));
+                        jointMap.unIndicateAll();
+                        jointMap.unTargetableAll();
+                    }
+                //Ability use
+                } else if ((selectedPlayer != null) && (selectedAbility != null)) {
+                    if (selectedAbility.action(jointMap, gridX, gridY)) {
+                        //attacks will use up energy!
+                        selectedPlayer.useEnergy(selectedAbility.getEnergyCost());
+                        selectedAbility.resetCooldown();
+                        System.out.println("bam!");
+                        System.out.println(selectedPlayer.getHealth());
+                        //Deselect the ability
+                        selectedAbility = null;
+                        jointMap.unIndicateAll();
+                        jointMap.unTargetableAll();
+                    }
                 }
             }
         }
@@ -224,26 +236,6 @@ public class LevelScreen extends GameScreen{
             }
         }
 
-        //Attempt to run an action when clicking on a certain tile,
-        if (selectedPlayer != null && selectedAbility != null) {
-            for (int j = 0; j < 3; j++) {
-                for (int i = 0; i < 6; i++) {
-                    if (isFullyClicked(new Rectangle(323 + 121 * i, 108 + 121 * j, 120, 120))) {
-                        if (selectedAbility.action(jointMap, i, j)){
-                            //attacks will use up energy!
-                            selectedPlayer.useEnergy(selectedAbility.getEnergyCost());
-                            selectedAbility.resetCooldown();
-                            System.out.println("bam!");
-                            System.out.println(selectedPlayer.getHealth());
-                            //Deselect the ability
-                            selectedAbility = null;
-                            jointMap.unIndicateAll();
-                            jointMap.unTargetableAll();
-                        }
-                    }
-                }
-            }
-        }
         //Moving move move move Actions!
     }
 

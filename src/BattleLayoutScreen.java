@@ -1,4 +1,6 @@
-import java.awt.*;
+import java.awt.Rectangle;
+import java.awt.Graphics;
+import java.awt.Color;
 import java.awt.event.MouseEvent;
 
 /**
@@ -27,19 +29,9 @@ public class BattleLayoutScreen extends GameScreen {
     public BattleLayoutScreen(GameManager game) {
         super(game);
 
-        Player[] currentLoadout = GameIO.getBattleLayout();
-
         grid = new Player[3][3];
-        for (int j = 0; j < 3; ++j) {
-            for (int i = 0; i < 3; ++i) {
-                grid[i][j] = null;
-            }
-        }
 
-        for (int i = 0; i < currentLoadout.length; ++i) {
-            Player p = currentLoadout[i];
-            grid[p.getXGrid()][p.getYGrid()] = p;
-        }
+        initializeGrid();
 
         playerList = new Player[playerDebugNames.length];
 
@@ -157,23 +149,12 @@ public class BattleLayoutScreen extends GameScreen {
 
         //Reset loadout button
         if (isFullyClicked(resetButton)) {
-            Player[] currentLoadout = GameIO.getBattleLayout();
-            for (int j = 0; j < 3; ++j) {
-                for (int i = 0; i < 3; ++i) {
-                    grid[i][j] = null;
-                }
-            }
-
-            for (int i = 0; i < currentLoadout.length; ++i) {
-                Player p = currentLoadout[i];
-                grid[p.getXGrid()][p.getYGrid()] = p;
-            }
+            initializeGrid();
         }
 
         //Save layout button
         if (isFullyClicked(saveButton)) {
             //Do a count to make sure there is a sane number of players
-
             if (getNumPlayersInGrid() == 3) {
                 GameIO.setBattleLayout(grid);
                 status = "Loadout saved.";
@@ -277,6 +258,21 @@ public class BattleLayoutScreen extends GameScreen {
                      */
                 }
             }
+        }
+    }
+
+
+    /**
+     * [initializeGrid]
+     * initializes the grid of players by clearing it, and then adding players from an internal file
+     */
+    private void initializeGrid() {
+        Player[] currentLoadout = GameIO.getBattleLayout();
+
+
+        for (int i = 0; i < currentLoadout.length; ++i) {
+            Player p = currentLoadout[i];
+            grid[p.getXGrid()][p.getYGrid()] = p;
         }
     }
 }
