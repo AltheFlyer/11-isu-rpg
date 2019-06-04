@@ -29,13 +29,13 @@ public class TutorialEnemy extends Enemy {
                         0, 2, 6, 0, 1, 10, true, false
                         ),
                         new BasicMoveAbility("Rest", "This ability is useless!.",
-                                0, 2,0)
+                                0, 2,1)
                 });
 
         attackIcon = new Icon("assets/icons/sword.png");
         attackIcon.setName("Basic Attack");
-        moveIcon = new Icon("assets/icons/test.png");
-        moveIcon.setName("Useless!");
+        moveIcon = new Icon("assets/icons/move.png");
+        moveIcon.setName("Seek!");
         turn = 1;
 
         attackAbility = getAbility(0);
@@ -57,11 +57,11 @@ public class TutorialEnemy extends Enemy {
         //Attacks on odd turns, moves on even turns
         System.out.println(turn);
         if (turn % 2 == 1) {
-            setIntent(attackIcon);
-            setDecide(attackAbility);
-        } else {
             setIntent(moveIcon);
             setDecide(moveAbility);
+        } else {
+            setIntent(attackIcon);
+            setDecide(attackAbility);
         }
     }
 
@@ -76,4 +76,5 @@ public class TutorialEnemy extends Enemy {
         super.drawAbilities(g);
         g.drawImage(sprite, 1069, 15+105*abilities.length, 60, 60,null);
     }
+
 }

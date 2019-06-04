@@ -28,6 +28,9 @@ public class TextDrawer {
     long lastTextUpdate;
 
     int textLength;
+    int maxWidth;
+
+    FontMetrics fontData;
 
     /**
      * [TextDrawer]
@@ -39,14 +42,15 @@ public class TextDrawer {
      * @param maxWidth the maximum width of a line of text in pixels (this is NOT enforced by words that exceed this width)
      */
     public TextDrawer(Graphics g, String text, int x, int y, int maxWidth) {
-        FontMetrics fontData = g.getFontMetrics();
+        fontData = g.getFontMetrics();
+        this.maxWidth = maxWidth;
         this.x = x;
         this.y = y;
 
         //This is: the height above baseline, the height below baseline, and the font's recommended spacing between lines
         lineHeight = fontData.getAscent() + fontData.getDescent() + fontData.getLeading();
 
-        this.generateTextLines(g, text, maxWidth);
+        this.generateTextLines(text, maxWidth);
 
         charactersWritten = 0;
         textLength = text.length();
@@ -71,11 +75,21 @@ public class TextDrawer {
         //This is: the height above baseline, the height below baseline, and the font's recommended spacing between lines
         lineHeight = fontData.getAscent() + fontData.getDescent() + fontData.getLeading();
 
-        this.generateTextLines(g, text, maxWidth);
+        this.generateTextLines(text, maxWidth);
 
         charactersWritten = 0;
         textLength = text.length();
         this.characterDelay = characterDelay;
+    }
+
+    /**
+     * [setText]
+     * sets the text of the TextDrawer, while retaining maximum width and x and y coordinates
+     * @param text the new string for the TextDrawer to draw
+     */
+    public void setText(String text) {
+        textLength = text.length();
+        this.generateTextLines(text, maxWidth);
     }
 
     /**
@@ -115,13 +129,10 @@ public class TextDrawer {
     /**
      * [generateTextLines]
      * Takes in an unstyled string and breaks it apart into lines
-     * @param g The graphics object to draw with
      * @param text The text to draw
      * @param maxWidth The maximum width (wrapping widt) of a line of text in pixels
      */
-    private void generateTextLines(Graphics g, String text, int maxWidth) {
-        //Font data
-        FontMetrics fontData = g.getFontMetrics();
+    private void generateTextLines(String text, int maxWidth) {
         //Stores the list of lines
         ArrayList<String> tempLines = new ArrayList<>();
 
@@ -152,7 +163,7 @@ public class TextDrawer {
             }
 
             //Get width of the word with the current graphics
-            int wordWidth = (int) fontData.getStringBounds(word, g).getWidth();
+            int wordWidth = fontData.stringWidth(word);
 
             //If width of word would overflow, move to another line
             if (widthMarker + wordWidth > maxWidth) {
