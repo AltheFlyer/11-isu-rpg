@@ -13,8 +13,17 @@ class Clock {
         lastTimeCheck=currentTime;
     }
 
+    public void updateElapsed() {
+        long currentTime = System.nanoTime();  //if the computer is fast you need more precision
+        elapsedTime=currentTime - lastTimeCheck;
+    }
+
     //return elapsed time in milliseconds
     public double getElapsedTime() {
         return elapsedTime/1.0E9;
+    }
+
+    public double getElapsedMilli() {
+        return elapsedTime/1.0E6;
     }
 }
