@@ -18,7 +18,7 @@ public class OverworldPlayer extends OverworldEntity {
         if (map instanceof RoomMap) {
             g.fillRect(this.getX(), this.getY(), 50, 50); //modify size
         } else {
-            g.fillRect(683 - 50, 384 - 50, 50, 50); //modify size
+            g.fillRect(683 - 25, 384 - 25, 50, 50); //modify size
         }
     }
 

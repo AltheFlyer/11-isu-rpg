@@ -23,8 +23,8 @@ public class OverworldNPC extends OverworldEntity {
         } else { //draw NPC in relation to player location in map and moving map thing
             int xDifference = player.getX() - this.getX();
             int yDifference = player.getY() - this.getY();
-            int xLocation = 683 - 50 - xDifference;
-            int yLocation = 384 - 50 - yDifference;
+            int xLocation = 683 - 25 - xDifference;
+            int yLocation = 384 - 25 - yDifference;
             g.fillRect(xLocation, yLocation, 50, 50);
         }
     }

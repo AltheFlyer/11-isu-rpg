@@ -25,7 +25,7 @@ public class MapScreen extends GameScreen {
         super(game);
         clock = new Clock();
         framerate = new FrameRate();
-        map = new RoomMap(getIO(), mapPath,walkabilityKey);
+        map = new MovingMap(getIO(), mapPath,walkabilityKey);
         player = new OverworldPlayer(400,400);
         npc = new OverworldNPC(300,300, "Hey!");
         length = map.getMap().length;
@@ -69,6 +69,7 @@ public class MapScreen extends GameScreen {
     /**
      * [keyPressed]
      * checks if certain keys are pressed and changes player velocity accordingly
+     * also checks for interaction with non-player entities when a certain key is pressed
      * @param e
      * @return void
      */
