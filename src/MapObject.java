@@ -12,4 +12,8 @@ abstract public class MapObject {
         boundingBox = new Rectangle(this.x, this.y, height, width);
     }
 
+    public Rectangle collisionWindow() {
+        return this.boundingBox;
+    }
+
 }
