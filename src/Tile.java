@@ -109,11 +109,19 @@ abstract public class Tile {
     /**
      * [drawIcons]
      * @param g the graphics object to draw with
-     * @param mouseX the mouse x coordinate
-     * @param mouseY the mouse y coordinate
      */
-    public void drawIcons(Graphics g, int mouseX, int mouseY) {
+    public void drawIcons(Graphics g) {
+        drawStatus(g);
+    }
 
+    /**
+     * [drawIconText]
+     * @param g the graphics object to draw with
+     * @param mouseX the x position of the mouse
+     * @param mouseY the y position of the mouse
+     */
+    public void drawIconText(Graphics g, int mouseX, int mouseY) {
+        drawStatusText(g, mouseX, mouseY);
     }
 
     /**
@@ -121,7 +129,23 @@ abstract public class Tile {
      * helper method for drawing status icons, as these should be universal to all entities
      * @param g the graphics object to draw with
      */
-    public void drawStatus(Graphics g, int mouseX, int mouseY) {
+    public void drawStatus(Graphics g) {
+        if (!isEmpty()) {
+            for (int i = 0; i < getEntity().statuses.size(); ++i) {
+                Icon icon = getEntity().statuses.get(i).getIcon();
+                icon.setPosition(getXGraphic() + i * 40, getYGraphic() + 120 - 20);
+                icon.draw(g);
+            }
+        }
+    }
+
+    /**
+     * [drawStatusText]
+     * @param g the graphics object to draw with
+     * @param mouseX the x position of the mouse
+     * @param mouseY the y position of the mouse
+     */
+    public void drawStatusText(Graphics g, int mouseX, int mouseY) {
         if (!isEmpty()) {
             for (int i = 0; i < getEntity().statuses.size(); ++i) {
                 Icon icon = getEntity().statuses.get(i).getIcon();

@@ -36,7 +36,7 @@ public class TextDrawer {
      * @param text the text to draw
      * @param x the x position of the baseline of the text
      * @param y the y position of the baseline of the text
-     * @param maxWidth the maximum width of a line of text (this is NOT enforced by words that exceed this width)
+     * @param maxWidth the maximum width of a line of text in pixels (this is NOT enforced by words that exceed this width)
      */
     public TextDrawer(Graphics g, String text, int x, int y, int maxWidth) {
         FontMetrics fontData = g.getFontMetrics();
@@ -59,7 +59,7 @@ public class TextDrawer {
      * @param text the text to draw
      * @param x the x position of the baseline of the text
      * @param y the y position of the baseline of the text
-     * @param maxWidth the maximum width of a line of text (this is NOT enforced by words that exceed this width)
+     * @param maxWidth the maximum width of a line of text in pixels (this is NOT enforced by words that exceed this width)
      * @param characterDelay the delay in milliseconds between each character being drawn (this only has an effect when
      *                       the draw() method is called multiple times)
      */
@@ -117,7 +117,7 @@ public class TextDrawer {
      * Takes in an unstyled string and breaks it apart into lines
      * @param g The graphics object to draw with
      * @param text The text to draw
-     * @param maxWidth The maximum width (wrapping widt) of a line of text
+     * @param maxWidth The maximum width (wrapping widt) of a line of text in pixels
      */
     private void generateTextLines(Graphics g, String text, int maxWidth) {
         //Font data
@@ -187,7 +187,7 @@ public class TextDrawer {
 
     /**
      * [getLineHeight]
-     * gets the height of a single line of text
+     * gets the height of a single line of text in pixels
      * @return int lineHeight, the computed height of a line of text based on ascent, descent, and leading
      */
     public int getLineHeight() {
@@ -196,7 +196,7 @@ public class TextDrawer {
 
     /**
      * [getTotalHeight]
-     * @return the total height of the string, when converted into a set of lines
+     * @return the total height of the string in pixels, when converted into a set of lines
      */
     public int getTotalHeight() {
         return lineHeight * lines.length;

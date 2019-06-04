@@ -133,7 +133,13 @@ public class JointMap {
     public void drawIcons(Graphics g, int mouseX, int mouseY) {
         for (int j = 0; j < 3; j++) {
             for (int i = 0; i < 6; i++) {
-                tileArray[i][j].drawIcons(g, mouseX, mouseY);
+                tileArray[i][j].drawIcons(g);
+            }
+        }
+
+        for (int j = 0; j < 3; j++) {
+            for (int i = 0; i < 6; i++) {
+                tileArray[i][j].drawIconText(g, mouseX, mouseY);
             }
         }
     }

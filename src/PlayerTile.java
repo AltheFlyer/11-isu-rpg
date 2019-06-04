@@ -56,10 +56,5 @@ public class PlayerTile extends Tile{
         return 'p';
     }
 
-    @Override
-    public void drawIcons(Graphics g, int mouseX, int mouseY) {
-        drawStatus(g, mouseX, mouseY);
-    }
-
     //There is also damageEntity here!
 }
