@@ -1,7 +1,7 @@
 import java.awt.*;
 
 /**
- * [FrameRate.java]
+ * [OverworldMap.java]
  * Abstract class for any overworld map
  * @version 1.1
  * @author Jasmine Chu & Ethan Kwan

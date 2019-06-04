@@ -1,7 +1,7 @@
 import java.awt.*;
 
 /**
- * [FrameRate.java]
+ * [OverworldNPC.java]
  * Class for NPCs on any overworld map
  * @version 1.1
  * @author Jasmine Chu & Ethan Kwan

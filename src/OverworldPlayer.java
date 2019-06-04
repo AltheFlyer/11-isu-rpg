@@ -1,7 +1,7 @@
 import java.awt.*;
 
 /**
- * [FrameRate.java]
+ * [OverworldPlayer.java]
  * Class for player on the overworld map
  * @version 1.1
  * @author Jasmine Chu & Ethan Kwan

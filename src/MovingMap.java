@@ -1,7 +1,7 @@
 import java.awt.*;
 
 /**
- * [FrameRate.java]
+ * [MovingMap.java]
  * Class for moving maps that move around the player
  * @version 1.1
  * @author Jasmine Chu & Ethan Kwan
