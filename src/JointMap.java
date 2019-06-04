@@ -149,72 +149,14 @@ public class JointMap {
      * runs all enemy turn actions and intents to preserve encapsulation standards (for now)
      */
     //TODO this is so messy right now LOL
-    public void runEnemyTurnActions(Graphics g) {
-        int[] xTargets;
-        int[] yTargets;
-        int validTargets = 0;
-        int counter = 0;
-        int choice;
-
-        for (int j = 0; j < 3; j++) {
-            //Enemy side only
-            for (int i = 3; i < 6; i++) {
-                if (!tileArray[i][j].isEmpty()) {
-                    Enemy enemy = ((EnemyTile) tileArray[i][j]).getEnemy();
-                    enemy.getDecide().indicateValidTiles(this);
-
-                    //count up the number of targetable tiles
-                    for (int k = 0; k < 3; k++) {
-                        for (int l = 0; l < 6; l++) {
-                            if (getTargetable(l,k)){
-                                validTargets += 1;
-                            }
-                        }
-                    }
-                    //Run the attack if there are valid targets
-                    if (validTargets > 0){
-                        //Create the new arrays to store all targetable tiles
-                        xTargets = new int[validTargets];
-                        yTargets = new int[validTargets];
-
-
-                        //Store the targetable tile locations
-                        for (int k = 0; k < 3; k++) {
-                            for (int l = 0; l < 6; l++) {
-                                if (getTargetable(l,k)){
-                                    xTargets[counter] = l;
-                                    yTargets[counter] = k;
-                                    counter ++;
-                                }
-                            }
-                        }
-
-                        //Choose a random tile to target out of the targetable tiles
-                        choice = (int)(Math.random()*counter);
-
-                        //Use the chosen ability on the selected tile
-                        if (enemy.getDecide().action(this, xTargets[choice], yTargets[choice])){
-                            System.out.println("bam!");
-                        }
-                    }
-                    enemy.decide(this);
-
-                    //Reset for the next enemy
-                    this.unIndicateAll();
-                    this.unTargetableAll();
-                    validTargets = 0;
-                    counter = 0;
-                }
-            }
-        }
-    }
-
     public void runEnemyActions(Enemy enemy, Graphics g) {
         int[] xTargets;
         int[] yTargets;
         int validTargets = 0;
         int counter = 0;
         int choice;
+        this.unIndicateAll();
+        this.unTargetableAll();
 
         enemy.getDecide().indicateValidTiles(this);
 

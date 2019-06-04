@@ -22,7 +22,7 @@ public class LevelScreen extends GameScreen{
     Enemy ack;
     Enemy bck;
     Enemy cck;
-    Enemy[] enemies = new Enemy[3];
+    Enemy[] enemies = new Enemy[9];
 
 
     Clock clock;
@@ -94,6 +94,7 @@ public class LevelScreen extends GameScreen{
         for (int i = 0; i < 3; i++){
             enemies[i] = new TestEnemy();
         }
+        enemies[3] = new TutorialEnemy();
 
         /*
         ack = new TestEnemy();//10, "ack",ackAbilities);
@@ -117,8 +118,7 @@ public class LevelScreen extends GameScreen{
         jointMap.addEntity(4,2,enemies[0]);
         jointMap.addEntity(3,1,enemies[1]);
         jointMap.addEntity(4,0,enemies[2]);
-
-        jointMap.addEntity(5, 0, new TutorialEnemy());
+        jointMap.addEntity(5, 0, enemies[3]);
 
         //players = new Player[3];
         //players[0] = kevin;
@@ -215,30 +215,11 @@ public class LevelScreen extends GameScreen{
         if (isFullyClicked(new Rectangle(323, 8, selectWidth, selectHeight))) {
             //End of player turn
             jointMap.procPlayerStatus();
-
             selectedAbility = null;
             System.out.println("End turn enemy time!");
 
-            //Enemy turn run through
-            //jointMap.runEnemyTurnActions(getGraphics());
-
+            //EnemyTurn is true
             enemyTurn = true;
-
-            //End of enemy turn
-            jointMap.procEnemyStatus();
-
-            //Start of new player turn
-            for (int i = 0; i < players.length; i++){
-                players[i].gainEnergy(30);
-                players[i].endTurnLowerCooldown();
-                //Execute if dies to status effect at the end of turn
-                if (!players[i].isAlive()){
-                    jointMap.target(players[i].getXGrid(), players[i].getYGrid(),0,0);
-                }
-            }
-            selectedPlayer = null;
-            selectedEnemy = null;
-            selectedAbility = null;
         }
 
         //Use an ability here, Click on the ability to select it for use, it will bring up indications
@@ -319,6 +300,8 @@ public class LevelScreen extends GameScreen{
         //Enemy info
         if (selectedEnemy != null && selectedEnemy.isAlive()) {
             selectedEnemy.drawAbilities(g);
+            g.setColor(Color.GREEN);
+            g.drawRect(323+selectedEnemy.getXGrid()*121, 108+selectedEnemy.getYGrid()*121, 120,120);
 
             for (int i = 0; i < selectedEnemy.totalAbilities(); ++i) {
                 if (isMouseOver(new Rectangle(1069, 15+105*i, 263, 100))) {
@@ -336,18 +319,41 @@ public class LevelScreen extends GameScreen{
 
         //Testing with clock and enemy turn
         if (enemyTurn) {
-            if (clock.getElapsedMilli() > 1000){
-                System.out.println("Yes");
+            if (enemies[counter] == null) {
+                counter++;
+            } else if (!enemies[counter].isAlive()){
+                counter++;
+            } else if (clock.getElapsedMilli() > 1000) {
+                //Cool indication thing for the player to see so it's like the enemies are taking their turn
+                selectedEnemy = enemies[counter];
+                selectedAbility = enemies[counter].getDecide();
+
                 clock.update();
 
+                //The enemy acts
                 jointMap.runEnemyActions(enemies[counter], g);
-
                 counter++;
+            }
 
-                if (counter >= enemies.length){
-                    enemyTurn = false;
-                    counter = 0;
+            if (counter >= enemies.length){
+                enemyTurn = false;
+                counter = 0;
+                //End of enemy turn
+                jointMap.procEnemyStatus();
+                //Start of new player turn
+                for (int i = 0; i < players.length; i++){
+                    players[i].gainEnergy(30);
+                    players[i].endTurnLowerCooldown();
+                    //Execute if dies to status effect at the end of turn
+                    if (!players[i].isAlive()){
+                        jointMap.target(players[i].getXGrid(), players[i].getYGrid(),0,0);
+                    }
                 }
+                selectedPlayer = null;
+                selectedEnemy = null;
+                selectedAbility = null;
+                jointMap.unIndicateAll();
+                jointMap.unTargetableAll();
             }
         }
 
