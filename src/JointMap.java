@@ -199,30 +199,64 @@ public class JointMap {
                     }
                     enemy.decide(this);
 
-                    //Cover the icons
-                    g.setColor(new Color(238,238,238));
-                    g.fillRect(686,0,363,108);
-
                     //Reset for the next enemy
                     this.unIndicateAll();
                     this.unTargetableAll();
-
-                    this.draw(g);
-
-                    g.setColor(Color.GREEN);
-                    g.drawRect(323+enemy.getXGrid()*121,108 + enemy.getYGrid()*121,121,121);
-
-                    try {
-                        TimeUnit.MILLISECONDS.sleep(500);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-
                     validTargets = 0;
                     counter = 0;
                 }
             }
         }
+    }
+
+    public void runEnemyActions(Enemy enemy, Graphics g) {
+        int[] xTargets;
+        int[] yTargets;
+        int validTargets = 0;
+        int counter = 0;
+        int choice;
+
+        enemy.getDecide().indicateValidTiles(this);
+
+        //count up the number of targetable tiles
+        for (int k = 0; k < 3; k++) {
+            for (int l = 0; l < 6; l++) {
+                if (getTargetable(l,k)){
+                    validTargets += 1;
+                }
+            }
+        }
+        //Run the attack if there are valid targets
+        if (validTargets > 0){
+            //Create the new arrays to store all targetable tiles
+            xTargets = new int[validTargets];
+            yTargets = new int[validTargets];
+
+
+            //Store the targetable tile locations
+            for (int k = 0; k < 3; k++) {
+                for (int l = 0; l < 6; l++) {
+                    if (getTargetable(l,k)){
+                        xTargets[counter] = l;
+                        yTargets[counter] = k;
+                        counter ++;
+                    }
+                }
+            }
+
+            //Choose a random tile to target out of the targetable tiles
+            choice = (int)(Math.random()*counter);
+
+            //Use the chosen ability on the selected tile
+            if (enemy.getDecide().action(this, xTargets[choice], yTargets[choice])){
+                System.out.println("bam!");
+            }
+        }
+        enemy.decide(this);
+
+        //Reset for the next enemy
+        this.unIndicateAll();
+        this.unTargetableAll();
     }
 
 

@@ -17,11 +17,18 @@ public class LevelScreen extends GameScreen{
     Player kevin;
     Player allen;
     Player bryan;
+    Player[] players;
 
     Enemy ack;
     Enemy bck;
     Enemy cck;
-    Player[] players;
+    Enemy[] enemies = new Enemy[3];
+
+
+    Clock clock;
+    boolean enemyTurn = false;
+    //Counter for amount of enemies
+    int counter = 0;
 
     LevelScreen(GameManager game){
         super(game);
@@ -84,9 +91,15 @@ public class LevelScreen extends GameScreen{
         //bryan = new Player(10,100,"cyan",bryanAbilities);
         bryan = players[2];//GameIO.generatePlayer("players/bryan.txt");
 
+        for (int i = 0; i < 3; i++){
+            enemies[i] = new TestEnemy();
+        }
+
+        /*
         ack = new TestEnemy();//10, "ack",ackAbilities);
         bck = new TestEnemy();//10, "bck",bckAbilities);
         cck = new TestEnemy();//10, "cck",cckAbilities);
+        */
 
         //Add things onto the map
         //i is x, j is y
@@ -101,9 +114,9 @@ public class LevelScreen extends GameScreen{
             jointMap.addEntity(players[i].getXGrid(), players[i].getYGrid(), players[i]);
         }
 
-        jointMap.addEntity(4,2,ack);
-        jointMap.addEntity(3,1,bck);
-        jointMap.addEntity(4,0,cck);
+        jointMap.addEntity(4,2,enemies[0]);
+        jointMap.addEntity(3,1,enemies[1]);
+        jointMap.addEntity(4,0,enemies[2]);
 
         jointMap.addEntity(5, 0, new TutorialEnemy());
 
@@ -113,6 +126,7 @@ public class LevelScreen extends GameScreen{
         //players[2] = bryan;
 
         allen.statuses.add(new CursedStatus(allen, 1));
+        clock = new Clock();
     }
 
     @Override
@@ -204,8 +218,11 @@ public class LevelScreen extends GameScreen{
 
             selectedAbility = null;
             System.out.println("End turn enemy time!");
+
             //Enemy turn run through
-            jointMap.runEnemyTurnActions(getGraphics());
+            //jointMap.runEnemyTurnActions(getGraphics());
+
+            enemyTurn = true;
 
             //End of enemy turn
             jointMap.procEnemyStatus();
@@ -317,10 +334,26 @@ public class LevelScreen extends GameScreen{
             }
         }
 
+        //Testing with clock and enemy turn
+        if (enemyTurn) {
+            if (clock.getElapsedMilli() > 1000){
+                System.out.println("Yes");
+                clock.update();
+
+                jointMap.runEnemyActions(enemies[counter], g);
+
+                counter++;
+
+                if (counter >= enemies.length){
+                    enemyTurn = false;
+                    counter = 0;
+                }
+            }
+        }
 
         //Draw icons from entities (enemy intents, etc)
         jointMap.drawIcons(g, getMouseX(), getMouseY());
-
+        clock.updateElapsed();
         repaint();
     }
 

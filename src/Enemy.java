@@ -1,3 +1,4 @@
+import utils.AnimatedSprite;
 import utils.TextDrawer;
 
 import java.awt.*;
@@ -6,6 +7,7 @@ abstract public class Enemy extends Entity{
 
     private Icon intent;
     private Ability decide;
+    private AnimatedSprite gif;
 
     Enemy(double health, String name, Ability[] abilities){
         super(health,name,abilities);
@@ -18,6 +20,9 @@ abstract public class Enemy extends Entity{
         intent = new Icon(new Rectangle(0, 0, 40, 40), "assets/icons/test.png");
         intent.setName("Special");
         intent.setDescription("A *really* powerful attack. I need more text to test newline drawing.\n\n\n\n\n\nI hope this works");
+
+        //a gif!
+        gif = new AnimatedSprite("spritesheets/JFrames.png", 1, 10, 40, 40, 100);
     }
 
     public Ability getAbility(int index){
@@ -71,6 +76,10 @@ abstract public class Enemy extends Entity{
     public void draw(int x, int y, Graphics g, boolean indicated){
         g.setColor(Color.ORANGE);
         g.fillRect(x,y,120,120);
+
+        //Animation testing
+        gif.draw(g,x,y);
+
         g.setColor(Color.BLACK);
         if (indicated){
             g.setColor(new Color(0, 0, 0, 100));
