@@ -6,9 +6,9 @@ import java.awt.event.MouseEvent;
 /**
  * [BattleLayoutScreen.java]
  * This screen is used to edit the starting battle layout for other levels
- * @version 1.0
+ * @version 1.1
  * @author Allen Liu
- * @since June 2, 2019
+ * @since June 3, 2019
  */
 public class BattleLayoutScreen extends GameScreen {
 

@@ -16,9 +16,9 @@ import java.awt.event.KeyEvent;
 /**
  * [GameScreen.java]
  * Abstract class for all game screens
- * @version 1.1
+ * @version 1.2
  * @author Allen Liu
- * @since May 22, 2019
+ * @since May 30, 2019
  */
 abstract public class GameScreen extends JPanel
         implements MouseListener, KeyListener, MouseMotionListener, MouseWheelListener {

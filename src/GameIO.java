@@ -12,10 +12,9 @@ import java.util.HashMap;
 /**
  * [GameIO.java]
  * class that manages IO with text files for progression and saved data
- * TODO Change BattleLayouts to use a 2D Player array
- * @version 1.4
+ * @version 1.5
  * @author Allen Liu
- * @since May 23, 2019
+ * @since June 3, 2019
  */
 public class GameIO {
 

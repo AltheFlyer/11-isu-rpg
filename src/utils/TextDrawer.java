@@ -12,7 +12,7 @@ import java.util.ArrayList;
  * Use draw() to draw text without needing to redo text width calculations.
  * THIS METHOD ONLY WORKS BASED ON THE FONT GIVEN BY THE GRAPHICS OBJECT, if the font changes, a new TextDrawer must
  * be made.
- * @version 0.1
+ * @version 1.0
  * @author Allen Liu
  * @since May 22, 2019
  */
