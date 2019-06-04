@@ -319,7 +319,9 @@ public class LevelScreen extends GameScreen{
 
         //Testing with clock and enemy turn
         if (enemyTurn) {
-            if (enemies[counter] == null) {
+            if (counter >= 9) {
+                //skip
+            } else if (enemies[counter] == null) {
                 counter++;
             } else if (!enemies[counter].isAlive()){
                 counter++;
@@ -335,7 +337,7 @@ public class LevelScreen extends GameScreen{
                 counter++;
             }
 
-            if (counter >= enemies.length){
+            if (counter >= enemies.length && clock.getElapsedMilli() > 1000){
                 enemyTurn = false;
                 counter = 0;
                 //End of enemy turn
