@@ -1,5 +1,6 @@
 
 import java.awt.*;
+import java.util.concurrent.TimeUnit;
 
 public class JointMap {
     //private PlayerTile[][] playerArray = new PlayerTile[3][3];
@@ -142,7 +143,7 @@ public class JointMap {
      * runs all enemy turn actions and intents to preserve encapsulation standards (for now)
      */
     //TODO this is so messy right now LOL
-    public void runEnemyTurnActions() {
+    public void runEnemyTurnActions(Graphics g) {
         int[] xTargets;
         int[] yTargets;
         int validTargets = 0;
@@ -192,9 +193,25 @@ public class JointMap {
                     }
                     enemy.decide(this);
 
+                    //Cover the icons
+                    g.setColor(new Color(238,238,238));
+                    g.fillRect(686,0,363,108);
+
                     //Reset for the next enemy
                     this.unIndicateAll();
                     this.unTargetableAll();
+
+                    this.draw(g);
+
+                    g.setColor(Color.GREEN);
+                    g.drawRect(323+enemy.getXGrid()*121,108 + enemy.getYGrid()*121,121,121);
+
+                    try {
+                        TimeUnit.MILLISECONDS.sleep(500);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+
                     validTargets = 0;
                     counter = 0;
                 }

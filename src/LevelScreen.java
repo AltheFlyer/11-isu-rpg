@@ -3,6 +3,11 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
 public class LevelScreen extends GameScreen{
+    @Override
+    public void setBackground(Color bg) {
+        super.setBackground(bg);
+    }
+
     Player selectedPlayer;
     Ability selectedAbility;
 
@@ -200,7 +205,7 @@ public class LevelScreen extends GameScreen{
             selectedAbility = null;
             System.out.println("End turn enemy time!");
             //Enemy turn run through
-            jointMap.runEnemyTurnActions();
+            jointMap.runEnemyTurnActions(getGraphics());
 
             //End of enemy turn
             jointMap.procEnemyStatus();
