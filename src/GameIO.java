@@ -405,12 +405,6 @@ public class GameIO {
         //Split the rest into args, hope that the length is equal to the amount required
         String[] args = line.split(" ");
 
-        System.out.print(name + " " + desc + "\n");
-        for (String s: args) {
-            System.out.print(s + " ");
-        }
-        System.out.println();
-
         //I hate myself so much
         switch (abilityType) {
             case "SingleAbility":

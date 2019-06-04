@@ -209,17 +209,9 @@ public class LevelScreen extends GameScreen{
             }
         }
 
-
-        //TODO end turn!
-        //Also right now they are targeting all indicated tiles, change this, this is 100% experiment
+        //End of turn
         if (isFullyClicked(new Rectangle(323, 8, selectWidth, selectHeight))) {
-            //End of player turn
-            jointMap.procPlayerStatus();
-            selectedAbility = null;
-            System.out.println("End turn enemy time!");
-
-            //EnemyTurn is true
-            enemyTurn = true;
+            endTurn();
         }
 
         //Use an ability here, Click on the ability to select it for use, it will bring up indications
@@ -411,5 +403,19 @@ public class LevelScreen extends GameScreen{
             g.drawRect(profileX, profileY + i * profileHeight, profileWidth, profileHeight);
             g.drawString(players[i].getName(),profileX+10, profileY + 15 + i*80);
         }
+    }
+
+    /**
+     * [endTurn]
+     * runs enemy actions, generates intents and resets player and enemy values for their respective turns
+     */
+    public void endTurn() {
+        //End of player turn
+        jointMap.procPlayerStatus();
+        selectedAbility = null;
+        System.out.println("End turn enemy time!");
+
+        //EnemyTurn is true
+        enemyTurn = true;
     }
 }
