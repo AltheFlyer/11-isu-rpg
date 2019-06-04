@@ -8,11 +8,11 @@ public class OverworldTile {
     private boolean walkable;
     private Rectangle boundingBox;
 
-    public OverworldTile(int x, int y, boolean walkable, int tileSize){
+    public OverworldTile(int x, int y, boolean walkable, int tileSize) {
         this.x = x;
         this.y = y;
         this.walkable = walkable;
-        this.boundingBox = new Rectangle(x*tileSize,y*tileSize,tileSize,tileSize); //again graphics particulars
+        this.boundingBox = new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize);
     }
 
     public Rectangle collisionWindow() {

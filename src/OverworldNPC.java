@@ -1,5 +1,12 @@
 import java.awt.*;
 
+/**
+ * [FrameRate.java]
+ * Class for NPCs on any overworld map
+ * @version 1.1
+ * @author Jasmine Chu & Ethan Kwan
+ * @since May 22, 2019
+ */
 public class OverworldNPC extends OverworldEntity {
 
     private String message;
@@ -16,8 +23,8 @@ public class OverworldNPC extends OverworldEntity {
         } else { //draw NPC in relation to player location in map and moving map thing
             int xDifference = player.getX() - this.getX();
             int yDifference = player.getY() - this.getY();
-            int xLocation = 683 - 50 - xDifference;
-            int yLocation = 384 - 50 - yDifference;
+            int xLocation = 683 - xDifference;
+            int yLocation = 384 - yDifference;
             g.fillRect(xLocation, yLocation, 50, 50);
         }
     }
