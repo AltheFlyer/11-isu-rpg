@@ -1,5 +1,12 @@
 import java.awt.*;
 
+/**
+ * [FrameRate.java]
+ * Class for player on the overworld map
+ * @version 1.1
+ * @author Jasmine Chu & Ethan Kwan
+ * @since May 22, 2019
+ */
 public class OverworldPlayer extends OverworldEntity {
 
     public OverworldPlayer(int x, int y){

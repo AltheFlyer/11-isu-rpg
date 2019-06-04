@@ -1,5 +1,12 @@
 import java.awt.*;
 
+/**
+ * [FrameRate.java]
+ * Class for moving maps that move around the player
+ * @version 1.1
+ * @author Jasmine Chu & Ethan Kwan
+ * @since May 24, 2019
+ */
 public class MovingMap extends OverworldMap{
 
     private int tileSize = 100;
@@ -10,6 +17,14 @@ public class MovingMap extends OverworldMap{
         super(fileManager, mapPath,walkabilityKey);
     }
 
+    @Override
+/**
+ * [draw]
+ * draws the moving map by tile around the player
+ * @param g
+ * @param player
+ * @return void
+ */
     public void draw(Graphics g, OverworldPlayer player){
         int leftmostVisible = player.getX() - (visibleWidth / 2);
         int leftmostTile = leftmostVisible / tileSize;
