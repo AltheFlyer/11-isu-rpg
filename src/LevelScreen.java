@@ -19,9 +19,6 @@ public class LevelScreen extends GameScreen{
     Player bryan;
     Player[] players;
 
-    Enemy ack;
-    Enemy bck;
-    Enemy cck;
     Enemy[] enemies = new Enemy[9];
 
 
@@ -132,15 +129,6 @@ public class LevelScreen extends GameScreen{
     @Override
     public void keyPressed(KeyEvent e) {
         if(e.getKeyChar() == 's' ){
-            System.out.println("down");
-            if (jointMap.isEmpty(1,2)){
-                jointMap.addEntity(1,2,kevin);
-            }
-
-            kevin.setHealth(10);
-            players[0] = kevin;
-            jointMap.addEntity(4,2,ack);
-            ack.setHealth(10);
         }
     }
 

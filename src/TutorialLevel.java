@@ -23,6 +23,7 @@ public class TutorialLevel extends LevelScreen {
         moveAbility.resetCooldown();
         moveAbility.lowerCooldown(1);
 
+        players = new Player[1];
         players[0] =  new Player(10, 30, "Allen",
                 new Ability[] {
                         new SingleAbility("Basic Attack", "Deals damage to a single target.",
@@ -30,10 +31,13 @@ public class TutorialLevel extends LevelScreen {
                         moveAbility
                 });
 
+        //enemies
+        enemies = new Enemy[9];
+        enemies[0] = new TutorialEnemy();
+
         //Tutorial should be simplified: 1 player character with only 2 abilities.
         jointMap.addEntity(2, 1, players[0]);
-
-        jointMap.addEntity(3, 1, new TutorialEnemy());
+        jointMap.addEntity(3, 1, enemies[0]);
 
         tutorialX = 1 + 323 + 121 * 3;
         tutorialY = 1 + 108 + 121 * 3;
