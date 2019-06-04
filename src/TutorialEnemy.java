@@ -1,3 +1,9 @@
+import javax.imageio.ImageIO;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
 /**
  * [TutorialEnemy.java]
  * A basic enemy that alternates between attacking and moving
@@ -10,6 +16,8 @@ public class TutorialEnemy extends Enemy {
     Icon attackIcon;
     Icon moveIcon;
     int turn;
+
+    BufferedImage sprite;
 
     Ability attackAbility;
     Ability moveAbility;
@@ -35,6 +43,12 @@ public class TutorialEnemy extends Enemy {
 
         setIntent(attackIcon);
         setDecide(attackAbility);
+
+        try {
+            sprite = ImageIO.read(new File("assets/sprites/slime.png"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -49,5 +63,17 @@ public class TutorialEnemy extends Enemy {
             setIntent(moveIcon);
             setDecide(moveAbility);
         }
+    }
+
+    @Override
+    public void draw(int x, int y, Graphics g, boolean indicated) {
+        super.draw(x, y, g, indicated);
+        g.drawImage(sprite, x, y, null);
+    }
+
+    @Override
+    public void drawAbilities(Graphics g) {
+        super.drawAbilities(g);
+        g.drawImage(sprite, 1069, 15+105*abilities.length, 60, 60,null);
     }
 }

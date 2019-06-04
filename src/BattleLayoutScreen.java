@@ -10,19 +10,19 @@ import java.awt.event.MouseEvent;
  */
 public class BattleLayoutScreen extends GameScreen {
 
-    String[] playerDebugNames = {"allen", "kevin", "bryan", "jasmine", "ethan"};
-    Player[] playerList;
-    Player[][] grid;
-    Player selectedPlayer;
+    private String[] playerDebugNames = {"allen", "kevin", "bryan", "jasmine", "ethan"};
+    private Player[] playerList;
+    private Player[][] grid;
+    private Player selectedPlayer;
 
-    String status;
+    private String status;
 
-    Rectangle gridSpace;
-    Rectangle playerListSpace;
+    private Rectangle gridSpace;
+    private Rectangle playerListSpace;
 
-    Rectangle resetButton;
-    Rectangle saveButton;
-    Rectangle continueButton;
+    private Rectangle resetButton;
+    private Rectangle saveButton;
+    private Rectangle continueButton;
 
     public BattleLayoutScreen(GameManager game) {
         super(game);
@@ -72,74 +72,23 @@ public class BattleLayoutScreen extends GameScreen {
             }
         }
 
-        //Draw the selected player if they are currently being dragged
-        if (selectedPlayer != null) {
-            selectedPlayer.draw(getMouseX(), getMouseY(), g, false);
-            g.drawString(selectedPlayer.getName(), getMouseX() + 10, getMouseY() + 20);
-        }
+        //Draw buttons
+        drawButton(g, resetButton, "Reset Loadout");
+        drawButton(g, saveButton, "Save Loadout");
+        drawButton(g, continueButton, "To Battle");
 
-        //Draw reset button
-        if (isMouseOver(resetButton)) {
-            g.setColor(Color.GREEN);
-            g.fillRect(resetButton.x, resetButton.y, resetButton.width, resetButton.height);
-        } else {
-            g.setColor(Color.BLACK);
-            g.drawRect(resetButton.x, resetButton.y, resetButton.width, resetButton.height);
-        }
-        g.setColor(Color.BLACK);
-        g.drawString("Reset Loadout", resetButton.x + 20, resetButton.y + 20);
-
-        //Draw save button
-        if (isMouseOver(saveButton)) {
-            g.setColor(Color.GREEN);
-            g.fillRect(saveButton.x, saveButton.y, saveButton.width, saveButton.height);
-        } else {
-            g.setColor(Color.BLACK);
-            g.drawRect(saveButton.x, saveButton.y, saveButton.width, saveButton.height);
-        }
-        g.setColor(Color.BLACK);
-        g.drawString("Save Loadout", saveButton.x + 20, saveButton.y + 20);
-
-        //Draw the abilities of the profile of the player who is selected
-        if (selectedPlayer != null) {
-            selectedPlayer.drawAbilities(g, null);
-
-            for (int i = 0; i < selectedPlayer.totalAbilities(); ++i) {
-                if (isMouseOver(new Rectangle(30, 15+105*i, 263, 100))) {
-                    g.setColor(new Color(0, 0, 0, 100));
-                    g.fillRect(30, 15+105*i, 263, 100);
-                    //Will make it easier to see which tiles can be targetable
-                    /*
-                    if (selectedAbility == null) {
-                        jointMap.unIndicateAll();
-                        jointMap.unTargetableAll();
-                        selectedPlayer.getAbility(i).indicateValidTiles(jointMap);
-                    }
-
-                     */
-                }
-            }
-        }
+        drawSelectedPlayer(g);
 
         //Draw status message
         g.setColor(Color.BLACK);
         g.drawString(status, 600, 100);
 
+
+        //Draw list of ALL players
         for (int i = 0; i < playerDebugNames.length; ++i) {
-            g.drawRect(1069, 108 + i * 121, 120, 120);
+            playerList[i].draw(1069, 108 + i * 121, g, false);
             g.drawString(playerList[i].getName() ,1069 + 10, 108 + i * 121 + 20);
         }
-
-        //Draw continue button
-        if (isMouseOver(continueButton)) {
-            g.setColor(Color.GREEN);
-            g.fillRect(continueButton.x, continueButton.y, continueButton.width, continueButton.height);
-        } else {
-            g.setColor(Color.BLACK);
-            g.drawRect(continueButton.x, continueButton.y, continueButton.width, continueButton.height);
-        }
-        g.setColor(Color.BLACK);
-        g.drawString("To Battle", continueButton.x + 20, continueButton.y + 20);
 
         if (isMouseOver(gridSpace)) {
             //Get grid x and y
@@ -149,6 +98,7 @@ public class BattleLayoutScreen extends GameScreen {
                 grid[gridX][gridY].drawSelectAbilities(g);
             }
         }
+
         repaint();
     }
 
@@ -188,19 +138,19 @@ public class BattleLayoutScreen extends GameScreen {
             int gridX = (getMouseX() - gridSpace.x) / 121;
             int gridY = (getMouseY() - gridSpace.y) / 121;
 
-            //Check if there are already 3 players
-            if ((!isPlayerInGrid(selectedPlayer) && (getNumPlayersInGrid() < 3))) {
+            if ((!isPlayerInGrid(selectedPlayer)) && ((getNumPlayersInGrid() < 3) || (grid[gridX][gridY] != null))) {
                 //'drop' player into grid tile
                 grid[gridX][gridY] = selectedPlayer;
                 selectedPlayer = null;
-            } else if ((!isPlayerInGrid(selectedPlayer) && grid[gridX][gridY] != null)) {
-                //Special case if the player would be dropped to replace a another
-                grid[gridX][gridY] = selectedPlayer;
-                selectedPlayer = null;
             } else {
-                status = "That player is already on the grid!";
+                if (getNumPlayersInGrid() >= 3) {
+                    status = "You have reached the maximum number of players in that loadout!";
+                } else {
+                    status = "That player is already on the grid!";
+                }
                 selectedPlayer = null;
             }
+            //If the selected player is 'dropped' anywhere else
         } else if (selectedPlayer != null){
             selectedPlayer = null;
         }
@@ -258,6 +208,7 @@ public class BattleLayoutScreen extends GameScreen {
 
     /**
      * [getNumPlayersInGrid]
+     * gets the number of players in the loadout grid
      * @return int, the number of players in the current loadout
      */
     private int getNumPlayersInGrid() {
@@ -270,5 +221,62 @@ public class BattleLayoutScreen extends GameScreen {
             }
         }
         return numPlayers;
+    }
+
+    /**
+     * [drawButton]
+     * draws a rectangle as a simple button, which will be drawn empty by default, and will be filled green if it is
+     * hovered over
+     * @param g the graphics object to draw with
+     * @param rect the rectangle to draw as a button
+     * @param text the text to draw within the button
+     */
+    private void drawButton(Graphics g, Rectangle rect, String text) {
+        int lineWidth = 1;
+
+        g.setColor(Color.BLACK);
+        g.drawRect(rect.x, rect.y, rect.width, rect.height);
+
+        if (isMouseOver(rect)) {
+            g.setColor(Color.GREEN);
+            g.fillRect(rect.x + lineWidth, rect.y + lineWidth, rect.width - lineWidth, rect.height - lineWidth);
+        }
+
+        g.setColor(Color.BLACK);
+        g.drawString(text, rect.x + 10, rect.y + 20);
+    }
+
+    /**
+     * [drawSelectedPlayer]
+     * draws the currently selected player, along with their ability list and profile
+     * @param g the graphics object to draw with
+     */
+    private void drawSelectedPlayer(Graphics g) {
+        //Draw the selected player if they are currently being dragged
+        if (selectedPlayer != null) {
+            selectedPlayer.draw(getMouseX(), getMouseY(), g, false);
+            g.drawString(selectedPlayer.getName(), getMouseX() + 10, getMouseY() + 20);
+        }
+
+        //Draw the abilities of the profile of the player who is selected
+        if (selectedPlayer != null) {
+            selectedPlayer.drawAbilities(g, null);
+
+            for (int i = 0; i < selectedPlayer.totalAbilities(); ++i) {
+                if (isMouseOver(new Rectangle(30, 15+105*i, 263, 100))) {
+                    g.setColor(new Color(0, 0, 0, 100));
+                    g.fillRect(30, 15+105*i, 263, 100);
+                    //Will make it easier to see which tiles can be targetable
+                    /*
+                    if (selectedAbility == null) {
+                        jointMap.unIndicateAll();
+                        jointMap.unTargetableAll();
+                        selectedPlayer.getAbility(i).indicateValidTiles(jointMap);
+                    }
+
+                     */
+                }
+            }
+        }
     }
 }

@@ -1,4 +1,5 @@
 display_name Bryan
+sprite_path assets/sprites/test_player.png
 health 120
 energy 150
 ABILITIES 3

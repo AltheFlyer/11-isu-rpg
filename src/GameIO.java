@@ -1,3 +1,5 @@
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -347,21 +349,30 @@ public class GameIO {
         String allText = readFile("players/" + debugName+ ".txt");
         String[] lines = allText.split("\n");
 
-        String name = cutFirstWord(lines[0]);
+        String name = replaceFirstWord(lines[0]);
 
-        double health = Double.parseDouble(cutFirstWord(lines[1]));
-        double energy = Double.parseDouble(cutFirstWord(lines[2]));
+        BufferedImage sprite = null;
 
-        int numAbilities = Integer.parseInt(cutFirstWord(lines[3]));
+        try {
+            sprite = ImageIO.read(new File(replaceFirstWord(lines[1])));
+        } catch (IOException e) {
+            System.out.println(replaceFirstWord(lines[1]));
+            e.printStackTrace();
+        }
+
+        double health = Double.parseDouble(replaceFirstWord(lines[2]));
+        double energy = Double.parseDouble(replaceFirstWord(lines[3]));
+
+        int numAbilities = Integer.parseInt(replaceFirstWord(lines[4]));
 
         Ability[] abilities = new Ability[numAbilities];
-        int lineNumber = 4;
+        int lineNumber = 5;
 
         for (int i = 0; i < numAbilities; ++i) {
             abilities[i] = generateAbility(lines[lineNumber + i]);
         }
 
-        return new Player(health, energy, debugName, name, abilities);
+        return new Player(health, energy, debugName, name, sprite, abilities);
     }
 
     /**
@@ -614,12 +625,12 @@ public class GameIO {
     }
 
     /**
-     * [cutFirstWord]
+     * [replaceFirstWord]
      * returns a string with the first word removed
      * @param s the string to get the words from
      * @return String, the input string with the first word (everything up to the first space) removed
      */
-    private static String cutFirstWord(String s) {
+    private static String replaceFirstWord(String s) {
         return s.substring(s.indexOf(" ") + 1);
     }
 }
