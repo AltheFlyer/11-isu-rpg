@@ -50,10 +50,10 @@ public class MovingMap extends OverworldMap{
 //                        -(highestVisible - highestTile * tileSize) + i * tileSize, tileSize, tileSize);
 //            }
 
-        for (int j = 0; j < visibleWidth / tileSize + 1; j++){
-            for (int i = 0; i < visibleHeight / tileSize + 1; i++){
-                if ((0 > leftmostTile + j) || (leftmostTile + j >= getMap()[0].length) ||
-                        (0 > highestTile + i) || (highestTile + i >= getMap().length)) {
+        for (int i = 0; i < visibleHeight / tileSize + 1; i++){
+            for (int j = 0; j < visibleWidth / tileSize + 1; j++){
+                if ((0 > leftmostTile + j) || (leftmostTile + j >= getMap().length) ||
+                        (0 > highestTile + i) || (highestTile + i >= getMap()[0].length)) {
 //                    g.setColor(Color.BLACK);
 //                    g.fillRect(-(leftmostVisible - leftmostTile * tileSize) + j * tileSize,
 //                            -(highestVisible - highestTile * tileSize) + i * tileSize, tileSize, tileSize);
