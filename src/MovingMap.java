@@ -54,19 +54,14 @@ public class MovingMap extends OverworldMap{
             for (int j = 0; j < visibleWidth / tileSize + 1; j++){
                 if ((0 > leftmostTile + j) || (leftmostTile + j >= getMap().length) ||
                         (0 > highestTile + i) || (highestTile + i >= getMap()[0].length)) {
-                    g.setColor(Color.BLACK);
-                    g.fillRect(-(leftmostVisible - leftmostTile * tileSize) + j * tileSize,
-                            -(highestVisible - highestTile * tileSize) + i * tileSize, tileSize, tileSize);
+//                    g.setColor(Color.BLACK);
+//                    g.fillRect(-(leftmostVisible - leftmostTile * tileSize) + j * tileSize,
+//                            -(highestVisible - highestTile * tileSize) + i * tileSize, tileSize, tileSize);
                 } else {
-                    try {
-                        sprite = ImageIO.read(new File("assets/map sprites/" +
-                                this.getMap()[leftmostTile + j][highestTile + i].getTileName() + ".png"));
-                        g.drawImage(sprite, -(leftmostVisible - leftmostTile * tileSize) + j * tileSize,
-                                -(highestVisible - highestTile * tileSize) + i * tileSize,
-                                tileSize, tileSize,null);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+                    sprite = getSprite(highestTile + i, leftmostTile + j);
+                    g.drawImage(sprite, -(leftmostVisible - leftmostTile * tileSize) + j * tileSize,
+                            -(highestVisible - highestTile * tileSize) + i * tileSize,
+                            tileSize, tileSize,null);
                 }
             }
         }
