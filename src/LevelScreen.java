@@ -432,8 +432,11 @@ public class LevelScreen extends GameScreen{
      * runs enemy actions, generates intents and resets player and enemy values for their respective turns
      */
     public void endTurn() {
+        if (!enemyTurn) {
+            //Proc the player Status effect and makes it so it doesn't happen over and over if you press end turn
+            jointMap.procPlayerStatus();
+        }
         //End of player turn
-        jointMap.procPlayerStatus();
         selectedAbility = null;
         System.out.println("End turn enemy time!");
 
