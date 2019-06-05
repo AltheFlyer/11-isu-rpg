@@ -25,7 +25,7 @@ abstract public class OverworldMap {
             for (int j = 0; j < map[0].length; ++j) {
                 try {
                     sprites[j][i] = ImageIO.read(new File("assets/map sprites/" +
-                            this.getMap()[j][i].getTileName() + ".png"));
+                            this.getMap()[i][j].getTileName() + ".png"));
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
