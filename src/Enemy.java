@@ -90,10 +90,65 @@ abstract public class Enemy extends Entity{
 
     /**
      * [decide]
-     * contrary to the method name, this doesn't cause enemies to decide an immediate move, rather it
      * generates a next move (Ability and intent) - that the player can then react to (should be overriden).
      */
     abstract public void decide(JointMap map);
+
+    /**
+     * [act]
+     * lets the enemy perform an action using an ability
+     */
+    abstract public void act(JointMap map);
+
+    /**
+     * [selectRandomTile]
+     * performs an action with the selected ability using RANDOM targeting
+     * @param ability the ability to do a random selection with
+     */
+    public void selectRandomTile(JointMap map, Ability ability) {
+        int[] xTargets;
+        int[] yTargets;
+        int validTargets = 0;
+        int counter = 0;
+        int choice;
+
+        ability.indicateValidTiles(map);
+
+        //count up the number of targetable tiles
+        for (int k = 0; k < 3; k++) {
+            for (int l = 0; l < 6; l++) {
+                if (map.getTargetable(l,k)){
+                    validTargets += 1;
+                }
+            }
+        }
+        //Run the attack if there are valid targets
+        if (validTargets > 0){
+            //Create the new arrays to store all targetable tiles
+            xTargets = new int[validTargets];
+            yTargets = new int[validTargets];
+
+
+            //Store the targetable tile locations
+            for (int k = 0; k < 3; k++) {
+                for (int l = 0; l < 6; l++) {
+                    if (map.getTargetable(l,k)){
+                        xTargets[counter] = l;
+                        yTargets[counter] = k;
+                        counter ++;
+                    }
+                }
+            }
+
+            //Choose a random tile to target out of the targetable tiles
+            choice = (int)(Math.random()*counter);
+
+            //Use the chosen ability on the selected tile
+            if (ability.action(map, xTargets[choice], yTargets[choice])){
+                System.out.println("bam!");
+            }
+        }
+    }
 
     public void setIntent(Icon icon) {
         this.intent = icon;

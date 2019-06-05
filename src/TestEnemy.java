@@ -26,4 +26,9 @@ public class TestEnemy extends Enemy {
             setDecide(abilities[0]);
         }
     }
+
+    @Override
+    public void act(JointMap map) {
+        selectRandomTile(map, getDecide());
+    }
 }

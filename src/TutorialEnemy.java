@@ -29,14 +29,14 @@ public class TutorialEnemy extends Enemy {
                         0, 2, 6, 0, 1, 10, true, false
                         ),
                         new BasicMoveAbility("Rest", "This ability is useless!.",
-                                0, 2,1)
+                                0, 2,2)
                 });
 
         attackIcon = new Icon("assets/icons/sword.png");
         attackIcon.setName("Basic Attack");
         moveIcon = new Icon("assets/icons/move.png");
         moveIcon.setName("Seek!");
-        turn = 1;
+        turn = 0;
 
         attackAbility = getAbility(0);
         moveAbility = getAbility(1);
@@ -53,15 +53,41 @@ public class TutorialEnemy extends Enemy {
 
     @Override
     public void decide(JointMap map) {
-        this.turn++;
         //Attacks on odd turns, moves on even turns
         System.out.println(turn);
         if (turn % 2 == 1) {
-            setIntent(moveIcon);
-            setDecide(moveAbility);
-        } else {
             setIntent(attackIcon);
             setDecide(attackAbility);
+        } else {
+            setIntent(moveIcon);
+            setDecide(moveAbility);
+        }
+        this.turn++;
+    }
+
+    @Override
+    public void act(JointMap map) {
+        //The abilities used are swapped from the abilities decided
+        if (turn % 2 == 1) {
+            int optimalRow = getYGrid();
+            int maxRowPlayers = 0;
+
+            for (int y = 0; y < 3; ++y) {
+                int playerCount = 0;
+                for (int x = 0; x < 3; ++x) {
+                    if (map.tileExists(x, y)) {
+                        playerCount++;
+                        if (playerCount > maxRowPlayers) {
+                            optimalRow = y;
+                            maxRowPlayers = playerCount;
+                        }
+                    }
+                }
+            }
+
+            getDecide().action(map, getXGrid(), optimalRow);
+        } else {
+            selectRandomTile(map, getDecide());
         }
     }
 
