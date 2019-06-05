@@ -55,6 +55,8 @@ public class MovingMap extends OverworldMap{
                 if ((0 > leftmostTile + j) || (leftmostTile + j >= getMap().length) ||
                         (0 > highestTile + i) || (highestTile + i >= getMap()[0].length)) {
                     g.setColor(Color.BLACK);
+                    g.fillRect(-(leftmostVisible - leftmostTile * tileSize) + j * tileSize,
+                            -(highestVisible - highestTile * tileSize) + i * tileSize, tileSize, tileSize);
                 } else {
                     try {
                         sprite = ImageIO.read(new File("assets/map sprites/" +
