@@ -337,12 +337,15 @@ public class LevelScreen extends GameScreen{
             } else if (clock.getElapsedMilli() > 1000) {
                 //Cool indication thing for the player to see so it's like the enemies are taking their turn
                 selectedEnemy = enemies[counter];
-                selectedAbility = enemies[counter].getDecide();
+
+                //selec = enemies[counter].getDecide();
 
                 clock.update();
 
                 //The enemy acts
                 jointMap.runEnemyActions(enemies[counter], g);
+                selectedEnemy.getDecide().indicateValidTiles(jointMap);
+                jointMap.runEnemyIntent(enemies[counter]);
                 counter++;
             }
 
