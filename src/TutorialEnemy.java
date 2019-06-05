@@ -22,7 +22,7 @@ public class TutorialEnemy extends Enemy {
     Ability attackAbility;
     Ability moveAbility;
 
-    TutorialEnemy() {
+    TutorialEnemy(int x, int y) {
         super(10, "Annoying Peon",
                 new Ability[] {
                         new SingleAbility("Basic Attack", "Deals damage to a single target in the same row.",
@@ -43,6 +43,9 @@ public class TutorialEnemy extends Enemy {
 
         setIntent(moveIcon);
         setDecide(moveAbility);
+
+        setXGrid(x);
+        setYGrid(y);
 
         try {
             sprite = ImageIO.read(new File("assets/sprites/slime.png"));

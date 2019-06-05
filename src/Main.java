@@ -8,5 +8,13 @@ public class Main {
 
         //game.setScreen(new BattleLayoutScreen(game));
         game.setScreen(new TutorialLevel(game));
+
+        /*
+        game.setScreen(new LevelScreen(game, new Enemy[] {
+                new TutorialEnemy(3, 0),
+                new TutorialEnemy(3, 1),
+                new TutorialEnemy(3, 2)
+        }));
+        */
     }
 }

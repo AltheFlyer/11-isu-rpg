@@ -33,7 +33,7 @@ public class TutorialLevel extends LevelScreen {
 
         //enemies
         enemies = new Enemy[9];
-        enemies[0] = new TutorialEnemy();
+        enemies[0] = new TutorialEnemy(3, 1);
 
         //Tutorial should be simplified: 1 player character with only 2 abilities.
         jointMap.addEntity(2, 1, players[0]);

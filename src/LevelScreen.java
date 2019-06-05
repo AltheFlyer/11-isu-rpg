@@ -92,7 +92,7 @@ public class LevelScreen extends GameScreen{
         for (int i = 0; i < 3; i++){
             enemies[i] = new TestEnemy();
         }
-        enemies[3] = new TutorialEnemy();
+        enemies[3] = new TutorialEnemy(5, 0);
 
         /*
         ack = new TestEnemy();//10, "ack",ackAbilities);
@@ -124,6 +124,36 @@ public class LevelScreen extends GameScreen{
         //players[2] = bryan;
 
         allen.statuses.add(new CursedStatus(allen, 1));
+        clock = new Clock();
+    }
+
+    /**
+     * [LevelScreen]
+     * @param game the currently running game
+     * @param enemySet the list of enemies to add to the encounter
+     */
+    LevelScreen(GameManager game, Enemy[] enemySet){
+        super(game);
+
+        jointMap = new JointMap();
+
+        players = GameIO.getBattleLayout();
+        kevin = players[0];
+        allen = players[1];
+        bryan = players[2];
+
+        //Adds players onto map
+        for (int i = 0; i < players.length; ++i) {
+            jointMap.addEntity(players[i].getXGrid(), players[i].getYGrid(), players[i]);
+        }
+
+        //Add enemies to grid
+        enemies = enemySet;
+
+        for (int i = 0; i < enemies.length; i++){
+            jointMap.addEntity(enemies[i].getXGrid(), enemies[i].getYGrid(), enemies[i]);
+        }
+
         clock = new Clock();
     }
 
@@ -219,8 +249,6 @@ public class LevelScreen extends GameScreen{
                 }
             }
         }
-
-        //Moving move move move Actions!
     }
 
     public void paintComponent(Graphics g) {
@@ -300,7 +328,7 @@ public class LevelScreen extends GameScreen{
 
         //Testing with clock and enemy turn
         if (enemyTurn) {
-            if (counter >= 9) {
+            if (counter >= enemies.length) {
                 //skip
             } else if (enemies[counter] == null) {
                 counter++;
