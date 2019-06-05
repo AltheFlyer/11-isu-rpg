@@ -1,3 +1,5 @@
+import utils.AnimatedSprite;
+
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -359,21 +361,53 @@ public class GameIO {
             e.printStackTrace();
         }
 
-        double health = Double.parseDouble(replaceFirstWord(lines[2]));
-        double energy = Double.parseDouble(replaceFirstWord(lines[3]));
+        AnimatedSprite animatedSprite = null;
 
-        int numAbilities = Integer.parseInt(replaceFirstWord(lines[4]));
+        animatedSprite = generateAnimation(lines[2]);
+
+        double health = Double.parseDouble(replaceFirstWord(lines[3]));
+        double energy = Double.parseDouble(replaceFirstWord(lines[4]));
+
+        int numAbilities = Integer.parseInt(replaceFirstWord(lines[5]));
 
         Ability[] abilities = new Ability[numAbilities];
-        int lineNumber = 5;
+        int lineNumber = 6;
 
         for (int i = 0; i < numAbilities; ++i) {
             abilities[i] = generateAbility(lines[lineNumber + i]);
         }
 
-        return new Player(health, energy, debugName, name, sprite, abilities);
+        return new Player(health, energy, debugName, name, sprite, animatedSprite, abilities);
     }
 
+    private static AnimatedSprite generateAnimation(String line) throws ArrayIndexOutOfBoundsException {
+        //Get the index of the next space or string 'breaker'
+        int breakIndex = line.indexOf(" ");
+
+        //rows, columns, width, height, delay
+
+        //First word is ability type
+        String path = line.substring(0, breakIndex);
+
+        line = line.substring(line.indexOf("png") + 4);
+
+        //Split the rest into args, hope that the length is equal to the amount required
+        String[] args = line.split(" ");
+
+        System.out.println(path);
+        System.out.println(args[0]);
+        System.out.println(args[1]);
+        System.out.println(args[2]);
+        System.out.println(args[3]);
+        System.out.println(args[4]);
+
+        return new AnimatedSprite(path,
+                Integer.parseInt(args[0]),
+                Integer.parseInt(args[1]),
+                Integer.parseInt(args[2]),
+                Integer.parseInt(args[3]),
+                Integer.parseInt(args[4]));
+    }
     /**
      * [generateAbility]
      * generates an ability based on a string defining its type, and the valid parameters

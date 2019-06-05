@@ -1,3 +1,4 @@
+import utils.AnimatedSprite;
 import utils.TextDrawer;
 
 import java.awt.*;
@@ -9,6 +10,7 @@ public class Player extends Entity{
 
     private BufferedImage sprite;
     private String debugName;
+    private AnimatedSprite gif;
 
     Player(double health, double energy, String name, Ability[] abilities){
         super(health,energy,name,abilities);
@@ -16,6 +18,7 @@ public class Player extends Entity{
             abilities[i].setEntitySource(this);
         }
         ico = new Icon(new Rectangle(0, 0, 40, 40), "assets/icons/test.png");
+        gif = new AnimatedSprite("spritesheets/jasmine.png", 1, 5,120,120, 100);
     }
 
     Player(double health, double energy, String debugName, String name, BufferedImage sprite, Ability[] abilities){
@@ -25,7 +28,18 @@ public class Player extends Entity{
         }
         this.debugName = debugName;
         ico = new Icon(new Rectangle(0, 0, 40, 40), "assets/icons/test.png");
+    }
+
+    Player(double health, double energy, String debugName, String name, BufferedImage sprite, AnimatedSprite animatedSprite, Ability[] abilities){
+        super(health,energy,name,abilities);
+        for (int i = 0; i < abilities.length; i++){
+            abilities[i].setEntitySource(this);
+        }
+        this.debugName = debugName;
+        ico = new Icon(new Rectangle(0, 0, 40, 40), "assets/icons/test.png");
         this.sprite = sprite;
+
+        gif = animatedSprite;
     }
 
     public Ability getAbility(int index){
@@ -101,6 +115,8 @@ public class Player extends Entity{
     }
 
     public void draw(int x, int y, Graphics g, boolean indicated){
+        gif.draw(g,x,y);
+
         g.setColor(Color.MAGENTA);
         if (getName().equals("yellow")){
             g.setColor(Color.yellow);

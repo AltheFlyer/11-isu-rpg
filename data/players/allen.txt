@@ -1,5 +1,6 @@
 display_name Allen
 sprite_path assets/sprites/test_player.png
+spritesheets/jasmine.png 1 5 120 120 100
 health 10
 energy 150
 ABILITIES 3
