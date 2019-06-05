@@ -7,3 +7,5 @@ top_right false
 floor true
 bottom_left false
 bottom_right false
+door false
+exit true

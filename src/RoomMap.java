@@ -1,4 +1,8 @@
+import javax.imageio.ImageIO;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
 /**
  * [RoomMap.java]
@@ -24,14 +28,22 @@ public class RoomMap extends OverworldMap{
  * @return void
  */
     public void draw(Graphics g, OverworldPlayer player){
+        BufferedImage sprite;
         for (int i = 0; i < this.getMap().length; i++){
             for (int j = 0; j < this.getMap()[0].length; j++){
-                if (this.getMap()[i][j].isWalkable()){
-                    g.setColor(Color.LIGHT_GRAY);
-                    g.fillRect(i*tileSize,j*tileSize,tileSize,tileSize);
-                } else {
-                    g.setColor(Color.DARK_GRAY);
-                    g.fillRect(i*tileSize,j*tileSize,tileSize,tileSize);
+//                if (this.getMap()[i][j].isWalkable()){
+//                    g.setColor(Color.LIGHT_GRAY);
+//                    g.fillRect(i*tileSize,j*tileSize,tileSize,tileSize);
+//                } else {
+//                    g.setColor(Color.DARK_GRAY);
+//                    g.fillRect(i*tileSize,*tileSize,tileSize,tileSize);
+//                }
+                try {
+                    sprite = ImageIO.read(new File("assets/map sprites/" +
+                            this.getMap()[i][j].getTileName() + ".png"));
+                    g.drawImage(sprite, i*tileSize, j*tileSize, tileSize, tileSize,null);
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
             }
         }

@@ -1,4 +1,8 @@
+import javax.imageio.ImageIO;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
 /**
  * [MovingMap.java]
@@ -26,23 +30,42 @@ public class MovingMap extends OverworldMap{
  * @return void
  */
     public void draw(Graphics g, OverworldPlayer player){
+        BufferedImage sprite;
         int leftmostVisible = player.getX() - (visibleWidth / 2);
         int leftmostTile = leftmostVisible / tileSize;
         int highestVisible = player.getY() - (visibleHeight / 2);
         int highestTile = highestVisible / tileSize;
 
-        for (int i = 0; i < visibleHeight / tileSize + 1; i++){
+//        for (int i = 0; i < visibleHeight / tileSize + 1; i++){
+//            for (int j = 0; j < visibleWidth / tileSize + 1; j++){
+//                if ((0 > leftmostTile + j) || (leftmostTile + j >= getMap().length) ||
+//                        (0 > highestTile + i) || (highestTile + i >= getMap()[0].length)) {
+//                    g.setColor(Color.BLACK);
+//                } else if (this.getMap()[leftmostTile + j][highestTile + i].isWalkable()){
+//                    g.setColor(Color.LIGHT_GRAY);
+//                } else {
+//                    g.setColor(Color.DARK_GRAY);
+//                }
+//                g.fillRect(-(leftmostVisible - leftmostTile * tileSize) + j * tileSize,
+//                        -(highestVisible - highestTile * tileSize) + i * tileSize, tileSize, tileSize);
+//            }
+
+                for (int i = 0; i < visibleHeight / tileSize + 1; i++){
             for (int j = 0; j < visibleWidth / tileSize + 1; j++){
                 if ((0 > leftmostTile + j) || (leftmostTile + j >= getMap().length) ||
                         (0 > highestTile + i) || (highestTile + i >= getMap()[0].length)) {
                     g.setColor(Color.BLACK);
-                } else if (this.getMap()[leftmostTile + j][highestTile + i].isWalkable()){
-                    g.setColor(Color.LIGHT_GRAY);
                 } else {
-                    g.setColor(Color.DARK_GRAY);
+                    try {
+                        sprite = ImageIO.read(new File("assets/map sprites/" +
+                                this.getMap()[leftmostTile + j][highestTile + i].getTileName() + ".png"));
+                        g.drawImage(sprite, -(leftmostVisible - leftmostTile * tileSize) + j * tileSize,
+                                -(highestVisible - highestTile * tileSize) + i * tileSize,
+                                tileSize, tileSize,null);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
-                g.fillRect(-(leftmostVisible - leftmostTile * tileSize) + j * tileSize,
-                        -(highestVisible - highestTile * tileSize) + i * tileSize, tileSize, tileSize);
             }
         }
     }

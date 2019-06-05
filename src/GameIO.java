@@ -498,7 +498,8 @@ public class GameIO {
         for (int y = 0; y < height; ++y) {
             tokens = lines[y + 1].split(" ");
             for (int x = 0; x < width; ++x) {
-                tileMap[x][y] = new OverworldTile(x, y, tileWalkability.get(tokens[x]),tileSize);
+                System.out.println(tokens[x]);
+                tileMap[x][y] = new OverworldTile(x, y, tileWalkability.get(tokens[x]), tileSize, tokens[x]);
             }
         }
 

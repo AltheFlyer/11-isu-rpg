@@ -50,8 +50,7 @@ public class MapScreen extends GameScreen {
         setBackground(Color.BLACK);
 
         //checking collisions with walls and NPCs
-        checkWallCollisions();
-        checkNPCCollisions();
+        checkCollisions();
 
         //drawing everything
         map.draw(g, player);
@@ -108,7 +107,7 @@ public class MapScreen extends GameScreen {
         }
     }
 
-    private void checkWallCollisions() {
+    private void checkCollisions() {
         int playerXCenter = player.getX() + player.collisionWindow().width/2;
         int playerYCenter = player.getY() + player.collisionWindow().height/2;
         int centerTileX = playerXCenter/map.getTileSize();
@@ -133,10 +132,6 @@ public class MapScreen extends GameScreen {
         } else {
             player.move(clock.getElapsedTime());
         }
-    }
-
-    private void checkNPCCollisions() {
-
     }
 
     private void checkInteractions(Rectangle playerBounds) {
