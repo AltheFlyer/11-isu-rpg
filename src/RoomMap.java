@@ -29,8 +29,8 @@ public class RoomMap extends OverworldMap{
  */
     public void draw(Graphics g, OverworldPlayer player){
         BufferedImage sprite;
-        for (int i = 0; i < this.getMap().length; i++){
-            for (int j = 0; j < this.getMap()[0].length; j++){
+        for (int i = 0; i < this.getMap()[0].length; i++){
+            for (int j = 0; j < this.getMap().length; j++){
 //                if (this.getMap()[i][j].isWalkable()){
 //                    g.setColor(Color.LIGHT_GRAY);
 //                    g.fillRect(i*tileSize,j*tileSize,tileSize,tileSize);

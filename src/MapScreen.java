@@ -62,7 +62,6 @@ public class MapScreen extends GameScreen {
 
         //ask for repaint
         repaint();
-        System.out.println(player.getX() + " " + player.getY());
     }
 
     /**
