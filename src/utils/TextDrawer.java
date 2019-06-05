@@ -68,7 +68,7 @@ public class TextDrawer {
      *                       the draw() method is called multiple times)
      */
     public TextDrawer(Graphics g, String text, int x, int y, int maxWidth, int characterDelay) {
-        FontMetrics fontData = g.getFontMetrics();
+        fontData = g.getFontMetrics();
         this.x = x;
         this.y = y;
 

@@ -25,9 +25,9 @@ public class MapScreen extends GameScreen {
         super(game);
         clock = new Clock();
         framerate = new FrameRate();
-        map = new MovingMap(getIO(), mapPath,walkabilityKey);
+        map = new RoomMap(getIO(), mapPath,walkabilityKey);
         player = new OverworldPlayer(400,400);
-        npc = new OverworldNPC(300,300, "Hey!");
+        npc = new OverworldNPC(300,300, "i don't know what i'm doing! i want to die hsdfhshufehskforhgkdjgh");
         length = map.getMap().length;
         width = map.getMap()[0].length;
     }
@@ -39,7 +39,7 @@ public class MapScreen extends GameScreen {
      * @return void
      */
     public void paintComponent(Graphics g) {
-        //TextDrawer textDrawer = new TextDrawer(g,npc.getMessage(),500,100,500);
+        TextDrawer textDrawer = new TextDrawer(g,npc.getMessage(),500,500,500, 50);
         super.paintComponent(g);
 
         //updating clock and frames
@@ -58,7 +58,9 @@ public class MapScreen extends GameScreen {
         npc.draw(g, map, player);
         framerate.draw(g,10,10);
 
-
+        if (npc.getTalking()) {
+            textDrawer.drawText(g);
+        }
 
         //ask for repaint
         repaint();
@@ -136,7 +138,7 @@ public class MapScreen extends GameScreen {
 
     private void checkInteractions(Rectangle playerBounds) {
         if (playerBounds.intersects(npc.collisionWindow())) {
-            System.out.println(npc.getMessage());
+            npc.setTalking();
         }
     }
 
