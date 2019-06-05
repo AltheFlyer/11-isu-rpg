@@ -38,13 +38,8 @@ public class RoomMap extends OverworldMap{
 //                    g.setColor(Color.DARK_GRAY);
 //                    g.fillRect(i*tileSize,*tileSize,tileSize,tileSize);
 //                }
-                try {
-                    sprite = ImageIO.read(new File("assets/map sprites/" +
-                            this.getMap()[i][j].getTileName() + ".png"));
-                    g.drawImage(sprite, i*tileSize, j*tileSize, tileSize, tileSize,null);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                sprite = getSprite(i, j);
+                g.drawImage(sprite, i*tileSize, j*tileSize, tileSize, tileSize,null);
             }
         }
     }

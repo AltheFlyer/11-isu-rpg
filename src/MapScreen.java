@@ -25,7 +25,7 @@ public class MapScreen extends GameScreen {
         super(game);
         clock = new Clock();
         framerate = new FrameRate();
-        map = new MovingMap(getIO(), mapPath,walkabilityKey);
+        map = new RoomMap(getIO(), mapPath,walkabilityKey);
         player = new OverworldPlayer(400,400);
         npc = new OverworldNPC(300,300, "Hey!");
         length = map.getMap().length;
@@ -62,7 +62,7 @@ public class MapScreen extends GameScreen {
 
         //ask for repaint
         repaint();
-        //System.out.println(player.getX() + " " + player.getY());
+        System.out.println(player.getX() + " " + player.getY());
     }
 
     /**
