@@ -116,9 +116,10 @@ public class TutorialLevel extends LevelScreen {
         repaint();
     }
 
+
     @Override
-    public void mouseReleased(MouseEvent e) {
-        super.mouseReleased(e);
+    public void mousePressed(MouseEvent e) {
+        super.mousePressed(e);
 
         //quick tutorial reset
         if (tutorialIndex == 7) {
@@ -128,7 +129,7 @@ public class TutorialLevel extends LevelScreen {
 
     @Override
     public void endTurn() {
-        if (players[0].getEnergy() == 0) {
+        if ((players[0].getEnergy() == 0) || (turnNumber >= 2)) {
             super.endTurn();
         } else {
             tutorialIndex = 7;

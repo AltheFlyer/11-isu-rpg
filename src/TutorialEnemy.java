@@ -26,9 +26,9 @@ public class TutorialEnemy extends Enemy {
         super(10, "Annoying Peon",
                 new Ability[] {
                         new SingleAbility("Basic Attack", "Deals damage to a single target in the same row.",
-                        0, 2, 6, 0, 1, 10, true, false
+                        0, 2, 6, 0, 1, 8, true, false
                         ),
-                        new BasicMoveAbility("Rest", "This ability is useless!.",
+                        new BasicMoveAbility("Seek", "Moves to the same row as the player.",
                                 0, 2,2)
                 });
 
@@ -36,13 +36,13 @@ public class TutorialEnemy extends Enemy {
         attackIcon.setName("Basic Attack");
         moveIcon = new Icon("assets/icons/move.png");
         moveIcon.setName("Seek!");
-        turn = 0;
+        turn = 1;
 
         attackAbility = getAbility(0);
         moveAbility = getAbility(1);
 
-        setIntent(attackIcon);
-        setDecide(attackAbility);
+        setIntent(moveIcon);
+        setDecide(moveAbility);
 
         try {
             sprite = ImageIO.read(new File("assets/sprites/slime.png"));
@@ -53,7 +53,7 @@ public class TutorialEnemy extends Enemy {
 
     @Override
     public void decide(JointMap map) {
-        //Attacks on odd turns, moves on even turns
+        //Attacks on even turns, moves on odd turns
         System.out.println(turn);
         if (turn % 2 == 1) {
             setIntent(attackIcon);
@@ -69,13 +69,14 @@ public class TutorialEnemy extends Enemy {
     public void act(JointMap map) {
         //The abilities used are swapped from the abilities decided
         if (turn % 2 == 1) {
-            int optimalRow = getYGrid();
+            //move to row with most players
+            int optimalRow = 0;
             int maxRowPlayers = 0;
 
             for (int y = 0; y < 3; ++y) {
                 int playerCount = 0;
                 for (int x = 0; x < 3; ++x) {
-                    if (map.tileExists(x, y)) {
+                    if (!map.isEmpty(x, y)) {
                         playerCount++;
                         if (playerCount > maxRowPlayers) {
                             optimalRow = y;
@@ -85,6 +86,7 @@ public class TutorialEnemy extends Enemy {
                 }
             }
 
+            getDecide().indicateValidTiles(map);
             getDecide().action(map, getXGrid(), optimalRow);
         } else {
             selectRandomTile(map, getDecide());

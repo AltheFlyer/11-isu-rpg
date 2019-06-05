@@ -26,6 +26,7 @@ public class LevelScreen extends GameScreen{
     boolean enemyTurn = false;
     //Counter for amount of enemies
     int counter = 0;
+    int turnNumber = 1;
 
     LevelScreen(GameManager game){
         super(game);
@@ -322,7 +323,9 @@ public class LevelScreen extends GameScreen{
                 counter = 0;
                 //End of enemy turn
                 jointMap.procEnemyStatus();
+
                 //Start of new player turn
+                turnNumber++;
                 for (int i = 0; i < players.length; i++){
                     players[i].gainEnergy(30);
                     players[i].endTurnLowerCooldown();
