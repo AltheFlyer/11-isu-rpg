@@ -156,12 +156,14 @@ public class JointMap {
 
         enemy.act(this);
 
-        //Generate intent
-        enemy.decide(this);
-
         //Reset for the next enemy
         this.unIndicateAll();
         this.unTargetableAll();
+    }
+
+    public void runEnemyIntent(Enemy enemy){
+        //Generate intent
+        enemy.decide(this);
     }
 
 
