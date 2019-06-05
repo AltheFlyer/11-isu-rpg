@@ -352,6 +352,7 @@ public class GameIO {
 
         String name = replaceFirstWord(lines[0]);
 
+        /*
         BufferedImage sprite = null;
 
         try {
@@ -360,6 +361,7 @@ public class GameIO {
             System.out.println(replaceFirstWord(lines[1]));
             e.printStackTrace();
         }
+        */
 
         AnimatedSprite animatedSprite = null;
 
@@ -377,7 +379,7 @@ public class GameIO {
             abilities[i] = generateAbility(lines[lineNumber + i]);
         }
 
-        return new Player(health, energy, debugName, name, sprite, animatedSprite, abilities);
+        return new Player(health, energy, debugName, name, animatedSprite, abilities);
     }
 
     private static AnimatedSprite generateAnimation(String line) throws ArrayIndexOutOfBoundsException {
