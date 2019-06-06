@@ -23,7 +23,7 @@ public class MapScreen extends GameScreen {
 
     public MapScreen(GameManager game, String mapPath, String walkabilityKey) {
         super(game);
-        clock = new Clock();
+        clock = new Clock(0.5);
         framerate = new FrameRate();
         map = new RoomMap(getIO(), mapPath,walkabilityKey);
         player = new OverworldPlayer(400,400);
