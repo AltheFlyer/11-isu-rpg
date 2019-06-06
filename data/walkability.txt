@@ -5,5 +5,8 @@ wall_right false
 wall_down false
 top_right false
 floor true
+wall false
 bottom_left false
 bottom_right false
+door false
+exit true

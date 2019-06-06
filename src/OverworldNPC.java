@@ -10,10 +10,12 @@ import java.awt.*;
 public class OverworldNPC extends OverworldEntity {
 
     private String message;
+    private boolean isTalking;
 
     public OverworldNPC(int x, int y, String message) {
         super(x,y);
         this.message = message;
+        isTalking = false;
     }
 
     public void draw(Graphics g, OverworldMap map, OverworldPlayer player) {
@@ -31,6 +33,14 @@ public class OverworldNPC extends OverworldEntity {
 
     public String getMessage() {
         return this.message;
+    }
+
+    public void setTalking() {
+        this.isTalking = !(isTalking);
+    }
+
+    public boolean getTalking() {
+        return isTalking;
     }
 
 }
