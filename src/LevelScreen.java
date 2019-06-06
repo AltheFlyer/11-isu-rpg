@@ -340,13 +340,12 @@ public class LevelScreen extends GameScreen{
 
                 //selec = enemies[counter].getDecide();
 
-                clock.update();
-
                 //The enemy acts
                 jointMap.runEnemyActions(enemies[counter], g);
                 selectedEnemy.getDecide().indicateValidTiles(jointMap);
                 jointMap.runEnemyIntent(enemies[counter]);
                 counter++;
+                clock.resetElapsed();
             }
 
             if (counter >= enemies.length && clock.getElapsedMilli() > 1000){
