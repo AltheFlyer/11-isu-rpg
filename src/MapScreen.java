@@ -25,11 +25,11 @@ public class MapScreen extends GameScreen {
         super(game);
         clock = new Clock();
         framerate = new FrameRate();
-        map = new MovingMap(getIO(), mapPath,walkabilityKey);
+        map = new RoomMap(getIO(), mapPath,walkabilityKey);
         player = new OverworldPlayer(400,400);
         npc = new OverworldNPC(300,300, "i don't know what i'm doing! i want to die hsdfhshufehskforhgkdjgh");
-        length = map.getMap().length;
-        width = map.getMap()[0].length;
+        length = map.getMap()[0].length;
+        width = map.getMap().length;
     }
 
     /**
@@ -59,11 +59,19 @@ public class MapScreen extends GameScreen {
         framerate.draw(g,10,10);
 
         if (npc.getTalking()) {
+            //player.setXVelocity(0);
+            //player.setYVelocity(0);
             textDrawer.drawText(g);
         }
 
         //ask for repaint
         repaint();
+    }
+
+    public void keyTyped(KeyEvent e) {
+        if(e.getKeyChar() == 'z') {
+            checkInteractions(player.interact());
+        }
     }
 
     /**
@@ -87,9 +95,6 @@ public class MapScreen extends GameScreen {
         } else if(e.getKeyChar() =='a') {
             player.setXVelocity(-5);
             player.setDirection("left");
-        }
-        if(e.getKeyChar() == 'z') {
-            checkInteractions(player.interact());
         }
     }
 
@@ -120,7 +125,7 @@ public class MapScreen extends GameScreen {
             for (int j = centerTileY - 1; j < centerTileY + 2; j++) {
                 if (map.getMap()[i][j].isNotWalkable() &&
                         (map.getMap()[i][j].collisionWindow().intersects(playerNewBox))) {
-                    System.out.println("bam");
+                    //System.out.println("bam");
                     player.setXVelocity(0);
                     player.setYVelocity(0);
                     break;
