@@ -25,7 +25,7 @@ public class MapScreen extends GameScreen {
         super(game);
         clock = new Clock();
         framerate = new FrameRate();
-        map = new RoomMap(getIO(), mapPath,walkabilityKey);
+        map = new MovingMap(getIO(), mapPath,walkabilityKey);
         player = new OverworldPlayer(400,400);
         npc = new OverworldNPC(300,300, "i don't know what i'm doing! i want to die hsdfhshufehskforhgkdjgh");
         length = map.getMap().length;

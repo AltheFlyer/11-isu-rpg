@@ -21,11 +21,11 @@ abstract public class OverworldMap {
         fileManager.readTileWalkability(walkabilityKey);
         map = fileManager.getMap(mapPath, tileSize);
         sprites = new BufferedImage[map.length][map[0].length];
-        for (int i = 0; i < map[0].length; ++i) {
-            for (int j = 0; j < map.length; ++j) {
+        for (int i = 0; i < map.length; ++i) {
+            for (int j = 0; j < map[0].length; ++j) {
                 try {
                     sprites[i][j] = ImageIO.read(new File("assets/map sprites/" +
-                            this.getMap()[i][j].getTileName() + ".png"));
+                            map[i][j].getTileName() + ".png"));
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -43,6 +43,6 @@ abstract public class OverworldMap {
         return tileSize;
     }
 
-    public BufferedImage getSprite(int i, int j) { return sprites[i][j]; }
+    public BufferedImage getSprite(int x, int y) { return sprites[x][y]; }
 
 }
