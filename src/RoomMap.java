@@ -20,13 +20,13 @@ public class RoomMap extends OverworldMap{
     }
 
     @Override
-/**
- * [draw]
- * draws the room map by tile
- * @param g
- * @param player
- * @return void
- */
+    /**
+     * [draw]
+     * draws the room map by tile
+     * @param g
+     * @param player
+     * @return void
+     */
     public void draw(Graphics g, OverworldPlayer player){
         BufferedImage sprite;
         for (int i = 0; i < this.getMap().length; i++){

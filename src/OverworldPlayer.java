@@ -13,6 +13,13 @@ public class OverworldPlayer extends OverworldEntity {
         super(x, y);
     }
 
+    /**
+     * [draw]
+     * draws the player sprite either in the middle for moving maps, or at its [x][y] position
+     * @param g
+     * @param map the map that the player is currently in
+     * @return void
+     */
     public void draw(Graphics g, OverworldMap map) {
         g.setColor(Color.RED);
         if (map instanceof RoomMap) {
@@ -22,6 +29,12 @@ public class OverworldPlayer extends OverworldEntity {
         }
     }
 
+    /**
+     * [interact]
+     * creates an interaction hitbox in the direction the player is facing
+     * @return Rectangle interactChecker, the interaction hitbox that will be used
+     * to check if the player is interacting with anything
+     */
     public Rectangle interact() {
         Rectangle interactChecker;
         if (this.getDirection().equals("down")) {

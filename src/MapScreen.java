@@ -23,12 +23,12 @@ public class MapScreen extends GameScreen {
 
     public MapScreen(GameManager game, String mapPath, String walkabilityKey) {
         super(game);
-        clock = new Clock(0.5);
+        clock = new Clock(0.25);
         framerate = new FrameRate();
         map = new RoomMap(getIO(), mapPath,walkabilityKey);
         player = new OverworldPlayer(400,400);
         npc = new OverworldNPC(300,300, "i don't know what i'm doing! i want to die hsdfhshufehskforhgkdjgh somebody once told me" +
-                "the world was gonna rol me i aint the sharpest tool in the shed, what's up yewchube dsufhoesuhfurhgorhoghroghudrihgiurdhgiurdhgurdi");
+                "the world was gonna rol me i aint the sharpest tool in the shed, what's up yewchube dsufhoesuhfurhgorhoghroghudrihgiurdhgiurdhgurdi", "h");
         length = map.getMap()[0].length;
         width = map.getMap().length;
     }

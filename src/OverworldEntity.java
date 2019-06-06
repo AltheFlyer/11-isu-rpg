@@ -132,23 +132,51 @@ abstract public class OverworldEntity {
         this.setBoundingBox(this.getX(),this.getY());
     }
 
+    /**
+     * [collisionWindow]
+     * returns the entity's bounding box
+     * @return Rectangle boundingBox, the entity's bounding box
+     */
     public Rectangle collisionWindow(){
         return this.boundingBox;
     }
 
+    /**
+     * [setBoundingBox]
+     * changes the x and y position of the entity's bounding box
+     * @param x the new x value of the entity's bounding box
+     * @param y the new y value of the entity's bounding box
+     * @return void
+     */
     public void setBoundingBox(int x, int y) {
         this.boundingBox.x = x;
         this.boundingBox.y = y;
     }
 
+    /**
+     * [getDirection]
+     * returns the direction that the entity is currently facing
+     * @return String direction, the direction that the entity is currently facing
+     */
     public String getDirection() {
         return direction;
     }
 
+    /**
+     * [setDirection]
+     * sets the direction that the entity is currently facing
+     * @param d the direction the entity is currently facing
+     * @return void
+     */
     public void setDirection(String d) {
         this.direction = d;
     }
 
+    /**
+     * [getSize]
+     * returns the vertical size of the player's bounding box
+     * @return int boundingBox.height, the vertical size of the player's bounding box
+     */
     public int getSize() {
         return this.boundingBox.height;
     }

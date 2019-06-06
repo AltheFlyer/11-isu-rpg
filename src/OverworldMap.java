@@ -33,16 +33,39 @@ abstract public class OverworldMap {
         }
     }
 
+    /**
+     * [draw]
+     * draws the map by tile, overridden in subclasses
+     * @param g
+     * @param player the current player
+     */
     public void draw(Graphics g, OverworldPlayer player){ }
 
+    /**
+     * [getMap]
+     * returns the current map that is inhabited by the player
+     * @return OverworldTile[][] map, the current map that is inhabited by the player
+     */
     public OverworldTile[][] getMap(){
         return map;
     }
 
+    /**
+     * [getTileSize]
+     * returns the tile size of the tiles in this map
+     * @return int tileSize, the tile size of the tiles in this map
+     */
     public int getTileSize(){
         return tileSize;
     }
 
+    /**
+     * [getSprite]
+     * returns a specific sprite at [x][y] in the array of map sprites
+     * @param x the x position of the sprite in the array
+     * @param y the y position of the sprite in the array
+     * @return BufferedImage sprites[x][y], the sprite at the position [x][y] in the array
+     */
     public BufferedImage getSprite(int x, int y) { return sprites[x][y]; }
 
 }

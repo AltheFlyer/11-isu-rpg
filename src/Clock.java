@@ -38,6 +38,11 @@ class Clock {
         elapsedTime=currentTime - lastTimeCheck;
     }
 
+    /**
+     * [updateElapsed]
+     * updates elapsedTime since last time check, also caps elapsedTime to solve lag problems
+     * @return void
+     */
     public void updateElapsed() {
         long currentTime = System.nanoTime();  //if the computer is fast you need more precision
         elapsedTime=currentTime - lastTimeCheck;
@@ -56,6 +61,11 @@ class Clock {
         return elapsedTime/1.0E9;
     }
 
+    /**
+     * [getElapsedMilli]
+     * gets the elapsed time between last time check and current time in milliseconds
+     * @return double elapsedTime/1.0E6, the elapsed time between the last time check and current time in milliseconds
+     */
     public double getElapsedMilli() {
         return elapsedTime/1.0E6;
     }
