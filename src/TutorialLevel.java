@@ -13,6 +13,11 @@ public class TutorialLevel extends LevelScreen {
 
     int tutorialX, tutorialY;
 
+    /**
+     * [TutorialLevel]
+     * creates a tutorial screen within the running game
+     * @param game the currently running game
+     */
     TutorialLevel(GameManager game) {
         super(game);
 
@@ -66,9 +71,18 @@ public class TutorialLevel extends LevelScreen {
                 "Press the End turn button when your turn is over.",
 
                 "You should perform an action before ending your turn!\n\n" +
-                        "Start by selecting the player using the menu bar to the left or by clicking on the player in the grid."};
+                        "Start by selecting the player using the menu bar to the left or by clicking on the player in the grid.",
+
+                "The enemy intends to attack now! You should move out of the way. Use the move ability to move to another column." +
+                        "This will let you avoid attacks. Use it wisely!"
+        };
     }
 
+    /**
+     * [paintComponent]
+     * draws the battle screen along with additional tutorial prompt boxes
+     * @param g the graphics object to draw with
+     */
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -87,7 +101,9 @@ public class TutorialLevel extends LevelScreen {
         //Don't display default messages if the player attempts to end the turn early
         if (tutorialIndex != 7) {
             //Dynamic tutorial, try to draw the appropriate text based on current character action.
-            if (players[0].getEnergy() == 0) {
+            if (turnNumber == 2) {
+                tutorialIndex = 8;
+            } else if (players[0].getEnergy() == 0) {
                 if (selectedEnemy != null) {
                     tutorialIndex = 6;
                 } else {
@@ -116,7 +132,11 @@ public class TutorialLevel extends LevelScreen {
         repaint();
     }
 
-
+    /**
+     * [mousePressed]
+     * resets the 'end turn' hint of the tutorial
+     * @param e the mouse event that is sent
+     */
     @Override
     public void mousePressed(MouseEvent e) {
         super.mousePressed(e);
@@ -127,6 +147,10 @@ public class TutorialLevel extends LevelScreen {
         }
     }
 
+    /**
+     * [endTurn]
+     * runs end of turn actions, but prevents the first turns from ending without performing any actions
+     */
     @Override
     public void endTurn() {
         if ((players[0].getEnergy() == 0) || (turnNumber >= 2)) {

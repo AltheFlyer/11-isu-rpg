@@ -1,6 +1,12 @@
-public class Door extends MapObject {
+public class Door extends OverworldTile {
 
-    public Door(int x, int y, int height, int width) {
-        super(x, y , height, width);
+    private String doorPath;
+
+    public Door(int x, int y, boolean walkable, int tileSize, String tileName, String doorPath) {
+        super(x, y, walkable, tileSize, tileName);
+        this.doorPath = doorPath;
     }
+
+    public String getDoorPath() { return this.doorPath; }
+
 }
