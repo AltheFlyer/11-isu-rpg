@@ -25,6 +25,17 @@ class Clock {
         lastTimeCheck=currentTime;
     }
 
+    /**
+     * [resetElapsed]
+     * sets elapsedTime to 0 while also updating the time
+     * @return void
+     */
+    public void resetElapsed() {
+        long currentTime = System.nanoTime();  //if the computer is fast you need more precision
+        lastTimeCheck=currentTime;
+        elapsedTime=currentTime - lastTimeCheck;
+    }
+
     public void updateElapsed() {
         long currentTime = System.nanoTime();  //if the computer is fast you need more precision
         elapsedTime=currentTime - lastTimeCheck;
