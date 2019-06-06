@@ -530,7 +530,7 @@ public class GameIO {
         int width = Integer.parseInt(tokens[0]);
         int height = Integer.parseInt(tokens[1]);
         int doors = Integer.parseInt(tokens[2]);
-        String doorPath = lines[height+2];
+        String doorPath = lines[height+1];
         tileMap = new OverworldTile[width][height];
 
         for (int y = 0; y < height; ++y) {
