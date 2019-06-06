@@ -6,12 +6,14 @@ public class OverworldTile {
     private int x;
     private int y;
     private boolean walkable;
+    private String tileName;
     private Rectangle boundingBox;
 
-    public OverworldTile(int x, int y, boolean walkable, int tileSize) {
+    public OverworldTile(int x, int y, boolean walkable, int tileSize, String tileName) {
         this.x = x;
         this.y = y;
         this.walkable = walkable;
+        this.tileName = tileName;
         this.boundingBox = new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize);
     }
 
@@ -37,5 +39,7 @@ public class OverworldTile {
     public int getY(){
         return this.y;
     }
+
+    public String getTileName() {return this.tileName; }
 
 }

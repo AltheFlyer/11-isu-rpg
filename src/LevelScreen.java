@@ -124,7 +124,7 @@ public class LevelScreen extends GameScreen{
         //players[2] = bryan;
 
         allen.statuses.add(new CursedStatus(allen, 1));
-        clock = new Clock();
+        clock = new Clock(1.2);
     }
 
     /**
@@ -154,7 +154,7 @@ public class LevelScreen extends GameScreen{
             jointMap.addEntity(enemies[i].getXGrid(), enemies[i].getYGrid(), enemies[i]);
         }
 
-        clock = new Clock();
+        clock = new Clock(1.2);
     }
 
     @Override
@@ -325,7 +325,7 @@ public class LevelScreen extends GameScreen{
                 }
             }
         }
-
+        
         //Testing with clock and enemy turn
         if (enemyTurn) {
             if (counter >= enemies.length) {
@@ -340,13 +340,12 @@ public class LevelScreen extends GameScreen{
 
                 //selec = enemies[counter].getDecide();
 
-                clock.update();
-
                 //The enemy acts
                 jointMap.runEnemyActions(enemies[counter], g);
                 selectedEnemy.getDecide().indicateValidTiles(jointMap);
                 jointMap.runEnemyIntent(enemies[counter]);
                 counter++;
+                clock.resetElapsed();
             }
 
             if (counter >= enemies.length && clock.getElapsedMilli() > 1000){
@@ -432,8 +431,11 @@ public class LevelScreen extends GameScreen{
      * runs enemy actions, generates intents and resets player and enemy values for their respective turns
      */
     public void endTurn() {
+        if (!enemyTurn) {
+            //Proc the player Status effect and makes it so it doesn't happen over and over if you press end turn
+            jointMap.procPlayerStatus();
+        }
         //End of player turn
-        jointMap.procPlayerStatus();
         selectedAbility = null;
         System.out.println("End turn enemy time!");
 

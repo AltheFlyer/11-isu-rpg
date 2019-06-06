@@ -23,13 +23,13 @@ public class MapScreen extends GameScreen {
 
     public MapScreen(GameManager game, String mapPath, String walkabilityKey) {
         super(game);
-        clock = new Clock();
+        clock = new Clock(0.5);
         framerate = new FrameRate();
-        map = new MovingMap(getIO(), mapPath,walkabilityKey);
+        map = new RoomMap(getIO(), mapPath,walkabilityKey);
         player = new OverworldPlayer(400,400);
-        npc = new OverworldNPC(300,300, "Hey!");
-        length = map.getMap().length;
-        width = map.getMap()[0].length;
+        npc = new OverworldNPC(300,300, "i don't know what i'm doing! i want to die hsdfhshufehskforhgkdjgh");
+        length = map.getMap()[0].length;
+        width = map.getMap().length;
     }
 
     /**
@@ -39,7 +39,7 @@ public class MapScreen extends GameScreen {
      * @return void
      */
     public void paintComponent(Graphics g) {
-        //TextDrawer textDrawer = new TextDrawer(g,npc.getMessage(),500,100,500);
+        TextDrawer textDrawer = new TextDrawer(g,npc.getMessage(),500,500,500, 50);
         super.paintComponent(g);
 
         //updating clock and frames
@@ -50,8 +50,7 @@ public class MapScreen extends GameScreen {
         setBackground(Color.BLACK);
 
         //checking collisions with walls and NPCs
-        checkWallCollisions();
-        checkNPCCollisions();
+        checkCollisions();
 
         //drawing everything
         map.draw(g, player);
@@ -59,11 +58,20 @@ public class MapScreen extends GameScreen {
         npc.draw(g, map, player);
         framerate.draw(g,10,10);
 
-
+        if (npc.getTalking()) {
+            //player.setXVelocity(0);
+            //player.setYVelocity(0);
+            textDrawer.drawText(g);
+        }
 
         //ask for repaint
         repaint();
-        //System.out.println(player.getX() + " " + player.getY());
+    }
+
+    public void keyTyped(KeyEvent e) {
+        if(e.getKeyChar() == 'z') {
+            checkInteractions(player.interact());
+        }
     }
 
     /**
@@ -88,9 +96,6 @@ public class MapScreen extends GameScreen {
             player.setXVelocity(-5);
             player.setDirection("left");
         }
-        if(e.getKeyChar() == 'z') {
-            checkInteractions(player.interact());
-        }
     }
 
     /**
@@ -108,7 +113,7 @@ public class MapScreen extends GameScreen {
         }
     }
 
-    private void checkWallCollisions() {
+    private void checkCollisions() {
         int playerXCenter = player.getX() + player.collisionWindow().width/2;
         int playerYCenter = player.getY() + player.collisionWindow().height/2;
         int centerTileX = playerXCenter/map.getTileSize();
@@ -120,7 +125,7 @@ public class MapScreen extends GameScreen {
             for (int j = centerTileY - 1; j < centerTileY + 2; j++) {
                 if (map.getMap()[i][j].isNotWalkable() &&
                         (map.getMap()[i][j].collisionWindow().intersects(playerNewBox))) {
-                    System.out.println("bam");
+                    //System.out.println("bam");
                     player.setXVelocity(0);
                     player.setYVelocity(0);
                     break;
@@ -135,13 +140,9 @@ public class MapScreen extends GameScreen {
         }
     }
 
-    private void checkNPCCollisions() {
-
-    }
-
     private void checkInteractions(Rectangle playerBounds) {
         if (playerBounds.intersects(npc.collisionWindow())) {
-            System.out.println(npc.getMessage());
+            npc.setTalking();
         }
     }
 
