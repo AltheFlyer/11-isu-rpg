@@ -28,6 +28,9 @@ class Clock {
     public void updateElapsed() {
         long currentTime = System.nanoTime();  //if the computer is fast you need more precision
         elapsedTime=currentTime - lastTimeCheck;
+        if (elapsedTime/1.0E9 > 0.5) {
+            elapsedTime = (long)(0.5*1.0E9);
+        }
     }
 
     //return elapsed time in milliseconds

@@ -39,7 +39,7 @@ public class GameManager {
         window.setResizable(false);
         window.setVisible(true);
 
-        setScreen(new LevelScreen(this));
+        setScreen(new LoadingScreen(this));
         //Filler Panel
         //TODO change to whatever the start screen should be
     }
