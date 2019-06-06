@@ -1,3 +1,5 @@
+import utils.TextDrawer;
+
 import java.awt.*;
 
 /**
@@ -29,6 +31,16 @@ public class OverworldNPC extends OverworldEntity {
             int yLocation = 384 - yDifference;
             g.fillRect(xLocation, yLocation, 50, 50);
         }
+    }
+
+    public void speak(Graphics g) {
+        TextDrawer textDrawer = new TextDrawer(g,message,150,650,1166);
+        g.setColor(Color.WHITE);
+        g.fillRect(100,600,1166,100);
+        g.setColor(Color.BLACK);
+        g.drawRect(100,600,1166,100);
+        textDrawer.drawText(g);
+
     }
 
     public String getMessage() {

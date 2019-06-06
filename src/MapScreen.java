@@ -27,7 +27,8 @@ public class MapScreen extends GameScreen {
         framerate = new FrameRate();
         map = new RoomMap(getIO(), mapPath,walkabilityKey);
         player = new OverworldPlayer(400,400);
-        npc = new OverworldNPC(300,300, "i don't know what i'm doing! i want to die hsdfhshufehskforhgkdjgh");
+        npc = new OverworldNPC(300,300, "i don't know what i'm doing! i want to die hsdfhshufehskforhgkdjgh somebody once told me" +
+                "the world was gonna rol me i aint the sharpest tool in the shed, what's up yewchube dsufhoesuhfurhgorhoghroghudrihgiurdhgiurdhgurdi");
         length = map.getMap()[0].length;
         width = map.getMap().length;
     }
@@ -39,7 +40,6 @@ public class MapScreen extends GameScreen {
      * @return void
      */
     public void paintComponent(Graphics g) {
-        TextDrawer textDrawer = new TextDrawer(g,npc.getMessage(),500,500,500, 50);
         super.paintComponent(g);
 
         //updating clock and frames
@@ -59,9 +59,7 @@ public class MapScreen extends GameScreen {
         framerate.draw(g,10,10);
 
         if (npc.getTalking()) {
-            //player.setXVelocity(0);
-            //player.setYVelocity(0);
-            textDrawer.drawText(g);
+            npc.speak(g);
         }
 
         //ask for repaint
