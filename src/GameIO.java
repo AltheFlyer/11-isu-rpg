@@ -529,12 +529,19 @@ public class GameIO {
         String[] tokens = lines[0].split(" ");
         int width = Integer.parseInt(tokens[0]);
         int height = Integer.parseInt(tokens[1]);
+        int doors = Integer.parseInt(tokens[2]);
+        String doorPath = lines[height+2];
         tileMap = new OverworldTile[width][height];
 
         for (int y = 0; y < height; ++y) {
             tokens = lines[y + 1].split(" ");
             for (int x = 0; x < width; ++x) {
-                tileMap[x][y] = new OverworldTile(x, y, tileWalkability.get(tokens[x]), tileSize, tokens[x]);
+                if (tokens[x].equals("door")) {
+
+                    tileMap[x][y] = new Door(x, y, tileWalkability.get(tokens[x]), tileSize, tokens[x], doorPath);
+                } else {
+                    tileMap[x][y] = new OverworldTile(x, y, tileWalkability.get(tokens[x]), tileSize, tokens[x]);
+                }
             }
         }
 

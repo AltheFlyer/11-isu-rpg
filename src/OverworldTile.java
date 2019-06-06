@@ -42,4 +42,6 @@ public class OverworldTile {
 
     public String getTileName() {return this.tileName; }
 
+    public Rectangle getBoundingBox() {return this.boundingBox; }
+
 }

@@ -2,9 +2,9 @@ import java.awt.*;
 
 abstract public class MapObject {
 
-    private Rectangle boundingBox;
     private int x;
     private int y;
+    private Rectangle boundingBox;
 
     public MapObject(int x, int y, int height, int width) {
         this.x = x;
