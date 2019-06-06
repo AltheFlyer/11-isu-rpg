@@ -8,10 +8,12 @@
 class Clock {
     long elapsedTime;
     long lastTimeCheck;
+    double maxTime; //seconds
 
-    public Clock() {
+    public Clock(double maxTime) {
         lastTimeCheck=System.nanoTime();
         elapsedTime=0;
+        this.maxTime = maxTime;
     }
 
     /**
@@ -39,8 +41,8 @@ class Clock {
     public void updateElapsed() {
         long currentTime = System.nanoTime();  //if the computer is fast you need more precision
         elapsedTime=currentTime - lastTimeCheck;
-        if (elapsedTime/1.0E9 > 0.5) {
-            elapsedTime = (long)(0.5*1.0E9);
+        if (elapsedTime/1.0E9 > maxTime) {
+            elapsedTime = (long)(maxTime*1.0E9);
         }
     }
 

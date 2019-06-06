@@ -124,7 +124,7 @@ public class LevelScreen extends GameScreen{
         //players[2] = bryan;
 
         allen.statuses.add(new CursedStatus(allen, 1));
-        clock = new Clock();
+        clock = new Clock(1.2);
     }
 
     /**
@@ -154,7 +154,7 @@ public class LevelScreen extends GameScreen{
             jointMap.addEntity(enemies[i].getXGrid(), enemies[i].getYGrid(), enemies[i]);
         }
 
-        clock = new Clock();
+        clock = new Clock(1.2);
     }
 
     @Override
@@ -325,7 +325,7 @@ public class LevelScreen extends GameScreen{
                 }
             }
         }
-
+        
         //Testing with clock and enemy turn
         if (enemyTurn) {
             if (counter >= enemies.length) {
