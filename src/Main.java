@@ -7,13 +7,15 @@ public class Main {
         //game.setScreen(new LevelScreen(game));
 
         //game.setScreen(new BattleLayoutScreen(game));
-        //game.setScreen(new TutorialLevel(game));
+        game.setScreen(new TutorialLevel(game));
 
+        /*
         game.setScreen(new LevelScreen(game, new Enemy[] {
                 new BunsenBurnerEnemy(3, 0),
                 new BunsenBurnerEnemy(3, 1),
                 new BunsenBurnerEnemy(3, 2)
         }));
+        */
 
     }
 }
