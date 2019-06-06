@@ -22,6 +22,12 @@ public class TutorialEnemy extends Enemy {
     Ability attackAbility;
     Ability moveAbility;
 
+    /**
+     * [TutorialEnemy]
+     * creates a tutorial enemy with a set position
+     * @param x the x tile to start on
+     * @param y the y tile to start on
+     */
     TutorialEnemy(int x, int y) {
         super(10, "Annoying Peon",
                 new Ability[] {
@@ -54,6 +60,12 @@ public class TutorialEnemy extends Enemy {
         }
     }
 
+    /**
+     * [decide]
+     * Chooses actions for the enemy. It will always choose to move for odd turns,
+     * and will always choose to attack for even turns
+     * @param map the JointMap that the enemy is on
+     */
     @Override
     public void decide(JointMap map) {
         //Attacks on even turns, moves on odd turns
@@ -68,6 +80,11 @@ public class TutorialEnemy extends Enemy {
         this.turn++;
     }
 
+    /**
+     * [act]
+     * tutorial enemy actions, it will always move on odd turns, and will always attack on even turns
+     * @param map the JointMap that the enemy is on
+     */
     @Override
     public void act(JointMap map) {
         //The abilities used are swapped from the abilities decided
@@ -96,12 +113,25 @@ public class TutorialEnemy extends Enemy {
         }
     }
 
+    /**
+     * [draw]
+     * draws the enemy's sprite
+     * @param x the x coordinate to draw at
+     * @param y the y coordinate to draw at
+     * @param g the graphics object to draw with
+     * @param indicated whether the enemy is indicated or not
+     */
     @Override
     public void draw(int x, int y, Graphics g, boolean indicated) {
         super.draw(x, y, g, indicated);
         g.drawImage(sprite, x, y, null);
     }
 
+    /**
+     * [drawAbilities]
+     * draws the enemy's abilities and profile
+     * @param g the graphics object to draw with
+     */
     @Override
     public void drawAbilities(Graphics g) {
         super.drawAbilities(g);
