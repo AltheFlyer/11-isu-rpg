@@ -30,11 +30,9 @@ public class AnimatedSprite {
      * @param path the relative file path, not including universal source folder for all animated sprites
      * @param rows the number of rows in the file
      * @param cols the number of columns in the file
-     * @param width the width of each sprite
-     * @param height the height of each sprite
      * @param frameDelay the time in milliseconds between each animation frame
      */
-    public AnimatedSprite(String path, int rows, int cols, int width, int height, long frameDelay) {
+    public AnimatedSprite(String path, int rows, int cols, long frameDelay) {
         BufferedImage sheet = null;
 
         try {
@@ -42,6 +40,9 @@ public class AnimatedSprite {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        int width = sheet.getWidth() / rows;
+        int height = sheet.getHeight() / cols;
 
         sprites = new BufferedImage[rows * cols];
 
