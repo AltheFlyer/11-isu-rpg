@@ -15,7 +15,7 @@ public class OverworldNPC extends OverworldEntity {
     private String name;
     private boolean isTalking;
 
-    public OverworldNPC(int x, int y, String message, String name) {
+    public OverworldNPC(int x, int y, String name, String message) {
         super(x,y);
         this.name = name;
         this.message = message;
