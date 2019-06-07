@@ -13,13 +13,13 @@ public class OverworldNPC extends OverworldEntity {
 
     private String message;
     private String name;
-    private boolean isTalking;
+    private boolean talking;
 
     public OverworldNPC(int x, int y, String name, String message) {
         super(x,y);
         this.name = name;
         this.message = message;
-        isTalking = false;
+        talking = false;
     }
 
     /**
@@ -96,16 +96,16 @@ public class OverworldNPC extends OverworldEntity {
      * @return void
      */
     public void setTalking() {
-        this.isTalking = !(isTalking);
+        this.talking = !(talking);
     }
 
     /**
-     * [getTalking]
+     * [isTalking]
      * returns if the NPC should be talking or not
      * @return boolean isTalking, if the NPC is talking or not
      */
-    public boolean getTalking() {
-        return isTalking;
+    public boolean isTalking() {
+        return talking;
     }
 
 }

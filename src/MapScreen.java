@@ -58,7 +58,9 @@ public class MapScreen extends GameScreen {
         //npc management
         for (int i = 0; i < npc.length; ++i) {
             npc[i].draw(g, map, player); //drawing the npcs
-            if (npc[i].getTalking()) {
+        }
+        for (int i = 0; i < npc.length; ++i) {
+            if (npc[i].isTalking()) {
                 npc[i].speak(g);
             }
         }
@@ -72,7 +74,7 @@ public class MapScreen extends GameScreen {
     /**
      * [keyTyped]
      * checks if a certain key is typed and checks for an interaction accordingly
-     * @param e
+     * @param e key event for a pressed key
      * @return void
      */
     public void keyTyped(KeyEvent e) {
@@ -86,30 +88,38 @@ public class MapScreen extends GameScreen {
     /**
      * [keyPressed]
      * checks if certain keys are pressed and changes player velocity accordingly
-     * @param e
+     * @param e key event for a pressed key
      * @return void
      */
     public void keyPressed(KeyEvent e) {
-        if(e.getKeyChar() == 'w') {
-            player.setYVelocity(-5);
-            player.setDirection("up");
-        } else if(e.getKeyChar() == 's') {
-            player.setYVelocity(5);
-            player.setDirection("down");
+        boolean moveable = true;
+        for (int i = 0; i < npc.length; i++) {
+            if (npc[i].isTalking()) {
+                moveable = false;
+            }
         }
-        if(e.getKeyChar() == 'd') {
-            player.setXVelocity(5);
-            player.setDirection("right");
-        } else if(e.getKeyChar() =='a') {
-            player.setXVelocity(-5);
-            player.setDirection("left");
+        if (moveable) {
+            if (e.getKeyChar() == 'w') {
+                player.setYVelocity(-5);
+                player.setDirection("up");
+            } else if (e.getKeyChar() == 's') {
+                player.setYVelocity(5);
+                player.setDirection("down");
+            }
+            if (e.getKeyChar() == 'd') {
+                player.setXVelocity(5);
+                player.setDirection("right");
+            } else if (e.getKeyChar() == 'a') {
+                player.setXVelocity(-5);
+                player.setDirection("left");
+            }
         }
     }
 
     /**
      * [keyReleased]
      * checks if certain keys are released and changes player velocity accordingly
-     * @param e
+     * @param e key event for a released key
      * @return void
      */
     public void keyReleased(KeyEvent e) {
