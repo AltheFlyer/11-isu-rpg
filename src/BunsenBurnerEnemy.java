@@ -29,7 +29,7 @@ public class BunsenBurnerEnemy extends Enemy {
         setXGrid(x);
         setYGrid(y);
 
-        gif = new AnimatedSprite("spritesheets/bunsen.png", 1, 10, 120, 120, 100);
+        gif = new AnimatedSprite("spritesheets/bunsen.png", 1, 10, 100);
     }
 
     @Override

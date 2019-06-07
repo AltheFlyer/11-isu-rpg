@@ -35,8 +35,6 @@ public class AnimatedSprite {
      */
     public AnimatedSprite(String path, int rows, int cols, long frameDelay) {
         BufferedImage sheet = null;
-        this.width = width;
-        this.height = height;
 
         try {
             sheet = ImageIO.read(new File(SRC + path));
@@ -44,8 +42,8 @@ public class AnimatedSprite {
             e.printStackTrace();
         }
 
-        int width = sheet.getWidth() / rows;
-        int height = sheet.getHeight() / cols;
+        this.width = sheet.getWidth() / rows;
+        this.height = sheet.getHeight() / cols;
 
         sprites = new BufferedImage[rows * cols];
 

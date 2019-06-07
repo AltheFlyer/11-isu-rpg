@@ -18,7 +18,7 @@ public class Player extends Entity{
             abilities[i].setEntitySource(this);
         }
         ico = new Icon(new Rectangle(0, 0, 40, 40), "assets/icons/test.png");
-        gif = new AnimatedSprite("spritesheets/allen.png", 1, 5,120,120, 500);
+        gif = new AnimatedSprite("spritesheets/allen.png", 1, 5, 500);
     }
 
     Player(double health, double energy, String debugName, String name, BufferedImage sprite, Ability[] abilities){

@@ -32,7 +32,7 @@ public class TutorialLevel extends LevelScreen {
         players = new Player[1];
         players[0] =  new Player(10, 30, "Allen",
                 new Ability[] {
-                        new SingleAbility(new AnimatedSprite("spritesheets/Jasmine.png", 1, 10, 40, 40, 100),
+                        new SingleAbility(new AnimatedSprite("spritesheets/Jasmine.png", 1, 10, 100),
                                 "Basic Attack", "Deals damage to a single target.",
                                 30, 1, 6, 0, 1, 3, true, false),
                         moveAbility
