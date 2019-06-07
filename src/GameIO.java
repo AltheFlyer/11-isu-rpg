@@ -554,6 +554,37 @@ public class GameIO {
     }
 
     /**
+     * [getNPCs]
+     * Gets an array of NPCs from a text file.
+     * @param path the path of the map file (not including source folder)
+     * @return OverworldNPC[] an array of the NPCs on the current map
+     */
+    public OverworldNPC[] getNPCs(String path) {
+        String npcText = readFile(path);
+        OverworldNPC[] npcs;
+
+        int x, y;
+        String name, message;
+        String[] tokens;
+
+        String[] lines = npcText.split("\n");
+        int totalNPCs = Integer.parseInt(lines[0]);
+        npcs = new OverworldNPC[totalNPCs];
+
+        for (int i = 1; i < totalNPCs * 2 + 1; ++i) {
+            tokens = lines[i].split(" ");
+            x = Integer.parseInt(tokens[0]);
+            y = Integer.parseInt(tokens[1]);
+            name = tokens[2];
+            ++i;
+            message = lines[i];
+            npcs[i] = new OverworldNPC(x, y, name, message);
+            }
+        return npcs;
+        }
+
+
+    /**
      * [getMapAsString]
      * Gets a 2d array of strings representing tiles from a specified map tile
      * NOTE: readTileWalkability need not be called to get the tile names.
