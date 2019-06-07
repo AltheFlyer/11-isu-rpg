@@ -58,6 +58,8 @@ public class MapScreen extends GameScreen {
         //npc management
         for (int i = 0; i < npc.length; ++i) {
             npc[i].draw(g, map, player); //drawing the npcs
+        }
+        for (int i = 0; i < npc.length; ++i) {
             if (npc[i].isTalking()) {
                 npc[i].speak(g);
             }
