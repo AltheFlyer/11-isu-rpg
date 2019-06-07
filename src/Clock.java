@@ -10,6 +10,12 @@ class Clock {
     long lastTimeCheck;
     double maxTime; //seconds
 
+    /**
+     * [Clock]
+     * @param maxTime the maximum time between each time check
+     * updates the clock to the current time
+     * @return void
+     */
     public Clock(double maxTime) {
         lastTimeCheck=System.nanoTime();
         elapsedTime=0;
