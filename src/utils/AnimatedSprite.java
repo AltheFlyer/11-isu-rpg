@@ -42,13 +42,14 @@ public class AnimatedSprite {
             e.printStackTrace();
         }
 
-        this.width = sheet.getWidth() / rows;
-        this.height = sheet.getHeight() / cols;
+        this.width = sheet.getWidth() / cols;
+        this.height = sheet.getHeight() / rows;
 
         sprites = new BufferedImage[rows * cols];
 
         for (int y = 0; y < rows; ++y) {
             for (int x = 0; x < cols; ++x) {
+                System.out.println(x + " " + y);
                 sprites[y * cols + x] = sheet.getSubimage(x * width, y * height, width, height);
             }
         }
