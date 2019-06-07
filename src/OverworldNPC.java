@@ -54,6 +54,7 @@ public class OverworldNPC extends OverworldEntity {
         g.fillRect(100,600,1166,100);
         g.setColor(Color.BLACK);
         g.drawRect(100,600,1166,100);
+        g.setColor(Color.RED);
         textDrawer.drawText(g);
     }
 
