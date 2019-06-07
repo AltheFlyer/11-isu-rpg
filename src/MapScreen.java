@@ -27,8 +27,8 @@ public class MapScreen extends GameScreen {
         framerate = new FrameRate();
         map = new RoomMap(getIO(), mapPath,walkabilityKey);
         player = new OverworldPlayer(400,400);
-        npc = new OverworldNPC(300,300, "i don't know what i'm doing! i want to die hsdfhshufehskforhgkdjgh somebody once told me" +
-                "the world was gonna rol me i aint the sharpest tool in the shed, what's up yewchube dsufhoesuhfurhgorhoghroghudrihgiurdhgiurdhgurdi", "h");
+        npc = new OverworldNPC(300,300, "h", "i don't know what i'm doing! i want to die hsdfhshufehskforhgkdjgh somebody once told me" +
+                "the world was gonna rol me i aint the sharpest tool in the shed, what's up yewchube dsufhoesuhfurhgorhoghroghudrihgiurdhgiurdhgurdi");
         length = map.getMap()[0].length;
         width = map.getMap().length;
     }

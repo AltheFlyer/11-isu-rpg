@@ -81,7 +81,7 @@ abstract public class Tile {
     }
 
     public void animateAttack(Graphics g, AnimatedSprite animation){
-        animation.draw(g,xGraphic,yGraphic);
+        animation.draw(g,xGraphic-(animation.getWidth()/2-60),yGraphic-(animation.getHeight()/2-60));
     }
 
 

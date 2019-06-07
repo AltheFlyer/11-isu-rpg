@@ -26,6 +26,9 @@ public class LevelScreen extends GameScreen{
 
     Enemy[] enemies = new Enemy[9];
 
+    //The timer is for enemy turn, for those abilities without animations
+    long timer = 1000;
+
 
     Clock clock, clock2;
     boolean enemyTurn = false;
@@ -129,7 +132,7 @@ public class LevelScreen extends GameScreen{
         //players[2] = bryan;
 
         allen.statuses.add(new CursedStatus(allen, 1));
-        clock = new Clock(1.2);
+        clock = new Clock(2);
         clock2 = new Clock(5);
     }
 
@@ -160,7 +163,7 @@ public class LevelScreen extends GameScreen{
             jointMap.addEntity(enemies[i].getXGrid(), enemies[i].getYGrid(), enemies[i]);
         }
 
-        clock = new Clock(1.2);
+        clock = new Clock(2);
         clock2 = new Clock(5);
     }
 
@@ -371,21 +374,33 @@ public class LevelScreen extends GameScreen{
                 counter++;
             } else if (!enemies[counter].isAlive()){
                 counter++;
-            } else if (clock.getElapsedMilli() > 1000) {
+            } else if (clock.getElapsedMilli() > timer) {
+                //Reset the targeting for the last enemy
+                selectedEnemy.resetTargeted();
                 //Cool indication thing for the player to see so it's like the enemies are taking their turn
                 selectedEnemy = enemies[counter];
 
-                //selec = enemies[counter].getDecide();
-
-                //The enemy acts
-                jointMap.runEnemyActions(enemies[counter], g);
+                //The enemy acts, targetedX and Y are used for animation of the enemy's attack
+                jointMap.runEnemyActions(enemies[counter]);
+                selectedEnemy.getTargetedX();
+                selectedEnemy.getTargetedY();
                 selectedEnemy.getDecide().indicateValidTiles(jointMap);
-                jointMap.runEnemyIntent(enemies[counter]);
-                counter++;
+
+                //Reset time and the animation drawn
+                if (selectedEnemy.getDecide().getAnimation() != null) {
+                    selectedEnemy.getDecide().getAnimation().reset();
+                    timer = selectedEnemy.getDecide().getAnimation().getTotalTime();
+                }
                 clock.resetElapsed();
+                counter++;
             }
 
-            if (counter >= enemies.length && clock.getElapsedMilli() > 1000){
+            //Won't animate if the attack is killing the target since it will not be targetable anymore
+            if (clock.getElapsedMilli() < timer && selectedEnemy.getDecide().getAnimation() != null && selectedEnemy.getTargetedX()>=0 && selectedEnemy.getTargetedY()>=0){
+                jointMap.animateAttack(g,selectedEnemy.getDecide().getAnimation(),selectedEnemy.getTargetedX(),selectedEnemy.getTargetedY());
+            }
+
+            if (counter >= enemies.length && clock.getElapsedMilli() > timer){
                 enemyTurn = false;
                 counter = 0;
                 //End of enemy turn
@@ -399,6 +414,12 @@ public class LevelScreen extends GameScreen{
                     //Execute if dies to status effect at the end of turn
                     if (!players[i].isAlive()){
                         jointMap.target(players[i].getXGrid(), players[i].getYGrid(),0,0);
+                    }
+                }
+
+                for (int i = 0; i < enemies.length; i++){
+                    if (enemies[i] != null) {
+                        jointMap.runEnemyIntent(enemies[i]);
                     }
                 }
                 selectedPlayer = null;
@@ -486,12 +507,14 @@ public class LevelScreen extends GameScreen{
         if (!enemyTurn) {
             //Proc the player Status effect and makes it so it doesn't happen over and over if you press end turn
             jointMap.procPlayerStatus();
-        }
-        //End of player turn
-        selectedAbility = null;
-        System.out.println("End turn enemy time!");
+            //End of player turn
+            selectedAbility = null;
+            System.out.println("End turn enemy time!");
 
-        //EnemyTurn is true
-        enemyTurn = true;
+            selectedEnemy = enemies[0];
+            //EnemyTurn is true
+            enemyTurn = true;
+        }
+
     }
 }

@@ -103,6 +103,7 @@ public class JointMap {
         }
     }
 
+    //is a tile targetable or not?
     public boolean getTargetable(int x, int y){
         return tileArray[x][y].getTargetable();
     }
@@ -155,7 +156,7 @@ public class JointMap {
      * runs all enemy turn actions and intents to preserve encapsulation standards (for now)
      */
     //TODO this is so messy right now LOL
-    public void runEnemyActions(Enemy enemy, Graphics g) {
+    public void runEnemyActions(Enemy enemy) {
 
         this.unIndicateAll();
         this.unTargetableAll();
