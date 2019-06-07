@@ -132,7 +132,7 @@ public class LevelScreen extends GameScreen{
         //players[2] = bryan;
 
         allen.statuses.add(new CursedStatus(allen, 1));
-        clock = new Clock(1.2);
+        clock = new Clock(2);
         clock2 = new Clock(5);
     }
 
@@ -163,7 +163,7 @@ public class LevelScreen extends GameScreen{
             jointMap.addEntity(enemies[i].getXGrid(), enemies[i].getYGrid(), enemies[i]);
         }
 
-        clock = new Clock(1.2);
+        clock = new Clock(2);
         clock2 = new Clock(5);
     }
 

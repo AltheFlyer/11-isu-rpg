@@ -24,6 +24,7 @@ public class AnimatedSprite {
     private int frame;
     private long frameDelay;
     private long lastFrame;
+    private int width, height;
 
     /**
      * [AnimatedSprite]
@@ -36,6 +37,8 @@ public class AnimatedSprite {
      */
     public AnimatedSprite(String path, int rows, int cols, int width, int height, long frameDelay) {
         BufferedImage sheet = null;
+        this.width = width;
+        this.height = height;
 
         try {
             sheet = ImageIO.read(new File(SRC + path));
@@ -68,6 +71,13 @@ public class AnimatedSprite {
         tick();
     }
 
+    public int getWidth(){
+        return width;
+    }
+
+    public int getHeight(){
+        return height;
+    }
     /**
      * [getSprite]
      * Returns the current frame from of the animated sprite, for use with any sprite manipulation.
@@ -100,7 +110,7 @@ public class AnimatedSprite {
      * @return
      */
     public long getTotalTime() {
-        return frameDelay * (sprites.length - 1)+10;
+        return frameDelay * (sprites.length);
     }
 
     /**
