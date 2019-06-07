@@ -17,18 +17,17 @@ public class MapScreen extends GameScreen {
     private FrameRate framerate;
     private OverworldMap map;
     private OverworldPlayer player;
-    private OverworldNPC npc;
+    private OverworldNPC[] npc;
     int length;
     int width;
 
-    public MapScreen(GameManager game, String mapPath, String walkabilityKey) {
+    public MapScreen(GameManager game, String mapPath, String walkabilityKey, String npcPath) {
         super(game);
         clock = new Clock(0.25);
         framerate = new FrameRate();
         map = new RoomMap(getIO(), mapPath,walkabilityKey);
         player = new OverworldPlayer(400,400);
-        npc = new OverworldNPC(300,300, "h", "i don't know what i'm doing! i want to die hsdfhshufehskforhgkdjgh somebody once told me" +
-                "the world was gonna rol me i aint the sharpest tool in the shed, what's up yewchube dsufhoesuhfurhgorhoghroghudrihgiurdhgiurdhgurdi");
+        npc = getIO().getNPCs(npcPath);
         length = map.getMap()[0].length;
         width = map.getMap().length;
     }
@@ -55,27 +54,38 @@ public class MapScreen extends GameScreen {
         //drawing everything
         map.draw(g, player);
         player.draw(g, map);
-        npc.draw(g, map, player);
-        framerate.draw(g,10,10);
 
-        if (npc.getTalking()) {
-            npc.speak(g);
+        //npc management
+        for (int i = 0; i < npc.length; ++i) {
+            npc[i].draw(g, map, player); //drawing the npcs
+            if (npc[i].getTalking()) {
+                npc[i].speak(g);
+            }
         }
+
+        framerate.draw(g,10,10);
 
         //ask for repaint
         repaint();
     }
 
+    /**
+     * [keyTyped]
+     * checks if a certain key is typed and checks for an interaction accordingly
+     * @param e
+     * @return void
+     */
     public void keyTyped(KeyEvent e) {
         if(e.getKeyChar() == 'z') {
-            checkInteractions(player.interact());
+            for (int i = 0; i < npc.length; ++i) {
+                npc[i].checkInteractions(player.interact());
+            }
         }
     }
 
     /**
      * [keyPressed]
      * checks if certain keys are pressed and changes player velocity accordingly
-     * also checks for interaction with non-player entities when a certain key is pressed
      * @param e
      * @return void
      */
@@ -130,18 +140,14 @@ public class MapScreen extends GameScreen {
                 }
             }
         }
-        if (playerNewBox.intersects(npc.collisionWindow())) {
-            player.setXVelocity(0);
-            player.setYVelocity(0);
-        } else {
-            player.move(clock.getElapsedTime());
+        for (int i = 0; i < npc.length; ++i) {
+            if (playerNewBox.intersects(npc[i].collisionWindow())) {
+                player.setXVelocity(0);
+                player.setYVelocity(0);
+                break;
+            }
         }
-    }
-
-    private void checkInteractions(Rectangle playerBounds) {
-        if (playerBounds.intersects(npc.collisionWindow())) {
-            npc.setTalking();
-        }
+        player.move(clock.getElapsedTime());
     }
 
 }

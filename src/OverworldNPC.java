@@ -55,7 +55,13 @@ public class OverworldNPC extends OverworldEntity {
         g.setColor(Color.BLACK);
         g.drawRect(100,600,1166,100);
         textDrawer.drawText(g);
+    }
 
+
+    public void checkInteractions(Rectangle hitbox) {
+        if (hitbox.intersects(this.collisionWindow())) {
+            this.setTalking();
+        }
     }
 
     /**

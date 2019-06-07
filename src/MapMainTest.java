@@ -4,6 +4,7 @@ public class MapMainTest {
         GameManager game = new GameManager();
 
         //game.setScreen(new DebugScreen(game));
-        game.setScreen(new MapScreen(game,"moving_hallway.txt","walkability.txt"));
+        game.setScreen(new MapScreen(game,"moving_hallway.txt","walkability.txt",
+                "room_default_npcs.txt"));
     }
 }
