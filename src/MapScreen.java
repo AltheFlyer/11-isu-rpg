@@ -74,7 +74,7 @@ public class MapScreen extends GameScreen {
     /**
      * [keyTyped]
      * checks if a certain key is typed and checks for an interaction accordingly
-     * @param e
+     * @param e key event for a pressed key
      * @return void
      */
     public void keyTyped(KeyEvent e) {
@@ -88,7 +88,7 @@ public class MapScreen extends GameScreen {
     /**
      * [keyPressed]
      * checks if certain keys are pressed and changes player velocity accordingly
-     * @param e
+     * @param e key event for a pressed key
      * @return void
      */
     public void keyPressed(KeyEvent e) {
@@ -119,7 +119,7 @@ public class MapScreen extends GameScreen {
     /**
      * [keyReleased]
      * checks if certain keys are released and changes player velocity accordingly
-     * @param e
+     * @param e key event for a released key
      * @return void
      */
     public void keyReleased(KeyEvent e) {
