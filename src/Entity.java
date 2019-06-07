@@ -112,8 +112,8 @@ abstract public class Entity {
     }
 
     public void gainEnergy(double energyGained){
-        if (energy + energyGained > 100){
-            energy = 100;
+        if (energy + energyGained > maxEnergy){
+            energy = maxEnergy;
         } else {
             energy += energyGained;
         }

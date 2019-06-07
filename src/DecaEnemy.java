@@ -9,7 +9,7 @@ public class DecaEnemy extends Enemy {
 
     DecaEnemy(int x, int y) {
         super(1000, "Spirit of Deca", new Ability[] {
-                new SingleAbility(new AnimatedSprite("spritesheets/deca.png", 6, 6, 10),
+                new SingleAbility(new AnimatedSprite("spritesheets/deca.png", 6, 6, 25),
                         "Payment", "Seeks payment from a student.", 0, 0,
                         3, 1, 10, 1, true, false)
         });

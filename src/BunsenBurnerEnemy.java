@@ -16,9 +16,9 @@ public class BunsenBurnerEnemy extends Enemy {
     AnimatedSprite gif;
 
     BunsenBurnerEnemy(int x, int y) {
-        super(35, "Bunsen Burner", new Ability[] {
+        super(20, "Bunsen Burner", new Ability[] {
                 new AOEAbility(new AnimatedSprite("spritesheets/inflame.png", 1, 2, 600),"Inflame", "Burns all targets in the row.", 0, 1,
-                        6, 0, 6, 0, 1, 5, true, false)
+                        6, 0, 6, 0, 1, 3, true, false)
         });
 
         attackIcon = new Icon("assets/icons/sword.png", "Inflame", "This enemy intends to attack all players in the row.");

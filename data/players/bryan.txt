@@ -1,7 +1,7 @@
 display_name Bryan
 sprite_path assets/sprites/test_player.png
 spritesheets/bryan.png 1 5 500
-health 10
+health 12
 energy 150
 ABILITIES 3
 StarAbility "star" "An AOE ability that will hit in a star shaped area" spritesheets/star.png 1 4 250 50 2 5 0 1 3.0 true false

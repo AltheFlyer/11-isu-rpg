@@ -165,7 +165,14 @@ public class BattleLayoutScreen extends GameScreen {
 
         if (isFullyClicked(continueButton)) {
             //This piece of code to transition to levelScreen is completely experimental
-            getGame().setScreen(new LevelScreen(getGame()));
+            getGame().setScreen(new LevelScreen(getGame(), new Enemy[] {
+                    new BunsenBurnerEnemy(5, 0),
+                    new BunsenBurnerEnemy(5,2),
+                    new TutorialEnemy(4, 0),
+                    new TutorialEnemy(3, 2),
+                    new TutorialEnemy(4, 2),
+                    new TutorialEnemy(3, 0),
+            }));
         }
     }
 

@@ -30,7 +30,7 @@ public class LevelScreen extends GameScreen{
     long animationTime = 1000;
 
 
-    Clock clock, clock2;
+    Clock playerClock, enemyClock;
     boolean enemyTurn = false;
     //Counter for amount of enemies
     int counter = 0;
@@ -132,8 +132,8 @@ public class LevelScreen extends GameScreen{
         //players[2] = bryan;
 
         allen.statuses.add(new CursedStatus(allen, 1));
-        clock = new Clock(2);
-        clock2 = new Clock(5);
+        playerClock = new Clock(2);
+        enemyClock = new Clock(5);
     }
 
     /**
@@ -163,8 +163,8 @@ public class LevelScreen extends GameScreen{
             jointMap.addEntity(enemies[i].getXGrid(), enemies[i].getYGrid(), enemies[i]);
         }
 
-        clock = new Clock(5);
-        clock2 = new Clock(5);
+        playerClock = new Clock(5);
+        enemyClock = new Clock(5);
     }
 
     @Override
@@ -238,7 +238,7 @@ public class LevelScreen extends GameScreen{
                             selectedAbility.action(jointMap, gridX, gridY);
                         }
 
-                        clock2.resetElapsed();
+                        enemyClock.resetElapsed();
 
                         selectedPlayer.useEnergy(selectedAbility.getEnergyCost());
                         selectedAbility.resetCooldown();
@@ -287,7 +287,7 @@ public class LevelScreen extends GameScreen{
             if (animatedAbility.getAnimation() != null) {
                 jointMap.animateAttack(g, animatedAbility.getAnimation(), animatedX, animatedY);
                 coverUp(g);
-                if (clock2.getElapsedMilli() >= animatedAbility.getAnimation().getTotalTime()) {
+                if (enemyClock.getElapsedMilli() >= animatedAbility.getAnimation().getTotalTime()) {
                     animatedAbility.action(jointMap, animatedX, animatedY);
                     animatedAbility = null;
                     animatedX = 0;
@@ -366,7 +366,7 @@ public class LevelScreen extends GameScreen{
             }
         }
         
-        //Testing with clock and enemy turn
+        //Testing with playerClock and enemy turn
         if (enemyTurn) {
             if (counter >= enemies.length) {
                 //skip
@@ -374,7 +374,7 @@ public class LevelScreen extends GameScreen{
                 counter++;
             } else if (!enemies[counter].isAlive()){
                 counter++;
-            } else if (clock.getElapsedMilli() > animationTime) {
+            } else if (playerClock.getElapsedMilli() > animationTime) {
                 //Reset the targeting for the last enemy
                 selectedEnemy.resetTargeted();
                 //Cool indication thing for the player to see so it's like the enemies are taking their turn
@@ -390,17 +390,19 @@ public class LevelScreen extends GameScreen{
                 if (selectedEnemy.getDecide().getAnimation() != null) {
                     selectedEnemy.getDecide().getAnimation().reset();
                     animationTime = selectedEnemy.getDecide().getAnimation().getTotalTime();
+                } else {
+                    animationTime = 1000;
                 }
-                clock.resetElapsed();
+                playerClock.resetElapsed();
                 counter++;
             }
 
             //images
-            if (clock.getElapsedMilli() < animationTime && selectedEnemy.getDecide().getAnimation() != null && selectedEnemy.getTargetedX()>=0 && selectedEnemy.getTargetedY()>=0){
+            if (playerClock.getElapsedMilli() < animationTime && selectedEnemy.getDecide().getAnimation() != null && selectedEnemy.getTargetedX()>=0 && selectedEnemy.getTargetedY()>=0){
                 jointMap.animateAttack(g,selectedEnemy.getDecide().getAnimation(),selectedEnemy.getTargetedX(),selectedEnemy.getTargetedY());
             }
 
-            if (counter >= enemies.length && clock.getElapsedMilli() > animationTime){
+            if (counter >= enemies.length && playerClock.getElapsedMilli() > animationTime){
                 enemyTurn = false;
                 counter = 0;
                 //End of enemy turn
@@ -433,8 +435,8 @@ public class LevelScreen extends GameScreen{
         //Draw icons from entities (enemy intents, etc)
         jointMap.drawIcons(g, getMouseX(), getMouseY());
 
-        clock.updateElapsed();
-        clock2.updateElapsed();
+        playerClock.updateElapsed();
+        enemyClock.updateElapsed();
         repaint();
     }
 
