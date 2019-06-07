@@ -562,6 +562,7 @@ public class GameIO {
         int x, y;
         String name, message;
         String[] tokens;
+        int counter = 0;
 
         String[] lines = npcText.split("\n");
         int totalNPCs = Integer.parseInt(lines[0]);
@@ -574,7 +575,8 @@ public class GameIO {
             name = tokens[2];
             ++i;
             message = lines[i];
-            npcs[i] = new OverworldNPC(x, y, name, message);
+            npcs[counter] = new OverworldNPC(x, y, name, message);
+            ++counter;
             }
         return npcs;
         }
