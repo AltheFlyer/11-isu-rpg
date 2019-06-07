@@ -23,7 +23,7 @@ public class MapScreen extends GameScreen {
 
     public MapScreen(GameManager game, String mapPath, String walkabilityKey, String npcPath) {
         super(game);
-        clock = new Clock(0.25);
+        clock = new Clock(0.1);
         framerate = new FrameRate();
         map = new MovingMap(getIO(), mapPath,walkabilityKey);
         player = new OverworldPlayer(400,400);
@@ -141,21 +141,11 @@ public class MapScreen extends GameScreen {
         Rectangle playerNewBox = new Rectangle(playerNewX,playerNewY,player.getSize(),player.getSize());
         for (int i = centerTileX - 1; i < centerTileX + 2; i++) {
             for (int j = centerTileY - 1; j < centerTileY + 2; j++) {
-                if (map.getMap()[i][j].isNotWalkable() &&
-                        (map.getMap()[i][j].collisionWindow().intersects(playerNewBox))) {
-                    //System.out.println("bam");
-                    player.setXVelocity(0);
-                    player.setYVelocity(0);
-                    break;
-                }
+                map.getMap()[i][j].checkCollisions(playerNewBox,player);
             }
         }
         for (int i = 0; i < npc.length; ++i) {
-            if (playerNewBox.intersects(npc[i].collisionWindow())) {
-                player.setXVelocity(0);
-                player.setYVelocity(0);
-                break;
-            }
+            npc[i].checkCollisions(playerNewBox,player);
         }
         player.move(clock.getElapsedTime());
     }

@@ -163,7 +163,7 @@ public class LevelScreen extends GameScreen{
             jointMap.addEntity(enemies[i].getXGrid(), enemies[i].getYGrid(), enemies[i]);
         }
 
-        clock = new Clock(2);
+        clock = new Clock(5);
         clock2 = new Clock(5);
     }
 

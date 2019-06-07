@@ -44,4 +44,11 @@ public class OverworldTile {
 
     public Rectangle getBoundingBox() {return this.boundingBox; }
 
+    public void checkCollisions(Rectangle playerBounds, OverworldPlayer player) {
+        if (playerBounds.intersects(this.boundingBox) && (isNotWalkable())) {
+            player.setXVelocity(0);
+            player.setYVelocity(0);
+        }
+    }
+
 }
