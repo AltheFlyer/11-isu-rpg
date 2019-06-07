@@ -33,7 +33,7 @@ public class TutorialEnemy extends Enemy {
     TutorialEnemy(int x, int y) {
         super(10, "Annoying Peon",
                 new Ability[] {
-                        new SingleAbility(new AnimatedSprite("spritesheets/basicAttack.png", 1,5,120,120,250),"Basic Attack", "Deals damage to a single target in the same row.",
+                        new SingleAbility(new AnimatedSprite("spritesheets/basicAttack.png", 1,5,250),"Basic Attack", "Deals damage to a single target in the same row.",
                         0, 2, 6, 0, 1, 8, true, false
                         ),
                         new BasicMoveAbility("Seek", "Moves to the same row as the player.",

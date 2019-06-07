@@ -24,7 +24,7 @@ abstract public class Enemy extends Entity{
         intent.setDescription("A *really* powerful attack. I need more text to test newline drawing.\n\n\n\n\n\nI hope this works");
 
         //a gif!
-        gif = new AnimatedSprite("spritesheets/JFrames.png", 1, 10, 40, 40, 100);
+        gif = new AnimatedSprite("spritesheets/JFrames.png", 1, 10, 100);
     }
 
     public Ability getAbility(int index){

@@ -24,8 +24,8 @@ public class AnimationTester {
         AnimatedSprite gif2;
 
         public AnimationPanel() {
-            gif = new AnimatedSprite("spritesheets/JFrames.png", 1, 10, 40, 40, 100);
-            gif2 = new AnimatedSprite("spritesheets/JFrames.png", 1, 10, 40, 40, 50);
+            gif = new AnimatedSprite("spritesheets/JFrames.png", 1, 10, 100);
+            gif2 = new AnimatedSprite("spritesheets/JFrames.png", 1, 10, 50);
         }
 
         @Override
