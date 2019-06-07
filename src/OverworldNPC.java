@@ -52,16 +52,32 @@ public class OverworldNPC extends OverworldEntity {
         TextDrawer textDrawer = new TextDrawer(g,message,150,650,1166);
         g.setColor(Color.WHITE);
         g.fillRect(100,600,1166,100);
+        g.fillRect(100,550,150,50);
         g.setColor(Color.BLACK);
         g.drawRect(100,600,1166,100);
-        g.setColor(Color.RED);
+        g.drawRect(100,550,150,50);
+        g.drawString(name,120,570);
         textDrawer.drawText(g);
     }
 
 
+    /**
+     * [checkInteractions]
+     * checks if the player's interaction hitbox is intersecting with this NPC
+     * if so, it prompts theh NPC to show a textbox
+     * @param hitbox, the player's interaction hitbox
+     * @return void
+     */
     public void checkInteractions(Rectangle hitbox) {
         if (hitbox.intersects(this.collisionWindow())) {
             this.setTalking();
+        }
+    }
+
+    public void checkCollisions(Rectangle playerBounds, OverworldPlayer player) {
+        if (playerBounds.intersects(this.collisionWindow())) {
+            player.setXVelocity(0);
+            player.setYVelocity(0);
         }
     }
 
