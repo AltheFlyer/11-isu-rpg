@@ -8,6 +8,8 @@ abstract public class Enemy extends Entity{
     private Icon intent;
     private Ability decide;
     private AnimatedSprite gif;
+    private int targetedX = -1;
+    private int targetedY = -1;
 
     Enemy(double health, String name, Ability[] abilities){
         super(health,name,abilities);
@@ -145,7 +147,23 @@ abstract public class Enemy extends Entity{
 
             //Use the chosen ability on the selected tile
             ability.action(map, xTargets[choice], yTargets[choice]);
+            targetedX = xTargets[choice];
+            targetedY = yTargets[choice];
         }
+    }
+
+    public int getTargetedX(){
+        return targetedX;
+    }
+
+    public int getTargetedY(){
+        return targetedY;
+    }
+
+    //-1 acts as a null check
+    public void resetTargeted(){
+        targetedX = -1;
+        targetedY = -1;
     }
 
     public void setIntent(Icon icon) {
