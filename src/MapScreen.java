@@ -17,18 +17,17 @@ public class MapScreen extends GameScreen {
     private FrameRate framerate;
     private OverworldMap map;
     private OverworldPlayer player;
-    private OverworldNPC npc;
+    private OverworldNPC[] npc;
     int length;
     int width;
 
-    public MapScreen(GameManager game, String mapPath, String walkabilityKey) {
+    public MapScreen(GameManager game, String mapPath, String walkabilityKey, String npcPath) {
         super(game);
-        clock = new Clock(0.25);
+        clock = new Clock(0.1);
         framerate = new FrameRate();
-        map = new RoomMap(getIO(), mapPath,walkabilityKey);
+        map = new MovingMap(getIO(), mapPath,walkabilityKey);
         player = new OverworldPlayer(400,400);
-        npc = new OverworldNPC(300,300, "h", "i don't know what i'm doing! i want to die hsdfhshufehskforhgkdjgh somebody once told me" +
-                "the world was gonna rol me i aint the sharpest tool in the shed, what's up yewchube dsufhoesuhfurhgorhoghroghudrihgiurdhgiurdhgurdi");
+        npc = getIO().getNPCs(npcPath);
         length = map.getMap()[0].length;
         width = map.getMap().length;
     }
@@ -55,51 +54,72 @@ public class MapScreen extends GameScreen {
         //drawing everything
         map.draw(g, player);
         player.draw(g, map);
-        npc.draw(g, map, player);
-        framerate.draw(g,10,10);
 
-        if (npc.getTalking()) {
-            npc.speak(g);
+        //npc management
+        for (int i = 0; i < npc.length; ++i) {
+            npc[i].draw(g, map, player); //drawing the npcs
         }
+        for (int i = 0; i < npc.length; ++i) {
+            if (npc[i].isTalking()) {
+                npc[i].speak(g);
+            }
+        }
+
+        framerate.draw(g,10,10);
 
         //ask for repaint
         repaint();
     }
 
+    /**
+     * [keyTyped]
+     * checks if a certain key is typed and checks for an interaction accordingly
+     * @param e key event for a pressed key
+     * @return void
+     */
     public void keyTyped(KeyEvent e) {
         if(e.getKeyChar() == 'z') {
-            checkInteractions(player.interact());
+            for (int i = 0; i < npc.length; ++i) {
+                npc[i].checkInteractions(player.interact());
+            }
         }
     }
 
     /**
      * [keyPressed]
      * checks if certain keys are pressed and changes player velocity accordingly
-     * also checks for interaction with non-player entities when a certain key is pressed
-     * @param e
+     * @param e key event for a pressed key
      * @return void
      */
     public void keyPressed(KeyEvent e) {
-        if(e.getKeyChar() == 'w') {
-            player.setYVelocity(-5);
-            player.setDirection("up");
-        } else if(e.getKeyChar() == 's') {
-            player.setYVelocity(5);
-            player.setDirection("down");
+        boolean moveable = true;
+        for (int i = 0; i < npc.length; i++) {
+            if (npc[i].isTalking()) {
+                moveable = false;
+            }
         }
-        if(e.getKeyChar() == 'd') {
-            player.setXVelocity(5);
-            player.setDirection("right");
-        } else if(e.getKeyChar() =='a') {
-            player.setXVelocity(-5);
-            player.setDirection("left");
+        if (moveable) {
+            if (e.getKeyChar() == 'w') {
+                player.setYVelocity(-5);
+                player.setDirection("up");
+            } else if (e.getKeyChar() == 's') {
+                player.setYVelocity(5);
+                player.setDirection("down");
+            }
+            if (e.getKeyChar() == 'd') {
+                player.setXVelocity(5);
+                player.setDirection("right");
+            } else if (e.getKeyChar() == 'a') {
+                player.setXVelocity(-5);
+                player.setDirection("left");
+            }
         }
     }
 
     /**
      * [keyReleased]
      * checks if certain keys are released and changes player velocity accordingly
-     * @param e
+     * @param e key event for a released key
      * @return void
      */
     public void keyReleased(KeyEvent e) {
@@ -121,27 +141,13 @@ public class MapScreen extends GameScreen {
         Rectangle playerNewBox = new Rectangle(playerNewX,playerNewY,player.getSize(),player.getSize());
         for (int i = centerTileX - 1; i < centerTileX + 2; i++) {
             for (int j = centerTileY - 1; j < centerTileY + 2; j++) {
-                if (map.getMap()[i][j].isNotWalkable() &&
-                        (map.getMap()[i][j].collisionWindow().intersects(playerNewBox))) {
-                    //System.out.println("bam");
-                    player.setXVelocity(0);
-                    player.setYVelocity(0);
-                    break;
-                }
+                map.getMap()[i][j].checkCollisions(playerNewBox,player);
             }
         }
-        if (playerNewBox.intersects(npc.collisionWindow())) {
-            player.setXVelocity(0);
-            player.setYVelocity(0);
-        } else {
-            player.move(clock.getElapsedTime());
+        for (int i = 0; i < npc.length; ++i) {
+            npc[i].checkCollisions(playerNewBox,player);
         }
-    }
-
-    private void checkInteractions(Rectangle playerBounds) {
-        if (playerBounds.intersects(npc.collisionWindow())) {
-            npc.setTalking();
-        }
+        player.move(clock.getElapsedTime());
     }
 
 }

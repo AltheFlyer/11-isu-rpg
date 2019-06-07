@@ -13,13 +13,13 @@ public class OverworldNPC extends OverworldEntity {
 
     private String message;
     private String name;
-    private boolean isTalking;
+    private boolean talking;
 
     public OverworldNPC(int x, int y, String name, String message) {
         super(x,y);
         this.name = name;
         this.message = message;
-        isTalking = false;
+        talking = false;
     }
 
     /**
@@ -52,10 +52,33 @@ public class OverworldNPC extends OverworldEntity {
         TextDrawer textDrawer = new TextDrawer(g,message,150,650,1166);
         g.setColor(Color.WHITE);
         g.fillRect(100,600,1166,100);
+        g.fillRect(100,550,150,50);
         g.setColor(Color.BLACK);
         g.drawRect(100,600,1166,100);
+        g.drawRect(100,550,150,50);
+        g.drawString(name,120,570);
         textDrawer.drawText(g);
+    }
 
+
+    /**
+     * [checkInteractions]
+     * checks if the player's interaction hitbox is intersecting with this NPC
+     * if so, it prompts theh NPC to show a textbox
+     * @param hitbox, the player's interaction hitbox
+     * @return void
+     */
+    public void checkInteractions(Rectangle hitbox) {
+        if (hitbox.intersects(this.collisionWindow())) {
+            this.setTalking();
+        }
+    }
+
+    public void checkCollisions(Rectangle playerBounds, OverworldPlayer player) {
+        if (playerBounds.intersects(this.collisionWindow())) {
+            player.setXVelocity(0);
+            player.setYVelocity(0);
+        }
     }
 
     /**
@@ -73,16 +96,16 @@ public class OverworldNPC extends OverworldEntity {
      * @return void
      */
     public void setTalking() {
-        this.isTalking = !(isTalking);
+        this.talking = !(talking);
     }
 
     /**
-     * [getTalking]
+     * [isTalking]
      * returns if the NPC should be talking or not
      * @return boolean isTalking, if the NPC is talking or not
      */
-    public boolean getTalking() {
-        return isTalking;
+    public boolean isTalking() {
+        return talking;
     }
 
 }
