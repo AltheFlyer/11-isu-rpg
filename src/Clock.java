@@ -12,7 +12,7 @@ class Clock {
 
     /**
      * [Clock]
-     * @param maxTime the maximum time between each time check
+     * @param maxTime the maximum time between each time check in seconds
      * updates the clock to the current time
      * @return void
      */
