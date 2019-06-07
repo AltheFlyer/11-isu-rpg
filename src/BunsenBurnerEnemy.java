@@ -17,7 +17,7 @@ public class BunsenBurnerEnemy extends Enemy {
 
     BunsenBurnerEnemy(int x, int y) {
         super(35, "Bunsen Burner", new Ability[] {
-                new AOEAbility(null,"Inflame", "Burns all targets in the row.", 0, 1,
+                new AOEAbility(new AnimatedSprite("spritesheets/inflame.png", 1, 2, 600),"Inflame", "Burns all targets in the row.", 0, 1,
                         6, 0, 6, 0, 1, 5, true, false)
         });
 
@@ -41,8 +41,10 @@ public class BunsenBurnerEnemy extends Enemy {
     @Override
     public void act(JointMap map) {
         getDecide().indicateValidTiles(map);
-
         getDecide().action(map, 2, getYGrid());
+
+        setTargetedX(2);
+        setTargetedY(getYGrid());
     }
 
     @Override

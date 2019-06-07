@@ -160,6 +160,14 @@ abstract public class Enemy extends Entity{
         return targetedY;
     }
 
+    public void setTargetedX(int targetedX){
+        this.targetedX =  targetedX;
+    }
+
+    public void setTargetedY(int targetedY){
+        this.targetedY =  targetedY;
+    }
+
     //-1 acts as a null check
     public void resetTargeted(){
         targetedX = -1;

@@ -26,8 +26,8 @@ public class LevelScreen extends GameScreen{
 
     Enemy[] enemies = new Enemy[9];
 
-    //The timer is for enemy turn, for those abilities without animations
-    long timer = 1000;
+    //The animationTime is for enemy turn, for those abilities without animations
+    long animationTime = 1000;
 
 
     Clock clock, clock2;
@@ -163,7 +163,7 @@ public class LevelScreen extends GameScreen{
             jointMap.addEntity(enemies[i].getXGrid(), enemies[i].getYGrid(), enemies[i]);
         }
 
-        clock = new Clock(2);
+        clock = new Clock(5);
         clock2 = new Clock(5);
     }
 
@@ -374,7 +374,7 @@ public class LevelScreen extends GameScreen{
                 counter++;
             } else if (!enemies[counter].isAlive()){
                 counter++;
-            } else if (clock.getElapsedMilli() > timer) {
+            } else if (clock.getElapsedMilli() > animationTime) {
                 //Reset the targeting for the last enemy
                 selectedEnemy.resetTargeted();
                 //Cool indication thing for the player to see so it's like the enemies are taking their turn
@@ -389,18 +389,18 @@ public class LevelScreen extends GameScreen{
                 //Reset time and the animation drawn
                 if (selectedEnemy.getDecide().getAnimation() != null) {
                     selectedEnemy.getDecide().getAnimation().reset();
-                    timer = selectedEnemy.getDecide().getAnimation().getTotalTime();
+                    animationTime = selectedEnemy.getDecide().getAnimation().getTotalTime();
                 }
                 clock.resetElapsed();
                 counter++;
             }
 
-            //Won't animate if the attack is killing the target since it will not be targetable anymore
-            if (clock.getElapsedMilli() < timer && selectedEnemy.getDecide().getAnimation() != null && selectedEnemy.getTargetedX()>=0 && selectedEnemy.getTargetedY()>=0){
+            //images
+            if (clock.getElapsedMilli() < animationTime && selectedEnemy.getDecide().getAnimation() != null && selectedEnemy.getTargetedX()>=0 && selectedEnemy.getTargetedY()>=0){
                 jointMap.animateAttack(g,selectedEnemy.getDecide().getAnimation(),selectedEnemy.getTargetedX(),selectedEnemy.getTargetedY());
             }
 
-            if (counter >= enemies.length && clock.getElapsedMilli() > timer){
+            if (counter >= enemies.length && clock.getElapsedMilli() > animationTime){
                 enemyTurn = false;
                 counter = 0;
                 //End of enemy turn
