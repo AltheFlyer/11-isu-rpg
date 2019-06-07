@@ -8,7 +8,7 @@ public class TestEnemy extends Enemy {
     TestEnemy() {
         super(10, "TestEnemy",
                 new Ability[]
-                        {new SingleAbility(new AnimatedSprite("spritesheets/basicAttack.png", 1,5,120,120,250),"basic","A basic attack that hits a random target in front",0,0,6,0,1,2,true, false),
+                        {new SingleAbility(new AnimatedSprite("spritesheets/basicAttack.png", 1,5,250),"basic","A basic attack that hits a random target in front",0,0,6,0,1,2,true, false),
                 new SingleAbility(null,"healSelf","A basic self heal",0,0,0,0,1,-3,false, true)}
                 );
 

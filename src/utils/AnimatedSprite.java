@@ -31,14 +31,10 @@ public class AnimatedSprite {
      * @param path the relative file path, not including universal source folder for all animated sprites
      * @param rows the number of rows in the file
      * @param cols the number of columns in the file
-     * @param width the width of each sprite
-     * @param height the height of each sprite
      * @param frameDelay the time in milliseconds between each animation frame
      */
-    public AnimatedSprite(String path, int rows, int cols, int width, int height, long frameDelay) {
+    public AnimatedSprite(String path, int rows, int cols, long frameDelay) {
         BufferedImage sheet = null;
-        this.width = width;
-        this.height = height;
 
         try {
             sheet = ImageIO.read(new File(SRC + path));
@@ -46,10 +42,14 @@ public class AnimatedSprite {
             e.printStackTrace();
         }
 
+        this.width = sheet.getWidth() / cols;
+        this.height = sheet.getHeight() / rows;
+
         sprites = new BufferedImage[rows * cols];
 
         for (int y = 0; y < rows; ++y) {
             for (int x = 0; x < cols; ++x) {
+                System.out.println(x + " " + y);
                 sprites[y * cols + x] = sheet.getSubimage(x * width, y * height, width, height);
             }
         }

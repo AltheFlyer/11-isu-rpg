@@ -49,23 +49,23 @@ public class LevelScreen extends GameScreen{
         jointMap = new JointMap();
 
         Ability[] kevinAbilities = new Ability[]{
-            new SingleAbility(new AnimatedSprite("spritesheets/Jasmine.png", 1, 10, 40, 40, 100),"basic","a basic attack that will hit an enemy in front of you", 20,1,6,0,1,2,true, false),
+            new SingleAbility(new AnimatedSprite("spritesheets/Jasmine.png", 1, 10, 100),"basic","a basic attack that will hit an enemy in front of you", 20,1,6,0,1,2,true, false),
             new BasicMoveAbility("step","movement to an adjacent tile", 30,1,1),
-            new AOEAbility(new AnimatedSprite("spritesheets/Jasmine.png", 1, 10, 40, 40, 100),"heal","a vertical AOE heal on allies",50,2,2,0,0,2,1,-2.0,false, true),
-            new SingleAbility(new AnimatedSprite("spritesheets/Jasmine.png", 1, 10, 40, 40, 100),"basic2","a basic attack that will hit an enemy in front of you", 20,1,6,0,1,2,true, false),
-            new SingleAbility(new AnimatedSprite("spritesheets/Jasmine.png", 1, 10, 40, 40, 100),"basic3","a basic attack that will hit an enemy in front of you", 20,1,6,0,1,2,true, false),
+            new AOEAbility(new AnimatedSprite("spritesheets/Jasmine.png", 1, 10, 100),"heal","a vertical AOE heal on allies",50,2,2,0,0,2,1,-2.0,false, true),
+            new SingleAbility(new AnimatedSprite("spritesheets/Jasmine.png", 1, 10, 100),"basic2","a basic attack that will hit an enemy in front of you", 20,1,6,0,1,2,true, false),
+            new SingleAbility(new AnimatedSprite("spritesheets/Jasmine.png", 1, 10, 100),"basic3","a basic attack that will hit an enemy in front of you", 20,1,6,0,1,2,true, false),
         };
 
         Ability[] allenAbilities = new Ability[]{
-            new CombinationAbility(new AnimatedSprite("spritesheets/Jasmine.png", 1, 10, 40, 40, 100),"back","A single target attack that also pushes you back by 1", 60,3,5,2,1,4,true, false),
+            new CombinationAbility(new AnimatedSprite("spritesheets/Jasmine.png", 1, 10, 100),"back","A single target attack that also pushes you back by 1", 60,3,5,2,1,4,true, false),
             new BasicMoveAbility("step","movement to an adjacent tile",30,1,1),
-            new AOEAbility(new AnimatedSprite("spritesheets/Jasmine.png", 1, 10, 40, 40, 100),"sacrifice","A sacrifice that will deal massive damage to everyone",50,4,0,0,6,2,1,5,true, true)
+            new AOEAbility(new AnimatedSprite("spritesheets/Jasmine.png", 1, 10, 100),"sacrifice","A sacrifice that will deal massive damage to everyone",50,4,0,0,6,2,1,5,true, true)
         };
 
         Ability[] bryanAbilities = new Ability[]{
-            new StarAbility(new AnimatedSprite("spritesheets/Jasmine.png",1,10,40,40,100),"star","An AOE ability that will hit in a star shaped area",50,2,5,0,1,3.0,true, false),
+            new StarAbility(new AnimatedSprite("spritesheets/Jasmine.png",1,10,100),"star","An AOE ability that will hit in a star shaped area",50,2,5,0,1,3.0,true, false),
             new BasicMoveAbility("step","movement to an adjacent tile",30,1,1),
-            new SpearAbility(new AnimatedSprite("spritesheets/Jasmine.png", 1, 10, 40, 40, 100),"spear","A very deadly single target spear with short range",100,10, 100)
+            new SpearAbility(new AnimatedSprite("spritesheets/Jasmine.png", 1, 10, 100),"spear","A very deadly single target spear with short range",100,10, 100)
         };
 
         Ability[] ackAbilities = new Ability[]{
