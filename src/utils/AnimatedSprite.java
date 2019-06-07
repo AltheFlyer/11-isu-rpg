@@ -100,6 +100,16 @@ public class AnimatedSprite {
      * @return
      */
     public long getTotalTime() {
-        return frameDelay * (sprites.length - 1);
+        return frameDelay * (sprites.length - 1)+10;
+    }
+
+    /**
+     * [getTotalTime]
+     * resets the animated sprite so it starts its animation from the beginning
+     */
+    public void reset(){
+        frame = 0;
+        this.frameDelay = frameDelay;
+        lastFrame = System.currentTimeMillis();
     }
 }

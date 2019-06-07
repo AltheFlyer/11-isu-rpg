@@ -1,8 +1,10 @@
+import utils.AnimatedSprite;
+
 import java.awt.*;
 
 public class StarAbility extends Ability {
-    StarAbility(String name, String desc, double energyCost, int cooldown, int xRange, int yRange, int status, double damage, boolean enemyTarget, boolean friendTarget){
-        super (name, desc, energyCost, cooldown, xRange, yRange, status, damage, enemyTarget, friendTarget);
+    StarAbility(AnimatedSprite animation, String name, String desc, double energyCost, int cooldown, int xRange, int yRange, int status, double damage, boolean enemyTarget, boolean friendTarget){
+        super (animation, name, desc, energyCost, cooldown, xRange, yRange, status, damage, enemyTarget, friendTarget);
     }
 
     /**
@@ -12,24 +14,20 @@ public class StarAbility extends Ability {
      * @param j: the other selected coordinate
      * @return: it will return a value based on if an action was valid or not, if it was, it will unindicate everything and reset selectedAbility on levelscreen
      */
-    public boolean action(JointMap jointMap, int i, int j){
-        if (jointMap.getTargetable(i, j)) {
-            for (int k = 0; k < 3; k++){
-                for (int l = 0; l < 6; l++){
-                    //Hits tiles in a star shape around the indicated tile
-                    if (Math.abs(k-j) + Math.abs(l-i) <= 1 && jointMap.tileExists(l,k)){
-                        if (getFriendTarget() && jointMap.getTileType(l,k) == jointMap.getTileType(getEntitySource().getXGrid(),getEntitySource().getYGrid())) {
-                            jointMap.target(l, k, getDamage(), getStatus());
-                        }
-                        if (getEnemyTarget() && jointMap.getTileType(l,k) != jointMap.getTileType(getEntitySource().getXGrid(),getEntitySource().getYGrid())) {
-                            jointMap.target(l, k, getDamage(), getStatus());
-                        }
+    public void action(JointMap jointMap, int i, int j){
+        for (int k = 0; k < 3; k++){
+            for (int l = 0; l < 6; l++){
+                //Hits tiles in a star shape around the indicated tile
+                if (Math.abs(k-j) + Math.abs(l-i) <= 1 && jointMap.tileExists(l,k)){
+                    if (getFriendTarget() && jointMap.getTileType(l,k) == jointMap.getTileType(getEntitySource().getXGrid(),getEntitySource().getYGrid())) {
+                        jointMap.target(l, k, getDamage(), getStatus());
+                    }
+                    if (getEnemyTarget() && jointMap.getTileType(l,k) != jointMap.getTileType(getEntitySource().getXGrid(),getEntitySource().getYGrid())) {
+                        jointMap.target(l, k, getDamage(), getStatus());
                     }
                 }
             }
-            return true;
         }
-        return false;
     }
 
     /**

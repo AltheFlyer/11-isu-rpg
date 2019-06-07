@@ -1,4 +1,6 @@
 
+import utils.AnimatedSprite;
+
 import java.awt.*;
 import java.util.concurrent.TimeUnit;
 
@@ -34,6 +36,10 @@ public class JointMap {
         } else {
             tileArray[i][j].damageTile(damage, status);
         }
+    }
+
+    public void animateAttack(Graphics g, AnimatedSprite animation, int i, int j){
+        tileArray[i][j].animateAttack(g, animation);
     }
 
     //Setting entities onto the grid

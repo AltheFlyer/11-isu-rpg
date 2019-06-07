@@ -6,8 +6,8 @@ public class TestEnemy extends Enemy {
     TestEnemy() {
         super(10, "TestEnemy",
                 new Ability[]
-                        {new SingleAbility("basic","A basic attack that hits a random target in front",0,0,6,0,1,2,true, false),
-                new SingleAbility("healSelf","A basic self heal",0,0,0,0,1,-3,false, true)}
+                        {new SingleAbility(null,"basic","A basic attack that hits a random target in front",0,0,6,0,1,2,true, false),
+                new SingleAbility(null,"healSelf","A basic self heal",0,0,0,0,1,-3,false, true)}
                 );
 
         medicIcon = new Icon("assets/icons/medic.png", "Medic", "This enemy intends to restore health to itself.");

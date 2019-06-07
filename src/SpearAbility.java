@@ -1,19 +1,17 @@
+import utils.AnimatedSprite;
+
 import java.awt.*;
 
 public class SpearAbility extends Ability {
 
 
-    SpearAbility(String name, String desc, double energyCost, int cooldown, double damage) {
-        super(name, desc, energyCost, cooldown, 2, 1, 1, damage, true, false);
+    SpearAbility(AnimatedSprite animation, String name, String desc, double energyCost, int cooldown, double damage) {
+        super(animation, name, desc, energyCost, cooldown, 2, 1, 1, damage, true, false);
     }
 
     @Override
-    public boolean action(JointMap jointMap, int i, int j) {
-        if (jointMap.getTargetable(i, j)) {
-            jointMap.target(i, j, this.getDamage(), 1);
-            return true;
-        }
-        return false;
+    public void action(JointMap jointMap, int i, int j) {
+        jointMap.target(i, j, this.getDamage(), 1);
     }
 
     @Override

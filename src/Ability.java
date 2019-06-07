@@ -1,3 +1,5 @@
+import utils.AnimatedSprite;
+
 import java.awt.*;
 
 /**
@@ -22,9 +24,10 @@ abstract public class Ability {
     private double energyCost;
     private int cooldown;
     private int currentCooldown;
+    private AnimatedSprite animation;
 
     //Constructor for Single target and AOE abilities
-    Ability(String name, String desc, double energyCost, int cooldown, int xRange, int yRange, int status, double damage, boolean enemyTarget, boolean friendTarget) {
+    Ability(AnimatedSprite animation, String name, String desc, double energyCost, int cooldown, int xRange, int yRange, int status, double damage, boolean enemyTarget, boolean friendTarget) {
         this.name = name;
         this.desc = desc;
         this.energyCost = energyCost;
@@ -36,6 +39,7 @@ abstract public class Ability {
         this.damage = damage;
         this.enemyTarget = enemyTarget;
         this.friendTarget = friendTarget;
+        this.animation = animation;
     }
 
     //Constructor for movement abilities
@@ -62,7 +66,19 @@ abstract public class Ability {
 
     //This piece of code will run after a person has clicked tile after an ability has been selected, it will attempt to cast the ability selected on the hovered tiles
     //The boolean return is for if the action was taken or not
-    abstract public boolean action(JointMap jointMap, int i, int j);
+    abstract public void action(JointMap jointMap, int i, int j);
+
+    public AnimatedSprite getAnimation(){
+        return animation;
+    }
+
+    /*
+    public void animateAttack(Graphics g, AnimatedSprite animation, JointMap jointMap, int i, int j){
+        jointMap.animateAttack(g, animation, i, j);
+    }
+    */
+
+    //abstract public void animateAttack(Graphics g, JointMap jointMap, int i, int j);
 
     public int getCooldown(){
         return cooldown;

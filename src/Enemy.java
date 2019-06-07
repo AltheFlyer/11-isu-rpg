@@ -144,9 +144,7 @@ abstract public class Enemy extends Entity{
             choice = (int)(Math.random()*counter);
 
             //Use the chosen ability on the selected tile
-            if (ability.action(map, xTargets[choice], yTargets[choice])){
-                System.out.println("bam!");
-            }
+            ability.action(map, xTargets[choice], yTargets[choice]);
         }
     }
 

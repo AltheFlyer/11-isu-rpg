@@ -1,3 +1,5 @@
+import utils.AnimatedSprite;
+
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
@@ -10,6 +12,9 @@ public class LevelScreen extends GameScreen{
 
     Player selectedPlayer;
     Ability selectedAbility;
+    Ability animatedAbility;
+    int animatedX;
+    int animatedY;
 
     Enemy selectedEnemy;
 
@@ -22,7 +27,7 @@ public class LevelScreen extends GameScreen{
     Enemy[] enemies = new Enemy[9];
 
 
-    Clock clock;
+    Clock clock, clock2;
     boolean enemyTurn = false;
     //Counter for amount of enemies
     int counter = 0;
@@ -41,38 +46,38 @@ public class LevelScreen extends GameScreen{
         jointMap = new JointMap();
 
         Ability[] kevinAbilities = new Ability[]{
-            new SingleAbility("basic","a basic attack that will hit an enemy in front of you", 20,1,6,0,1,2,true, false),
+            new SingleAbility(new AnimatedSprite("spritesheets/Jasmine.png", 1, 10, 40, 40, 100),"basic","a basic attack that will hit an enemy in front of you", 20,1,6,0,1,2,true, false),
             new BasicMoveAbility("step","movement to an adjacent tile", 30,1,1),
-            new AOEAbility("heal","a vertical AOE heal on allies",50,2,2,0,0,2,1,-2.0,false, true),
-            new SingleAbility("basic2","a basic attack that will hit an enemy in front of you", 20,1,6,0,1,2,true, false),
-            new SingleAbility("basic3","a basic attack that will hit an enemy in front of you", 20,1,6,0,1,2,true, false),
+            new AOEAbility(new AnimatedSprite("spritesheets/Jasmine.png", 1, 10, 40, 40, 100),"heal","a vertical AOE heal on allies",50,2,2,0,0,2,1,-2.0,false, true),
+            new SingleAbility(new AnimatedSprite("spritesheets/Jasmine.png", 1, 10, 40, 40, 100),"basic2","a basic attack that will hit an enemy in front of you", 20,1,6,0,1,2,true, false),
+            new SingleAbility(new AnimatedSprite("spritesheets/Jasmine.png", 1, 10, 40, 40, 100),"basic3","a basic attack that will hit an enemy in front of you", 20,1,6,0,1,2,true, false),
         };
 
         Ability[] allenAbilities = new Ability[]{
-            new CombinationAbility("back","A single target attack that also pushes you back by 1", 60,3,5,2,1,4,true, false),
+            new CombinationAbility(new AnimatedSprite("spritesheets/Jasmine.png", 1, 10, 40, 40, 100),"back","A single target attack that also pushes you back by 1", 60,3,5,2,1,4,true, false),
             new BasicMoveAbility("step","movement to an adjacent tile",30,1,1),
-            new AOEAbility("sacrifice","A sacrifice that will deal massive damage to everyone",50,4,0,0,6,2,1,5,true, true)
+            new AOEAbility(new AnimatedSprite("spritesheets/Jasmine.png", 1, 10, 40, 40, 100),"sacrifice","A sacrifice that will deal massive damage to everyone",50,4,0,0,6,2,1,5,true, true)
         };
 
         Ability[] bryanAbilities = new Ability[]{
-            new StarAbility("star","An AOE ability that will hit in a star shaped area",50,2,5,0,1,3.0,true, false),
+            new StarAbility(new AnimatedSprite("spritesheets/Jasmine.png",1,10,40,40,100),"star","An AOE ability that will hit in a star shaped area",50,2,5,0,1,3.0,true, false),
             new BasicMoveAbility("step","movement to an adjacent tile",30,1,1),
-            new SpearAbility("spear","A very deadly single target spear with short range",100,10, 100)
+            new SpearAbility(new AnimatedSprite("spritesheets/Jasmine.png", 1, 10, 40, 40, 100),"spear","A very deadly single target spear with short range",100,10, 100)
         };
 
         Ability[] ackAbilities = new Ability[]{
-            new SingleAbility("basic","A basic attack that hits a random target in front",0,0,6,0,1,2,true, false),
-            new SingleAbility("healSelf","A basic self heal",0,0,0,0,1,-3,false, true)
+            new SingleAbility(null,"basic","A basic attack that hits a random target in front",0,0,6,0,1,2,true, false),
+            new SingleAbility(null,"healSelf","A basic self heal",0,0,0,0,1,-3,false, true)
         };
 
         Ability[] bckAbilities = new Ability[]{
-            new SingleAbility("basic","A basic attack that hits a random target in front",0,0,6,0,1,2,true, false),
-            new SingleAbility("healSelf","A basic self heal",0,0,0,0,1,-3,false, true)
+            new SingleAbility(null,"basic","A basic attack that hits a random target in front",0,0,6,0,1,2,true, false),
+            new SingleAbility(null,"healSelf","A basic self heal",0,0,0,0,1,-3,false, true)
         };
 
         Ability[] cckAbilities = new Ability[]{
-                new SingleAbility("basic","A basic attack that hits a random target in front",0,0,6,0,1,2,true, false),
-                new SingleAbility("healSelf","A basic self heal",0,0,0,0,1,-3,false, true)
+                new SingleAbility(null,"basic","A basic attack that hits a random target in front",0,0,6,0,1,2,true, false),
+                new SingleAbility(null,"healSelf","A basic self heal",0,0,0,0,1,-3,false, true)
         };
 
         //TESTING GAME IO
@@ -125,6 +130,7 @@ public class LevelScreen extends GameScreen{
 
         allen.statuses.add(new CursedStatus(allen, 1));
         clock = new Clock(1.2);
+        clock2 = new Clock(5);
     }
 
     /**
@@ -155,6 +161,7 @@ public class LevelScreen extends GameScreen{
         }
 
         clock = new Clock(1.2);
+        clock2 = new Clock(5);
     }
 
     @Override
@@ -212,9 +219,24 @@ public class LevelScreen extends GameScreen{
                         jointMap.unTargetableAll();
                     }
                 //Ability use
-                } else if ((selectedPlayer != null) && (selectedAbility != null)) {
-                    if (selectedAbility.action(jointMap, gridX, gridY)) {
+                } else if ((selectedPlayer != null) && (selectedAbility != null) && animatedAbility == null) {
+                    if (jointMap.getTargetable(gridX, gridY)) {
+
                         //attacks will use up energy!
+
+                        if (selectedAbility.getAnimation() != null) {
+                            //Setting up the ability to be animated
+                            animatedAbility = selectedAbility;
+                            animatedX = gridX;
+                            animatedY = gridY;
+                            animatedAbility.getAnimation().reset();
+                        } else {
+                            //Use the ability here if there is no animation
+                            selectedAbility.action(jointMap, gridX, gridY);
+                        }
+
+                        clock2.resetElapsed();
+
                         selectedPlayer.useEnergy(selectedAbility.getEnergyCost());
                         selectedAbility.resetCooldown();
                         System.out.println("bam!");
@@ -253,8 +275,23 @@ public class LevelScreen extends GameScreen{
 
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
+
         //Draw out the map and all of the tiles on it
         jointMap.draw(g);
+
+        //Animating abilities
+        if (animatedAbility != null) {
+            if (animatedAbility.getAnimation() != null) {
+                jointMap.animateAttack(g, animatedAbility.getAnimation(), animatedX, animatedY);
+                coverUp(g);
+                if (clock2.getElapsedMilli() >= animatedAbility.getAnimation().getTotalTime()) {
+                    animatedAbility.action(jointMap, animatedX, animatedY);
+                    animatedAbility = null;
+                    animatedX = 0;
+                    animatedY = 0;
+                }
+            }
+        }
 
         //Draw out the profile selection area
         drawPlayerProfiles(g);
@@ -374,7 +411,9 @@ public class LevelScreen extends GameScreen{
 
         //Draw icons from entities (enemy intents, etc)
         jointMap.drawIcons(g, getMouseX(), getMouseY());
+
         clock.updateElapsed();
+        clock2.updateElapsed();
         repaint();
     }
 
@@ -424,6 +463,19 @@ public class LevelScreen extends GameScreen{
             g.drawRect(profileX, profileY + i * profileHeight, profileWidth, profileHeight);
             g.drawString(players[i].getName(),profileX+10, profileY + 15 + i*80);
         }
+    }
+
+    /**
+     * [coverUp]
+     * @param g
+     * Creates a border around the main battle that covers up any stray animations
+     */
+    public void coverUp(Graphics g){
+        g.setColor(new Color(238,238,238));
+        g.fillRect(0,0,323,768);
+        g.fillRect(0,0,1366,108);
+        g.fillRect(1049,0,317,768);
+        g.fillRect(0,471,1366,337);
     }
 
     /**

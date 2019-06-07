@@ -13,12 +13,10 @@ public class BasicMoveAbility extends Ability {
      * @param j: the other selected coordinate
      * @return: it will return a value based on if an action was valid or not, if it was, it will unindicate everything and reset selectedAbility on levelscreen
      */
-    public boolean action(JointMap jointMap, int i, int j) {
-        if (jointMap.getTargetable(i, j) && jointMap.isEmpty(i, j)) {
+    public void action(JointMap jointMap, int i, int j) {
+        if (jointMap.isEmpty(i, j)) {
             jointMap.moveOnTile(getEntitySource().getXGrid(), getEntitySource().getYGrid(), i, j);
-            return true;
         }
-        return false;
     }
 
     /**

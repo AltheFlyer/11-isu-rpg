@@ -1,3 +1,4 @@
+import utils.AnimatedSprite;
 import utils.TextDrawer;
 
 import java.awt.*;
@@ -78,6 +79,12 @@ abstract public class Tile {
             entity.healEntity(healing);
         }
     }
+
+    public void animateAttack(Graphics g, AnimatedSprite animation){
+        animation.draw(g,xGraphic,yGraphic);
+    }
+
+
     public void indicate() {
         indicated = true;
     }

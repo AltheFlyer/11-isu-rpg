@@ -17,7 +17,7 @@ public class BunsenBurnerEnemy extends Enemy {
 
     BunsenBurnerEnemy(int x, int y) {
         super(35, "Bunsen Burner", new Ability[] {
-                new AOEAbility("Inflame", "Burns all targets in the row.", 0, 1,
+                new AOEAbility(null,"Inflame", "Burns all targets in the row.", 0, 1,
                         6, 0, 6, 0, 1, 5, true, false)
         });
 
