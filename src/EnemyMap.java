@@ -19,8 +19,8 @@ public class EnemyMap {
         }
     }
 
-    public void target(int i, int j, double damage, int status) {
-        enemyArray[i][j].damageTile(damage, status);
+    public void target(int i, int j, double damage) {
+        enemyArray[i][j].damageTile(damage);
     }
 
     public void addEnemy(int i, int j, Enemy enemy) {

@@ -11,7 +11,6 @@ abstract public class Ability {
     private String desc;
     private int xRange;
     private int yRange;
-    private int status;
     private double damage;
     private int cost;
     private int xAOE;
@@ -27,7 +26,7 @@ abstract public class Ability {
     private AnimatedSprite animation;
 
     //Constructor for Single target and AOE abilities
-    Ability(AnimatedSprite animation, String name, String desc, double energyCost, int cooldown, int xRange, int yRange, int status, double damage, boolean enemyTarget, boolean friendTarget) {
+    Ability(AnimatedSprite animation, String name, String desc, double energyCost, int cooldown, int xRange, int yRange, double damage, boolean enemyTarget, boolean friendTarget) {
         this.name = name;
         this.desc = desc;
         this.energyCost = energyCost;
@@ -35,7 +34,6 @@ abstract public class Ability {
         currentCooldown = 0;
         this.xRange = xRange;
         this.yRange = yRange;
-        this.status = status;
         this.damage = damage;
         this.enemyTarget = enemyTarget;
         this.friendTarget = friendTarget;
@@ -124,10 +122,6 @@ abstract public class Ability {
 
     public int getXRange() {
         return xRange;
-    }
-
-    public int getStatus(){
-        return status;
     }
 
     public int getYRange(){

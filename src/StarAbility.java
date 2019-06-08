@@ -3,8 +3,8 @@ import utils.AnimatedSprite;
 import java.awt.*;
 
 public class StarAbility extends Ability {
-    StarAbility(AnimatedSprite animation, String name, String desc, double energyCost, int cooldown, int xRange, int yRange, int status, double damage, boolean enemyTarget, boolean friendTarget){
-        super (animation, name, desc, energyCost, cooldown, xRange, yRange, status, damage, enemyTarget, friendTarget);
+    StarAbility(AnimatedSprite animation, String name, String desc, double energyCost, int cooldown, int xRange, int yRange, double damage, boolean enemyTarget, boolean friendTarget){
+        super (animation, name, desc, energyCost, cooldown, xRange, yRange, damage, enemyTarget, friendTarget);
     }
 
     /**
@@ -20,10 +20,10 @@ public class StarAbility extends Ability {
                 //Hits tiles in a star shape around the indicated tile
                 if (Math.abs(k-j) + Math.abs(l-i) <= 1 && jointMap.tileExists(l,k)){
                     if (getFriendTarget() && jointMap.getTileType(l,k) == jointMap.getTileType(getEntitySource().getXGrid(),getEntitySource().getYGrid())) {
-                        jointMap.target(l, k, getDamage(), getStatus());
+                        jointMap.target(l, k, getDamage());
                     }
                     if (getEnemyTarget() && jointMap.getTileType(l,k) != jointMap.getTileType(getEntitySource().getXGrid(),getEntitySource().getYGrid())) {
-                        jointMap.target(l, k, getDamage(), getStatus());
+                        jointMap.target(l, k, getDamage());
                     }
                 }
             }

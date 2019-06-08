@@ -48,6 +48,7 @@ public class LevelScreen extends GameScreen{
         */
         jointMap = new JointMap();
 
+        /*
         Ability[] kevinAbilities = new Ability[]{
             new SingleAbility(new AnimatedSprite("spritesheets/Jasmine.png", 1, 10, 100),"basic","a basic attack that will hit an enemy in front of you", 20,1,6,0,1,2,true, false),
             new BasicMoveAbility("step","movement to an adjacent tile", 30,1,1),
@@ -82,6 +83,7 @@ public class LevelScreen extends GameScreen{
                 new SingleAbility(null,"basic","A basic attack that hits a random target in front",0,0,6,0,1,2,true, false),
                 new SingleAbility(null,"healSelf","A basic self heal",0,0,0,0,1,-3,false, true)
         };
+        */
 
         //TESTING GAME IO
         //Generates array of players to be place on the grid
@@ -413,10 +415,6 @@ public class LevelScreen extends GameScreen{
                 for (int i = 0; i < players.length; i++){
                     players[i].gainEnergy(30);
                     players[i].endTurnLowerCooldown();
-                    //Execute if dies to status effect at the end of turn
-                    if (!players[i].isAlive()){
-                        jointMap.target(players[i].getXGrid(), players[i].getYGrid(),0,0);
-                    }
                 }
 
                 for (int i = 0; i < enemies.length; i++){
@@ -518,12 +516,6 @@ public class LevelScreen extends GameScreen{
         if (!enemyTurn) {
             //Proc the player Status effect and makes it so it doesn't happen over and over if you press end turn
             jointMap.procPlayerStatus();
-
-            for (int i = 0; i < players.length; ++i) {
-                if (!players[i].isAlive()) {
-                    jointMap.target(players[i].getXGrid(), players[i].getYGrid(), 0, 0);
-                }
-            }
 
             //End of player turn
             selectedAbility = null;

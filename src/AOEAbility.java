@@ -4,7 +4,7 @@ import java.awt.*;
 
 public class AOEAbility extends Ability{
     AOEAbility(AnimatedSprite animation, String name, String desc, double energyCost, int cooldown, int xRange, int yRange, int xAOE, int yAOE, int status, double damage, boolean enemyTarget, boolean friendTarget){
-        super (animation, name, desc, energyCost, cooldown, xRange, yRange, status, damage, enemyTarget, friendTarget);
+        super (animation, name, desc, energyCost, cooldown, xRange, yRange, damage, enemyTarget, friendTarget);
         setXAOE(xAOE);
         setYAOE(yAOE);
     }
@@ -21,10 +21,10 @@ public class AOEAbility extends Ability{
             for (int l = i - getXAOE(); l <= i + getXAOE(); l++) {
                 if (jointMap.tileExists(l, k)) {
                     if (getFriendTarget() && jointMap.getTileType(l, k) == jointMap.getTileType(getEntitySource().getXGrid(), getEntitySource().getYGrid())) {
-                        jointMap.target(l, k, getDamage(), getStatus());
+                        jointMap.target(l, k, getDamage());
                     }
                     if (getEnemyTarget() && jointMap.getTileType(l, k) != jointMap.getTileType(getEntitySource().getXGrid(), getEntitySource().getYGrid())) {
-                        jointMap.target(l, k, getDamage(), getStatus());
+                        jointMap.target(l, k, getDamage());
                     }
                 }
             }

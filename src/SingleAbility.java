@@ -4,8 +4,8 @@ import java.awt.*;
 
 public class SingleAbility extends Ability {
 
-    SingleAbility(AnimatedSprite animation, String name, String desc, double energyCost, int cooldown,int xRange, int yRange, int status, double damage, boolean enemyTarget, boolean friendTarget){
-        super (animation, name, desc, energyCost, cooldown, xRange, yRange, status, damage, enemyTarget, friendTarget);
+    SingleAbility(AnimatedSprite animation, String name, String desc, double energyCost, int cooldown, int xRange, int yRange, double damage, boolean enemyTarget, boolean friendTarget){
+        super (animation, name, desc, energyCost, cooldown, xRange, yRange, damage, enemyTarget, friendTarget);
         setXAOE(0);
         setYAOE(0);
     }
@@ -18,7 +18,7 @@ public class SingleAbility extends Ability {
      * @return: it will return a value based on if an action was valid or not, if it was, it will unindicate everything and reset selectedAbility on levelscreen
      */
     public void action(JointMap jointMap, int i, int j){
-        jointMap.target(i, j, getDamage(), getStatus());
+        jointMap.target(i, j, getDamage());
     }
     /**
      * [drawSelectedArea]

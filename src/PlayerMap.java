@@ -19,8 +19,8 @@ public class PlayerMap {
         }
     }
 
-    public void target(int i, int j, double damage, int status) {
-        playerArray[i][j].damageTile(damage, status);
+    public void target(int i, int j, double damage) {
+        playerArray[i][j].damageTile(damage);
     }
 
     public void addPlayer(int i, int j, Player player) {

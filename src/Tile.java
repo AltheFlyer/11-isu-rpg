@@ -65,7 +65,7 @@ abstract public class Tile {
     }
     */
 
-    public void damageTile(double damage, int status){
+    public void damageTile(double damage){
         if (!isEmpty()) {
             entity.damageEntity(damage);
             if (entity.getHealth() <= 0) {
@@ -74,7 +74,7 @@ abstract public class Tile {
         }
     }
 
-    public void healTile(double healing, int status){
+    public void healTile(double healing) {
         if (!isEmpty()) {
             entity.healEntity(healing);
         }

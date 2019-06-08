@@ -446,10 +446,9 @@ public class GameIO {
                         Integer.parseInt(args[5]),
                         Integer.parseInt(args[6]),
                         Integer.parseInt(args[7]),
-                        Integer.parseInt(args[8]),
-                        Double.parseDouble(args[9]),
-                        Boolean.parseBoolean(args[10]),
-                        Boolean.parseBoolean(args[11]));
+                        Double.parseDouble(args[8]),
+                        Boolean.parseBoolean(args[9]),
+                        Boolean.parseBoolean(args[10]));
             case "BasicMoveAbility":
                 return new BasicMoveAbility(name, desc,
                         Double.parseDouble(args[0]),
@@ -476,9 +475,8 @@ public class GameIO {
                         Integer.parseInt(args[6]),
                         Integer.parseInt(args[7]),
                         Integer.parseInt(args[8]),
-                        Integer.parseInt(args[9]),
-                        Boolean.parseBoolean(args[10]),
-                        Boolean.parseBoolean(args[11]));
+                        Boolean.parseBoolean(args[9]),
+                        Boolean.parseBoolean(args[10]));
             case "StarAbility":
                 return new StarAbility(new AnimatedSprite(args[0], Integer.parseInt(args[1]), Integer.parseInt(args[2]), Integer.parseInt(args[3])),
                         name, desc,
@@ -486,10 +484,9 @@ public class GameIO {
                         Integer.parseInt(args[5]),
                         Integer.parseInt(args[6]),
                         Integer.parseInt(args[7]),
-                        Integer.parseInt(args[8]),
-                        Double.parseDouble(args[9]),
-                        Boolean.parseBoolean(args[10]),
-                        Boolean.parseBoolean(args[11]));
+                        Double.parseDouble(args[8]),
+                        Boolean.parseBoolean(args[9]),
+                        Boolean.parseBoolean(args[10]));
             case "SpearAbility":
                 return new SpearAbility(new AnimatedSprite(args[0], Integer.parseInt(args[1]), Integer.parseInt(args[2]), Integer.parseInt(args[3])),
                         name, desc,

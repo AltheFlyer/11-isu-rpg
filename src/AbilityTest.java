@@ -9,7 +9,7 @@ abstract public class AbilityTest {
     private String desc;
     private int xRange;
     private int yRange;
-    private int status;
+
     private double damage;
     private int cost;
     private int xAOE;
@@ -25,7 +25,6 @@ abstract public class AbilityTest {
         this.name = name;
         this.xRange = xRange;
         this.yRange = yRange;
-        this.status = status;
         this.damage = damage;
         this.enemyOnly = enemyOnly;
     }
@@ -53,7 +52,7 @@ abstract public class AbilityTest {
 
 
     public void act(JointMap jointMap, int x, int y) {
-        jointMap.target(x, y, damage, status);
+        jointMap.target(x, y, damage);
     }
 
     public int getXRange() {

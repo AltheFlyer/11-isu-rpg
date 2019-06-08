@@ -34,7 +34,7 @@ public class TutorialLevel extends LevelScreen {
                 new Ability[] {
                         new SingleAbility(new AnimatedSprite("spritesheets/Jasmine.png", 1, 10, 100),
                                 "Basic Attack", "Deals damage to a single target.",
-                                30, 1, 6, 0, 1, 3, true, false),
+                                30, 1, 6, 0, 3, true, false),
                         moveAbility
                 });
 

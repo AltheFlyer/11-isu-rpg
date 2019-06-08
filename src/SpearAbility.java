@@ -6,12 +6,12 @@ public class SpearAbility extends Ability {
 
 
     SpearAbility(AnimatedSprite animation, String name, String desc, double energyCost, int cooldown, double damage) {
-        super(animation, name, desc, energyCost, cooldown, 2, 1, 1, damage, true, false);
+        super(animation, name, desc, energyCost, cooldown, 2, 1, damage, true, false);
     }
 
     @Override
     public void action(JointMap jointMap, int i, int j) {
-        jointMap.target(i, j, this.getDamage(), 1);
+        jointMap.target(i, j, this.getDamage());
     }
 
     @Override

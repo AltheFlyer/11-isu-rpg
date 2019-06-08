@@ -30,11 +30,11 @@ public class JointMap {
     }
 
     //DO WE KEEP TARGET OR MOVE IT TO ATTACKS? DECIDE LATER
-    public void target(int i, int j, double damage, int status) {
+    public void target(int i, int j, double damage) {
         if (damage < 0) {
-            tileArray[i][j].healTile(-damage, status);
+            tileArray[i][j].healTile(-damage);
         } else {
-            tileArray[i][j].damageTile(damage, status);
+            tileArray[i][j].damageTile(damage);
         }
     }
 
@@ -178,8 +178,12 @@ public class JointMap {
         for (int j = 0; j < 3; j++) {
             //player side only
             for (int i = 0; i < 3; i++) {
-                if (!tileArray[i][j].isEmpty()) {
-                    tileArray[i][j].getEntity().procStatus(this);
+                Tile tile = tileArray[i][j];
+                if (!tile.isEmpty()) {
+                    tile.getEntity().procStatus(this);
+                    if (tile.getEntity().getHealth() <= 0) {
+                        tile.nullEntity();
+                    }
                 }
             }
         }
@@ -189,8 +193,12 @@ public class JointMap {
         for (int j = 0; j < 3; j++) {
             //Enemy side only
             for (int i = 3; i < 6; i++) {
-                if (!tileArray[i][j].isEmpty()) {
-                    tileArray[i][j].getEntity().procStatus(this);
+                Tile tile = tileArray[i][j];
+                if (!tile.isEmpty()) {
+                    tile.getEntity().procStatus(this);
+                    if (tile.getEntity().getHealth() <= 0) {
+                        tile.nullEntity();
+                    }
                 }
             }
         }
