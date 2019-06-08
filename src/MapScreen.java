@@ -25,8 +25,8 @@ public class MapScreen extends GameScreen {
         super(game);
         clock = new Clock(0.1);
         framerate = new FrameRate();
-        map = new MovingMap(getIO(), mapPath,walkabilityKey);
-        player = new OverworldPlayer(400,400);
+        map = new MovingMap(getIO(), mapPath, walkabilityKey);
+        player = new OverworldPlayer(400, 400);
         npc = getIO().getNPCs(npcPath);
         length = map.getMap()[0].length;
         width = map.getMap().length;
@@ -65,7 +65,7 @@ public class MapScreen extends GameScreen {
             }
         }
 
-        framerate.draw(g,10,10);
+        framerate.draw(g, 10, 10);
 
         //ask for repaint
         repaint();
@@ -78,7 +78,7 @@ public class MapScreen extends GameScreen {
      * @return void
      */
     public void keyTyped(KeyEvent e) {
-        if(e.getKeyChar() == 'z') {
+        if (e.getKeyChar() == 'z') {
             for (int i = 0; i < npc.length; ++i) {
                 npc[i].checkInteractions(player.interact());
             }
@@ -88,6 +88,7 @@ public class MapScreen extends GameScreen {
     /**
      * [keyPressed]
      * checks if certain keys are pressed and changes player velocity accordingly
+     *
      * @param e key event for a pressed key
      * @return void
      */
@@ -123,29 +124,29 @@ public class MapScreen extends GameScreen {
      * @return void
      */
     public void keyReleased(KeyEvent e) {
-        if((e.getKeyChar() == 'w') || (e.getKeyChar() == 's')) {
+        if ((e.getKeyChar() == 'w') || (e.getKeyChar() == 's')) {
             player.setYVelocity(0);
         }
-        if((e.getKeyChar() == 'd') || (e.getKeyChar() =='a')) {
+        if ((e.getKeyChar() == 'd') || (e.getKeyChar() == 'a')) {
             player.setXVelocity(0);
         }
     }
 
     private void checkCollisions() {
-        int playerXCenter = player.getX() + player.collisionWindow().width/2;
-        int playerYCenter = player.getY() + player.collisionWindow().height/2;
-        int centerTileX = playerXCenter/map.getTileSize();
-        int centerTileY = playerYCenter/map.getTileSize();
+        int playerXCenter = player.getX() + player.collisionWindow().width / 2;
+        int playerYCenter = player.getY() + player.collisionWindow().height / 2;
+        int centerTileX = playerXCenter / map.getTileSize();
+        int centerTileY = playerYCenter / map.getTileSize();
         int playerNewX = player.calcNewX(clock.getElapsedTime());
         int playerNewY = player.calcNewY(clock.getElapsedTime());
-        Rectangle playerNewBox = new Rectangle(playerNewX,playerNewY,player.getSize(),player.getSize());
+        Rectangle playerNewBox = new Rectangle(playerNewX, playerNewY, player.getSize(), player.getSize());
         for (int i = centerTileX - 1; i < centerTileX + 2; i++) {
             for (int j = centerTileY - 1; j < centerTileY + 2; j++) {
-                map.getMap()[i][j].checkCollisions(playerNewBox,player);
+                map.getMap()[i][j].checkCollisions(playerNewBox, player, getGame());
             }
         }
         for (int i = 0; i < npc.length; ++i) {
-            npc[i].checkCollisions(playerNewBox,player);
+            npc[i].checkCollisions(playerNewBox, player);
         }
         player.move(clock.getElapsedTime());
     }

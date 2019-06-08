@@ -1,9 +1,3 @@
-4
-300 300 Allen
-Did you know 3 billion devices run Java?
-500 500 Allen2
-Did you know 4 billion devices run Java?
-800 300 Allen3
-Did you know 8 billion devices run Java?
-300 400 Allen4
-Did you know 1 device runs Java?
+1
+750 350 aLnnN
+Did you know Java Java Jav aJavaJavaJavaJavJJJJJJJJJ?

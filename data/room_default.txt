@@ -1,8 +1,8 @@
-12 8 1
+12 8
 top_left wall_up wall_up wall_up wall_up wall_up wall_up wall_up wall_up wall_up wall_up top_right
 wall_left wall wall wall wall wall wall wall wall wall wall wall_right
 wall_left wall floor floor floor floor floor floor floor floor wall wall_right
-wall_left wall door floor floor floor floor floor floor floor wall wall_right
+wall_left door exit floor floor floor floor floor floor floor wall wall_right
 wall_left wall floor floor floor floor floor floor floor floor wall wall_right
 wall_left wall floor floor floor floor floor floor floor floor wall wall_right
 wall_left wall wall wall wall wall wall wall wall wall wall wall_right

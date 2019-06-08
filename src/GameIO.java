@@ -524,22 +524,22 @@ public class GameIO {
     public OverworldTile[][] getMap(String path, int tileSize) {
         String mapText = readFile(path);
         OverworldTile[][] tileMap;
+        int doorCounter = 0;
 
         String[] lines = mapText.split("\n");
 
         String[] tokens = lines[0].split(" ");
         int width = Integer.parseInt(tokens[0]);
         int height = Integer.parseInt(tokens[1]);
-        int doors = Integer.parseInt(tokens[2]);
-        String doorPath = lines[height+1];
         tileMap = new OverworldTile[width][height];
 
         for (int y = 0; y < height; ++y) {
             tokens = lines[y + 1].split(" ");
             for (int x = 0; x < width; ++x) {
                 if (tokens[x].equals("door")) {
-
-                    tileMap[x][y] = new Door(x, y, tileWalkability.get(tokens[x]), tileSize, tokens[x], doorPath);
+                    tileMap[x][y] = new Door(x, y, tileWalkability.get(tokens[x]), tileSize, tokens[x],
+                            lines[height + 1 + doorCounter]);
+                    ++doorCounter;
                 } else {
                     tileMap[x][y] = new OverworldTile(x, y, tileWalkability.get(tokens[x]), tileSize, tokens[x]);
                 }

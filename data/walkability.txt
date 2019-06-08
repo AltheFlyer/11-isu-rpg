@@ -8,4 +8,5 @@ floor true
 wall false
 bottom_left false
 bottom_right false
+exit true
 door true

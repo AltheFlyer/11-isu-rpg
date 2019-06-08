@@ -1,3 +1,5 @@
+import java.awt.*;
+
 public class Door extends OverworldTile {
 
     private String doorPath;
@@ -8,5 +10,12 @@ public class Door extends OverworldTile {
     }
 
     public String getDoorPath() { return this.doorPath; }
+
+    public void checkCollisions(Rectangle playerBounds, OverworldPlayer player, GameManager game) {
+        if (playerBounds.intersects(this.getBoundingBox())) {
+            game.setScreen(new MapScreen(game, this.getDoorPath() + ".txt",
+                    "walkability.txt", this.getDoorPath() + "_npcs.txt"));
+        }
+    }
 
 }

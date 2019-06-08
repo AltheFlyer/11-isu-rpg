@@ -32,9 +32,7 @@ public class OverworldTile {
         return true;
     }
 
-    public int getX(){
-        return this.x;
-    }
+    public int getX(){ return this.x; }
 
     public int getY(){
         return this.y;
@@ -44,7 +42,7 @@ public class OverworldTile {
 
     public Rectangle getBoundingBox() {return this.boundingBox; }
 
-    public void checkCollisions(Rectangle playerBounds, OverworldPlayer player) {
+    public void checkCollisions(Rectangle playerBounds, OverworldPlayer player, GameManager game) {
         if (playerBounds.intersects(this.boundingBox) && (isNotWalkable())) {
             player.setXVelocity(0);
             player.setYVelocity(0);
