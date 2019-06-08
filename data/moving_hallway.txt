@@ -1,10 +1,11 @@
 18 8
-top_left wall_up wall_up wall_up wall_up wall_up wall_up wall_up wall_up wall_up wall_up wall_up wall_up wall_up wall_up wall_up wall_up top_right
-wall_left floor floor floor floor floor floor floor floor floor floor floor floor floor floor floor floor wall_right
+top_left wall_up wall_up wall_up wall_up wall_up wall_up wall_up wall_up wall_up door wall_up wall_up wall_up wall_up wall_up wall_up top_right
+wall_left floor floor floor floor floor floor floor floor floor exit floor floor floor floor floor floor wall_right
 wall_left floor floor floor floor floor floor floor floor floor floor floor floor floor floor floor floor wall_right
 wall_left floor floor floor floor floor floor floor floor floor floor floor floor floor floor floor exit door
 wall_left floor floor floor floor floor floor floor floor floor floor floor floor floor floor floor floor wall_right
 wall_left floor floor floor floor floor floor floor floor floor floor floor floor floor floor floor floor wall_right
 wall_left floor floor floor floor floor floor floor floor floor floor floor floor floor floor floor floor wall_right
 bottom_left wall_down wall_down wall_down wall_down wall_down wall_down wall_down wall_down wall_down wall_down wall_down wall_down wall_down wall_down wall_down wall_down bottom_right
-room_default 200 325
+room_up 525 550
+room_right 200 325
