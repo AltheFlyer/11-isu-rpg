@@ -437,6 +437,15 @@ public class LevelScreen extends GameScreen{
 
         playerClock.updateElapsed();
         enemyClock.updateElapsed();
+
+
+       //Check if all players are still alive
+        if (playersDead()) {
+            loseBattle(g);
+        } else if (enemiesDead()) {
+            winBattle(g);
+        }
+
         repaint();
     }
 
@@ -517,6 +526,61 @@ public class LevelScreen extends GameScreen{
             //EnemyTurn is true
             enemyTurn = true;
         }
+    }
 
+    /**
+     * [winBattle]
+     * handles end of battle operations (saving inventory and progression) if all enemies are defeated with at least 1
+     * live player
+     * @param g the graphics object to draw with
+     */
+    public void winBattle(Graphics g) {
+        //Save inventory, progression
+        //This is just a test to see it works
+        //getIO().setInventory(inventory);
+        //getIO().writeInventory();
+        getIO().setTimeState(getIO().getCurrentPeriod() + 1, getIO().getCurrentDay());
+        getIO().writeTimeState();
+
+        g.drawString("WINNER", 500, 500);
+    }
+
+    /**
+     * [loseBattle]
+     * handles loss condition (if all players die) and give the player the option of restarting the encounter
+     * or returning to map
+     * @param g the graphics object to draw with
+     */
+    public void loseBattle(Graphics g) {
+        //Go back to map OR restart level
+        g.drawString("LOSER", 500, 500);
+    }
+
+    /**
+     * [playersDead]
+     * checks if all players are dead
+     * @return boolean, whether ALL players are dead or not
+     */
+    public boolean playersDead() {
+        for (int i = 0; i < players.length; ++i) {
+            if (players[i].isAlive()) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
+     * [enemiesDead]
+     * checks if all enemies are dead or not
+     * @return boolean, if ALL enemies are dead
+     */
+    public boolean enemiesDead() {
+        for (int i = 0; i < enemies.length; ++i) {
+            if (enemies[i].isAlive()) {
+                return false;
+            }
+        }
+        return true;
     }
 }

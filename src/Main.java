@@ -9,6 +9,19 @@ public class Main {
         game.setScreen(new BattleLayoutScreen(game));
         //game.setScreen(new TutorialLevel(game));
 
+
+        //My args setup, Use custom run configurations for different encounters
+        if (args.length != 0) {
+            switch (args[0]) {
+                case "decaAndBunsen" :
+                    game.setScreen(new LevelScreen(game, new Enemy[] {
+                            new BunsenBurnerEnemy(3, 0),
+                            new DecaEnemy(3, 1),
+                    }));
+                    break;
+            }
+        }
+
 /*
         game.setScreen(new LevelScreen(game, new Enemy[] {
                 new BunsenBurnerEnemy(5, 0),

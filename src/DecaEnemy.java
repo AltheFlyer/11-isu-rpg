@@ -8,7 +8,7 @@ public class DecaEnemy extends Enemy {
     Icon intent;
 
     DecaEnemy(int x, int y) {
-        super(1000, "Spirit of Deca", new Ability[] {
+        super(100, "Spirit of Deca", new Ability[] {
                 new SingleAbility(new AnimatedSprite("spritesheets/deca.png", 6, 6, 25),
                         "Payment", "Seeks payment from a student.", 0, 0,
                         3, 1, 10, 1, true, false)
@@ -19,7 +19,7 @@ public class DecaEnemy extends Enemy {
 
         gif = new AnimatedSprite("spritesheets/deca.png", 6, 6, 100);
 
-        intent = new Icon("assets/icons/sword.png");
+        intent = new Icon("assets/icons/sword.png", "Payment", "Deca intends to takes something from a student...");
 
         setIntent(intent);
     }
