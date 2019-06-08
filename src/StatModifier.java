@@ -26,4 +26,9 @@ public class StatModifier extends StatusEffect {
     public void stack(StatusEffect effect) {
 
     }
+
+    @Override
+    public StatusEffect spread() {
+        return null;
+    }
 }

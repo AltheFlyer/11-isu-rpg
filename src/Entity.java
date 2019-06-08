@@ -145,6 +145,12 @@ abstract public class Entity {
     }
 
     public void addStatus(StatusEffect effect) {
+        for (int i = 0; i < statuses.size(); ++i) {
+            if (statuses.get(i).getClass() == effect.getClass()) {
+                statuses.get(i).stack(effect);
+                return;
+            }
+        }
         statuses.add(effect);
     }
 

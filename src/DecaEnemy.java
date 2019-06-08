@@ -43,7 +43,7 @@ public class DecaEnemy extends Enemy {
     @Override
     public void decide(JointMap map) {
         if (Math.random() < 0.5) {
-            setDecide(abilities[0]);
+            setDecide(abilities[1]);
         } else {
             setDecide(abilities[1]);
         }

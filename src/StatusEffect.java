@@ -50,6 +50,12 @@ abstract public class StatusEffect {
         duration--;
     }
 
+    /**
+     * [spread]
+     * generates a duplicate of the status effect, for use in abilities that can inflict statuses
+     */
+    abstract public StatusEffect spread();
+
     //Access time!
     public int getStacks() {
         return stacks;

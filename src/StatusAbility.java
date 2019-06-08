@@ -16,7 +16,7 @@ public class StatusAbility extends Ability {
     @Override
     public void action(JointMap jointMap, int i, int j) {
         effect.setAffected(jointMap.getEntity(i, j));
-        jointMap.getEntity(i, j).addStatus(effect);
+        jointMap.getEntity(i, j).addStatus(effect.spread());
     }
 
     @Override
