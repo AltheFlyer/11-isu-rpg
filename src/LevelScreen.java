@@ -131,7 +131,7 @@ public class LevelScreen extends GameScreen{
         //players[1] = allen;
         //players[2] = bryan;
 
-        allen.statuses.add(new CursedStatus(allen, 1));
+        //allen.addStatus(new CursedStatus(allen, 1));
         playerClock = new Clock(2);
         enemyClock = new Clock(5);
     }
@@ -518,8 +518,16 @@ public class LevelScreen extends GameScreen{
         if (!enemyTurn) {
             //Proc the player Status effect and makes it so it doesn't happen over and over if you press end turn
             jointMap.procPlayerStatus();
+
+            for (int i = 0; i < players.length; ++i) {
+                if (!players[i].isAlive()) {
+                    jointMap.target(players[i].getXGrid(), players[i].getYGrid(), 0, 0);
+                }
+            }
+
             //End of player turn
             selectedAbility = null;
+
             System.out.println("End turn enemy time!");
 
             selectedEnemy = enemies[0];

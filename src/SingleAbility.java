@@ -35,7 +35,6 @@ public class SingleAbility extends Ability {
      * @param jointMap: The tiles on the jointMap array will be modified (some tiles will be indicated, some will become targetable)
      */
     public void indicateValidTiles(JointMap jointMap){
-
         int rangeAhead = getEntitySource().getXGrid() + getXRange();
         int rangeBehind = getEntitySource().getXGrid() - getXRange();
         int rangeDown = getEntitySource().getYGrid() + getYRange();

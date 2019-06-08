@@ -138,8 +138,8 @@ abstract public class Tile {
      */
     public void drawStatus(Graphics g) {
         if (!isEmpty()) {
-            for (int i = 0; i < getEntity().statuses.size(); ++i) {
-                Icon icon = getEntity().statuses.get(i).getIcon();
+            for (int i = 0; i < getEntity().getStatuses().size(); ++i) {
+                Icon icon = getEntity().getStatuses().get(i).getIcon();
                 icon.setPosition(getXGraphic() + i * 40, getYGraphic() + 120 - 20);
                 icon.draw(g);
             }
@@ -154,8 +154,8 @@ abstract public class Tile {
      */
     public void drawStatusText(Graphics g, int mouseX, int mouseY) {
         if (!isEmpty()) {
-            for (int i = 0; i < getEntity().statuses.size(); ++i) {
-                Icon icon = getEntity().statuses.get(i).getIcon();
+            for (int i = 0; i < getEntity().getStatuses().size(); ++i) {
+                Icon icon = getEntity().getStatuses().get(i).getIcon();
                 icon.setPosition(getXGraphic() + i * 40, getYGraphic() + 120 - 20);
                 icon.draw(g);
 

@@ -68,6 +68,20 @@ abstract public class Ability {
     //The boolean return is for if the action was taken or not
     abstract public void action(JointMap jointMap, int i, int j);
 
+    /**
+     * [setAnimation]
+     * sets the ability's animated sprite
+     * @param animation the animated sprite to use when this ability is cast
+     */
+    public void setAnimation(AnimatedSprite animation) {
+        this.animation = animation;
+    }
+
+    /**
+     * [getAnimation]
+     * gets the ability's animated sprite
+     * @return AnimatedSprite, the animated sprite to draw for ability casts
+     */
     public AnimatedSprite getAnimation(){
         return animation;
     }

@@ -18,7 +18,7 @@ abstract public class Entity {
     private int xGrid;
     private int yGrid;
 
-    ArrayList<StatusEffect> statuses;
+    private ArrayList<StatusEffect> statuses;
 
     Entity(double health, String name, Ability[] abilities) {
         this.abilities = abilities;
@@ -144,4 +144,16 @@ abstract public class Entity {
         statuses.clear();
     }
 
+    public void addStatus(StatusEffect effect) {
+        statuses.add(effect);
+    }
+
+    /**
+     * [getStatuses]
+     * gets the list of statuses for the entity
+     * @return ArrayList of StatusEffect, the set of statuses currently affecting the entity
+     */
+    public ArrayList<StatusEffect> getStatuses() {
+        return statuses;
+    }
 }

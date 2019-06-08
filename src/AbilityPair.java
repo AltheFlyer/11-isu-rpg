@@ -1,3 +1,5 @@
+import utils.AnimatedSprite;
+
 import java.awt.*;
 
 /**
@@ -12,10 +14,12 @@ public class AbilityPair extends Ability {
     Ability firstAbility;
     Ability secondAbility;
 
-    public AbilityPair(String name, String desc, int energyCost, int cooldown, Ability firstAbility, Ability secondAbility) {
+    public AbilityPair(AnimatedSprite animation, String name, String desc, int energyCost, int cooldown, Ability firstAbility, Ability secondAbility) {
         super(name, desc, energyCost, cooldown, 0);
         this.firstAbility = firstAbility;
         this.secondAbility = secondAbility;
+
+        setAnimation(animation);
     }
 
     @Override
@@ -34,6 +38,12 @@ public class AbilityPair extends Ability {
     public void indicateValidTiles(JointMap jointMap) {
         firstAbility.indicateValidTiles(jointMap);
         secondAbility.indicateValidTiles(jointMap);
+    }
+
+    @Override
+    public void setEntitySource(Entity e) {
+        firstAbility.setEntitySource(e);
+        secondAbility.setEntitySource(e);
     }
 
 }
