@@ -525,6 +525,7 @@ public class GameIO {
         String mapText = readFile(path);
         OverworldTile[][] tileMap;
         int doorCounter = 0;
+        String[] doorData;
 
         String[] lines = mapText.split("\n");
 
@@ -537,8 +538,9 @@ public class GameIO {
             tokens = lines[y + 1].split(" ");
             for (int x = 0; x < width; ++x) {
                 if (tokens[x].equals("door")) {
-                    tileMap[x][y] = new Door(x, y, tileWalkability.get(tokens[x]), tileSize, tokens[x],
-                            lines[height + 1 + doorCounter]);
+                    doorData = lines[height + 1 + doorCounter].split(" ");
+                    tileMap[x][y] = new Door(x, y, tileWalkability.get("door"), tileSize, "door",
+                            doorData[0], Integer.parseInt(doorData[1]), Integer.parseInt(doorData[2]));
                     ++doorCounter;
                 } else {
                     tileMap[x][y] = new OverworldTile(x, y, tileWalkability.get(tokens[x]), tileSize, tokens[x]);

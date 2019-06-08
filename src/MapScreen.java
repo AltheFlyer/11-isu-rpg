@@ -21,12 +21,16 @@ public class MapScreen extends GameScreen {
     int length;
     int width;
 
-    public MapScreen(GameManager game, String mapPath, String walkabilityKey, String npcPath) {
+    public MapScreen(GameManager game, String mapPath, String walkabilityKey, String npcPath, int x, int y) {
         super(game);
         clock = new Clock(0.1);
         framerate = new FrameRate();
-        map = new MovingMap(getIO(), mapPath, walkabilityKey);
-        player = new OverworldPlayer(400, 400);
+        if (mapPath.indexOf("moving") < 0) {
+            map = new RoomMap(getIO(), mapPath, walkabilityKey);
+        } else {
+            map = new MovingMap(getIO(), mapPath, walkabilityKey);
+        }
+        player = new OverworldPlayer(x, y);
         npc = getIO().getNPCs(npcPath);
         length = map.getMap()[0].length;
         width = map.getMap().length;

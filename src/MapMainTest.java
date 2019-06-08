@@ -5,6 +5,6 @@ public class MapMainTest {
 
         //game.setScreen(new DebugScreen(game));
         game.setScreen(new MapScreen(game,"moving_hallway.txt","walkability.txt",
-                "moving_hallway_npcs.txt"));
+                "moving_hallway_npcs.txt", 400, 400));
     }
 }
