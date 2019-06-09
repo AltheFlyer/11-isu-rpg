@@ -198,7 +198,7 @@ public class JointMap {
         this.unTargetableAll();
     }
 
-    public void runEnemyIntent(Enemy enemy){
+    public void generateEnemyDecisions(Enemy enemy){
         //Generate intent
         enemy.decide(this);
     }

@@ -134,6 +134,11 @@ public class LevelScreen extends GameScreen{
         //allen.addStatus(new CursedStatus(allen, 1));
         playerClock = new Clock(2);
         enemyClock = new Clock(5);
+
+        //0th turn processing
+        for (int i = 0; i < enemies.length; ++i) {
+            jointMap.generateEnemyDecisions(enemies[i]);
+        }
     }
 
     /**
@@ -147,9 +152,6 @@ public class LevelScreen extends GameScreen{
         jointMap = new JointMap();
 
         players = GameIO.getBattleLayout();
-        kevin = players[0];
-        allen = players[1];
-        bryan = players[2];
 
         //Adds players onto map
         for (int i = 0; i < players.length; ++i) {
@@ -165,6 +167,11 @@ public class LevelScreen extends GameScreen{
 
         playerClock = new Clock(5);
         enemyClock = new Clock(5);
+
+        //0th turn processing
+        for (int i = 0; i < enemies.length; ++i) {
+            jointMap.generateEnemyDecisions(enemies[i]);
+        }
     }
 
     @Override
@@ -417,7 +424,7 @@ public class LevelScreen extends GameScreen{
 
                 for (int i = 0; i < enemies.length; i++){
                     if (enemies[i] != null) {
-                        jointMap.runEnemyIntent(enemies[i]);
+                        jointMap.generateEnemyDecisions(enemies[i]);
                     }
                 }
                 selectedPlayer = null;

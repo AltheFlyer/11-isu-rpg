@@ -335,7 +335,7 @@ public class GameIO {
         }
 
         writeFile("battle_layout.txt", toWrite);
-        System.out.println(toWrite);
+        //System.out.println(toWrite);
     }
 
     //Player file reading
@@ -351,17 +351,6 @@ public class GameIO {
         String[] lines = allText.split("\n");
 
         String name = replaceFirstWord(lines[0]);
-
-        /*
-        BufferedImage sprite = null;
-
-        try {
-            sprite = ImageIO.read(new File(replaceFirstWord(lines[1])));
-        } catch (IOException e) {
-            System.out.println(replaceFirstWord(lines[1]));
-            e.printStackTrace();
-        }
-        */
 
         AnimatedSprite animatedSprite = null;
 
@@ -395,11 +384,6 @@ public class GameIO {
 
         //Split the rest into args, hope that the length is equal to the amount required
         String[] args = line.split(" ");
-
-        System.out.println(path);
-        System.out.println(args[0]);
-        System.out.println(args[1]);
-        System.out.println(args[2]);
 
         return new AnimatedSprite(path,
                 Integer.parseInt(args[0]),

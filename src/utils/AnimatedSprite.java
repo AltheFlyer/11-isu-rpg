@@ -49,7 +49,6 @@ public class AnimatedSprite {
 
         for (int y = 0; y < rows; ++y) {
             for (int x = 0; x < cols; ++x) {
-                System.out.println(x + " " + y);
                 sprites[y * cols + x] = sheet.getSubimage(x * width, y * height, width, height);
             }
         }

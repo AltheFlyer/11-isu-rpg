@@ -16,15 +16,16 @@ abstract public class Enemy extends Entity{
         for (int i = 0; i < abilities.length; i++){
             abilities[i].setEntitySource(this);
         }
-        //TODO generate first turn intent somewhere else
-        //The first ability is always the one that will be decided to be used first
-        decide = abilities[0];
-        intent = new Icon(new Rectangle(0, 0, 40, 40), "assets/icons/test.png");
-        intent.setName("Special");
-        intent.setDescription("A *really* powerful attack. I need more text to test newline drawing.\n\n\n\n\n\nI hope this works");
+    }
 
-        //a gif!
-        gif = new AnimatedSprite("spritesheets/JFrames.png", 1, 10, 100);
+    Enemy(int x, int y, double health, String name, AnimatedSprite animation, Ability[] abilities) {
+        super(health, name, abilities);
+        setXGrid(x);
+        setYGrid(y);
+        gif = animation;
+        for (int i = 0; i < abilities.length; i++){
+            abilities[i].setEntitySource(this);
+        }
     }
 
     public Ability getAbility(int index){

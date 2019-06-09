@@ -4,44 +4,28 @@ import java.awt.*;
 
 public class DecaEnemy extends Enemy {
 
-    AnimatedSprite gif;
-    Icon intent;
+    Icon attackIcon;
 
     DecaEnemy(int x, int y) {
-        super(100, "Spirit of Deca", new Ability[] {
-                new AbilityPair(new AnimatedSprite("spritesheets/deca.png", 6, 6, 25),"Decadent strike", "Pay the toll.", 0, 0,
-                        new SingleAbility(null,
-                        "Payment", "Seeks payment from a student.", 0, 0,
-                        3, 1, 10, true, false),
-                        new StatusAbility(new CursedStatus(1), null,
-                                "Crippling Debt!", "Deca deca deca...", 0, 1, 6, 6, true, false)
-                ),
-                new AbilityPair(new AnimatedSprite("spritesheets/deca.png", 6, 6, 25),"Decadent strike", "Pay the toll.", 0, 0,
+        super(x, y, 100, "Spirit of Deca",
+                new AnimatedSprite("spritesheets/deca.png", 6, 6, 100),
+                new Ability[] {
                     new AbilityPair(new AnimatedSprite("spritesheets/deca.png", 6, 6, 25),"Decadent strike", "Pay the toll.", 0, 0,
-                            new StatusAbility(new CursedStatus( 1), null,
-                                    "Crippling Debt!", "Deca deca deca...", 0, 1, 6, 6, true, false),
-                            new StatusAbility(new CursedStatus( 1), null,
-                                    "Crippling Debt!", "Deca deca deca...", 0, 1, 6, 6, true, false)
-                    ), new AbilityPair(new AnimatedSprite("spritesheets/deca.png", 6, 6, 25),"Decadent strike", "Pay the toll.", 0, 0,
-                            new StatusAbility(new CursedStatus(1), null,
-                                    "Crippling Debt!", "Deca deca deca...", 0, 1, 6, 6, true, false),
+                            new SingleAbility(null,
+                            "Payment", "Seeks payment from a student.", 0, 0,
+                            3, 1, 10, true, false),
                             new StatusAbility(new CursedStatus(1), null,
                                     "Crippling Debt!", "Deca deca deca...", 0, 1, 6, 6, true, false)
-                    ))
-        });
-
-        setXGrid(x);
-        setYGrid(y);
-
-        gif = new AnimatedSprite("spritesheets/deca.png", 6, 6, 100);
-
-        intent = new Icon("assets/icons/sword.png", "Payment", "Deca intends to take something from a student...");
-
-        setIntent(intent);
+                    ),
+                    new StatusAbility(new CursedStatus( 4), null,
+                                        "Crippling Debt!", "Deca deca deca...", 0, 1, 6, 6, true, false)
+            });
+        attackIcon = new Icon("assets/icons/sword.png", "Greed", "This enemy intends to deal damage to a player.");
     }
 
     @Override
     public void decide(JointMap map) {
+        setIntent(attackIcon);
         if (Math.random() < 0.5) {
             setDecide(abilities[1]);
         } else {
@@ -54,9 +38,4 @@ public class DecaEnemy extends Enemy {
         selectRandomTile(map, getDecide());
     }
 
-    @Override
-    public void draw(int x, int y, Graphics g, boolean selected) {
-        super.draw(x, y, g, selected);
-        gif.draw(g, x, y);
-    }
 }

@@ -20,11 +20,7 @@ public class CursedStatus extends StatusEffect {
 
     @Override
     public void stack(StatusEffect effect) {
-        System.out.println(effect.getStacks());
-        System.out.println(this.getStacks());
-
         this.setStacks(effect.getStacks() + this.getStacks());
-        System.out.println(this.getStacks());
 
         this.getIcon().setName("Cursed x" + this.getStacks() + "!");
 

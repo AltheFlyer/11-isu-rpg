@@ -31,7 +31,8 @@ public class TutorialEnemy extends Enemy {
      * @param y the y tile to start on
      */
     TutorialEnemy(int x, int y) {
-        super(10, "Annoying Peon",
+        super(x, y, 10, "Annoying Peon",
+                null,
                 new Ability[] {
                         new SingleAbility(new AnimatedSprite("spritesheets/basicAttack.png", 1,5,250),"Basic Attack", "Deals damage to a single target in the same row.",
                         0, 2, 6, 0, 8, true, false
@@ -49,12 +50,6 @@ public class TutorialEnemy extends Enemy {
         attackAbility = getAbility(0);
         moveAbility = getAbility(1);
 
-        setIntent(moveIcon);
-        setDecide(moveAbility);
-
-        setXGrid(x);
-        setYGrid(y);
-
         try {
             sprite = ImageIO.read(new File("assets/sprites/slime.png"));
         } catch (IOException e) {
@@ -71,7 +66,6 @@ public class TutorialEnemy extends Enemy {
     @Override
     public void decide(JointMap map) {
         //Attacks on even turns, moves on odd turns
-        System.out.println(turn);
         if (turn % 2 == 1) {
             setIntent(attackIcon);
             setDecide(attackAbility);

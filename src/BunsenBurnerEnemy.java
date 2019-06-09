@@ -13,23 +13,15 @@ public class BunsenBurnerEnemy extends Enemy {
 
     Icon attackIcon;
 
-    AnimatedSprite gif;
-
     BunsenBurnerEnemy(int x, int y) {
-        super(20, "Bunsen Burner", new Ability[] {
-                new AOEAbility(new AnimatedSprite("spritesheets/inflame.png", 1, 2, 600),"Inflame", "Burns all targets in the row.", 0, 1,
-                        6, 0, 6, 0, 1, 3, true, false)
+        super(x, y, 20, "Bunsen Burner",
+                new AnimatedSprite("spritesheets/bunsen.png", 1, 10, 100),
+                new Ability[] {
+                    new AOEAbility(new AnimatedSprite("spritesheets/inflame.png", 1, 2, 600),"Inflame", "Burns all targets in the row.", 0, 1,
+                            6, 0, 6, 0, 1, 3, true, false)
         });
 
         attackIcon = new Icon("assets/icons/sword.png", "Inflame", "This enemy intends to attack all players in the row.");
-
-        setIntent(attackIcon);
-        setDecide(abilities[0]);
-
-        setXGrid(x);
-        setYGrid(y);
-
-        gif = new AnimatedSprite("spritesheets/bunsen.png", 1, 10, 100);
     }
 
     @Override
@@ -50,6 +42,5 @@ public class BunsenBurnerEnemy extends Enemy {
     @Override
     public void draw(int x, int y, Graphics g, boolean indicated) {
         super.draw(x, y, g, indicated);
-        gif.draw(g, x, y);
     }
 }
