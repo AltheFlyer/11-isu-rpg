@@ -13,19 +13,19 @@ public class DecaEnemy extends Enemy {
                         new SingleAbility(null,
                         "Payment", "Seeks payment from a student.", 0, 0,
                         3, 1, 10, true, false),
-                        new StatusAbility(new CursedStatus(null, 1), null,
+                        new StatusAbility(new CursedStatus(1), null,
                                 "Crippling Debt!", "Deca deca deca...", 0, 1, 6, 6, true, false)
                 ),
                 new AbilityPair(new AnimatedSprite("spritesheets/deca.png", 6, 6, 25),"Decadent strike", "Pay the toll.", 0, 0,
                     new AbilityPair(new AnimatedSprite("spritesheets/deca.png", 6, 6, 25),"Decadent strike", "Pay the toll.", 0, 0,
-                            new StatusAbility(new CursedStatus(null, 1), null,
+                            new StatusAbility(new CursedStatus( 1), null,
                                     "Crippling Debt!", "Deca deca deca...", 0, 1, 6, 6, true, false),
-                            new StatusAbility(new CursedStatus(null, 1), null,
+                            new StatusAbility(new CursedStatus( 1), null,
                                     "Crippling Debt!", "Deca deca deca...", 0, 1, 6, 6, true, false)
                     ), new AbilityPair(new AnimatedSprite("spritesheets/deca.png", 6, 6, 25),"Decadent strike", "Pay the toll.", 0, 0,
-                            new StatusAbility(new CursedStatus(null, 1), null,
+                            new StatusAbility(new CursedStatus(1), null,
                                     "Crippling Debt!", "Deca deca deca...", 0, 1, 6, 6, true, false),
-                            new StatusAbility(new CursedStatus(null, 1), null,
+                            new StatusAbility(new CursedStatus(1), null,
                                     "Crippling Debt!", "Deca deca deca...", 0, 1, 6, 6, true, false)
                     ))
         });

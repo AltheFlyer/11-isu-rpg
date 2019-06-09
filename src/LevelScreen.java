@@ -1,5 +1,3 @@
-import utils.AnimatedSprite;
-
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
@@ -438,9 +436,9 @@ public class LevelScreen extends GameScreen{
 
 
        //Check if all players are still alive
-        if (playersDead()) {
+        if (arePlayersDead()) {
             loseBattle(g);
-        } else if (enemiesDead()) {
+        } else if (areEnemiesDead()) {
             winBattle(g);
         }
 
@@ -557,11 +555,11 @@ public class LevelScreen extends GameScreen{
     }
 
     /**
-     * [playersDead]
+     * [arePlayersDead]
      * checks if all players are dead
      * @return boolean, whether ALL players are dead or not
      */
-    public boolean playersDead() {
+    public boolean arePlayersDead() {
         for (int i = 0; i < players.length; ++i) {
             if (players[i].isAlive()) {
                 return false;
@@ -571,11 +569,11 @@ public class LevelScreen extends GameScreen{
     }
 
     /**
-     * [enemiesDead]
+     * [areEnemiesDead]
      * checks if all enemies are dead or not
      * @return boolean, if ALL enemies are dead
      */
-    public boolean enemiesDead() {
+    public boolean areEnemiesDead() {
         for (int i = 0; i < enemies.length; ++i) {
             if (enemies[i].isAlive()) {
                 return false;

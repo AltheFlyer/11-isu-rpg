@@ -126,7 +126,7 @@ abstract public class Entity {
      */
     public void procStatus(JointMap map) {
         for (int i = 0; i < statuses.size(); ++i) {
-            statuses.get(i).triggerEffect(map);
+            statuses.get(i).triggerEffect(map, this);
             statuses.get(i).tickDuration();
         }
     }
@@ -144,7 +144,14 @@ abstract public class Entity {
         statuses.clear();
     }
 
-    public void addStatus(StatusEffect effect) {
+    /**
+     * [inflictStatus]
+     * Inflicts a status effect on the entity. If the entity already has a status effect of the same type, it will
+     * 'stack' the effect as per the status effect's stacking behaviour. An entity will can not have more than one of
+     * the same type of effect as of now.
+     * @param effect the status effect to inflict
+     */
+    public void inflictStatus(StatusEffect effect) {
         for (int i = 0; i < statuses.size(); ++i) {
             if (statuses.get(i).getClass() == effect.getClass()) {
                 statuses.get(i).stack(effect);

@@ -80,6 +80,28 @@ abstract public class Tile {
         }
     }
 
+    /**
+     * [inflictStatus]
+     * adds or stacks a status effect on the entity at this tile
+     * @param effect the status effect to inflict on the entity
+     */
+    public void inflictStatus(StatusEffect effect) {
+        if (!isEmpty()) {
+            entity.inflictStatus(effect);
+        }
+    }
+
+    /**
+     * [procStatus]
+     * triggers effects of all status effects on the entity at this tile, if there is one
+     * @param map the joint map that the tile is on
+     */
+    public void procStatus(JointMap map) {
+        if (!isEmpty()) {
+            entity.procStatus(map);
+        }
+    }
+
     public void animateAttack(Graphics g, AnimatedSprite animation){
         animation.draw(g,xGraphic-(animation.getWidth()/2-60),yGraphic-(animation.getHeight()/2-60));
     }
@@ -157,7 +179,6 @@ abstract public class Tile {
             for (int i = 0; i < getEntity().getStatuses().size(); ++i) {
                 Icon icon = getEntity().getStatuses().get(i).getIcon();
                 icon.setPosition(getXGraphic() + i * 40, getYGraphic() + 120 - 20);
-                icon.draw(g);
 
                 //If the mouse is hovering over the icon, draw text
                 if (icon.getBoundingBox().contains(mouseX, mouseY)) {

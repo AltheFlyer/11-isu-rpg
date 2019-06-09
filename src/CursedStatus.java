@@ -7,15 +7,15 @@
  */
 public class CursedStatus extends StatusEffect {
 
-    public CursedStatus(Entity target, int stacks) {
-        super(target, "assets/icons/test.png", "Cursed!", "Terrible curse...",
+    public CursedStatus(int stacks) {
+        super("assets/icons/test.png", "Cursed!", "Terrible curse...",
                 stacks, 5, 3);
         this.getIcon().setName("Cursed x" + this.getStacks() + "!");
     }
 
     @Override
-    public void triggerEffect(JointMap map) {
-        getAffected().damageEntity(getStacks());
+    public void triggerEffect(JointMap map, Entity affected) {
+        affected.damageEntity(getStacks());
     }
 
     @Override
@@ -33,6 +33,6 @@ public class CursedStatus extends StatusEffect {
 
     @Override
     public StatusEffect spread() {
-        return new CursedStatus(this.getAffected(), this.getStacks());
+        return new CursedStatus(this.getStacks());
     }
 }

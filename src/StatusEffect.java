@@ -1,9 +1,12 @@
 /**
  * [StatusEffect.java]
  * represents a status that can affect entities in game.
- * @version 1.0
+ * WARNING: Status Effects should only be spread or applied onto entities using the .spread() method if you are creating
+ * statuses off of pre-fab objects. Otherwise, the status effect would pass by reference, which will lead to
+ * unintended behaviour.
+ * @version 1.1
  * @author Allen Liu
- * @since May 30, 2019
+ * @since June 7, 2019
  */
 abstract public class StatusEffect {
 
@@ -13,10 +16,8 @@ abstract public class StatusEffect {
 
     private int duration;
 
-    private Entity affected;
 
-    public StatusEffect(Entity affected, String iconName, String name, String description, int stacks, int maxStacks, int duration) {
-        this.affected = affected;
+    public StatusEffect(String iconName, String name, String description, int stacks, int maxStacks, int duration) {
         icon = new Icon(iconName);
         icon.setName(name);
         icon.setDescription(description);
@@ -31,7 +32,7 @@ abstract public class StatusEffect {
      * triggers the status effect, should be called at the end of turns
      * @param map the jointmap that
      */
-    abstract public void triggerEffect(JointMap map);
+    abstract public void triggerEffect(JointMap map, Entity affected);
 
     /**
      * [stack]
@@ -79,14 +80,6 @@ abstract public class StatusEffect {
 
     public void setDuration(int duration) {
         this.duration = duration;
-    }
-
-    public Entity getAffected() {
-        return affected;
-    }
-
-    public void setAffected(Entity affected) {
-        this.affected = affected;
     }
 
     public Icon getIcon() {

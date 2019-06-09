@@ -14,14 +14,13 @@ public class StatusAbility extends Ability {
 
 
     @Override
-    public void action(JointMap jointMap, int i, int j) {
-        effect.setAffected(jointMap.getEntity(i, j));
-        jointMap.getEntity(i, j).addStatus(effect.spread());
+    public void action(JointMap jointMap, int x, int y) {
+        jointMap.inflictStatus(x, y, effect.spread());
     }
 
     @Override
-    public void drawHoverAttack(int i, int j, Graphics g, JointMap jointMap) {
-        drawHoverAttackSingleHelper(i, j, g, jointMap);
+    public void drawHoverAttack(int x, int y, Graphics g, JointMap jointMap) {
+        drawHoverAttackSingleHelper(x, y, g, jointMap);
     }
 
     @Override

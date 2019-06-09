@@ -12,13 +12,13 @@ public class StatModifier extends StatusEffect {
 
 
     public StatModifier(int attackMod, int duration) {
-        super(null, "assets/icons/test", "Stat Modifier", "Changes up stats", 0, 0, duration);
+        super("assets/icons/test", "Stat Modifier", "Changes up stats", 0, 0, duration);
 
 
     }
 
     @Override
-    public void triggerEffect(JointMap map) {
+    public void triggerEffect(JointMap map, Entity affected) {
 
     }
 
