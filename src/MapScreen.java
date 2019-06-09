@@ -25,10 +25,12 @@ public class MapScreen extends GameScreen {
         super(game);
         clock = new Clock(0.1);
         framerate = new FrameRate();
-        if (mapPath.indexOf("moving") < 0) {
-            map = new RoomMap(getIO(), mapPath, walkabilityKey);
-        } else {
+        if (mapPath.contains("moving")) {
             map = new MovingMap(getIO(), mapPath, walkabilityKey);
+        } else if (mapPath.contains("physics")) {
+            map = new PhysicsRoom(getIO(), mapPath, walkabilityKey);
+        } else {
+            map = new RoomMap(getIO(), mapPath, walkabilityKey);
         }
         player = new OverworldPlayer(x, y);
         npc = getIO().getNPCs(npcPath);

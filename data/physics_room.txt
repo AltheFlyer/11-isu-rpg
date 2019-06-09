@@ -1,0 +1,10 @@
+14 8
+top_left wall_up wall_up wall_up wall_up wall_up wall_up wall_up wall_up wall_up wall_up wall_up wall_up top_right
+wall_left wall floor floor floor floor floor floor floor floor floor floor wall wall_right
+wall_left wall floor floor floor floor floor floor floor floor floor floor wall wall_right
+wall_left door exit floor floor floor floor floor floor floor floor floor wall wall_right
+wall_left wall floor floor floor floor floor floor floor floor floor floor wall wall_right
+wall_left wall floor floor floor floor floor floor floor floor floor floor wall wall_right
+wall_left wall floor floor floor floor floor floor floor floor floor floor wall wall_right
+bottom_left wall_down wall_down wall_down wall_down wall_down wall_down wall_down wall_down wall_down wall_down wall_down wall_down bottom_right
+moving_hallway 1650 325
