@@ -16,7 +16,7 @@ public class Main {
                 case "decaAndBunsen" :
                     game.setScreen(new LevelScreen(game, new Enemy[] {
                             new BunsenBurnerEnemy(3, 0),
-                            new DecaEnemy(3, 1),
+                            new DecaEnemy(3, 2),
                     }));
                     break;
             }
