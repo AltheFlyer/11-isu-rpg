@@ -12,9 +12,9 @@ import java.util.HashMap;
 /**
  * [GameIO.java]
  * class that manages IO with text files for progression and saved data
- * @version 1.6
+ * @version 1.7
  * @author Allen Liu
- * @since June 9, 2019
+ * @since June 10, 2019
  */
 public class GameIO {
 
@@ -37,6 +37,13 @@ public class GameIO {
     private int currentPeriod;
 
     //Game initialization (file reading) methods
+    public GameIO() {
+        readInventory();
+        readLevelCompletion();
+        readEquipUnlocks();
+        readAbilityUnlocks();
+        readTimeState();
+    }
 
     /**
      * [readTileWalkability]

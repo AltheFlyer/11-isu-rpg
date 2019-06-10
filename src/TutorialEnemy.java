@@ -16,13 +16,13 @@ import java.io.IOException;
 public class TutorialEnemy extends Enemy {
 
     Icon attackIcon;
-    Icon moveIcon;
+    Icon uselessIcon;
     int turn;
 
     BufferedImage sprite;
 
     Ability attackAbility;
-    Ability moveAbility;
+    Ability uselessAbility;
 
     /**
      * [TutorialEnemy]
@@ -32,23 +32,24 @@ public class TutorialEnemy extends Enemy {
      */
     TutorialEnemy(int x, int y) {
         super(x, y, 100, 35, 0, "Annoying Peon",
-                null,
+                new AnimatedSprite("sprites/slime.png", 1, 1, 100000),
                 new Ability[] {
-                        new SingleAbility(new AnimatedSprite("spritesheets/basicAttack.png", 1,5,250),"Basic Attack", "Deals damage to a single target in the same row.",
-                        0, 2, 6, 0, 8, 0, true, false
+                        new SingleAbility(new AnimatedSprite("spritesheets/basicAttack.png", 1,5,250),"Basic Attack", "Deals damage to a single target in the same row, then moves to the same row as a player.",
+                        0, 2, 6, 0, 0, 1, true, false
                         ),
-                        new BasicMoveAbility("Seek", "Moves to the same row as the player.",
-                                0, 2,2)
+                        new BasicMoveAbility("Rest", "This ability is useless!",
+                                0, 2,0)
                 });
 
         attackIcon = new Icon("assets/icons/sword.png");
         attackIcon.setName("Basic Attack");
-        moveIcon = new Icon("assets/icons/move.png");
-        moveIcon.setName("Seek!");
-        turn = 1;
+        uselessIcon = new Icon("assets/icons/move.png");
+        uselessIcon.setName("Useless!");
+        uselessIcon.setDescription("The enemy intends to do... nothing!");
+        turn = 0;
 
-        //attackAbility = getAbility(0);
-        //moveAbility = getAbility(1);
+        attackAbility = getAbility(0);
+        uselessAbility = getAbility(1);
 
         try {
             sprite = ImageIO.read(new File("assets/sprites/slime.png"));
@@ -70,8 +71,8 @@ public class TutorialEnemy extends Enemy {
             setIntent(attackIcon);
             setDecide(attackAbility);
         } else {
-            setIntent(moveIcon);
-            setDecide(moveAbility);
+            setIntent(uselessIcon);
+            setDecide(uselessAbility);
         }
         this.turn++;
     }
@@ -83,30 +84,30 @@ public class TutorialEnemy extends Enemy {
      */
     @Override
     public void act(JointMap map) {
-        //The abilities used are swapped from the abilities decided
-        if (turn % 2 == 1) {
-            //move to row with most players
-            int optimalRow = 0;
-            int maxRowPlayers = 0;
+        if (turn % 2 == 0) {
+            selectRandomTile(map, attackAbility);
+        }
 
-            for (int y = 0; y < 3; ++y) {
-                int playerCount = 0;
-                for (int x = 0; x < 3; ++x) {
-                    if (!map.isEmpty(x, y)) {
-                        playerCount++;
-                        if (playerCount > maxRowPlayers) {
-                            optimalRow = y;
-                            maxRowPlayers = playerCount;
-                        }
+        //The abilities used are swapped from the abilities decided
+        //move to row with most players
+        int optimalRow = 0;
+        int maxRowPlayers = 0;
+
+        for (int y = 0; y < 3; ++y) {
+            int playerCount = 0;
+            for (int x = 0; x < 3; ++x) {
+                if (!map.isEmpty(x, y)) {
+                    playerCount++;
+                    if (playerCount > maxRowPlayers) {
+                        optimalRow = y;
+                        maxRowPlayers = playerCount;
                     }
                 }
             }
-
-            getDecide().indicateValidTiles(map);
-            getDecide().action(map, getXGrid(), optimalRow);
-        } else {
-            selectRandomTile(map, getDecide());
         }
+
+        uselessAbility.indicateValidTiles(map);
+        uselessAbility.action(map, getXGrid(), optimalRow);
     }
 
     /**

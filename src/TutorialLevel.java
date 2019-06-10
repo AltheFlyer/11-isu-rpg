@@ -30,9 +30,15 @@ public class TutorialLevel extends LevelScreen {
      * @param game the currently running game
      */
     TutorialLevel(GameManager game) {
-        super(game);
+        super(game, new Enemy[] {new TutorialEnemy(3, 1)});
 
         jointMap = new JointMap();
+
+        Enemy e = new TutorialEnemy(3, 1);
+        jointMap.addEntity(3, 1, e);
+        enemies = new Enemy[1];
+        enemies[0] = e;
+        jointMap.generateEnemyDecisions(e);
 
         BasicMoveAbility moveAbility = new BasicMoveAbility("Move", "Move to an adjacent tile.",30, 2,  1);
         //Tune the move ability so it can't be used on turn 1
@@ -40,22 +46,17 @@ public class TutorialLevel extends LevelScreen {
         moveAbility.lowerCooldown(1);
 
         players = new Player[1];
-        players[0] =  new Player(10, 35, 0, 30, "tutorial", "Allen",
-                new AnimatedSprite("spritesheets/Jasmine.png", 1, 10, 100),
+        players[0] =  new Player(100, 35, 0, 30, "tutorial", "Allen",
+                new AnimatedSprite("spritesheets/Jasmine.png", 1, 5, 100),
                 new Ability[] {
-                        new SingleAbility(null,
+                        new SingleAbility(new AnimatedSprite("spritesheets/basicAttack.png", 1, 5, 250),
                                 "Basic Attack", "Deals damage to a single target.",
-                                30, 1, 6, 0, 3, 0, true, false),
+                                30, 1, 6, 0, 0, 1, true, false),
                         moveAbility
                 });
 
-        //enemies
-        enemies = new Enemy[9];
-        enemies[0] = new TutorialEnemy(3, 1);
-
         //Tutorial should be simplified: 1 player character with only 2 abilities.
         jointMap.addEntity(2, 1, players[0]);
-        jointMap.addEntity(3, 1, enemies[0]);
 
         tutorialX = 1 + 323 + 121 * 3;
         tutorialY = 1 + 108 + 121 * 3;
