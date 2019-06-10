@@ -4,6 +4,22 @@ import java.awt.*;
 
 public class AOEAbility extends Ability{
 
+    /**
+     * [AOEAbility]
+     * Constructor for aoe abilities
+     * @param animation the animation that is played on ability case
+     * @param name the displayed name of the ability
+     * @param desc the displayed description of the ability
+     * @param energyCost the energy cost of the ability
+     * @param cooldown the cooldown in turns
+     * @param xRange the range in the x axis in tiles
+     * @param yRange the range in the y axis in tiles
+     * @param xAOE the AOE in the x Axis of the ability in tiles
+     * @param yAOE the AOE in the y Axis of the ability in tiles
+     * @param damage the amount of damage that the ability will do
+     * @param enemyTarget whether the ability can target enemies (relative to the caster) or not
+     * @param friendTarget whether the ability can target allies (relative to the caster) or not
+     */
     AOEAbility(AnimatedSprite animation, String name, String desc, double energyCost, int cooldown, int xRange, int yRange, int xAOE, int yAOE, double damage, boolean enemyTarget, boolean friendTarget){
         super (animation, name, desc, energyCost, cooldown, xRange, yRange, damage, enemyTarget, friendTarget);
         setXAOE(xAOE);
@@ -31,10 +47,14 @@ public class AOEAbility extends Ability{
             }
         }
     }
+
     /**
-     * [drawSelectedArea]
+     * [drawHoverAttack]
      * Draws the area that will be affected by an ability
+     * @param i the x of the tile that the mouse is hovered over
+     * @param j the y of the tile that the mouse is hovered over
      * @param g the graphics object to draw with
+     * @param jointMap map to draw the hovered square on
      */
     public void drawHoverAttack(int i, int j, Graphics g, JointMap jointMap) {
         //What to do here???
