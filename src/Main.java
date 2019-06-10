@@ -25,10 +25,12 @@ public class Main {
                             new FlaskEnemy(4, 1),
                             new BunsenBurnerEnemy(5, 2)
                     }));
+                    break;
                 case "PhysicsA" :
                     game.setScreen(new LevelScreen(game, new Enemy[] {
                             new CAPMEnemy(3, 1)
                     }));
+                    break;
             }
         }
 

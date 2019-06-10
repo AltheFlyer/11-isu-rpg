@@ -36,7 +36,7 @@ abstract public class OverworldMap {
     /**
      * [draw]
      * draws the map by tile, overridden in subclasses
-     * @param g
+     * @param g the graphics object to draw with
      * @param player the current player
      */
     public void draw(Graphics g, OverworldPlayer player){ }

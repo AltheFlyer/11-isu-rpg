@@ -1,7 +1,8 @@
 display_name Kevin
-sprite_path assets/sprites/test_player.png
 spritesheets/jasmine.png 1 5 100
-health 12
+health 100
+attack 35
+defence 0
 energy 150
 ABILITIES 5
 SingleAbility "basic" "a basic attack that will hit an enemy in front of you" spritesheets/basicAttack.png 1 5 250 20 1 6 0 1 2 true false

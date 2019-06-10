@@ -6,7 +6,7 @@ public class TestEnemy extends Enemy {
     Icon attackIcon;
 
     TestEnemy() {
-        super(10, "TestEnemy",
+        super(10, 10, 100, 10, 0.1, "TestEnemy", null,
                 new Ability[]
                         {new SingleAbility(new AnimatedSprite("spritesheets/basicAttack.png", 1,5,250),"basic","A basic attack that hits a random target in front",0,0,6,0,2,true, false),
                 new SingleAbility(null,"healSelf","A basic self heal",0,0,0,0,-3,false, true)}

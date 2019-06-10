@@ -352,21 +352,23 @@ public class GameIO {
 
         AnimatedSprite animatedSprite = null;
 
-        animatedSprite = generateAnimation(lines[2]);
+        animatedSprite = generateAnimation(lines[1]);
 
-        double health = Double.parseDouble(replaceFirstWord(lines[3]));
-        double energy = Double.parseDouble(replaceFirstWord(lines[4]));
+        double health = Double.parseDouble(replaceFirstWord(lines[2]));
+        double attack = Double.parseDouble(replaceFirstWord(lines[3]));
+        double defence = Double.parseDouble(replaceFirstWord(lines[4]));
+        double energy = Double.parseDouble(replaceFirstWord(lines[5]));
 
-        int numAbilities = Integer.parseInt(replaceFirstWord(lines[5]));
+        int numAbilities = Integer.parseInt(replaceFirstWord(lines[6]));
 
         Ability[] abilities = new Ability[numAbilities];
-        int lineNumber = 6;
+        int lineNumber = 7;
 
         for (int i = 0; i < numAbilities; ++i) {
             abilities[i] = generateAbility(lines[lineNumber + i]);
         }
 
-        return new Player(health, energy, debugName, name, animatedSprite, abilities);
+        return new Player(health, attack, defence, energy, debugName, name, animatedSprite, abilities);
     }
 
     private static AnimatedSprite generateAnimation(String line) throws ArrayIndexOutOfBoundsException {
@@ -591,6 +593,34 @@ public class GameIO {
         return npcs;
         }
 
+    /**
+     * [getObjects]
+     * Gets an array of objects from a text file.
+     * @param path the path of the map file (not including source folder)
+     * @return OverworldObject[] an array of the objects on the current map
+     */
+    public OverworldObject[] getObjects(String path) {
+        String text = readFile(path);
+        OverworldObject[] objects;
+        int x, y, radius, respawnX, respawnY;
+
+        String[] lines = text.split("\n");
+
+        String[] tokens = lines[0].split(" ");
+        int totalObjects = Integer.parseInt(tokens[0]);
+        objects = new OverworldObject[totalObjects];
+
+        for (int i = 0; i < totalObjects; ++i) {
+            tokens = lines[i + 1].split(" ");
+            x = Integer.parseInt(tokens[1]);
+            y = Integer.parseInt(tokens[2]);
+            radius = Integer.parseInt(tokens[3]);
+            respawnX = Integer.parseInt(tokens[4]);
+            respawnY = Integer.parseInt(tokens[5]);
+            objects[i] = new Orbiter(x, y, x-radius, y, respawnX, respawnY);
+        }
+        return objects;
+    }
 
     /**
      * [getMapAsString]

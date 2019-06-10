@@ -31,7 +31,7 @@ public class TutorialEnemy extends Enemy {
      * @param y the y tile to start on
      */
     TutorialEnemy(int x, int y) {
-        super(x, y, 10, "Annoying Peon",
+        super(x, y, 100, 35, 0, "Annoying Peon",
                 null,
                 new Ability[] {
                         new SingleAbility(new AnimatedSprite("spritesheets/basicAttack.png", 1,5,250),"Basic Attack", "Deals damage to a single target in the same row.",

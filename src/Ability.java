@@ -69,16 +69,13 @@ abstract public class Ability {
         this.moves = moves;
     }
 
-    //Should know where the person is casting is
-    //Give entity information
-    //Get entitySource (Entity entitySource)
-    //have access to jointMap
-    //getValidTiles - call indicate
-    //drawAffectedTiles(x,y) (indicate for AOE) - drawHoverAttack
-    //DO EVERYTHING IN HERE NOT LEVEL SCREEN
-
-    //This piece of code will run after a person has clicked tile after an ability has been selected, it will attempt to cast the ability selected on the hovered tiles
-    //The boolean return is for if the action was taken or not
+    /**
+     * action: This method will target and affect the selected tiles in a certain pattern
+     * @param jointMap: The map that will be affected
+     * @param i: one of the selected coordinates
+     * @param j: the other selected coordinate
+     * @return: it will return a value based on if an action was valid or not, if it was, it will unindicate everything and reset selectedAbility on levelscreen
+     */
     abstract public void action(JointMap jointMap, int i, int j);
 
     /**
@@ -99,22 +96,28 @@ abstract public class Ability {
         return animation;
     }
 
-    /*
-    public void animateAttack(Graphics g, AnimatedSprite animation, JointMap jointMap, int i, int j){
-        jointMap.animateAttack(g, animation, i, j);
-    }
-    */
-
-    //abstract public void animateAttack(Graphics g, JointMap jointMap, int i, int j);
-
+    /**
+     * [getCooldown]
+     * gets the maximum cooldown of an ability
+     * @return cooldown, the maximum cooldown of the ability
+     */
     public int getCooldown(){
         return cooldown;
     }
 
+    /**
+     * [getCurrentCooldown]
+     * gets the turns before you can use an attack
+     * @return currentCooldown, the number of turns before you can attack
+     */
     public int getCurrentCooldown(){
         return currentCooldown;
     }
 
+    /**
+     * [lowerCooldown]
+     * lowers the current cooldown of an ability by one, happens after a turn ends if the move is not currently usable
+     */
     public void lowerCooldown(int amountLower){
         if (currentCooldown - amountLower < 0){
             currentCooldown = 0;
@@ -123,66 +126,116 @@ abstract public class Ability {
         }
     }
 
+    /**
+     * [resetCooldown]
+     * Once a move has been used, it will reset the current cooldown to the max possible cooldown
+     */
     public void resetCooldown(){
         currentCooldown = cooldown;
     }
 
+    /**
+     * [getEnergyCost]
+     * gets the energyCost of an ability
+     * @return energyCost, the energy cost of an ability
+     */
     public double getEnergyCost(){
         return energyCost;
     }
 
-    public void setEnergyCost(double energyCost){
-        this.energyCost = energyCost;
-    }
-
+    /**
+     * [getXRange]
+     * gets the range of an ability on the x coordinate in tiles
+     * @return xRange, the range of an ability on the x coordinate in tiles
+     */
     public int getXRange() {
         return xRange;
     }
 
+    /**
+     * [getYRange]
+     * gets the range of an ability on the y coordinate in tiles
+     * @return yRange, the range of an ability on the y coordinate in tiles
+     */
     public int getYRange(){
         return yRange;
     }
 
+    /**
+     * [getDamage]
+     * gets the damage that the ability does
+     * @return damage, gets the damage that the ability does
+     */
     public double getDamage(){
         return damage;
     }
 
+    /**
+     * [getName]
+     * gets the name of an ability
+     * @return name, gets the name of an ability
+     */
     public String getName(){
         return name;
     }
 
+    /**
+     * [getDesc]
+     * gets the description of an ability
+     * @return desc, the description of an ability
+     */
     public String getDesc(){
         return desc;
     }
 
+    /**
+     * [getXAOE]
+     * gets the AOE in the x Axis of the ability in tiles
+     * @return xAOE, the AOE in the x Axis of the ability in tiles
+     */
     public int getXAOE(){
         return xAOE;
     }
 
+    /**
+     * [getYAOE]
+     * gets the AOE in the y Axis of the ability in tiles
+     * @return yAOE, the AOE in the y Axis of the ability in tiles
+     */
     public int getYAOE(){
         return yAOE;
     }
 
+    /**
+     * [setXAOE]
+     * sets the AOE in the x Axis of the ability in tiles
+     */
     public void setXAOE(int xAOE){
         this.xAOE = xAOE;
     }
 
+    /**
+     * [setYAOE]
+     * sets the AOE in the y Axis of the ability in tiles
+     */
     public void setYAOE(int yAOE){
         this.yAOE = yAOE;
     }
 
-    public void setEnemyOnly(){
-        enemyTarget = true;
-    }
-
-    public void setFriendOnly(){
-        friendTarget = true;
-    }
-
+    /**
+     * [getEnemyTarget]
+     * gets if the ability can target opposing tiles
+     * @return enemyTarget, if the ability can target opposing tiles
+     */
     public boolean getEnemyTarget(){
         return enemyTarget;
     }
 
+    /**
+     * [getFriendTarget]
+     * gets if the ability can target friendly tiles
+     * @return friendTarget, if the ability can target friendly tiles
+     */
     public boolean getFriendTarget(){
         return friendTarget;
     }
@@ -192,29 +245,58 @@ abstract public class Ability {
     /**
      * [drawSelectedArea]
      * Draws the area that will be affected by an ability
+     * @param i the x of the tile that the mouse is hovered over
+     * @param j the y of the tile that the mouse is hovered over
      * @param g the graphics object to draw with
+     * @param jointMap map to draw the hovered square on
      */
     abstract public void drawHoverAttack(int i, int j, Graphics g, JointMap jointMap);
 
     /**
      * [indicateValidTiles]
      * Draws valid selection regions for the center of an ability
-     * @param
+     * @param jointMap the map to draw on
      */
     abstract public void indicateValidTiles(JointMap jointMap);
 
+    /**
+     * [setEntitySource]
+     * connects an ability to an entity
+     * @param entitySource, connects an ability to an entity
+     */
     public void setEntitySource(Entity entitySource){
         this.entitySource = entitySource;
     }
+
+    /**
+     * [getEntitySource]
+     * gets the entity that the ability is attached to
+     */
     public Entity getEntitySource(){
         return entitySource;
     }
 
+    /**
+     * [getMoves]
+     * gets the amount of moves a movement ability can use
+     */
     public int getMoves() {
         return moves;
     }
 
     //BELOW ARE SOME ABILITY CREATING ASSISTANCE METHODS!
+
+    /**
+     * [indicatedValidTileHelper]
+     * Something for abilities that helps users create where an ability will indicate as valid targetable tiles
+     * @param jointMap the map that the battle will take place on
+     * @param rangeAhead the range ahead of the user that you can target
+     * @param rangeBehind the range behind the user that you can target
+     * @param rangeDown the range below the user that you can target
+     * @param rangeUp the range above the user that you can target
+     * @param targetEmpty determines if the ability can target empty tiles
+     * @param showInvalidTiles determines if the ability when selected will indicate the valid tiles
+     */
     public void indicateValidTileHelper(JointMap jointMap, int rangeAhead, int rangeBehind, int rangeDown, int rangeUp, boolean targetEmpty, boolean showInvalidTiles){
         if (entitySource.getEnergy() >= energyCost && currentCooldown <= 0) {
             for (int j = rangeUp; j <= rangeDown; j++) {
@@ -247,6 +329,14 @@ abstract public class Ability {
         }
     }
 
+    /**
+     * [drawHoverAttackSingleHelper]
+     * Something for abilities which will draw something when hovered
+     * @param i the x of the tile that the mouse is hovered over
+     * @param j the y of the tile that the mouse is hovered over
+     * @param g the graphics object to draw with
+     * @param jointMap map to draw the hovered square on
+     */
     public void drawHoverAttackSingleHelper(int i, int j, Graphics g, JointMap jointMap){
         int gridX = 323;
         int gridY = 108;
