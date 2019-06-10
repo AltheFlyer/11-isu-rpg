@@ -24,10 +24,27 @@ abstract public class Entity {
 
     private ArrayList<StatusEffect> statuses;
 
+    /**
+     * Creates an enemy entity which doesn't need energy
+     * @param health health of the entity
+     * @param baseAttack the base attack value of the entity
+     * @param baseDefence the base defence value of the entity
+     * @param name the name of the entity
+     * @param abilities the list of the abilities for the entity
+     */
     Entity(double health, double baseAttack, double baseDefence, String name, Ability[] abilities) {
         this(health, baseAttack, baseDefence, 0, name, abilities);
     }
 
+    /**
+     * creates a player entity which has energy
+     * @param health max health of the entity
+     * @param baseAttack the base attack value of the entity
+     * @param baseDefence the base defence value of the entity
+     * @param energy the max energy that an entity has
+     * @param name the name of the entity
+     * @param abilities the list of the abilities for the entity
+     */
     Entity(double health, double baseAttack, double baseDefence, double energy, String name, Ability[] abilities) {
         this.abilities = abilities;
         this.energy = energy;
@@ -46,38 +63,76 @@ abstract public class Entity {
         statuses = new ArrayList<StatusEffect>();
     }
 
+    /**
+     * [totalAbilities]
+     * @return abilities.length, the amount of abilities an entity has
+     */
     public int totalAbilities(){
         return abilities.length;
     }
+
+    /**
+     * [isAlive]
+     * @return alive, if an entity is alive or not
+     */
     public boolean isAlive(){
         return alive;
     }
-    //Will get the stored x or y location of certain entities
+
+    /**
+     * [getXGrid]
+     * @return xGrid, the current x coord on the grid that the entity is occupying
+     */
     public int getXGrid(){
         return xGrid;
     }
 
+    /**
+     * [getYGrid]
+     * @return yGrid, the current y coord on the grid that the entity is occupying
+     */
     public int getYGrid(){
         return yGrid;
     }
 
+    /**
+     * [setXGrid]
+     * sets the current x coord on the grid that the entity is occupying
+     */
     //Will set the x or y location of certain entities
     public void setXGrid(int xGrid){
         this.xGrid = xGrid;
     }
 
+    /**
+     * [setYGrid]
+     * sets the current y coord on the grid that the entity is occupying
+     */
     public void setYGrid(int yGrid){
         this.yGrid = yGrid;
     }
 
+    /**
+     * [getName]
+     * @return name, the name of the entity
+     */
     public String getName(){
         return name;
     }
 
+    /**
+     * [getHealth]
+     * @return health, the current health of the entity
+     */
     public double getHealth(){
         return health;
     }
 
+    /**
+     * [damageEntity]
+     * damages an entity from an attack
+     * @param damage the amound of damage dealt to an entity
+     */
     public void damageEntity(double damage) {
         //Modify damage by defence
         health -= damage * (1.0 - defence);
@@ -86,6 +141,11 @@ abstract public class Entity {
         }
     }
 
+    /**
+     * [healEntity]
+     * heals an entity from a heal, cannot go over max
+     * @param healing the amount of healing a person will take
+     */
     public void healEntity(double healing){
         if (health + healing >= maxHealth){
             health = maxHealth;
@@ -94,26 +154,53 @@ abstract public class Entity {
         }
     }
 
+    /**
+     * [setHealth]
+     * sets the amount of health an entity has
+     * @param health the amount of healing a person will take
+     */
     public void setHealth(double health){
         this.health = health;
     }
 
+    /**
+     * [getMaxHealth]
+     * @return maxHealth the maximum amount of health an entity has
+     */
     public double getMaxHealth() {
         return maxHealth;
     }
 
+    /**
+     * [getEnergy]
+     * @return energy the current energy that an entity has
+     */
     public double getEnergy(){
         return energy;
     }
 
+    /**
+     * [getMaxEnergy]
+     * @return maxEnergy the maximum energy that an entity has
+     */
     public double getMaxEnergy(){
         return maxEnergy;
     }
 
+    /**
+     * [useEnergy]
+     * Will reduce the amount of energy that an entity has due to an attack
+     * @param energyUsed the amount of energy used up from an ability
+     */
     public void useEnergy(double energyUsed){
         energy -= energyUsed;
     }
 
+    /**
+     * [gainEnergy]
+     * Will reduce the amount of energy that an entity has due to an attack
+     * @param energyGained the amount of energy gained from the end of the turn
+     */
     public void gainEnergy(double energyGained){
         if (energy + energyGained > maxEnergy){
             energy = maxEnergy;

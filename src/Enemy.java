@@ -11,6 +11,17 @@ abstract public class Enemy extends Entity{
     private int targetedX = -1;
     private int targetedY = -1;
 
+    /**
+     * Creates an enemy entity which doesn't need energy
+     * @param x the x Location on the grid that the enemy is located on
+     * @param y the y location on the grid that the enemy is located
+     * @param health health of the enemy
+     * @param attack the base attack value of the enemy
+     * @param defence base defence value of the enemy
+     * @param name the name of the enemy
+     * @param animation the animation of the enemy sprite
+     * @param abilities the list of the abilities for the enemy
+     */
     Enemy(int x, int y, double health, double attack, double defence, String name, AnimatedSprite animation, Ability[] abilities) {
         super(health, attack, defence, name, abilities);
         setXGrid(x);
@@ -21,10 +32,21 @@ abstract public class Enemy extends Entity{
         }
     }
 
+    /**
+     * [getAbility]
+     * will get the ability from the list for the enemy to use
+     * @param index the index of the ability on the abilities list
+     * @return the ability for th eenmy to use
+     */
     public Ability getAbility(int index){
         return abilities[index];
     }
 
+    /**
+     * [drawAbilities]
+     * draws the list of abilities on the main battle screen when an enemy is selected
+     * @param g the graphics used to draw with
+     */
     public void drawAbilities(Graphics g){
         g.setColor(Color.LIGHT_GRAY);
         g.fillRect(1049,0,317,768);
@@ -69,6 +91,14 @@ abstract public class Enemy extends Entity{
         }
     }
 
+    /**
+     * [draw]
+     * draws the enemy itself using its animation
+     * @param x the x grid location of the enemy
+     * @oaram y the y grid location of the enemy
+     * @param g the graphics used to draw with
+     * @param indicated sees if the enemy is indicated
+     */
     public void draw(int x, int y, Graphics g, boolean indicated){
         g.setColor(Color.ORANGE);
         g.fillRect(x,y,120,120);
@@ -87,12 +117,14 @@ abstract public class Enemy extends Entity{
     /**
      * [decide]
      * generates a next move (Ability and intent) - that the player can then react to (should be overriden).
+     * @param map the map that the entities are in
      */
     abstract public void decide(JointMap map);
 
     /**
      * [act]
      * lets the enemy perform an action using an ability
+     * @param map the map that the entities are in
      */
     abstract public void act(JointMap map);
 
@@ -100,6 +132,7 @@ abstract public class Enemy extends Entity{
      * [selectRandomTile]
      * performs an action with the selected ability using RANDOM targeting
      * @param ability the ability to do a random selection with
+     * @param map the map that the entities are in
      */
     public void selectRandomTile(JointMap map, Ability ability) {
         int[] xTargets;
