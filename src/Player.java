@@ -132,10 +132,6 @@ public class Player extends Entity{
         }
     }
 
-    public void drawIcons(Graphics g) {
-        ico.draw(g);
-    }
-
     public void drawHealthBar(Graphics g){
         //Drawing a health bar here to make it nicer
         double ratio = getHealth() / getMaxHealth();
