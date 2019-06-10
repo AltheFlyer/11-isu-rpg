@@ -61,6 +61,7 @@ public class EnemyTile extends Tile{
 
     //There is also damageEntity here!
 
+
     /**
      * [drawIcons]
      * draws icons for the enemy tile, used to show intents

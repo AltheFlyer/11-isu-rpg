@@ -352,21 +352,23 @@ public class GameIO {
 
         AnimatedSprite animatedSprite = null;
 
-        animatedSprite = generateAnimation(lines[2]);
+        animatedSprite = generateAnimation(lines[1]);
 
-        double health = Double.parseDouble(replaceFirstWord(lines[3]));
-        double energy = Double.parseDouble(replaceFirstWord(lines[4]));
+        double health = Double.parseDouble(replaceFirstWord(lines[2]));
+        double attack = Double.parseDouble(replaceFirstWord(lines[3]));
+        double defence = Double.parseDouble(replaceFirstWord(lines[4]));
+        double energy = Double.parseDouble(replaceFirstWord(lines[5]));
 
-        int numAbilities = Integer.parseInt(replaceFirstWord(lines[5]));
+        int numAbilities = Integer.parseInt(replaceFirstWord(lines[6]));
 
         Ability[] abilities = new Ability[numAbilities];
-        int lineNumber = 6;
+        int lineNumber = 7;
 
         for (int i = 0; i < numAbilities; ++i) {
             abilities[i] = generateAbility(lines[lineNumber + i]);
         }
 
-        return new Player(health, energy, debugName, name, animatedSprite, abilities);
+        return new Player(health, attack, defence, energy, debugName, name, animatedSprite, abilities);
     }
 
     private static AnimatedSprite generateAnimation(String line) throws ArrayIndexOutOfBoundsException {

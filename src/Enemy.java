@@ -11,15 +11,8 @@ abstract public class Enemy extends Entity{
     private int targetedX = -1;
     private int targetedY = -1;
 
-    Enemy(double health, String name, Ability[] abilities){
-        super(health,name,abilities);
-        for (int i = 0; i < abilities.length; i++){
-            abilities[i].setEntitySource(this);
-        }
-    }
-
-    Enemy(int x, int y, double health, String name, AnimatedSprite animation, Ability[] abilities) {
-        super(health, name, abilities);
+    Enemy(int x, int y, double health, double attack, double defence, String name, AnimatedSprite animation, Ability[] abilities) {
+        super(health, attack, defence, name, abilities);
         setXGrid(x);
         setYGrid(y);
         gif = animation;
