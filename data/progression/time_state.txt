@@ -1,2 +1,2 @@
-current_period 10
-current_day 4
+current_period 749
+current_day 0

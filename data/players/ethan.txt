@@ -1,10 +1,10 @@
 display_name Ethan
 spritesheets/jasmine.png 1 5 100
-health 100
+health 120
 attack 35
 defence 0
 energy 150
 ABILITIES 3
-StarAbility "star" "An AOE ability that will hit in a star shaped area" spritesheets/star.png 1 4 250 50 2 5 0 3.0 1 true false
+StarAbility "star" "An AOE ability that will hit in a star shaped area" spritesheets/star.png 1 4 250 50 2 5 0 0 1 true false
 BasicMoveAbility "step" "movement to an adjacent tile" 30 1 1
-SpearAbility "spear" "A very deadly single target spear with short range" spritesheets/jasmine.png 1 5 100 100 10 100 1
+SpearAbility "spear" "A very deadly single target spear with short range" spritesheets/jasmine.png 1 5 100 100 10 0 4

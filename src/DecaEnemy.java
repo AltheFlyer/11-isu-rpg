@@ -25,10 +25,10 @@ public class DecaEnemy extends Enemy {
                             new SingleAbility(null,
                             "Payment", "Seeks payment from a student.", 0, 0,
                             3, 1, 0,1, true, false),
-                            new StatusAbility(new CursedStatus(1), null,
+                            new StatusAbility(new CursedStatus(6), null,
                                     "Crippling Debt!", "Deca deca deca...", 0, 1, 6, 6, true, false)
                     ),
-                    new StatusAbility(new CursedStatus( 4), new AnimatedSprite("spritesheets/deca.png", 6, 6, 25),
+                    new StatusAbility(new CursedStatus( 15), new AnimatedSprite("spritesheets/deca.png", 6, 6, 25),
                                         "Crippling Debt!", "Deca deca deca...", 0, 1, 6, 6, true, false)
             });
         attackIcon = new Icon("assets/icons/sword.png", "Greed", "This enemy intends to deal damage to a player.");
