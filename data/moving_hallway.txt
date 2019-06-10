@@ -7,5 +7,5 @@ wall_left floor floor floor floor floor floor floor floor floor floor floor floo
 wall_left floor floor floor floor floor floor floor floor floor floor floor floor floor floor floor floor floor floor wall_right
 wall_left floor floor floor floor floor floor floor floor floor floor floor floor floor floor floor floor floor floor wall_right
 bottom_left wall_down wall_down wall_down wall_down wall_down wall_down wall_down wall_down wall_down wall_down wall_down wall_down wall_down wall_down wall_down wall_down wall_down wall_down bottom_right
-room_up 525 550
+english_room 525 550
 physics_room 200 325

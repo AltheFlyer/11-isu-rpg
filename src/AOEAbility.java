@@ -17,11 +17,12 @@ public class AOEAbility extends Ability{
      * @param xAOE the AOE in the x Axis of the ability in tiles
      * @param yAOE the AOE in the y Axis of the ability in tiles
      * @param damage the amount of damage that the ability will do
+     * @param ratio the percentage of attack that is added by the caster as a decimal
      * @param enemyTarget whether the ability can target enemies (relative to the caster) or not
      * @param friendTarget whether the ability can target allies (relative to the caster) or not
      */
-    AOEAbility(AnimatedSprite animation, String name, String desc, double energyCost, int cooldown, int xRange, int yRange, int xAOE, int yAOE, double damage, boolean enemyTarget, boolean friendTarget){
-        super (animation, name, desc, energyCost, cooldown, xRange, yRange, damage, enemyTarget, friendTarget);
+    AOEAbility(AnimatedSprite animation, String name, String desc, double energyCost, int cooldown, int xRange, int yRange, int xAOE, int yAOE, double damage, double ratio, boolean enemyTarget, boolean friendTarget){
+        super (animation, name, desc, energyCost, cooldown, xRange, yRange, damage, ratio, enemyTarget, friendTarget);
         setXAOE(xAOE);
         setYAOE(yAOE);
     }

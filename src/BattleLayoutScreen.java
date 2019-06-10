@@ -49,6 +49,11 @@ public class BattleLayoutScreen extends GameScreen {
         continueButton = new Rectangle(323,640, 121*3, 60);
     }
 
+    /**
+     * [paintComponent]
+     * draws the grid, player selection, and save/reset buttons for loadout editing
+     * @param g the graphics object to draw with
+     */
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -96,6 +101,11 @@ public class BattleLayoutScreen extends GameScreen {
 
     //Player dragging!
 
+    /**
+     * [mousePressed]
+     * checks if the mouse is pressed, and allows for a player to be 'selected' if the mouse is pressed over them
+     * @param e the triggered MouseEvent
+     */
     @Override
     public void mousePressed(MouseEvent e) {
         super.mousePressed(e);
@@ -119,6 +129,12 @@ public class BattleLayoutScreen extends GameScreen {
         }
     }
 
+    /**
+     * [mouseReleased]
+     * Runs when the mouse is released, 'dropping' the player onto a grid tile (if possible), deselecting them.
+     * Also checks for button presses to reset and save loadout.
+     * @param e the triggered MouseEvent
+     */
     @Override
     public void mouseReleased(MouseEvent e) {
         super.mouseReleased(e);

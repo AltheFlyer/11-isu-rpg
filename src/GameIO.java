@@ -432,8 +432,9 @@ public class GameIO {
                         Integer.parseInt(args[6]),
                         Integer.parseInt(args[7]),
                         Double.parseDouble(args[8]),
-                        Boolean.parseBoolean(args[9]),
-                        Boolean.parseBoolean(args[10]));
+                        Double.parseDouble(args[9]),
+                        Boolean.parseBoolean(args[10]),
+                        Boolean.parseBoolean(args[11]));
             case "BasicMoveAbility":
                 return new BasicMoveAbility(name, desc,
                         Double.parseDouble(args[0]),
@@ -450,8 +451,9 @@ public class GameIO {
                         Integer.parseInt(args[8]),
                         Integer.parseInt(args[9]),
                         Double.parseDouble(args[10]),
-                        Boolean.parseBoolean(args[11]),
-                        Boolean.parseBoolean(args[12]));
+                        Double.parseDouble(args[11]),
+                        Boolean.parseBoolean(args[12]),
+                        Boolean.parseBoolean(args[13]));
             case "CombinationAbility":
                 return new CombinationAbility(
                         new AnimatedSprite(args[0], Integer.parseInt(args[1]), Integer.parseInt(args[2]), Integer.parseInt(args[3])),
@@ -461,8 +463,9 @@ public class GameIO {
                         Integer.parseInt(args[6]),
                         Integer.parseInt(args[7]),
                         Integer.parseInt(args[8]),
-                        Boolean.parseBoolean(args[9]),
-                        Boolean.parseBoolean(args[10]));
+                        Double.parseDouble(args[9]),
+                        Boolean.parseBoolean(args[10]),
+                        Boolean.parseBoolean(args[11]));
             case "StarAbility":
                 return new StarAbility(
                         new AnimatedSprite(args[0], Integer.parseInt(args[1]), Integer.parseInt(args[2]), Integer.parseInt(args[3])),
@@ -472,15 +475,17 @@ public class GameIO {
                         Integer.parseInt(args[6]),
                         Integer.parseInt(args[7]),
                         Double.parseDouble(args[8]),
-                        Boolean.parseBoolean(args[9]),
-                        Boolean.parseBoolean(args[10]));
+                        Double.parseDouble(args[9]),
+                        Boolean.parseBoolean(args[10]),
+                        Boolean.parseBoolean(args[11]));
             case "SpearAbility":
                 return new SpearAbility(
                         new AnimatedSprite(args[0], Integer.parseInt(args[1]), Integer.parseInt(args[2]), Integer.parseInt(args[3])),
                         name, desc,
-                        Double.parseDouble(args[4]),
+                        Integer.parseInt(args[4]),
                         Integer.parseInt(args[5]),
-                        Integer.parseInt(args[6]));
+                        Double.parseDouble(args[6]),
+                        Double.parseDouble(args[7]));
             case "StatusAbility":
                 return new StatusAbility(
                         null,

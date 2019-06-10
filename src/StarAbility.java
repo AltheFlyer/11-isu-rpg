@@ -14,11 +14,12 @@ public class StarAbility extends Ability {
      * @param xRange the range in the x axis in tiles
      * @param yRange the range in the y axis in tiles
      * @param damage the amount of damage that the ability will do
+     * @param ratio the percentage of attack that is added by the caster as a decimal
      * @param enemyTarget whether the ability can target enemies (relative to the caster) or not
      * @param friendTarget whether the ability can target allies (relative to the caster) or not
      */
-    StarAbility(AnimatedSprite animation, String name, String desc, double energyCost, int cooldown, int xRange, int yRange, double damage, boolean enemyTarget, boolean friendTarget){
-        super (animation, name, desc, energyCost, cooldown, xRange, yRange, damage, enemyTarget, friendTarget);
+    StarAbility(AnimatedSprite animation, String name, String desc, double energyCost, int cooldown, int xRange, int yRange, double damage, double ratio, boolean enemyTarget, boolean friendTarget){
+        super (animation, name, desc, energyCost, cooldown, xRange, yRange, damage, ratio, enemyTarget, friendTarget);
     }
 
     /**
