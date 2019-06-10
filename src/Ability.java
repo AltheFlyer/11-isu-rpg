@@ -5,13 +5,12 @@ import java.awt.*;
 /**
  * This class is for the most basic abilities, it will be overwritten by other methods!
  */
-
 abstract public class Ability {
     private String name;
     private String desc;
     private int xRange;
     private int yRange;
-    private double damage;
+
     private int xAOE;
     private int yAOE;
     private boolean enemyTarget;
@@ -23,6 +22,9 @@ abstract public class Ability {
     private int currentCooldown;
     private AnimatedSprite animation;
 
+    private double baseDamage;
+    private double ratio;
+
     /**
      * [Ability]
      * Constructor for single target and aoe abilities
@@ -33,11 +35,12 @@ abstract public class Ability {
      * @param cooldown the cooldown in turns
      * @param xRange the range in the x axis in tiles
      * @param yRange the range in the y axis in tiles
-     * @param damage the amount of damage that the ability will do
+     * @param baseDamage the amount of damage that the ability will do
+     * @param damageRatio the percentage of the casting entity's attack to include in damage
      * @param enemyTarget whether the ability can target enemies (relative to the caster) or not
      * @param friendTarget whether the ability can target allies (relative to the caster) or not
      */
-    Ability(AnimatedSprite animation, String name, String desc, double energyCost, int cooldown, int xRange, int yRange, double damage, boolean enemyTarget, boolean friendTarget) {
+    Ability(AnimatedSprite animation, String name, String desc, double energyCost, int cooldown, int xRange, int yRange, double baseDamage, double damageRatio, boolean enemyTarget, boolean friendTarget) {
         this.name = name;
         this.desc = desc;
         this.energyCost = energyCost;
@@ -45,7 +48,8 @@ abstract public class Ability {
         currentCooldown = 0;
         this.xRange = xRange;
         this.yRange = yRange;
-        this.damage = damage;
+        this.baseDamage = baseDamage;
+        this.ratio = damageRatio;
         this.enemyTarget = enemyTarget;
         this.friendTarget = friendTarget;
         this.animation = animation;
