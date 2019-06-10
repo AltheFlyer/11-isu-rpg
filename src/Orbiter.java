@@ -22,7 +22,7 @@ public class Orbiter extends OverworldObject {
     public Orbiter(int x, int y, int orbitCenterX, int orbitCenterY, int respawnX, int respawnY) {
         super(x, y);
         this.orbitRadius = 200;
-        this.velocity = 3;
+        this.velocity = 5;
         this.orbitCenterX = orbitCenterX;
         this.orbitCenterY = orbitCenterY;
         this.respawnX = respawnX;
