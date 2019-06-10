@@ -23,7 +23,7 @@ public class CAPMEnemy extends Enemy {
         super(x, y, 125, 10, 0, "CAPM", new AnimatedSprite("spritesheets/CAPM.png", 3, 3, 100),
                 new Ability[] {
                         new SingleAbility(null, "Accelerate", "Deals damage to a target and increases attack power.",
-                                0, 1, 6, 0, 3, true, false)
+                                0, 1, 6, 0, 0,1, true, false)
                 });
 
         weakAttackIcon = new Icon("assets/icons/sword.png", "Basic attack", "This enemy intends to damage a player.");
@@ -54,9 +54,6 @@ public class CAPMEnemy extends Enemy {
     @Override
     public void act(JointMap map) {
         selectRandomTile(map, getDecide());
-        attackMod += 2;
-        abilities[0] = new SingleAbility(null, "Accelerate", "Deals damage to a target and increases attack power.",
-                0, 1, 6, 0, 3 + attackMod, true, false);
-        abilities[0].setEntitySource(this);
+        setAttack(getAttack() + 5);
     }
 }

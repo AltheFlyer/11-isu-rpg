@@ -166,13 +166,23 @@ abstract public class Ability {
     }
 
     /**
-     * [getDamage]
+     * [getBaseDamage]
      * gets the damage that the ability does
-     * @return damage, gets the damage that the ability does
+     * @return baseDamage, gets the damage that the ability does ignoring ratio
      */
-    public double getDamage(){
-        return damage;
+    public double getBaseDamage(){
+        return baseDamage;
     }
+
+    /**
+     * [getDamage]
+     * gets the damage of tha ability when used, including the attack power added by the caster
+     * @return double, the base damage of the ability + (the attack power of the caster, multiplied by the damage ratio)
+     */
+    public double getDamage() {
+        return baseDamage + ratio * entitySource.getAttack();
+    }
+
 
     /**
      * [getName]

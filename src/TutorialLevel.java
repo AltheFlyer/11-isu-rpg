@@ -45,7 +45,7 @@ public class TutorialLevel extends LevelScreen {
                 new Ability[] {
                         new SingleAbility(null,
                                 "Basic Attack", "Deals damage to a single target.",
-                                30, 1, 6, 0, 3, true, false),
+                                30, 1, 6, 0, 3, 0, true, false),
                         moveAbility
                 });
 
