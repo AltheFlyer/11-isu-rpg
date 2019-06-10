@@ -44,8 +44,8 @@ public class MapScreen extends GameScreen {
 
     /**
      * [paintComponent]
-     * updates the screen
-     * @param g
+     * updates the clock, checks for collisions and draws the map, objects, npcs and the player
+     * @param g the graphics object to draw with
      * @return void
      */
     public void paintComponent(Graphics g) {
@@ -107,7 +107,6 @@ public class MapScreen extends GameScreen {
     /**
      * [keyPressed]
      * checks if certain keys are pressed and changes player velocity accordingly
-     *
      * @param e key event for a pressed key
      * @return void
      */

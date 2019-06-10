@@ -139,12 +139,12 @@ public class JointMap {
 
     public void moveOnTile(int x, int y, int xMove, int yMove) {
         if (tileExists(xMove, yMove) && isEmpty(xMove, yMove)) {
-            if (getTileType(x, y) == 'p' && tileExists(xMove, yMove)) {
+            if (getTileType(x, y) == 'p' && tileExists(xMove, yMove) && getTileType(xMove, yMove) == 'p') {
                 ((PlayerTile) tileArray[x][y]).getPlayer().setXGrid(xMove);
                 ((PlayerTile) tileArray[x][y]).getPlayer().setYGrid(yMove);
                 ((PlayerTile) tileArray[xMove][yMove]).setPlayer(((PlayerTile) tileArray[x][y]).getPlayer());
                 ((PlayerTile) tileArray[x][y]).nullPlayer();
-            } else if (getTileType(x, y) == 'e' && tileExists(xMove, yMove)) {
+            } else if (getTileType(x, y) == 'e' && tileExists(xMove, yMove)&& getTileType(xMove, yMove) == 'e') {
                 ((EnemyTile) tileArray[x][y]).getEnemy().setXGrid(xMove);
                 ((EnemyTile) tileArray[x][y]).getEnemy().setYGrid(yMove);
                 ((EnemyTile) tileArray[xMove][yMove]).setEnemy(((EnemyTile) tileArray[x][y]).getEnemy());

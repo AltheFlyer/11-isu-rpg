@@ -518,6 +518,28 @@ public class GameIO {
                         generateAbility(line.substring(ability1StartIndex, ability1EndIndex)),
                         generateAbility(line.substring(ability2StartIndex))
                 );
+            case "LureAbility":
+                return new LureAbility(
+                        new AnimatedSprite(args[0], Integer.parseInt(args[1]), Integer.parseInt(args[2]), Integer.parseInt(args[3])),
+                        name, desc,
+                        Double.parseDouble(args[4]),
+                        Integer.parseInt(args[5]),
+                        Integer.parseInt(args[6]),
+                        Integer.parseInt(args[7]),
+                        Double.parseDouble(args[8]),
+                        Double.parseDouble(args[9])
+                );
+            case "EnergyAbility":
+                return new EnergyAbility(
+                        new AnimatedSprite(args[0], Integer.parseInt(args[1]), Integer.parseInt(args[2]), Integer.parseInt(args[3])),
+                        name, desc,
+                        Double.parseDouble(args[4]),
+                        Integer.parseInt(args[5]),
+                        Integer.parseInt(args[6]),
+                        Integer.parseInt(args[7]),
+                        Double.parseDouble(args[8]),
+                        Double.parseDouble(args[9])
+                );
             default:
                 return null;
         }
@@ -624,12 +646,14 @@ public class GameIO {
 
         for (int i = 0; i < totalObjects; ++i) {
             tokens = lines[i + 1].split(" ");
-            x = Integer.parseInt(tokens[1]);
-            y = Integer.parseInt(tokens[2]);
-            radius = Integer.parseInt(tokens[3]);
-            respawnX = Integer.parseInt(tokens[4]);
-            respawnY = Integer.parseInt(tokens[5]);
-            objects[i] = new Orbiter(x, y, x-radius, y, respawnX, respawnY);
+            if (tokens[0].equals("orbiter")) {
+                x = Integer.parseInt(tokens[1]);
+                y = Integer.parseInt(tokens[2]);
+                radius = Integer.parseInt(tokens[3]);
+                respawnX = Integer.parseInt(tokens[4]);
+                respawnY = Integer.parseInt(tokens[5]);
+                objects[i] = new Orbiter(x, y, x - radius, y, respawnX, respawnY);
+            }
         }
         return objects;
     }

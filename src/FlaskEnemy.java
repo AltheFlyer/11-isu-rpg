@@ -8,8 +8,8 @@ public class FlaskEnemy extends Enemy {
         super(x, y, 75, 20, 0, "Walking Flask", new AnimatedSprite("spritesheets/flask.png", 2, 6, 150),
                 new Ability[] {
                 new StatusAbility(
-                        new CursedStatus(1), new AnimatedSprite("spritesheets/toxic_cloud.png", 1, 5, 75),
-                        "Fume", "Inflicts 'Curse' on all players.",
+                        new CursedStatus(8), new AnimatedSprite("spritesheets/toxic_cloud.png", 1, 5, 75),
+                        "Fume", "Inflicts 'Curse' on one players.",
                         0, 2, 3, 3, true, false
                 )
         });
