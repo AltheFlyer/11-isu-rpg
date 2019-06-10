@@ -136,6 +136,7 @@ public class LevelScreen extends GameScreen{
                         } else {
                             //Use the ability here if there is no animation
                             selectedAbility.action(jointMap, gridX, gridY);
+                            jointMap.checkAlive();
                         }
 
                         enemyClock.resetElapsed();
@@ -189,6 +190,7 @@ public class LevelScreen extends GameScreen{
                 coverUp(g);
                 if (enemyClock.getElapsedMilli() >= animatedAbility.getAnimation().getTotalTime()) {
                     animatedAbility.action(jointMap, animatedX, animatedY);
+                    jointMap.checkAlive();
                     animatedAbility = null;
                     animatedX = 0;
                     animatedY = 0;
@@ -282,6 +284,7 @@ public class LevelScreen extends GameScreen{
 
                 //The enemy acts, targetedX and Y are used for animation of the enemy's attack
                 jointMap.runEnemyActions(enemies[counter]);
+                jointMap.checkAlive();
                 selectedEnemy.getTargetedX();
                 selectedEnemy.getTargetedY();
                 selectedEnemy.getDecide().indicateValidTiles(jointMap);

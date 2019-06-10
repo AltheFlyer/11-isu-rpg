@@ -2,19 +2,21 @@ import utils.AnimatedSprite;
 
 import java.awt.*;
 
-public class LureAbility extends Ability {
-    LureAbility(AnimatedSprite animation, String name, String desc, double energyCost, int cooldown, int xRange, int yRange, double damage, double ratio) {
-        super(animation, name, desc, energyCost,cooldown, xRange,yRange,damage, ratio, true, false);
+public class CAPMAbility extends Ability {
+    private int distance;
+    CAPMAbility(AnimatedSprite animation, String name, String desc, double energyCost, int cooldown, double damage, double ratio){
+        super (animation, name, desc, energyCost, cooldown, 6,0, damage, ratio, true, false);
+        distance = 1;
     }
-
+    /**
+     * action: This method will target and affect the selected tiles in a certain pattern
+     * @param jointMap: The map that will be affected
+     * @param i: one of the selected coordinates
+     * @param j: the other selected coordinate
+     * @return: it will return a value based on if an action was valid or not, if it was, it will unindicate everything and reset selectedAbility on levelscreen
+     */
     public void action(JointMap jointMap, int i, int j){
         jointMap.target(i, j, getDamage());
-
-        if (getEntitySource() instanceof Player) {
-            jointMap.moveOnTile(i, j, i - 1, j);
-        } else if (getEntitySource() instanceof Enemy) {
-            jointMap.moveOnTile(i, j, i + 1, j);
-        }
     }
     /**
      * [drawHoverAttack]
@@ -27,6 +29,12 @@ public class LureAbility extends Ability {
     public void drawHoverAttack(int i, int j, Graphics g, JointMap jointMap) {
         //What to do here???
         drawHoverAttackSingleHelper(i,j,g,jointMap);
+        distance = Math.abs(i-getEntitySource().getXGrid());
+    }
+
+    @Override
+    public double getDamage() {
+        return (getBaseDamage() + getRatio() * getEntitySource().getAttack()) * distance;
     }
 
     /**
@@ -40,5 +48,6 @@ public class LureAbility extends Ability {
         int rangeUp = getEntitySource().getYGrid() - getYRange();
 
         indicateValidTileHelper(jointMap, rangeAhead, rangeBehind, rangeDown, rangeUp, false, false);
+        distance = 1;
     }
 }

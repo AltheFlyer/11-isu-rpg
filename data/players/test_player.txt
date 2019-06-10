@@ -3,7 +3,7 @@ spritesheets/jasmine.png 1 5 100
 health 100
 attack 35
 defence 0
-energy 150
+energy 100
 ABILITIES 5
 SingleAbility "basic" "a basic attack that will hit an enemy in front of you" spritesheets/basicAttack.png 1 5 250 20 1 6 0 1 0 0.5 true false
 BasicMoveAbility "step" "movement to an adjacent tile" 30 1 1

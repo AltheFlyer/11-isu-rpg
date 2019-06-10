@@ -3,7 +3,7 @@ spritesheets/jasmine.png 1 5 500
 health 120
 attack 35
 defence 0
-energy 150
+energy 100
 ABILITIES 4
 StarAbility "star" "An AOE ability that will hit in a star shaped area" spritesheets/star.png 1 4 250 50 2 5 0 0 1 true false
 BasicMoveAbility "step" "movement to an adjacent tile" 30 1 1

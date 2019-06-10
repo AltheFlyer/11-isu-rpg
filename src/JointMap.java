@@ -234,4 +234,16 @@ public class JointMap {
         }
     }
 
+    public void checkAlive() {
+        for (int j = 0; j < 3; j++) {
+            for (int i = 0; i < 6; i++) {
+                if (!tileArray[i][j].isEmpty()) {
+                    if (tileArray[i][j].getEntity().getHealth() <= 0) {
+                        tileArray[i][j].nullEntity();
+                    }
+                }
+            }
+        }
+    }
+
 }

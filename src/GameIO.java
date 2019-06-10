@@ -540,6 +540,15 @@ public class GameIO {
                         Double.parseDouble(args[8]),
                         Double.parseDouble(args[9])
                 );
+            case "CAPMAbility":
+                return new CAPMAbility(
+                        new AnimatedSprite(args[0], Integer.parseInt(args[1]), Integer.parseInt(args[2]), Integer.parseInt(args[3])),
+                        name, desc,
+                        Double.parseDouble(args[4]),
+                        Integer.parseInt(args[5]),
+                        Double.parseDouble(args[6]),
+                        Double.parseDouble(args[7])
+                        );
             default:
                 return null;
         }

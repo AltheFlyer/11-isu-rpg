@@ -183,7 +183,14 @@ abstract public class Ability {
         return baseDamage + ratio * entitySource.getAttack();
     }
 
-
+    /**
+     * [getRatio]
+     * gets the ratio attack conversion of the ability
+     * @return ratio, the ratio attack conversion of the ability
+     */
+    public double getRatio(){
+        return ratio;
+    }
     /**
      * [getName]
      * gets the name of an ability
