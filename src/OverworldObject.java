@@ -2,10 +2,10 @@ import java.awt.*;
 
 /**
  * [MapScreen.java]
- * Class for overworld map screen
+ * Class for all overworld objects
  * @version 1.1
  * @author Jasmine Chu & Ethan Kwan
- * @since May 22, 2019
+ * @since June 07, 2019
  */
 abstract public class OverworldObject {
 

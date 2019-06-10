@@ -2,10 +2,10 @@ import java.awt.*;
 
 /**
  * [Orbiter.java]
- * Class for orbiter object that travels in a circular path on the map
+ * Class for orbiter object that travels in a circular path on the map and interacts with player upon collisions
  * @version 1.1
  * @author Jasmine Chu & Ethan Kwan
- * @since May 22, 2019
+ * @since June 07, 2019
  */
 public class Orbiter extends OverworldObject {
 
