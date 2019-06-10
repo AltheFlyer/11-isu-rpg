@@ -94,10 +94,11 @@ public class AnimatedSprite {
     public void tick() {
         //TODO Check how screwy this code is
         if (System.currentTimeMillis() - lastFrame > frameDelay) {
-            lastFrame += frameDelay;
-            frame++;
+            long passedFrames = (System.currentTimeMillis() - lastFrame) / frameDelay;
+            lastFrame += frameDelay * passedFrames;
+            frame += passedFrames;
             if (frame >= sprites.length) {
-                frame = 0;
+                frame = frame % sprites.length;
             }
         }
     }

@@ -78,6 +78,7 @@ public class AbilityPair extends Ability {
      */
     @Override
     public void setEntitySource(Entity e) {
+        super.setEntitySource(e);
         firstAbility.setEntitySource(e);
         secondAbility.setEntitySource(e);
     }
