@@ -57,7 +57,14 @@ public class OverworldNPC extends OverworldEntity {
         g.drawRect(100,600,1166,100); //actual message
         g.drawRect(100,550,150,50); //name
         g.drawString(name,120,570);
-        textDrawer.drawText(g);
+        for (int i = 0; i < message.length(); ++i) {
+            textDrawer.speakText(g);
+        }
+        g.setColor(Color.WHITE);
+        g.fillRect(1241,675,25,25);
+        g.setColor(Color.BLACK);
+        g.drawString("z",1241,675);
+        //textDrawer.drawText(g);
     }
 
 
