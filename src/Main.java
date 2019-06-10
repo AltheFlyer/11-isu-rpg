@@ -8,10 +8,6 @@ public class Main {
 
         //game.setScreen(new BattleLayoutScreen(game));
         //game.setScreen(new TutorialLevel(game));
-        game.setScreen(new LevelScreen(game, new Enemy[] {
-                new BunsenBurnerEnemy(3, 0),
-                new DecaEnemy(3, 2),
-        }));
 
         //My args setup, Use custom run configurations for different encounters
         if (args.length != 0) {
@@ -28,6 +24,10 @@ public class Main {
                             new FlaskEnemy(3, 1),
                             new FlaskEnemy(4, 1),
                             new BunsenBurnerEnemy(5, 2)
+                    }));
+                case "PhysicsA" :
+                    game.setScreen(new LevelScreen(game, new Enemy[] {
+                            new CAPMEnemy(3, 1)
                     }));
             }
         }
