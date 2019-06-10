@@ -132,10 +132,6 @@ public class Player extends Entity{
         }
     }
 
-    public void drawIcons(Graphics g) {
-        ico.draw(g);
-    }
-
     public void drawHealthBar(Graphics g){
         //Drawing a health bar here to make it nicer
         double ratio = getHealth() / getMaxHealth();
@@ -150,7 +146,7 @@ public class Player extends Entity{
         g.fillRect(100, 33+105*abilities.length, (int) (190 * ratio), 12);
         g.setColor(Color.BLACK);
         g.drawRect(100, 33+105*abilities.length,190, 12);
-        g.drawString(getHealth() + "/" + getMaxHealth(), 130, 44+105*abilities.length);
+        g.drawString(Math.ceil(getHealth()) + "/" + getMaxHealth(), 130, 44+105*abilities.length);
     }
 
     public void drawEnergyBar(Graphics g){

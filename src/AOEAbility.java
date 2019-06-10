@@ -17,11 +17,12 @@ public class AOEAbility extends Ability{
      * @param xAOE the AOE in the x Axis of the ability in tiles
      * @param yAOE the AOE in the y Axis of the ability in tiles
      * @param damage the amount of damage that the ability will do
+     * @param ratio the percentage of attack that is added by the caster as a decimal
      * @param enemyTarget whether the ability can target enemies (relative to the caster) or not
      * @param friendTarget whether the ability can target allies (relative to the caster) or not
      */
-    AOEAbility(AnimatedSprite animation, String name, String desc, double energyCost, int cooldown, int xRange, int yRange, int xAOE, int yAOE, double damage, boolean enemyTarget, boolean friendTarget){
-        super (animation, name, desc, energyCost, cooldown, xRange, yRange, damage, enemyTarget, friendTarget);
+    AOEAbility(AnimatedSprite animation, String name, String desc, double energyCost, int cooldown, int xRange, int yRange, int xAOE, int yAOE, double damage, double ratio, boolean enemyTarget, boolean friendTarget){
+        super (animation, name, desc, energyCost, cooldown, xRange, yRange, damage, ratio, enemyTarget, friendTarget);
         setXAOE(xAOE);
         setYAOE(yAOE);
     }
@@ -29,9 +30,9 @@ public class AOEAbility extends Ability{
     /**
      * action: This method will target and affect the selected tiles in a certain pattern
      * @param jointMap: The map that will be affected
-     * @param i: one of the selected coordinates
-     * @param j: the other selected coordinate
-     * @return: it will return a value based on if an action was valid or not, if it was, it will unindicate everything and reset selectedAbility on levelscreen
+     * @param i one of the selected coordinates
+     * @param j the other selected coordinate
+     * @return it will return a value based on if an action was valid or not, if it was, it will unindicate everything and reset selectedAbility on levelscreen
      */
     public void action(JointMap jointMap, int i, int j){
         for (int k = j - getYAOE(); k <= j + getYAOE(); k++) {
@@ -85,7 +86,7 @@ public class AOEAbility extends Ability{
 
     /**
      * This method will indicate and make tiles targetable for you to click on it with your cursor to enact an ability.
-     * @param jointMap: The tiles on the jointMap array will be modified (some tiles will be indicated, some will become targetable)
+     * @param jointMap The tiles on the jointMap array will be modified (some tiles will be indicated, some will become targetable)
      */
     public void indicateValidTiles(JointMap jointMap){
         int rangeAhead = getEntitySource().getXGrid() + getXRange();

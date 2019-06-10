@@ -10,3 +10,5 @@ bottom_left false
 bottom_right false
 exit true
 door true
+desk false
+shelf false

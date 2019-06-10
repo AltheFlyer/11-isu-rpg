@@ -218,10 +218,10 @@ public class LevelScreen extends GameScreen{
                 if (!jointMap.getTargetable(gridX, gridY)){
                     //Player selection on the left x = {0, 1, 2}
                     if (gridX < 3) {
+                        selectedAbility = null;
                         selectedPlayer = ((Player) jointMap.getEntity(gridX, gridY));
                         jointMap.unIndicateAll();
                         jointMap.unTargetableAll();
-                        selectedAbility = null;
                         //Enemy selection on the right x = {3, 4, 5}
                     } else {
                         selectedEnemy = ((Enemy) jointMap.getEntity(gridX, gridY));

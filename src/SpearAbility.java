@@ -12,10 +12,11 @@ public class SpearAbility extends Ability {
      * @param desc the displayed description of the ability
      * @param energyCost the energy cost of the ability
      * @param cooldown the cooldown in turns
-     * @param damage the amount of damage that the ability will do
+     * @param damage the amount of damage that the ability will do, unmodded
+     * @param ratio the percentage of attack that is added by the caster as a decimal
      */
-    SpearAbility(AnimatedSprite animation, String name, String desc, double energyCost, int cooldown, double damage) {
-        super(animation, name, desc, energyCost, cooldown, 2, 1, damage, true, false);
+    SpearAbility(AnimatedSprite animation, String name, String desc, double energyCost, int cooldown, double damage, double ratio) {
+        super(animation, name, desc, energyCost, cooldown, 2, 1, damage, ratio, true, false);
     }
     /**
      * action: This method will target and affect the selected tiles in a certain pattern

@@ -432,8 +432,9 @@ public class GameIO {
                         Integer.parseInt(args[6]),
                         Integer.parseInt(args[7]),
                         Double.parseDouble(args[8]),
-                        Boolean.parseBoolean(args[9]),
-                        Boolean.parseBoolean(args[10]));
+                        Double.parseDouble(args[9]),
+                        Boolean.parseBoolean(args[10]),
+                        Boolean.parseBoolean(args[11]));
             case "BasicMoveAbility":
                 return new BasicMoveAbility(name, desc,
                         Double.parseDouble(args[0]),
@@ -450,8 +451,9 @@ public class GameIO {
                         Integer.parseInt(args[8]),
                         Integer.parseInt(args[9]),
                         Double.parseDouble(args[10]),
-                        Boolean.parseBoolean(args[11]),
-                        Boolean.parseBoolean(args[12]));
+                        Double.parseDouble(args[11]),
+                        Boolean.parseBoolean(args[12]),
+                        Boolean.parseBoolean(args[13]));
             case "CombinationAbility":
                 return new CombinationAbility(
                         new AnimatedSprite(args[0], Integer.parseInt(args[1]), Integer.parseInt(args[2]), Integer.parseInt(args[3])),
@@ -461,8 +463,9 @@ public class GameIO {
                         Integer.parseInt(args[6]),
                         Integer.parseInt(args[7]),
                         Integer.parseInt(args[8]),
-                        Boolean.parseBoolean(args[9]),
-                        Boolean.parseBoolean(args[10]));
+                        Double.parseDouble(args[9]),
+                        Boolean.parseBoolean(args[10]),
+                        Boolean.parseBoolean(args[11]));
             case "StarAbility":
                 return new StarAbility(
                         new AnimatedSprite(args[0], Integer.parseInt(args[1]), Integer.parseInt(args[2]), Integer.parseInt(args[3])),
@@ -472,15 +475,17 @@ public class GameIO {
                         Integer.parseInt(args[6]),
                         Integer.parseInt(args[7]),
                         Double.parseDouble(args[8]),
-                        Boolean.parseBoolean(args[9]),
-                        Boolean.parseBoolean(args[10]));
+                        Double.parseDouble(args[9]),
+                        Boolean.parseBoolean(args[10]),
+                        Boolean.parseBoolean(args[11]));
             case "SpearAbility":
                 return new SpearAbility(
                         new AnimatedSprite(args[0], Integer.parseInt(args[1]), Integer.parseInt(args[2]), Integer.parseInt(args[3])),
                         name, desc,
-                        Double.parseDouble(args[4]),
+                        Integer.parseInt(args[4]),
                         Integer.parseInt(args[5]),
-                        Integer.parseInt(args[6]));
+                        Double.parseDouble(args[6]),
+                        Double.parseDouble(args[7]));
             case "StatusAbility":
                 return new StatusAbility(
                         null,
@@ -593,6 +598,34 @@ public class GameIO {
         return npcs;
         }
 
+    /**
+     * [getObjects]
+     * Gets an array of objects from a text file.
+     * @param path the path of the map file (not including source folder)
+     * @return OverworldObject[] an array of the objects on the current map
+     */
+    public OverworldObject[] getObjects(String path) {
+        String text = readFile(path);
+        OverworldObject[] objects;
+        int x, y, radius, respawnX, respawnY;
+
+        String[] lines = text.split("\n");
+
+        String[] tokens = lines[0].split(" ");
+        int totalObjects = Integer.parseInt(tokens[0]);
+        objects = new OverworldObject[totalObjects];
+
+        for (int i = 0; i < totalObjects; ++i) {
+            tokens = lines[i + 1].split(" ");
+            x = Integer.parseInt(tokens[1]);
+            y = Integer.parseInt(tokens[2]);
+            radius = Integer.parseInt(tokens[3]);
+            respawnX = Integer.parseInt(tokens[4]);
+            respawnY = Integer.parseInt(tokens[5]);
+            objects[i] = new Orbiter(x, y, x-radius, y, respawnX, respawnY);
+        }
+        return objects;
+    }
 
     /**
      * [getMapAsString]

@@ -206,7 +206,7 @@ abstract public class Tile {
             //Draw at bottom of screen, -10 is for the height of the bar
             g.fillRect(getXGraphic(), getYGraphic() + 120 - 10, (int) (120 * ratio), 10);
             g.setColor(Color.BLACK);
-            g.drawString(entity.getHealth() + "/" + entity.getMaxHealth(), getXGraphic()+30, getYGraphic() + 120);
+            g.drawString(Math.ceil(entity.getHealth()) + "/" + entity.getMaxHealth(), getXGraphic()+30, getYGraphic() + 120);
         }
     }
 

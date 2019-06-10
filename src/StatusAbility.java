@@ -29,7 +29,7 @@ public class StatusAbility extends Ability {
      * @param friendTarget whether the ability can target allies (relative to the caster) or not
      */
     public StatusAbility(StatusEffect effect, AnimatedSprite animation, String name, String desc, double energyCost, int cooldown, int xRange, int yRange, boolean enemyTarget, boolean friendTarget) {
-        super(animation, name, desc, energyCost, cooldown, xRange, yRange, 0, enemyTarget, friendTarget);
+        super(animation, name, desc, energyCost, cooldown, xRange, yRange, 0, 0, enemyTarget, friendTarget);
 
         this.effect = effect;
     }
