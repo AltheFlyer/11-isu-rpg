@@ -3,6 +3,7 @@ import utils.AnimatedSprite;
 import java.awt.*;
 
 public class AOEAbility extends Ability{
+
     AOEAbility(AnimatedSprite animation, String name, String desc, double energyCost, int cooldown, int xRange, int yRange, int xAOE, int yAOE, double damage, boolean enemyTarget, boolean friendTarget){
         super (animation, name, desc, energyCost, cooldown, xRange, yRange, damage, enemyTarget, friendTarget);
         setXAOE(xAOE);

@@ -1,4 +1,3 @@
-import java.awt.*;
 import java.util.ArrayList;
 
 abstract public class Entity {
@@ -128,6 +127,12 @@ abstract public class Entity {
         for (int i = 0; i < statuses.size(); ++i) {
             statuses.get(i).triggerEffect(map, this);
             statuses.get(i).tickDuration();
+
+            if (statuses.get(i).getDuration() <= 0) {
+                //I have a feeling iterator/predicate isn't allowed so back to turing it is
+                statuses.remove(i);
+                i--;
+            }
         }
     }
 

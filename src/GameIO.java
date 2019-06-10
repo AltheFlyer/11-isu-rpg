@@ -1,7 +1,5 @@
 import utils.AnimatedSprite;
 
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -14,9 +12,9 @@ import java.util.HashMap;
 /**
  * [GameIO.java]
  * class that manages IO with text files for progression and saved data
- * @version 1.5
+ * @version 1.6
  * @author Allen Liu
- * @since June 3, 2019
+ * @since June 9, 2019
  */
 public class GameIO {
 

@@ -47,8 +47,8 @@ public class TutorialEnemy extends Enemy {
         moveIcon.setName("Seek!");
         turn = 1;
 
-        attackAbility = getAbility(0);
-        moveAbility = getAbility(1);
+        //attackAbility = getAbility(0);
+        //moveAbility = getAbility(1);
 
         try {
             sprite = ImageIO.read(new File("assets/sprites/slime.png"));

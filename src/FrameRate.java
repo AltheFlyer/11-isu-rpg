@@ -1,5 +1,5 @@
-import javax.swing.*;
-import java.awt.*;
+import java.awt.Graphics;
+import java.awt.Color;
 
 
 /**
@@ -11,10 +11,10 @@ import java.awt.*;
  */
 class FrameRate {
 
-    String frameRate; //to display the frame rate to the screen
-    long lastTimeCheck; //store the time of the last time the time was recorded
-    long deltaTime; //to keep the elapsed time between current time and last time
-    int frameCount; //used to count how many frame occurred in the elapsed time (fps)
+    private String frameRate; //to display the frame rate to the screen
+    private long lastTimeCheck; //store the time of the last time the time was recorded
+    private long deltaTime; //to keep the elapsed time between current time and last time
+    private int frameCount; //used to count how many frame occurred in the elapsed time (fps)
 
     public FrameRate() {
         lastTimeCheck = System.currentTimeMillis();
@@ -25,7 +25,6 @@ class FrameRate {
     /**
      * [update]
      * calculates and updates the frameRate
-     * @return void
      */
     public void update() {
         long currentTime = System.currentTimeMillis();  //get the current time
@@ -47,7 +46,6 @@ class FrameRate {
      * @param g
      * @param x the x coordinate of the text to be drawn
      * @param y the y coordinate of the text to be drawn
-     * @return void
      */
     public void draw(Graphics g, int x, int y) {
         g.setColor(Color.RED);

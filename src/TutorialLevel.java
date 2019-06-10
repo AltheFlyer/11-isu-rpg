@@ -1,18 +1,28 @@
 import utils.AnimatedSprite;
 import utils.TextDrawer;
 
-import java.awt.*;
+import java.awt.Graphics;
+import java.awt.Rectangle;
+import java.awt.Color;
 import java.awt.event.MouseEvent;
 
+/**
+ * [TutorialLevel.java]
+ * The tutorial level for the game, containing a simplified level with a preset player, enemy, and a set of dynamic
+ * instructions based on player actions.
+ * @version 1.1
+ * @author Allen Liu
+ * @since June 7, 2019
+ */
 public class TutorialLevel extends LevelScreen {
 
-    TextDrawer tutorialPrompt;
-    Rectangle textBack;
+    private TextDrawer tutorialPrompt;
+    private Rectangle textBack;
 
-    int tutorialIndex;
-    String[] tutorial;
+    private int tutorialIndex;
+    private String[] tutorial;
 
-    int tutorialX, tutorialY;
+    private int tutorialX, tutorialY;
 
     /**
      * [TutorialLevel]

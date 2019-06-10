@@ -12,10 +12,8 @@ abstract public class Ability {
     private int xRange;
     private int yRange;
     private double damage;
-    private int cost;
     private int xAOE;
     private int yAOE;
-    private Tile[][] getValidTiles;
     private boolean enemyTarget;
     private boolean friendTarget;
     private int moves;
@@ -25,7 +23,20 @@ abstract public class Ability {
     private int currentCooldown;
     private AnimatedSprite animation;
 
-    //Constructor for Single target and AOE abilities
+    /**
+     * [Ability]
+     * Constructor for single target and aoe abilities
+     * @param animation the animation that is played on ability case
+     * @param name the displayed name of the ability
+     * @param desc the displayed description of the ability
+     * @param energyCost the energy cost of the ability
+     * @param cooldown the cooldown in turns
+     * @param xRange the range in the x axis in tiles
+     * @param yRange the range in the y axis in tiles
+     * @param damage the amount of damage that the ability will do
+     * @param enemyTarget whether the ability can target enemies (relative to the caster) or not
+     * @param friendTarget whether the ability can target allies (relative to the caster) or not
+     */
     Ability(AnimatedSprite animation, String name, String desc, double energyCost, int cooldown, int xRange, int yRange, double damage, boolean enemyTarget, boolean friendTarget) {
         this.name = name;
         this.desc = desc;
@@ -40,7 +51,15 @@ abstract public class Ability {
         this.animation = animation;
     }
 
-    //Constructor for movement abilities
+    /**
+     * [Ability]
+     * Constructor for movement abilities
+     * @param name the displayed name of the ability
+     * @param desc the displayed description of the ability
+     * @param energyCost the energy cost of the ability
+     * @param cooldown the cooldown in turns
+     * @param moves the distance that can be moved, in tiles based on manhattan distance
+     */
     Ability(String name, String desc, double energyCost, int cooldown, int moves){
         this.name = name;
         this.desc = desc;
@@ -48,10 +67,6 @@ abstract public class Ability {
         this.cooldown = cooldown;
         currentCooldown = 0;
         this.moves = moves;
-    }
-
-    public void indicate() {
-
     }
 
     //Should know where the person is casting is
