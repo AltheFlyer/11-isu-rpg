@@ -78,7 +78,7 @@ abstract public class Ability {
      * @param jointMap: The map that will be affected
      * @param i: one of the selected coordinates
      * @param j: the other selected coordinate
-     * @return: it will return a value based on if an action was valid or not, if it was, it will unindicate everything and reset selectedAbility on levelscreen
+     * @return : it will return a value based on if an action was valid or not, if it was, it will unindicate everything and reset selectedAbility on levelscreen
      */
     abstract public void action(JointMap jointMap, int i, int j);
 
@@ -183,7 +183,14 @@ abstract public class Ability {
         return baseDamage + ratio * entitySource.getAttack();
     }
 
-
+    /**
+     * [getRatio]
+     * gets the ratio attack conversion of the ability
+     * @return ratio, the ratio attack conversion of the ability
+     */
+    public double getRatio(){
+        return ratio;
+    }
     /**
      * [getName]
      * gets the name of an ability

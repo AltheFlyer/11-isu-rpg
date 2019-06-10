@@ -12,9 +12,9 @@ import java.util.HashMap;
 /**
  * [GameIO.java]
  * class that manages IO with text files for progression and saved data
- * @version 1.6
+ * @version 1.7
  * @author Allen Liu
- * @since June 9, 2019
+ * @since June 10, 2019
  */
 public class GameIO {
 
@@ -37,6 +37,13 @@ public class GameIO {
     private int currentPeriod;
 
     //Game initialization (file reading) methods
+    public GameIO() {
+        readInventory();
+        readLevelCompletion();
+        readEquipUnlocks();
+        readAbilityUnlocks();
+        readTimeState();
+    }
 
     /**
      * [readTileWalkability]
@@ -511,6 +518,37 @@ public class GameIO {
                         generateAbility(line.substring(ability1StartIndex, ability1EndIndex)),
                         generateAbility(line.substring(ability2StartIndex))
                 );
+            case "LureAbility":
+                return new LureAbility(
+                        new AnimatedSprite(args[0], Integer.parseInt(args[1]), Integer.parseInt(args[2]), Integer.parseInt(args[3])),
+                        name, desc,
+                        Double.parseDouble(args[4]),
+                        Integer.parseInt(args[5]),
+                        Integer.parseInt(args[6]),
+                        Integer.parseInt(args[7]),
+                        Double.parseDouble(args[8]),
+                        Double.parseDouble(args[9])
+                );
+            case "EnergyAbility":
+                return new EnergyAbility(
+                        new AnimatedSprite(args[0], Integer.parseInt(args[1]), Integer.parseInt(args[2]), Integer.parseInt(args[3])),
+                        name, desc,
+                        Double.parseDouble(args[4]),
+                        Integer.parseInt(args[5]),
+                        Integer.parseInt(args[6]),
+                        Integer.parseInt(args[7]),
+                        Double.parseDouble(args[8]),
+                        Double.parseDouble(args[9])
+                );
+            case "CAPMAbility":
+                return new CAPMAbility(
+                        new AnimatedSprite(args[0], Integer.parseInt(args[1]), Integer.parseInt(args[2]), Integer.parseInt(args[3])),
+                        name, desc,
+                        Double.parseDouble(args[4]),
+                        Integer.parseInt(args[5]),
+                        Double.parseDouble(args[6]),
+                        Double.parseDouble(args[7])
+                        );
             default:
                 return null;
         }

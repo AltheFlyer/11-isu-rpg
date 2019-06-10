@@ -34,113 +34,6 @@ public class LevelScreen extends GameScreen{
     int counter = 0;
     int turnNumber = 1;
 
-    LevelScreen(GameManager game){
-        super(game);
-        /*
-        ability1 = new SingleAbility("basic",6,0,1,2,true, false);
-        heal = new AOEAbility("heal",2,0,0,1,1,-2.0,false, true);
-        move = new MoveAbility("step",1);
-        new AOEAbility("die",3,2,6, 0,1,5,true, false)
-        new StarAbility("star",3,0,1,2.0,true, false)
-        new CombinationAbility("back",5,2,1,4,true, false);
-        */
-        jointMap = new JointMap();
-
-        /*
-        Ability[] kevinAbilities = new Ability[]{
-            new SingleAbility(new AnimatedSprite("spritesheets/Jasmine.png", 1, 10, 100),"basic","a basic attack that will hit an enemy in front of you", 20,1,6,0,1,2,true, false),
-            new BasicMoveAbility("step","movement to an adjacent tile", 30,1,1),
-            new AOEAbility(new AnimatedSprite("spritesheets/Jasmine.png", 1, 10, 100),"heal","a vertical AOE heal on allies",50,2,2,0,0,2,1,-2.0,false, true),
-            new SingleAbility(new AnimatedSprite("spritesheets/Jasmine.png", 1, 10, 100),"basic2","a basic attack that will hit an enemy in front of you", 20,1,6,0,1,2,true, false),
-            new SingleAbility(new AnimatedSprite("spritesheets/Jasmine.png", 1, 10, 100),"basic3","a basic attack that will hit an enemy in front of you", 20,1,6,0,1,2,true, false),
-        };
-
-        Ability[] allenAbilities = new Ability[]{
-            new CombinationAbility(new AnimatedSprite("spritesheets/Jasmine.png", 1, 10, 100),"back","A single target attack that also pushes you back by 1", 60,3,5,2,1,4,true, false),
-            new BasicMoveAbility("step","movement to an adjacent tile",30,1,1),
-            new AOEAbility(new AnimatedSprite("spritesheets/Jasmine.png", 1, 10, 100),"sacrifice","A sacrifice that will deal massive damage to everyone",50,4,0,0,6,2,1,5,true, true)
-        };
-
-        Ability[] bryanAbilities = new Ability[]{
-            new StarAbility(new AnimatedSprite("spritesheets/Jasmine.png",1,10,100),"star","An AOE ability that will hit in a star shaped area",50,2,5,0,1,3.0,true, false),
-            new BasicMoveAbility("step","movement to an adjacent tile",30,1,1),
-            new SpearAbility(new AnimatedSprite("spritesheets/Jasmine.png", 1, 10, 100),"spear","A very deadly single target spear with short range",100,10, 100)
-        };
-
-        Ability[] ackAbilities = new Ability[]{
-            new SingleAbility(null,"basic","A basic attack that hits a random target in front",0,0,6,0,1,2,true, false),
-            new SingleAbility(null,"healSelf","A basic self heal",0,0,0,0,1,-3,false, true)
-        };
-
-        Ability[] bckAbilities = new Ability[]{
-            new SingleAbility(null,"basic","A basic attack that hits a random target in front",0,0,6,0,1,2,true, false),
-            new SingleAbility(null,"healSelf","A basic self heal",0,0,0,0,1,-3,false, true)
-        };
-
-        Ability[] cckAbilities = new Ability[]{
-                new SingleAbility(null,"basic","A basic attack that hits a random target in front",0,0,6,0,1,2,true, false),
-                new SingleAbility(null,"healSelf","A basic self heal",0,0,0,0,1,-3,false, true)
-        };
-        */
-
-        //TESTING GAME IO
-        //Generates array of players to be place on the grid
-        players = GameIO.getBattleLayout();
-
-
-        // TODO There is probably a better way to do this just saying
-        //kevin = new Player(10,100,"magenta",kevinAbilities);
-        kevin = players[0];//GameIO.generatePlayer("players/kevin.txt");
-        //allen = new Player(10,"allen",new AOEAbility("heal",2,0,0,1,1,-2.0,false, true));
-        //allen = new Player(10,100,"yellow",allenAbilities);
-        allen = players[1];//GameIO.generatePlayer("players/allen.txt");
-        //bryan = new Player(10,100,"cyan",bryanAbilities);
-        bryan = players[2];//GameIO.generatePlayer("players/bryan.txt");
-
-        for (int i = 0; i < 3; i++){
-            enemies[i] = new TestEnemy();
-        }
-        enemies[3] = new TutorialEnemy(5, 0);
-
-        /*
-        ack = new TestEnemy();//10, "ack",ackAbilities);
-        bck = new TestEnemy();//10, "bck",bckAbilities);
-        cck = new TestEnemy();//10, "cck",cckAbilities);
-        */
-
-        //Add things onto the map
-        //i is x, j is y
-        /*
-        jointMap.addEntity(1,2,kevin);
-        jointMap.addEntity(0,0,bryan);
-        jointMap.addEntity(2,1,allen);
-         */
-
-        //Adds players onto map
-        for (int i = 0; i < players.length; ++i) {
-            jointMap.addEntity(players[i].getXGrid(), players[i].getYGrid(), players[i]);
-        }
-
-        jointMap.addEntity(4,2,enemies[0]);
-        jointMap.addEntity(3,1,enemies[1]);
-        jointMap.addEntity(4,0,enemies[2]);
-        jointMap.addEntity(5, 0, enemies[3]);
-
-        //players = new Player[3];
-        //players[0] = kevin;
-        //players[1] = allen;
-        //players[2] = bryan;
-
-        //allen.addStatus(new CursedStatus(allen, 1));
-        playerClock = new Clock(2);
-        enemyClock = new Clock(5);
-
-        //0th turn processing
-        for (int i = 0; i < enemies.length; ++i) {
-            jointMap.generateEnemyDecisions(enemies[i]);
-        }
-    }
-
     /**
      * [LevelScreen]
      * @param game the currently running game
@@ -243,6 +136,7 @@ public class LevelScreen extends GameScreen{
                         } else {
                             //Use the ability here if there is no animation
                             selectedAbility.action(jointMap, gridX, gridY);
+                            jointMap.checkAlive();
                         }
 
                         enemyClock.resetElapsed();
@@ -296,6 +190,7 @@ public class LevelScreen extends GameScreen{
                 coverUp(g);
                 if (enemyClock.getElapsedMilli() >= animatedAbility.getAnimation().getTotalTime()) {
                     animatedAbility.action(jointMap, animatedX, animatedY);
+                    jointMap.checkAlive();
                     animatedAbility = null;
                     animatedX = 0;
                     animatedY = 0;
@@ -389,6 +284,7 @@ public class LevelScreen extends GameScreen{
 
                 //The enemy acts, targetedX and Y are used for animation of the enemy's attack
                 jointMap.runEnemyActions(enemies[counter]);
+                jointMap.checkAlive();
                 selectedEnemy.getTargetedX();
                 selectedEnemy.getTargetedY();
                 selectedEnemy.getDecide().indicateValidTiles(jointMap);
@@ -544,10 +440,12 @@ public class LevelScreen extends GameScreen{
         //This is just a test to see it works
         //getIO().setInventory(inventory);
         //getIO().writeInventory();
+        System.out.println(getIO().getCurrentPeriod());
         getIO().setTimeState(getIO().getCurrentPeriod() + 1, getIO().getCurrentDay());
         getIO().writeTimeState();
 
         g.drawString("WINNER", 500, 500);
+        setScreen(new LoadingScreen(getGame()));
     }
 
     /**

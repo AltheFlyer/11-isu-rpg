@@ -82,5 +82,4 @@ public class AbilityPair extends Ability {
         firstAbility.setEntitySource(e);
         secondAbility.setEntitySource(e);
     }
-
 }
