@@ -575,6 +575,7 @@ public class GameIO {
     public OverworldNPC[] getNPCs(String path) {
         String npcText = readFile(path);
         OverworldNPC[] npcs;
+        Item[] items = new Item[5];
 
         int x, y;
         String name, message;
@@ -592,11 +593,48 @@ public class GameIO {
             name = tokens[2];
             ++i;
             message = lines[i];
-            npcs[counter] = new OverworldNPC(x, y, name, message);
-            ++counter;
+            if (name.contains("shopkeeper")) {
+                items = getItems(name);
+                npcs[counter] = new OverworldShopNPC(x, y, name, message, items);
+            } else {
+                npcs[counter] = new OverworldNPC(x, y, name, message);
             }
-        return npcs;
+            ++counter;
         }
+        return npcs;
+    }
+
+    /**
+     * [getItems]
+     * Gets an array of a shopkeeper's items from a text file.
+     * @param name the name of the shopkeeper
+     * @return Item[] an array of the items in the shopkeeper's shop
+     */
+    public Item[] getItems(String name) {
+        String npcText = readFile("shop_items");
+        Item[] items;
+        int totalItems;
+        String itemName;
+        int itemCost;
+
+        String[] tokens;
+        String[] lines = npcText.split("\n");
+        items = new Item[5];
+
+        for (int i = 0; i < lines.length; ++i) {
+            if (lines[i].equals(name)) {
+                totalItems = Integer.parseInt(lines[i + 1]);
+                items = new Item[totalItems];
+                for (int j = 0; j < totalItems; ++j) {
+                    tokens = lines[i].split(" ");
+                    itemName = tokens[0];
+                    itemCost = Integer.parseInt(tokens[1]);
+                    items[j] = new Item(itemName, itemCost);
+                }
+            }
+        }
+        return items;
+    }
 
     /**
      * [getObjects]

@@ -51,20 +51,20 @@ public class OverworldNPC extends OverworldEntity {
     public void speak(Graphics g) {
         TextDrawer textDrawer = new TextDrawer(g,message,150,650,1166,50);
         g.setColor(Color.WHITE);
-        g.fillRect(100,600,1166,100); //text box
-        g.fillRect(100,550,150,50); //name box
+        g.fillRect(100,600,1165,100); //fill message box
+        g.fillRect(100,550,150,50); //fill name box
         g.setColor(Color.BLACK);
-        g.drawRect(100,600,1166,100); //actual message
-        g.drawRect(100,550,150,50); //name
-        g.drawString(name,120,570);
-        for (int i = 0; i < message.length(); ++i) {
-            textDrawer.speakText(g);
-        }
+        g.drawRect(100,600,1165,100); //outline message box
+        g.drawRect(100,550,150,50); //outline name box
+        g.drawString(name,120,580); //draw name
+//        for (int i = 0; i < message.length(); ++i) {
+//            textDrawer.speakText(g);
+//        }
+        textDrawer.drawText(g); //draw message
         g.setColor(Color.WHITE);
         g.fillRect(1241,675,25,25);
         g.setColor(Color.BLACK);
-        g.drawString("z",1241,675);
-        //textDrawer.drawText(g);
+        g.drawString("Press z to continue..",1111,675);
     }
 
 
@@ -87,6 +87,13 @@ public class OverworldNPC extends OverworldEntity {
             player.setYVelocity(0);
         }
     }
+
+    /**
+     * [getName]
+     * returns the name of the NPC
+     * @return String name, the name of the NPC
+     */
+    public String getName() { return this.name; }
 
     /**
      * [getMessage]

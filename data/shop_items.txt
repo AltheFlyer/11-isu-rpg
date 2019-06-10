@@ -1,0 +1,5 @@
+shopkeeper1
+3
+slop 100
+muck 200
+literal[REDACTED] 300
