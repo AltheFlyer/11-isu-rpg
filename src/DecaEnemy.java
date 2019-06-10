@@ -18,7 +18,7 @@ public class DecaEnemy extends Enemy {
      * @param y the y coordinate to generate at, should be between 0 and 2 (inclusive)
      */
     DecaEnemy(int x, int y) {
-        super(x, y, 100, "Spirit of Deca",
+        super(x, y, 100, 10, 0, "Spirit of Deca",
                 new AnimatedSprite("spritesheets/deca.png", 6, 6, 100),
                 new Ability[] {
                     new AbilityPair(new AnimatedSprite("spritesheets/deca.png", 6, 6, 25),"Decadent strike", "Pay the toll.", 0, 0,

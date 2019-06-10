@@ -5,12 +5,17 @@ abstract public class Entity {
     //Base stats
     private double maxHealth;
     private double maxEnergy;
+    private double baseAttack;
+    private double baseDefence;
 
     //Dynamic stats
     private double health;
     private String name;
     private double energy;
     private boolean alive;
+    private double attack;
+    private double defence;
+
 
     //CREATE A GETTER FOR THIS LATER
     public Ability[] abilities;
@@ -19,19 +24,11 @@ abstract public class Entity {
 
     private ArrayList<StatusEffect> statuses;
 
-    Entity(double health, String name, Ability[] abilities) {
-        this.abilities = abilities;
-
-        this.maxHealth = health;
-
-        this.health = health;
-        this.name = name;
-        alive = true;
-
-        statuses = new ArrayList<StatusEffect>();
+    Entity(double health, double baseAttack, double baseDefence, String name, Ability[] abilities) {
+        this(health, baseAttack, baseDefence, 0, name, abilities);
     }
 
-    Entity(double health, double energy, String name, Ability[] abilities) {
+    Entity(double health, double baseAttack, double baseDefence, double energy, String name, Ability[] abilities) {
         this.abilities = abilities;
         this.energy = energy;
         this.maxEnergy = energy;
@@ -39,6 +36,12 @@ abstract public class Entity {
         this.health = health;
         this.name = name;
         alive = true;
+
+        this.baseAttack = baseAttack;
+        this.attack = baseAttack;
+
+        this.baseDefence = baseDefence;
+        this.defence = baseDefence;
 
         statuses = new ArrayList<StatusEffect>();
     }
@@ -75,8 +78,9 @@ abstract public class Entity {
         return health;
     }
 
-    public void damageEntity(double damage){
-        health -= damage;
+    public void damageEntity(double damage) {
+        //Modify damage by defence
+        health -= damage * (1.0 - defence);
         if (health <= 0){
             alive = false;
         }
@@ -173,5 +177,59 @@ abstract public class Entity {
      */
     public ArrayList<StatusEffect> getStatuses() {
         return statuses;
+    }
+
+    /**
+     * [getBaseAttack]
+     * gets the base attack of the entity
+     * @return double, the base attack of the entity
+     */
+    public double getBaseAttack() {
+        return baseAttack;
+    }
+
+    /**
+     * [getBaseDefence]
+     * gets the base defence of the entity as a percent: 0 = 0%, 0.5 = 50%
+     * @return double, the base defence of the entity
+     */
+    public double getBaseDefence() {
+        return baseDefence;
+    }
+
+    /**
+     * [getAttack]
+     * gets the current (modified) attack of the entity
+     * @return double, the current attack of the enemy
+     */
+    public double getAttack() {
+        return attack;
+    }
+
+    /**
+     * [setAttack]
+     * sets the attack of the entity
+     * @param attack the new attack power of the entity
+     */
+    public void setAttack(double attack) {
+        this.attack = attack;
+    }
+
+    /**
+     * [getDefense]
+     * gets the entity's defense (as a percent)
+     * @return double, the defense of the entity
+     */
+    public double getDefense() {
+        return defence;
+    }
+
+    /**
+     * [setDefense]
+     * sets the defense of the entity (as a percent between 0, 1)
+     * @param defence the new defense of the entity
+     */
+    public void setDefense(double defence) {
+        this.defence = defence;
     }
 }
