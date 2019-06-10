@@ -511,6 +511,28 @@ public class GameIO {
                         generateAbility(line.substring(ability1StartIndex, ability1EndIndex)),
                         generateAbility(line.substring(ability2StartIndex))
                 );
+            case "LureAbility":
+                return new LureAbility(
+                        new AnimatedSprite(args[0], Integer.parseInt(args[1]), Integer.parseInt(args[2]), Integer.parseInt(args[3])),
+                        name, desc,
+                        Double.parseDouble(args[4]),
+                        Integer.parseInt(args[5]),
+                        Integer.parseInt(args[6]),
+                        Integer.parseInt(args[7]),
+                        Double.parseDouble(args[8]),
+                        Double.parseDouble(args[9])
+                );
+            case "EnergyAbility":
+                return new EnergyAbility(
+                        new AnimatedSprite(args[0], Integer.parseInt(args[1]), Integer.parseInt(args[2]), Integer.parseInt(args[3])),
+                        name, desc,
+                        Double.parseDouble(args[4]),
+                        Integer.parseInt(args[5]),
+                        Integer.parseInt(args[6]),
+                        Integer.parseInt(args[7]),
+                        Double.parseDouble(args[8]),
+                        Double.parseDouble(args[9])
+                );
             default:
                 return null;
         }
