@@ -40,9 +40,10 @@ public class TutorialLevel extends LevelScreen {
         moveAbility.lowerCooldown(1);
 
         players = new Player[1];
-        players[0] =  new Player(10, 30, "Allen",
+        players[0] =  new Player(10, 35, 0, 30, "tutorial", "Allen",
+                new AnimatedSprite("spritesheets/Jasmine.png", 1, 10, 100),
                 new Ability[] {
-                        new SingleAbility(new AnimatedSprite("spritesheets/Jasmine.png", 1, 10, 100),
+                        new SingleAbility(null,
                                 "Basic Attack", "Deals damage to a single target.",
                                 30, 1, 6, 0, 3, true, false),
                         moveAbility

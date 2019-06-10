@@ -8,30 +8,23 @@ public class Player extends Entity{
 
     Icon ico;
 
-    private BufferedImage sprite;
     private String debugName;
     private AnimatedSprite gif;
 
-    Player(double health, double energy, String name, Ability[] abilities){
-        super(health,energy,name,abilities);
-        for (int i = 0; i < abilities.length; i++){
-            abilities[i].setEntitySource(this);
-        }
-        ico = new Icon(new Rectangle(0, 0, 40, 40), "assets/icons/test.png");
-        gif = new AnimatedSprite("spritesheets/allen.png", 1, 5, 500);
-    }
-
-    Player(double health, double energy, String debugName, String name, BufferedImage sprite, Ability[] abilities){
-        super(health,energy,name,abilities);
-        for (int i = 0; i < abilities.length; i++){
-            abilities[i].setEntitySource(this);
-        }
-        this.debugName = debugName;
-        ico = new Icon(new Rectangle(0, 0, 40, 40), "assets/icons/test.png");
-    }
-
-    Player(double health, double energy, String debugName, String name, AnimatedSprite animatedSprite, Ability[] abilities){
-        super(health,energy,name,abilities);
+    /**
+     * [Player]
+     * creates a player with its debug name for use in grid configuration
+     * @param health the max health of the player
+     * @param attack the base attack of the player
+     * @param defence the base defence of the player
+     * @param energy the max energy of the player
+     * @param debugName the debug name of the plauer
+     * @param name the display name of the player
+     * @param animatedSprite the idle animated sprite for the player
+     * @param abilities the list of abilities that the player can use
+     */
+    Player(double health, double attack, double defence, double energy, String debugName, String name, AnimatedSprite animatedSprite, Ability[] abilities){
+        super(health, attack, defence, energy,name, abilities);
         for (int i = 0; i < abilities.length; i++){
             abilities[i].setEntitySource(this);
         }
@@ -61,7 +54,7 @@ public class Player extends Entity{
         } else if (getName().equals("cyan")){
             g.setColor(Color.CYAN);
         }
-        g.drawImage(sprite, 30,15+105*abilities.length,60,60, null);
+        //g.drawImage(sprite, 30,15+105*abilities.length,60,60, null);
         //g.fillRect(30,15+105*abilities.length,60,60);
         drawHealthBar(g);
         drawEnergyBar(g);
@@ -124,7 +117,7 @@ public class Player extends Entity{
             g.setColor(Color.CYAN);
         }
         //g.fillRect(x,y,120,120);
-        g.drawImage(sprite, x, y, 120, 120, null);
+        //g.drawImage(sprite, x, y, 120, 120, null);
         g.setColor(Color.BLACK);
         if (indicated){
             g.setColor(new Color(0, 0, 0, 100));
@@ -194,7 +187,7 @@ public class Player extends Entity{
 
         //Draw the player profile at the bottom so you know!
         g.setColor(Color.MAGENTA);
-        g.drawImage(sprite, 30, 15+105*abilities.length,60,60, null);
+        //g.drawImage(sprite, 30, 15+105*abilities.length,60,60, null);
         //g.fillRect(30,15+105*abilities.length,60,60);
 
         //ABILITY ICONS

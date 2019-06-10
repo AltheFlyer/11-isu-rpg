@@ -2,7 +2,7 @@ import utils.AnimatedSprite;
 
 /**
  * [CAPMEnemy]
- * an enemy modeled off of what the Constant Acceleration Particle Model would do if it suddenly became alive
+ * an enemy with constantly increasing attack power
  * @version 1.0
  * @author Allen Liu
  * @since June 9, 2019
@@ -20,7 +20,7 @@ public class CAPMEnemy extends Enemy {
      * @param y the y position of the grid
      */
     CAPMEnemy(int x, int y) {
-        super(x, y, 125, "CAPM", new AnimatedSprite("spritesheets/CAPM.png", 3, 3, 100),
+        super(x, y, 125, 10, 0, "CAPM", new AnimatedSprite("spritesheets/CAPM.png", 3, 3, 100),
                 new Ability[] {
                         new SingleAbility(null, "Accelerate", "Deals damage to a target and increases attack power.",
                                 0, 1, 6, 0, 3, true, false)
