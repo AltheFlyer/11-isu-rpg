@@ -16,15 +16,15 @@ public class RoomMap extends OverworldMap{
     private int tileSize = 100;
 
     public RoomMap(GameIO fileManager, String mapPath, String walkabilityKey){
-        super(fileManager, mapPath,walkabilityKey);
+        super(fileManager, mapPath, walkabilityKey);
     }
 
     @Override
     /**
      * [draw]
      * draws the room map by tile
-     * @param g
-     * @param player
+     * @param g the graphics object to draw with
+     * @param player the current player
      * @return void
      */
     public void draw(Graphics g, OverworldPlayer player){

@@ -18,10 +18,11 @@ public class MapScreen extends GameScreen {
     private OverworldMap map;
     private OverworldPlayer player;
     private OverworldNPC[] npc;
+    private OverworldObject[] objects;
     int length;
     int width;
 
-    public MapScreen(GameManager game, String mapPath, String walkabilityKey, String npcPath, int x, int y) {
+    public MapScreen(GameManager game, String mapPath, String walkabilityKey, String npcPath, String objectPath, int x, int y) {
         super(game);
         clock = new Clock(0.1);
         framerate = new FrameRate();
@@ -34,6 +35,7 @@ public class MapScreen extends GameScreen {
         }
         player = new OverworldPlayer(x, y);
         npc = getIO().getNPCs(npcPath);
+        objects = getIO().getObjects(objectPath);
         length = map.getMap()[0].length;
         width = map.getMap().length;
     }
@@ -50,6 +52,11 @@ public class MapScreen extends GameScreen {
         //updating clock and frames
         clock.update();
         framerate.update();
+
+        //updating location of moving objects
+        for (int i = 0; i < objects.length; ++i) {
+            objects[i].move(clock.getElapsedTime());
+        }
 
         //draws black background
         setBackground(Color.BLACK);
@@ -69,6 +76,10 @@ public class MapScreen extends GameScreen {
             if (npc[i].isTalking()) {
                 npc[i].speak(g);
             }
+        }
+
+        for (int i = 0; i < objects.length; ++i) {
+            objects[i].draw(g);
         }
 
         framerate.draw(g, 10, 10);
@@ -153,6 +164,9 @@ public class MapScreen extends GameScreen {
         }
         for (int i = 0; i < npc.length; ++i) {
             npc[i].checkCollisions(playerNewBox, player);
+        }
+        for (int i = 0; i < objects.length; ++i) {
+            objects[i].checkCollisions(playerNewBox, player);
         }
         player.move(clock.getElapsedTime());
     }

@@ -16,7 +16,7 @@ public class OverworldPlayer extends OverworldEntity {
     /**
      * [draw]
      * draws the player sprite either in the middle for moving maps, or at its [x][y] position
-     * @param g
+     * @param g the graphics object to draw with
      * @param map the map that the player is currently in
      * @return void
      */
