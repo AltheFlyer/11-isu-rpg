@@ -108,26 +108,7 @@ public class ProcessingCloudEnemy extends Enemy {
             setTargetedY(getYGrid());
             getDecide().action(map, closestX, getYGrid());
         } else if (getDecide().equals(seek)) {
-            //The abilities used are swapped from the abilities decided
-            //move to row with most players
-            int optimalRow = 0;
-            int maxRowPlayers = 0;
-
-            for (int y = 0; y < 3; ++y) {
-                int playerCount = 0;
-                for (int x = 0; x < 3; ++x) {
-                    if (!map.isEmpty(x, y)) {
-                        playerCount++;
-                        if (playerCount > maxRowPlayers) {
-                            optimalRow = y;
-                            maxRowPlayers = playerCount;
-                        }
-                    }
-                }
-            }
-
-            getDecide().indicateValidTiles(map);
-            getDecide().action(map, getXGrid(), optimalRow);
+            selectRowWithMostPlayers(map, seek);
         } else {
             selectRandomTile(map, getDecide());
             if (getDecide().equals(deconstructionBeam)) {

@@ -22,6 +22,7 @@ public class TutorialEnemy extends Enemy {
     BufferedImage sprite;
 
     Ability attackAbility;
+    Ability seek;
     Ability uselessAbility;
 
     /**
@@ -50,6 +51,7 @@ public class TutorialEnemy extends Enemy {
 
         attackAbility = getAbility(0);
         uselessAbility = getAbility(1);
+        seek = new BasicMoveAbility("", "", 0, 0, 2);
 
         try {
             sprite = ImageIO.read(new File("assets/sprites/slime.png"));
@@ -86,28 +88,9 @@ public class TutorialEnemy extends Enemy {
     public void act(JointMap map) {
         if (turn % 2 == 0) {
             selectRandomTile(map, attackAbility);
+            selectRowWithMostPlayers(map, seek);
         }
-
-        //The abilities used are swapped from the abilities decided
-        //move to row with most players
-        int optimalRow = 0;
-        int maxRowPlayers = 0;
-
-        for (int y = 0; y < 3; ++y) {
-            int playerCount = 0;
-            for (int x = 0; x < 3; ++x) {
-                if (!map.isEmpty(x, y)) {
-                    playerCount++;
-                    if (playerCount > maxRowPlayers) {
-                        optimalRow = y;
-                        maxRowPlayers = playerCount;
-                    }
-                }
-            }
-        }
-
-        uselessAbility.indicateValidTiles(map);
-        uselessAbility.action(map, getXGrid(), optimalRow);
+        //Useless ability is useless!
     }
 
     /**
