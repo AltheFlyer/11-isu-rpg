@@ -1,6 +1,7 @@
 import utils.AnimatedSprite;
 
 public class SplitStreamAbility extends AOEAbility{
+
     SplitStreamAbility(AnimatedSprite animation, String name, String desc, double energyCost, int cooldown){
         super (animation, name, desc, energyCost, cooldown, 0,2,6,0,0,0,true,true);
     }

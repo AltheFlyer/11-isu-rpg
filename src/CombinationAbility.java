@@ -1,6 +1,6 @@
 import utils.AnimatedSprite;
 
-import java.awt.*;
+import java.awt.Graphics;
 
 public class CombinationAbility extends DamagingAbility {
     /**
@@ -35,6 +35,7 @@ public class CombinationAbility extends DamagingAbility {
         jointMap.target(i,j, getDamage());
         jointMap.moveOnTile(getEntitySource().getXGrid(),getEntitySource().getYGrid(),getEntitySource().getXGrid()-1,getEntitySource().getYGrid());
     }
+
     /**
      * [drawHoverAttack]
      * Draws the area that will be affected by an ability

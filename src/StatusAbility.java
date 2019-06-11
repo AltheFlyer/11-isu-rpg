@@ -73,4 +73,8 @@ public class StatusAbility extends Ability {
 
         indicateValidTileHelper(jointMap, rangeAhead, rangeBehind, rangeDown, rangeUp, false, false);
     }
+
+    public StatusEffect getEffect(){
+        return effect;
+    }
 }

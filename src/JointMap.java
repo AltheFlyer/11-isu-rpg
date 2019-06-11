@@ -1,6 +1,6 @@
 import utils.AnimatedSprite;
 
-import java.awt.*;
+import java.awt.Graphics;
 
 public class JointMap {
     //private PlayerTile[][] playerArray = new PlayerTile[3][3];

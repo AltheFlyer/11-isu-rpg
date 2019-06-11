@@ -1,7 +1,10 @@
 import utils.AnimatedSprite;
 import utils.TextDrawer;
 
-import java.awt.*;
+import java.awt.Graphics;
+import java.awt.Color;
+import java.awt.Rectangle;
+
 import java.awt.image.BufferedImage;
 
 public class Player extends Entity{

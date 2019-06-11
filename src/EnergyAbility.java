@@ -1,6 +1,6 @@
 import utils.AnimatedSprite;
 
-import java.awt.*;
+import java.awt.Graphics;
 
 public class EnergyAbility extends DamagingAbility{
     private double energyGain;
