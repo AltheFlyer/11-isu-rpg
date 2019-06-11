@@ -7,6 +7,11 @@ public class MarkStatus extends StatusEffect {
     }
 
     @Override
+    public boolean isActiveImmediately() {
+        return false;
+    }
+
+    @Override
     public void triggerEffect(JointMap map, Entity affected) {}
 
     @Override

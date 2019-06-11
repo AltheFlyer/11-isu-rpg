@@ -6,10 +6,10 @@ public class Main {
         //game.setScreen(new DebugScreen(game));
         //game.setScreen(new LevelScreen(game));
 
-        game.setScreen(new BattleLayoutScreen(game));
+        //game.setScreen(new BattleLayoutScreen(game));
         //game.setScreen(new TutorialLevel(game));
 
-        /*
+
         //My args setup, Use custom run configurations for different encounters
         if (args.length != 0) {
             switch (args[0]) {
@@ -45,7 +45,7 @@ public class Main {
                     break;
             }
         }
-*/
+
 /*
         game.setScreen(new LevelScreen(game, new Enemy[] {
                 new BunsenBurnerEnemy(5, 0),
