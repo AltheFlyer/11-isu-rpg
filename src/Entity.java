@@ -71,6 +71,22 @@ abstract public class Entity {
         return abilities.length;
     }
 
+
+    public void endTurnLowerCooldown(){
+        for (int i = 0; i < abilities.length; i++){
+            abilities[i].lowerCooldown(1);
+        }
+    }
+
+    /**
+     * Lowers the cooldown of a certain ability
+     * @param index the ability to have its cooldown lowered
+     * @param amount the amount of cooldown to be refunded
+     */
+    public void lowerCooldown(int index, int amount){
+        abilities[index].lowerCooldown(amount);
+    }
+
     /**
      * [isAlive]
      * @return alive, if an entity is alive or not

@@ -143,10 +143,11 @@ public class LevelScreen extends GameScreen{
 
                         selectedPlayer.useEnergy(selectedAbility.getEnergyCost());
                         selectedAbility.resetCooldown();
-                        System.out.println("bam!");
+                        System.out.println(selectedAbility.getName());
                         System.out.println(selectedPlayer.getHealth());
                         //Deselect the ability
                         selectedAbility = null;
+
                         jointMap.unIndicateAll();
                         jointMap.unTargetableAll();
                     }
@@ -314,7 +315,7 @@ public class LevelScreen extends GameScreen{
                 //Start of new player turn
                 turnNumber++;
                 for (int i = 0; i < players.length; i++){
-                    players[i].gainEnergy(30);
+                    players[i].gainEnergy(40);
                     players[i].endTurnLowerCooldown();
                 }
 

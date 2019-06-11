@@ -46,6 +46,11 @@ public class AbilityPair extends Ability {
         secondAbility.action(jointMap, x, y);
     }
 
+    @Override
+    public double getDamage() {
+        return firstAbility.getDamage() + secondAbility.getDamage();
+    }
+
     /**
      * [drawHoverAttack]
      * draws the affected area of the ability, currently based on the selectable areas of BOTH contained abilities

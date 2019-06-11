@@ -126,11 +126,6 @@ public class Player extends Entity{
         g.drawRect(x, y, 120, 120);
     }
 
-    public void endTurnLowerCooldown(){
-        for (int i = 0; i < abilities.length; i++){
-            abilities[i].lowerCooldown(1);
-        }
-    }
 
     public void drawHealthBar(Graphics g){
         //Drawing a health bar here to make it nicer

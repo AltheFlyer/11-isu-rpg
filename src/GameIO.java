@@ -442,8 +442,25 @@ public class GameIO {
                         Double.parseDouble(args[9]),
                         Boolean.parseBoolean(args[10]),
                         Boolean.parseBoolean(args[11]));
+            case "JasmineBasicAbility":
+                return new JasmineBasicAbility(
+                        new AnimatedSprite(args[0], Integer.parseInt(args[1]), Integer.parseInt(args[2]), Integer.parseInt(args[3])),
+                        name, desc
+                        );
+            case "JasmineBlastAbility":
+                return new JasmineBlastAbility(
+                        new AnimatedSprite(args[0], Integer.parseInt(args[1]), Integer.parseInt(args[2]), Integer.parseInt(args[3])),
+                        name, desc
+                );
+            case "JasmineRepositionAbility":
+                return new JasmineRepositionAbility(name, desc, Double.parseDouble(args[0]));
             case "BasicMoveAbility":
                 return new BasicMoveAbility(name, desc,
+                        Double.parseDouble(args[0]),
+                        Integer.parseInt(args[1]),
+                        Integer.parseInt(args[2]));
+            case "DiagMoveAbility":
+                return new DiagMoveAbility(name, desc,
                         Double.parseDouble(args[0]),
                         Integer.parseInt(args[1]),
                         Integer.parseInt(args[2]));

@@ -5,8 +5,8 @@ attack 40
 defence 0
 energy 100
 ABILITIES 5
-CombinationAbility "back" "A single target attack that also pushes you back by 1" spritesheets/back.png 1 3 250 50 3 5 2 0 0.5 true false
+CombinationAbility "back" "A single target attack that also pushes you back by 1" spritesheets/back.png 1 3 250 40 2 5 2 0 0.5 true false
 BasicMoveAbility "CVPM" "Physicists get free movement to an adjacent tile" 0 1 1
 AOEAbility "sacrifice" "A sacrifice that will deal massive damage to everyone" spritesheets/sacrifice.png 1 4 350 50 4 0 0 6 2 20 1 true true
 EnergyAbility "awake bar" "Gives an ally an awake bar to regain 40 energy, damages a bit" spritesheets/allen.png 1 5 100 20 0 2 2 20 40
-CAPMAbility "CAPM" "Deals more damage based on how far the target is" spritesheets/allen.png 1 5 100 50 2 0 0.5
+CAPMAbility "CAPM" "Deals more damage based on how far the target is" spritesheets/allen.png 1 5 100 40 2 0 0.4
