@@ -5,8 +5,11 @@ attack 40
 defence 0
 energy 100
 ABILITIES 5
-KevinSpotlightAbility "Spotlight" "Shines a spotlight on an enemy, marking and cursing them" spritesheets/jasmine.png 1 5 100
+KevinBasicAbility "scalpel" "An incision that will inflict dissect, effective on marked targets" spritesheets/basicAttack.png 1 5 100
+KevinAOEDissectAbility "breakthrough" "an experimental breakthrough that dissects targets in a row, only usable at 50 energy" spritesheets/basicAttack.png 1 5 100
+KevinDissectAbility "dissect" "A dissection that does 20 damage per dissect stack and gives you 10 energy per dissect stack on target" spritesheets/basicAttack.png 1 5 100
+EnergyAbility "cellular resp" "give a friendly player 40 energy" spritesheets/allen.png 1 5 100 60 1 2 2 0 40
 BasicMoveAbility "step" "movement to an adjacent tile" 30 1 1
-AOEAbility "heal" "a vertical AOE heal on allies" spritesheets/heal.png 1 3 250 50 2 2 0 0 2 -30.0 0 false true
-KevinBasicAbility "scalpel" "A basic cut that does triple damage to marked targets" spritesheets/basicAttack.png 1 5 100
-SplitStreamAbility "dividing wind" "pushes things on row as far back as possible" spritesheets/jasmine.png 1 5 100 40 2
+
+
+

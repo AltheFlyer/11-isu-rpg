@@ -314,6 +314,22 @@ abstract public class Ability {
         }
         return false;
     }
+
+    public int getDissect(JointMap jointMap, int i, int j){
+        for (int m = 0; m < jointMap.getEntity(i,j).getStatuses().size(); m++) {
+            if (jointMap.getEntity(i, j).getStatuses().get(m) instanceof DissectedStatus) {
+                return jointMap.getEntity(i, j).getStatuses().get(m).getStacks();
+            }
+        }
+        return 0;
+    }
+    public void removeDissect(JointMap jointMap, int i, int j){
+        for (int m = 0; m < jointMap.getEntity(i,j).getStatuses().size(); m++) {
+            if (jointMap.getEntity(i, j).getStatuses().get(m) instanceof DissectedStatus) {
+                jointMap.getEntity(i, j).getStatuses().remove(m);
+            }
+        }
+    }
     /**
      * [indicatedValidTileHelper]
      * Something for abilities that helps users create where an ability will indicate as valid targetable tiles
