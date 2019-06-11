@@ -630,7 +630,7 @@ public class GameIO {
     public OverworldNPC[] getNPCs(String path) {
         String npcText = readFile(path);
         OverworldNPC[] npcs;
-        Item[] items = new Item[5];
+        Item[] items;
 
         int x, y;
         String name, message;
@@ -671,12 +671,25 @@ public class GameIO {
         int totalItems;
         String itemName;
         int itemCost;
+        int startingIndex = 0;
 
         String[] tokens;
         String[] lines = npcText.split("\n");
-        items = new Item[5];
 
         for (int i = 0; i < lines.length; ++i) {
+            if (lines[i].equals(name)) {
+                startingIndex = i;
+            }
+        }
+        totalItems = Integer.parseInt(lines[startingIndex + 1]);
+        items = new Item[totalItems];
+        for (int i = startingIndex + 2; i < startingIndex + totalItems; ++i) {
+            tokens = lines[i].split(" ");
+            itemName = tokens[0];
+            itemCost = Integer.parseInt(tokens[1]);
+            items[i - startingIndex - 2] = new Item(itemName, itemCost);
+        }
+        /*for (int i = 0; i < lines.length; ++i) {
             if (lines[i].equals(name)) {
                 totalItems = Integer.parseInt(lines[i + 1]);
                 items = new Item[totalItems];
@@ -687,7 +700,7 @@ public class GameIO {
                     items[j] = new Item(itemName, itemCost);
                 }
             }
-        }
+        }*/
         return items;
     }
 
