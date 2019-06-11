@@ -10,6 +10,7 @@ import utils.AnimatedSprite;
 public class DecaEnemy extends Enemy {
 
     private Icon attackIcon;
+    private Icon statusIcon;
 
     /**
      * [DecaEnemy]
@@ -18,7 +19,7 @@ public class DecaEnemy extends Enemy {
      * @param y the y coordinate to generate at, should be between 0 and 2 (inclusive)
      */
     DecaEnemy(int x, int y) {
-        super(x, y, 100, 10, 0, "Spirit of Deca",
+        super(x, y, 200, 15, 0, "Spirit of Deca",
                 new AnimatedSprite("spritesheets/deca.png", 6, 6, 100),
                 new Ability[] {
                     new AbilityPair(new AnimatedSprite("spritesheets/deca.png", 6, 6, 25),"Decadent strike", "Pay the toll.", 0, 0,
@@ -32,6 +33,7 @@ public class DecaEnemy extends Enemy {
                                         "Crippling Debt!", "Deca deca deca...", 0, 1, 6, 6, true, false)
             });
         attackIcon = new Icon("assets/icons/sword.png", "Greed", "This enemy intends to deal damage to a player.");
+        statusIcon = new Icon("assets/icons/test.png", "Indebt", "This enemy intends place a player into debt");
     }
 
     /**
@@ -41,10 +43,11 @@ public class DecaEnemy extends Enemy {
      */
     @Override
     public void decide(JointMap map) {
-        setIntent(attackIcon);
         if (Math.random() < 0.5) {
-            setDecide(abilities[1]);
+            setIntent(attackIcon);
+            setDecide(abilities[0]);
         } else {
+            setIntent(statusIcon);
             setDecide(abilities[1]);
         }
     }

@@ -1,6 +1,13 @@
 import utils.AnimatedSprite;
 
 public class JasmineBasicAbility extends SingleAbility {
+    /**
+     * [JasmineBasicAbility]
+     * Constructor for single target abilities
+     * @param animation the animation that is played on ability case
+     * @param name the displayed name of the ability
+     * @param desc the displayed description of the ability
+     */
     JasmineBasicAbility(AnimatedSprite animation, String name, String desc){
         super (animation, name, desc, 20, 1, 6, 0, 0, 0.5, true, false);
     }

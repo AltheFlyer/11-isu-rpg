@@ -6,18 +6,19 @@ public class Main {
         //game.setScreen(new DebugScreen(game));
         //game.setScreen(new LevelScreen(game));
 
-        //game.setScreen(new BattleLayoutScreen(game));
+        game.setScreen(new BattleLayoutScreen(game));
         //game.setScreen(new TutorialLevel(game));
-        
+
+        /*
         //My args setup, Use custom run configurations for different encounters
         if (args.length != 0) {
             switch (args[0]) {
                 case "decaAndBunsen" :
                     game.setScreen(new LevelScreen(game, new Enemy[] {
-                            new BunsenBurnerEnemy(5, 0),
+                            new BunsenBurnerEnemy(5, 1),
                             new DecaEnemy(4, 1),
-                            new FlaskEnemy(5,1),
-                            new CAPMEnemy(3,2)
+                            new FlaskEnemy(5,0),
+                            new ProcessingCloudEnemy(3, 1)
                     }));
                     break;
                 case "ChemLevelA" :
@@ -44,7 +45,7 @@ public class Main {
                     break;
             }
         }
-
+*/
 /*
         game.setScreen(new LevelScreen(game, new Enemy[] {
                 new BunsenBurnerEnemy(5, 0),
