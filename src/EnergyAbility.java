@@ -4,10 +4,13 @@ import java.awt.Graphics;
 
 public class EnergyAbility extends DamagingAbility{
     private double energyGain;
+
+
     EnergyAbility(AnimatedSprite animation, String name, String desc, double energyCost, int cooldown, int xRange, int yRange, double damage, double energyGain) {
         super(animation, name, desc, energyCost,cooldown, xRange,yRange,damage,0, false, true);
         this.energyGain = energyGain;
     }
+
     public void action(JointMap jointMap, int i, int j){
         jointMap.getEntity(i,j).gainEnergy(energyGain);
         jointMap.target(i, j, getDamage());

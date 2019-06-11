@@ -4,7 +4,7 @@ import java.awt.Graphics;
 
 public class CombinationAbility extends DamagingAbility {
     /**
-     * [AOEAbility]
+     * [CombinationAbility]
      * Constructor for combination abilities
      * @param animation the animation that is played on ability case
      * @param name the displayed name of the ability

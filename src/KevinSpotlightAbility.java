@@ -3,14 +3,14 @@ import utils.AnimatedSprite;
 public class KevinSpotlightAbility extends StatusAbility {
 
     /**
-     * [StatusAbility]
+     * [KevinSpotlightAbility]
      * generates a StatusAbility with single target capabilities
      * @param animation the animation that is played on ability case
      * @param name the displayed name of the ability
      * @param desc the displayed description of the ability
      */
     public KevinSpotlightAbility(AnimatedSprite animation, String name, String desc) {
-        super(new CursedStatus(10), animation, name, desc, 40, 4, 4,2, true,false);
+        super(new CursedStatus(10), animation, name, desc, 40, 3, 4,2, true,false);
     }
 
     /**
