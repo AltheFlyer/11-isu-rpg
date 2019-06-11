@@ -81,6 +81,14 @@ public class OverworldNPC extends OverworldEntity {
         }
     }
 
+
+    /**
+     * [checkCollisions]
+     * checks if player is colliding with this NPC
+     * if so, stops player from moving
+     * @param playerBounds, the player's bounding box
+     * @param player, the actual player
+     */
     public void checkCollisions(Rectangle playerBounds, OverworldPlayer player) {
         if (playerBounds.intersects(this.collisionWindow())) {
             player.setXVelocity(0);
