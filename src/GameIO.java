@@ -683,7 +683,7 @@ public class GameIO {
         }
         totalItems = Integer.parseInt(lines[startingIndex + 1]);
         items = new Item[totalItems];
-        for (int i = startingIndex + 2; i < startingIndex + totalItems; ++i) {
+        for (int i = startingIndex + 2; i < startingIndex + totalItems + 2; ++i) {
             tokens = lines[i].split(" ");
             itemName = tokens[0];
             itemCost = Integer.parseInt(tokens[1]);
