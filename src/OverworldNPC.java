@@ -122,4 +122,13 @@ public class OverworldNPC extends OverworldEntity {
         return talking;
     }
 
+    /**
+     * [shopIsOpen]
+     * returns if the NPC's shop interface is open or not
+     * @return boolean false, as normal NPCs never have shops
+     */
+    public boolean shopIsOpen() {
+        return false;
+    }
+
 }

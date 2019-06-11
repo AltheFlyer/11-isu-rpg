@@ -41,4 +41,14 @@ public class OverworldShopNPC extends OverworldNPC {
         g.drawString("Press z to continue..",1111,675); //draw continue message
     }
 
+    @Override
+    /**
+     * [shopIsOpen]
+     * returns if the NPC's shop interface is open or not
+     * @return boolean isTalking, if the NPC is talking or not
+     */
+    public boolean shopIsOpen() {
+        return this.isTalking();
+    }
+
 }
