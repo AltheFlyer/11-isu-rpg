@@ -697,13 +697,12 @@ public class GameIO {
         for (int i = startingIndex + 2; i < startingIndex + totalItems + 2; ++i) {
             tokens = lines[i].split(" ");
             itemCost = Integer.parseInt(tokens[0]);
-            x = Integer.parseInt(tokens[2]);
-            y = Integer.parseInt(tokens[3]);
+            x = Integer.parseInt(tokens[1]);
+            y = Integer.parseInt(tokens[2]);
             itemName = "";
             for (int j = 3; j < tokens.length; ++i) {
                 itemName.concat(" " + tokens[j]);
             }
-            itemName = tokens[1];
             items[i - startingIndex - 2] = new Item(itemName, itemCost, x, y);
         }
         return items;
