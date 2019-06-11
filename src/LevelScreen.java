@@ -322,6 +322,7 @@ public class LevelScreen extends GameScreen{
                 for (int i = 0; i < enemies.length; i++){
                     if (enemies[i] != null) {
                         jointMap.generateEnemyDecisions(enemies[i]);
+                        enemies[i].endTurnLowerCooldown();
                     }
                 }
                 selectedPlayer = null;
