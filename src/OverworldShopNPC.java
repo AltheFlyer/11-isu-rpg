@@ -52,4 +52,13 @@ public class OverworldShopNPC extends OverworldNPC {
         return this.isTalking();
     }
 
+    /**
+     * [getItems]
+     * gets the NPC's array of items
+     * @return items, the array of the NPC's items for sale
+     */
+    public Item[] getItems() {
+        return this.items;
+    }
+
 }
