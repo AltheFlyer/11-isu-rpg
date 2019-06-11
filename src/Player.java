@@ -38,10 +38,22 @@ public class Player extends Entity{
         gif = animatedSprite;
     }
 
+    /**
+     * [getAbility]
+     * gets an ability and returns it to be used or selected
+     * @param index the index of the ability in the list of abilities that will be returned
+     * @return ability, an ability that will be used
+     */
     public Ability getAbility(int index){
         return abilities[index];
     }
 
+    /**
+     * [drawAbilities]
+     * draws out the menu on the side which contains all of the abilities
+     * @param g the graphics used to draw with
+     * @param ability the ability that is currently selected
+     */
     //pass list of abilities into levelScreen, select based on rect hovering
     public void drawAbilities(Graphics g, Ability ability){
         //BACKGROUND
@@ -113,6 +125,14 @@ public class Player extends Entity{
         }
     }
 
+    /**
+     * [draw]
+     * draws out the player animation on the battle grid
+     * @param x the x graphical location of the player
+     * @param y the y graphicat location of the player
+     * @param g the graphics to draw with
+     * @param indicated determines if a player should be shaded (indicated when an ability is selected)
+     */
     public void draw(int x, int y, Graphics g, boolean indicated){
         gif.draw(g,x,y);
 
@@ -132,7 +152,11 @@ public class Player extends Entity{
         g.drawRect(x, y, 120, 120);
     }
 
-
+    /**
+     * [drawHealthBar]
+     * draws the healthbar for a player
+     * @param g the graphics used to draw with
+     */
     public void drawHealthBar(Graphics g){
         //Drawing a health bar here to make it nicer
         double ratio = getHealth() / getMaxHealth();
@@ -149,7 +173,11 @@ public class Player extends Entity{
         g.drawRect(100, 33+105*abilities.length,190, 12);
         g.drawString(Math.ceil(getHealth()) + "/" + getMaxHealth(), 130, 44+105*abilities.length);
     }
-
+    /**
+     * [drawEnergyBar]
+     * draws the energybar for a player
+     * @param g the graphics used to draw with
+     */
     public void drawEnergyBar(Graphics g){
         double ratio = getEnergy() / getMaxEnergy();
         g.setColor(Color.GRAY);
@@ -174,6 +202,11 @@ public class Player extends Entity{
         return debugName;
     }
 
+    /**
+     * [drawSelectedAbilities]
+     * Gets the selectedAbility and shades it in when selected
+     * @param g the graphics used to draw
+     */
     //Drawing out abilities on the selection screen
     public void drawSelectAbilities(Graphics g){
         //BACKGROUND
@@ -191,7 +224,7 @@ public class Player extends Entity{
         for (int i = 0; i < abilities.length; i++) {
             //draw the abilities cyan if usable
             abilities[i].drawInfoBox(g, 30, 105 * i);
-            /**
+            /*
             if (abilities[i].getEnergyCost() > getEnergy() || abilities[i].getCurrentCooldown() > 0) {
                 g.setColor(new Color(255, 150, 200));
             } else{
