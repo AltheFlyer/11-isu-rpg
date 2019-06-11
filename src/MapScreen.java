@@ -155,6 +155,12 @@ public class MapScreen extends GameScreen {
         }
     }
 
+    /**
+     * [checkCollisions]
+     * checks the nine tiles, NPCs and objects around the player for walkability
+     * stops the player from walking on a non-walkable tile
+     * @return void
+     */
     private void checkCollisions() {
         int playerXCenter = player.getX() + player.collisionWindow().width / 2;
         int playerYCenter = player.getY() + player.collisionWindow().height / 2;
