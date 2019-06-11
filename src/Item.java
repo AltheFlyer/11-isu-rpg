@@ -1,3 +1,5 @@
+import java.awt.*;
+
 /**
  * [Item.java]
  * Class for items that can be bought from OverworldShopNPCs
@@ -7,12 +9,16 @@
  */
 public class Item {
 
+    static int width = 200;
+    static int height = 100;
     private String name;
     private int cost;
+    private Rectangle boundingBox;
 
-    public Item(String name, int cost) {
+    public Item(String name, int cost, int x, int y) {
         this.name = name;
         this.cost = cost;
+        this.boundingBox = new Rectangle(x, y, height, width);
     }
 
     /**

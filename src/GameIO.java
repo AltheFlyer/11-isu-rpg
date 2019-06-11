@@ -681,6 +681,7 @@ public class GameIO {
         int totalItems;
         String itemName;
         int itemCost;
+        int x, y;
         int startingIndex = 0;
 
         String[] tokens;
@@ -696,12 +697,14 @@ public class GameIO {
         for (int i = startingIndex + 2; i < startingIndex + totalItems + 2; ++i) {
             tokens = lines[i].split(" ");
             itemCost = Integer.parseInt(tokens[0]);
+            x = Integer.parseInt(tokens[2]);
+            y = Integer.parseInt(tokens[3]);
             itemName = "";
-            for (int j = 1; j < tokens.length; ++i) {
+            for (int j = 3; j < tokens.length; ++i) {
                 itemName.concat(" " + tokens[j]);
             }
             itemName = tokens[1];
-            items[i - startingIndex - 2] = new Item(itemName, itemCost);
+            items[i - startingIndex - 2] = new Item(itemName, itemCost, x, y);
         }
         return items;
     }
