@@ -40,7 +40,7 @@ abstract public class OverworldObject {
     /**
      * [draw]
      * draws objects
-     * @param g
+     * @param g the graphics object to draw with
      * @return void
      */
     public void draw(Graphics g) {
