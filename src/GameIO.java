@@ -650,7 +650,8 @@ public class GameIO {
         Item[] items;
 
         int x, y;
-        String name, message;
+        String name = "";
+        String message;
         String[] tokens;
         int counter = 0;
 
@@ -662,7 +663,9 @@ public class GameIO {
             tokens = lines[i].split(" ");
             x = Integer.parseInt(tokens[0]);
             y = Integer.parseInt(tokens[1]);
-            name = tokens[2];
+            for (int j = 2; j < tokens.length; ++j) {
+                name = name.concat(" " + tokens[j]);
+            }
             ++i;
             message = lines[i];
             if (name.contains("Shopkeeper")) {
@@ -688,6 +691,7 @@ public class GameIO {
         int totalItems;
         String itemName;
         int itemCost;
+        int x, y;
         int startingIndex = 0;
 
         String[] tokens;
@@ -702,22 +706,15 @@ public class GameIO {
         items = new Item[totalItems];
         for (int i = startingIndex + 2; i < startingIndex + totalItems + 2; ++i) {
             tokens = lines[i].split(" ");
-            itemName = tokens[0];
-            itemCost = Integer.parseInt(tokens[1]);
-            items[i - startingIndex - 2] = new Item(itemName, itemCost);
-        }
-        /*for (int i = 0; i < lines.length; ++i) {
-            if (lines[i].equals(name)) {
-                totalItems = Integer.parseInt(lines[i + 1]);
-                items = new Item[totalItems];
-                for (int j = 0; j < totalItems; ++j) {
-                    tokens = lines[i + 2 + j].split(" ");
-                    itemName = tokens[0];
-                    itemCost = Integer.parseInt(tokens[1]);
-                    items[j] = new Item(itemName, itemCost);
-                }
+            itemCost = Integer.parseInt(tokens[0]);
+            x = Integer.parseInt(tokens[1]);
+            y = Integer.parseInt(tokens[2]);
+            itemName = "";
+            for (int j = 3; j < tokens.length; ++i) {
+                itemName.concat(" " + tokens[j]);
             }
-        }*/
+            items[i - startingIndex - 2] = new Item(itemName, itemCost, x, y);
+        }
         return items;
     }
 
