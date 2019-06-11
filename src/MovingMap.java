@@ -50,4 +50,16 @@ public class MovingMap extends OverworldMap{
         }
     }
 
+    /**
+     * [event]
+     * method is called whenever a hallway is created
+     * runs scripted event: bell ringing or announcement
+     * @param g the graphics object used to draw with
+     * @return void
+     */
+    @Override
+    public void event(Graphics g) {
+
+    }
+
 }

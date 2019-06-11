@@ -25,7 +25,8 @@ public class MapScreen extends GameScreen {
     int length;
     int width;
 
-    public MapScreen(GameManager game, String mapPath, String walkabilityKey, String npcPath, String objectPath, int x, int y) {
+    public MapScreen(GameManager game, String mapPath, String walkabilityKey,
+                     String npcPath, String objectPath, int x, int y) {
         super(game);
         clock = new Clock(0.1);
         framerate = new FrameRate();

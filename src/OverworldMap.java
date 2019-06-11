@@ -68,4 +68,14 @@ abstract public class OverworldMap {
      */
     public BufferedImage getSprite(int x, int y) { return sprites[x][y]; }
 
+    /**
+     * [event]
+     * method is called whenever a new map is created
+     * runs a scripted event, such as an announcement or the bell ringing
+     * overridden in subclasses
+     * @param g the graphics object used to draw with
+     * @return void
+     */
+    public void event(Graphics g) { }
+
 }

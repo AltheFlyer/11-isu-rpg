@@ -1,7 +1,9 @@
-3
-1150 100 Mr. Cimetta
+4
+750 450 Mr. Cimetta
 prose or verse?
-750 450 Allen
-why am I here
-850 450 Kevin
-I switched in guys
+100 450 placeholder
+You ready for the PROSE and VERSE analysis?
+850 450 placeholder
+Oh god, my ISU presentation is today and I'm not ready...
+300 200 placeholder
+Synecdoche!? I've never heard of that word in my life!
