@@ -454,6 +454,13 @@ public class GameIO {
                 );
             case "JasmineRepositionAbility":
                 return new JasmineRepositionAbility(name, desc, Double.parseDouble(args[0]));
+            case "SplitStreamAbility":
+                return new SplitStreamAbility(
+                        new AnimatedSprite(args[0], Integer.parseInt(args[1]), Integer.parseInt(args[2]), Integer.parseInt(args[3])),
+                        name, desc,
+                        Double.parseDouble(args[4]),
+                        Integer.parseInt(args[5])
+                );
             case "BasicMoveAbility":
                 return new BasicMoveAbility(name, desc,
                         Double.parseDouble(args[0]),

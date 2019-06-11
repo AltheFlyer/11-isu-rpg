@@ -1,12 +1,12 @@
 display_name Jasmine
 spritesheets/jasmine.png 1 5 500
-health 80
-attack 35
+health 65
+attack 30
 defence 0
 energy 100
 ABILITIES 5
-DiagMoveAbility "waltz" "Free Diagonal Movement and is reset by flourish or blast" 0 1 1
-JasmineRepositionAbility "preparation" "Free teleport, only usable if you are above 90 energy" 0
-JasmineBasicAbility "flourish" "A basic ability that hits targets in a row" spritesheets/flourish.png 1 5 100
+DiagMoveAbility "waltz" "Diagonal Movement and is reset by flourish or blast" 0 1 1
+JasmineRepositionAbility "preparation" "Free teleport, only usable if you are above or at 90 energy" 0
+JasmineBasicAbility "flourish" "A basic ability that hits a target in the same row" spritesheets/flourish.png 1 5 100
 JasmineBlastAbility "blast" "A blast that will deal massive damage to anyone in front of you, will also push both back by 1" spritesheets/blast.png 1 3 100
-LureAbility "lure" "Lures an enemy 1 space forward" spritesheets/lure.png 1 5 100 40 1 4 3 0 0
+LureAbility "lure" "Lures an enemy 1 space forward" spritesheets/lure.png 1 5 100 40 2 4 3 0 0
