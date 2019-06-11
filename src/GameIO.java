@@ -637,7 +637,7 @@ public class GameIO {
     public OverworldNPC[] getNPCs(String path) {
         String npcText = readFile(path);
         OverworldNPC[] npcs;
-        Item[] items = new Item[5];
+        Item[] items;
 
         int x, y;
         String name, message;
@@ -655,7 +655,7 @@ public class GameIO {
             name = tokens[2];
             ++i;
             message = lines[i];
-            if (name.contains("shopkeeper")) {
+            if (name.contains("Shopkeeper")) {
                 items = getItems(name);
                 npcs[counter] = new OverworldShopNPC(x, y, name, message, items);
             } else {
@@ -673,28 +673,41 @@ public class GameIO {
      * @return Item[] an array of the items in the shopkeeper's shop
      */
     public Item[] getItems(String name) {
-        String npcText = readFile("shop_items");
+        String npcText = readFile("shop_items.txt");
         Item[] items;
         int totalItems;
         String itemName;
         int itemCost;
+        int startingIndex = 0;
 
         String[] tokens;
         String[] lines = npcText.split("\n");
-        items = new Item[5];
 
         for (int i = 0; i < lines.length; ++i) {
+            if (lines[i].equals(name)) {
+                startingIndex = i;
+            }
+        }
+        totalItems = Integer.parseInt(lines[startingIndex + 1]);
+        items = new Item[totalItems];
+        for (int i = startingIndex + 2; i < startingIndex + totalItems + 2; ++i) {
+            tokens = lines[i].split(" ");
+            itemName = tokens[0];
+            itemCost = Integer.parseInt(tokens[1]);
+            items[i - startingIndex - 2] = new Item(itemName, itemCost);
+        }
+        /*for (int i = 0; i < lines.length; ++i) {
             if (lines[i].equals(name)) {
                 totalItems = Integer.parseInt(lines[i + 1]);
                 items = new Item[totalItems];
                 for (int j = 0; j < totalItems; ++j) {
-                    tokens = lines[i].split(" ");
+                    tokens = lines[i + 2 + j].split(" ");
                     itemName = tokens[0];
                     itemCost = Integer.parseInt(tokens[1]);
                     items[j] = new Item(itemName, itemCost);
                 }
             }
-        }
+        }*/
         return items;
     }
 
@@ -717,13 +730,17 @@ public class GameIO {
 
         for (int i = 0; i < totalObjects; ++i) {
             tokens = lines[i + 1].split(" ");
-            if (tokens[0].equals("orbiter")) {
+            if ((tokens[0].equals("orbiter")) || (tokens[0].equals("sweller"))) {
                 x = Integer.parseInt(tokens[1]);
                 y = Integer.parseInt(tokens[2]);
                 radius = Integer.parseInt(tokens[3]);
                 respawnX = Integer.parseInt(tokens[4]);
                 respawnY = Integer.parseInt(tokens[5]);
-                objects[i] = new Orbiter(x, y, x - radius, y, respawnX, respawnY);
+                if (tokens[0].equals("orbiter")) {
+                    objects[i] = new Orbiter(x, y, x - radius, y, respawnX, respawnY);
+                } else {
+                    objects[i] = new Sweller(x, y, radius, respawnX, respawnY);
+                }
             }
         }
         return objects;

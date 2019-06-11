@@ -1,5 +1,12 @@
 import java.awt.*;
 
+/**
+ * [Door.java]
+ * Class for tile type door that the player can collide with to move between maps
+ * @version 1.1
+ * @author Jasmine Chu
+ * @since May 30, 2019
+ */
 public class Door extends OverworldTile {
 
     private String doorPath;

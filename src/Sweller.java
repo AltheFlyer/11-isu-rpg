@@ -1,33 +1,40 @@
 import java.awt.*;
 
 /**
- * [Orbiter.java]
- * Class for orbiter object that travels in a circular path on the map and interacts with player upon collisions
+ * [Sweller.java]
+ * Class for circular object that swells in size at equal intervals and interacts upon colliding
  * @version 1.1
  * @author Jasmine Chu
- * @since June 07, 2019
+ * @since June 09, 2019
  */
-public class Orbiter extends OverworldObject {
+public class Sweller extends OverworldObject {
 
-    private int orbitRadius;
-    private double angle = 0;
+    private int maxRadius;
+    private int radius;
     private int velocity;
-    private int orbitCenterX;
-    private int orbitCenterY;
     private Rectangle boundingBox;
-    private int size = 50;
     private int respawnX;
     private int respawnY;
 
-    public Orbiter(int x, int y, int orbitCenterX, int orbitCenterY, int respawnX, int respawnY) {
+    public Sweller(int x, int y, int maxRadius, int respawnX, int respawnY) {
         super(x, y);
-        this.orbitRadius = 200;
+        this.maxRadius = maxRadius;
         this.velocity = 5;
-        this.orbitCenterX = orbitCenterX;
-        this.orbitCenterY = orbitCenterY;
         this.respawnX = respawnX;
         this.respawnY = respawnY;
-        this.boundingBox = new Rectangle(x,y,size,size);
+        this.boundingBox = new Rectangle(x,y,0,0);
+    }
+
+    @Override
+    /**
+     * [draw]
+     * draws objects
+     * @param g the graphics object to draw with
+     * @return void
+     */
+    public void draw(Graphics g) {
+        g.setColor(Color.BLUE);
+        g.fillRect(this.getX(), this.getY(), this.radius, this.radius);
     }
 
     /**
@@ -49,34 +56,44 @@ public class Orbiter extends OverworldObject {
     }
 
     /**
-     * [updateAngle]
-     * updates the angle according to the elapsed time
+     * [getRadius]
+     * returns the object's current radius
+     * @return int radius the object's current radius
+     */
+    public int getRadius() {
+        return this.radius;
+    }
+
+    /**
+     * [updateRadius]
+     * updates the radius according to the elapsed time
      * @param elapsedTime elapsed time between last time check and current time in seconds
      * @return void
      */
-    public void updateAngle(double elapsedTime) {
-        this.angle += (this.velocity * elapsedTime * 100);
-        if (this.angle >= 360) {
-            this.angle -= 360;
+    public void updateRadius(double elapsedTime) {
+        if (this.radius >= maxRadius) {
+            this.radius -= (this.velocity * elapsedTime * 100);
+        } else {
+            this.radius += (this.velocity * elapsedTime * 100);
         }
     }
 
     /**
      * [calcNewX]
-     * calculates the object's new x coordinate according to the elapsed time
+     * calculates the object's new x coordinate according to the elapsed time and radius
      * @return int new value of the object's x coordinate according to the elapsed time
      */
     public int calcNewX() {
-        return (int) (orbitCenterX + orbitRadius * Math.cos(Math.toRadians(angle)));
+        return (this.getX() - this.radius);
     }
 
     /**
      * [calcNewY]
-     * calculates the object's new y coordinate according to the elapsed time
+     * calculates the object's new y coordinate according to the elapsed time and radius
      * @return int new value of the object's y coordinate according to the elapsed time
      */
     public int calcNewY() {
-        return (int) (orbitCenterY + orbitRadius * Math.sin(Math.toRadians(angle)));
+        return (this.getY() - this.radius);
     }
 
     /**
@@ -86,10 +103,22 @@ public class Orbiter extends OverworldObject {
      * @return void
      */
     public void move(double elapsedTime) {
-        updateAngle(elapsedTime);
+        updateRadius(elapsedTime);
         this.setX(calcNewX());
         this.setY(calcNewY());
         this.setBoundingBox(this.getX(),this.getY());
+    }
+
+    /**
+     * [setBoundingBox]
+     * changes the x and y position of the object's bounding box
+     * @return void
+     */
+    public void setBoundingBox() {
+        this.boundingBox.x = this.getX();
+        this.boundingBox.y = this.getY();
+        this.boundingBox.width = this.getRadius();
+        this.boundingBox.height = this.getRadius();
     }
 
     /**

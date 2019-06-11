@@ -4,7 +4,7 @@ import java.awt.*;
  * [MapScreen.java]
  * Class for all overworld objects
  * @version 1.1
- * @author Jasmine Chu & Ethan Kwan
+ * @author Jasmine Chu
  * @since June 07, 2019
  */
 abstract public class OverworldObject {
@@ -40,7 +40,7 @@ abstract public class OverworldObject {
     /**
      * [draw]
      * draws objects
-     * @param g
+     * @param g the graphics object to draw with
      * @return void
      */
     public void draw(Graphics g) {

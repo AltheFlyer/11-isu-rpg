@@ -32,6 +32,8 @@ public class MapScreen extends GameScreen {
             map = new PhysicsRoom(getIO(), mapPath, walkabilityKey);
         } else if (mapPath.contains("english")) {
             map = new EnglishRoom(getIO(), mapPath, walkabilityKey);
+        } else if (mapPath.contains("chemistry")) {
+            map = new ChemistryRoom(getIO(), mapPath, walkabilityKey);
         } else {
             map = new RoomMap(getIO(), mapPath, walkabilityKey);
         }
