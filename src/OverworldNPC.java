@@ -61,9 +61,6 @@ public class OverworldNPC extends OverworldEntity {
 //            textDrawer.speakText(g);
 //        }
         textDrawer.drawText(g); //draw message
-        g.setColor(Color.WHITE);
-        g.fillRect(1241,675,25,25);
-        g.setColor(Color.BLACK);
         g.drawString("Press z to continue..",1111,675);
     }
 

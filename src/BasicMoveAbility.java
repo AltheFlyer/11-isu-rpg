@@ -1,4 +1,4 @@
-import java.awt.*;
+import java.awt.Graphics;
 
 public class BasicMoveAbility extends MoveAbility {
     /**

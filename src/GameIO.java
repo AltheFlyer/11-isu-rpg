@@ -454,6 +454,16 @@ public class GameIO {
                 );
             case "JasmineRepositionAbility":
                 return new JasmineRepositionAbility(name, desc, Double.parseDouble(args[0]));
+            case "KevinBasicAbility":
+                return new KevinBasicAbility(
+                        new AnimatedSprite(args[0], Integer.parseInt(args[1]), Integer.parseInt(args[2]), Integer.parseInt(args[3])),
+                        name, desc
+                );
+            case "KevinSpotlightAbility":
+                return new KevinSpotlightAbility(
+                        new AnimatedSprite(args[0], Integer.parseInt(args[1]), Integer.parseInt(args[2]), Integer.parseInt(args[3])),
+                        name, desc
+                );
             case "SplitStreamAbility":
                 return new SplitStreamAbility(
                         new AnimatedSprite(args[0], Integer.parseInt(args[1]), Integer.parseInt(args[2]), Integer.parseInt(args[3])),
@@ -640,7 +650,7 @@ public class GameIO {
         Item[] items;
 
         int x, y;
-        String name = "";
+        String name;
         String message;
         String[] tokens;
         int counter = 0;
@@ -653,6 +663,7 @@ public class GameIO {
             tokens = lines[i].split(" ");
             x = Integer.parseInt(tokens[0]);
             y = Integer.parseInt(tokens[1]);
+            name = "";
             for (int j = 2; j < tokens.length; ++j) {
                 name = name.concat(" " + tokens[j]);
             }
@@ -679,8 +690,8 @@ public class GameIO {
         String npcText = readFile("shop_items.txt");
         Item[] items;
         int totalItems;
-        String itemName;
         int itemCost;
+        String itemName = "";
         int x, y;
         int startingIndex = 0;
 
@@ -701,7 +712,7 @@ public class GameIO {
             y = Integer.parseInt(tokens[2]);
             itemName = "";
             for (int j = 3; j < tokens.length; ++j) {
-                itemName.concat(" " + tokens[j]);
+                itemName = itemName.concat(" " + tokens[j]);
             }
             items[i - startingIndex - 2] = new Item(itemName, itemCost, x, y);
         }

@@ -1,7 +1,8 @@
 import utils.AnimatedSprite;
 import utils.TextDrawer;
 
-import java.awt.*;
+import java.awt.Graphics;
+import java.awt.Color;
 
 abstract public class Enemy extends Entity {
 

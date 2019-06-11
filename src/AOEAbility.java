@@ -1,6 +1,7 @@
 import utils.AnimatedSprite;
 
-import java.awt.*;
+import java.awt.Graphics;
+import java.awt.Color;
 
 public class AOEAbility extends DamagingAbility{
 
