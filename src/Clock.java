@@ -2,7 +2,7 @@
  * [Clock.java]
  * Class for system clock
  * @version 1.1
- * @author Jasmine Chu & Ethan Kwan
+ * @author Jasmine Chu
  * @since May 31, 2019
  */
 class Clock {

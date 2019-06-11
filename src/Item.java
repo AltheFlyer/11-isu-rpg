@@ -2,7 +2,7 @@
  * [Item.java]
  * Class for items that can be bought from OverworldShopNPCs
  * @version 1.1
- * @author Jasmine Chu & Ethan Kwan
+ * @author Jasmine Chu
  * @since June 10, 2019
  */
 public class Item {

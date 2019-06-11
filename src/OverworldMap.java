@@ -8,7 +8,7 @@ import java.io.IOException;
  * [OverworldMap.java]
  * Abstract class for any overworld map
  * @version 1.1
- * @author Jasmine Chu & Ethan Kwan
+ * @author Ethan Kwan
  * @since May 22, 2019
  */
 abstract public class OverworldMap {

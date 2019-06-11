@@ -6,7 +6,7 @@ import java.awt.*;
  * [OverworldNPC.java]
  * Class for NPCs on any overworld map
  * @version 1.1
- * @author Jasmine Chu & Ethan Kwan
+ * @author Ethan Kwan
  * @since May 22, 2019
  */
 public class OverworldNPC extends OverworldEntity {

@@ -648,7 +648,7 @@ public class GameIO {
             name = tokens[2];
             ++i;
             message = lines[i];
-            if (name.contains("shopkeeper")) {
+            if (name.contains("Shopkeeper")) {
                 items = getItems(name);
                 npcs[counter] = new OverworldShopNPC(x, y, name, message, items);
             } else {
@@ -666,7 +666,7 @@ public class GameIO {
      * @return Item[] an array of the items in the shopkeeper's shop
      */
     public Item[] getItems(String name) {
-        String npcText = readFile("shop_items");
+        String npcText = readFile("shop_items.txt");
         Item[] items;
         int totalItems;
         String itemName;
@@ -681,7 +681,7 @@ public class GameIO {
                 totalItems = Integer.parseInt(lines[i + 1]);
                 items = new Item[totalItems];
                 for (int j = 0; j < totalItems; ++j) {
-                    tokens = lines[i].split(" ");
+                    tokens = lines[i + 2 + j].split(" ");
                     itemName = tokens[0];
                     itemCost = Integer.parseInt(tokens[1]);
                     items[j] = new Item(itemName, itemCost);
