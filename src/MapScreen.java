@@ -85,9 +85,9 @@ public class MapScreen extends GameScreen {
                 npcs[i].speak(g);
                 if (npcs[i].shopIsOpen()) {
                     for (int j = 0; j < ((OverworldShopNPC)npcs[i]).getItems().length; ++j) {
-                        if (isMouseOver(((OverworldShopNPC) npcs[i]).getItems()[j].getBoundingBox())) {
-                            g.drawRect(((OverworldShopNPC) npcs[i]).getItems()[j].getBoundingBox().x,
-                                    ((OverworldShopNPC) npcs[i]).getItems()[j].getBoundingBox().y, 323, 768);
+                        Rectangle boundingBox = (((OverworldShopNPC) npcs[i]).getItems()[j].getBoundingBox());
+                        if (isMouseOver(boundingBox)) {
+                            g.drawRect(boundingBox.x, boundingBox.y, boundingBox.width, boundingBox.height);
                         }
                     }
                 }
