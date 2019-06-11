@@ -24,14 +24,6 @@ public class OverworldTile {
         this.boundingBox = new Rectangle(x * tileSize, y * tileSize, tileSize, tileSize);
     }
 
-    public Rectangle collisionWindow() {
-        return this.boundingBox;
-    }
-
-    public boolean isWalkable() {
-        return this.walkable;
-    }
-
     /**
      * [isNotWalkable]
      * gets whether the
