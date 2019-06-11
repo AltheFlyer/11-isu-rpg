@@ -5,7 +5,7 @@ import java.awt.*;
 public class JasmineBlastAbility extends SpearAbility {
 
     /**
-     * [AOEAbility]
+     * [JasmineBlastAbility]
      * Constructor for Jasmine's blast ability
      * @param animation the animation that is played on ability case
      * @param name the displayed name of the ability

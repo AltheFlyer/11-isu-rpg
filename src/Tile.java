@@ -82,11 +82,12 @@ abstract public class Tile {
     /**
      * [inflictStatus]
      * adds or stacks a status effect on the entity at this tile
+     * @param map the JointMap that this tile is on
      * @param effect the status effect to inflict on the entity
      */
-    public void inflictStatus(StatusEffect effect) {
+    public void inflictStatus(JointMap map, StatusEffect effect) {
         if (!isEmpty()) {
-            entity.inflictStatus(effect);
+            entity.inflictStatus(map, effect);
         }
     }
 

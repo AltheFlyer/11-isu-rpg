@@ -20,7 +20,7 @@ public class CAPMEnemy extends Enemy {
      * @param y the y position of the grid
      */
     CAPMEnemy(int x, int y) {
-        super(x, y, 125, 10, 0, "CAPM", new AnimatedSprite("spritesheets/CAPM.png", 3, 3, 100),
+        super(x, y, 150, 15, 0, "CAPM", new AnimatedSprite("spritesheets/CAPM.png", 3, 3, 100),
                 new Ability[] {
                         new SingleAbility(null, "Accelerate", "Deals damage to a target and increases attack power.",
                                 0, 1, 6, 0, 0,1, true, false)

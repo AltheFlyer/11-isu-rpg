@@ -1,6 +1,6 @@
 public class JasmineRepositionAbility extends BasicMoveAbility {
     /**
-     * [BasicMoveAbility]
+     * [JasmineRepositionAbility]
      * Constructor for movement for jasmine
      * @param name the displayed name of the ability
      * @param desc the displayed description of the ability

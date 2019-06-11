@@ -1,7 +1,7 @@
 display_name Kevin
 spritesheets/jasmine.png 1 5 500
 health 120
-attack 35
+attack 40
 defence 0
 energy 100
 ABILITIES 5

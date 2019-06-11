@@ -235,8 +235,7 @@ abstract public class Entity {
             statuses.get(i).triggerEffect(map, this);
             statuses.get(i).tickDuration();
 
-            if (statuses.get(i).getDuration() <= 0) {
-                //I have a feeling iterator/predicate isn't allowed so back to turing it is
+            if (statuses.get(i).getDuration() == 0) {
                 statuses.remove(i);
                 i--;
             }
@@ -261,16 +260,23 @@ abstract public class Entity {
      * Inflicts a status effect on the entity. If the entity already has a status effect of the same type, it will
      * 'stack' the effect as per the status effect's stacking behaviour. An entity will can not have more than one of
      * the same type of effect as of now.
+     * @param map, the JointMap that the entity is on
      * @param effect the status effect to inflict
      */
-    public void inflictStatus(StatusEffect effect) {
+    public void inflictStatus(JointMap map, StatusEffect effect) {
         for (int i = 0; i < statuses.size(); ++i) {
             if (statuses.get(i).getClass() == effect.getClass()) {
                 statuses.get(i).stack(effect);
+                if (effect.isActiveImmediately()) {
+                    effect.triggerEffect(map, this);
+                }
                 return;
             }
         }
         statuses.add(effect);
+        if (effect.isActiveImmediately()) {
+            effect.triggerEffect(map, this);
+        }
     }
 
     /**
