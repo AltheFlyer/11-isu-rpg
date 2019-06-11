@@ -4,7 +4,7 @@ import java.awt.Graphics;
 
 public class SingleAbility extends DamagingAbility {
     /**
-     * [AOEAbility]
+     * [SingleAbility]
      * Constructor for single target abilities
      * @param animation the animation that is played on ability case
      * @param name the displayed name of the ability

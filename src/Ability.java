@@ -306,6 +306,14 @@ abstract public class Ability {
 
     //BELOW ARE SOME ABILITY CREATING ASSISTANCE METHODS!
 
+    public boolean getIsMarked(JointMap jointMap, int i, int j){
+        for (int m = 0; m < jointMap.getEntity(i,j).getStatuses().size(); m++) {
+            if (jointMap.getEntity(i,j).getStatuses().get(m) instanceof MarkStatus){
+                return true;
+            }
+        }
+        return false;
+    }
     /**
      * [indicatedValidTileHelper]
      * Something for abilities that helps users create where an ability will indicate as valid targetable tiles

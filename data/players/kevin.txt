@@ -5,8 +5,8 @@ attack 35
 defence 0
 energy 100
 ABILITIES 5
-SingleAbility "basic" "a basic attack that will hit an enemy in front of you" spritesheets/basicAttack.png 1 5 250 20 1 6 0 0 0.5 true false
+KevinSpotlightAbility "Spotlight" "Shines a spotlight on an enemy, marking and cursing them" spritesheets/jasmine.png 1 5 100
 BasicMoveAbility "step" "movement to an adjacent tile" 30 1 1
 AOEAbility "heal" "a vertical AOE heal on allies" spritesheets/heal.png 1 3 250 50 2 2 0 0 2 -30.0 0 false true
-StarAbility "star" "An AOE ability that will hit in a star shaped area" spritesheets/star.png 1 4 250 50 2 5 0 0 1 true false
+KevinBasicAbility "scalpel" "A basic cut that does triple damage to marked targets" spritesheets/basicAttack.png 1 5 100
 SplitStreamAbility "dividing wind" "pushes things on row as far back as possible" spritesheets/jasmine.png 1 5 100 40 2
