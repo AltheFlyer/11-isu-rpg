@@ -15,7 +15,6 @@ public class TwoFaceEnemy extends Enemy {
     TwoFaceEnemy(int x, int y) {
         super(x, y, 500, 30, 0, "Two Face", null,
                 new Ability[] {
-
                 });
 
         happyFace = new AnimatedSprite("spritesheets/happy_face.png", 1, 7, 250);
