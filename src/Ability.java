@@ -306,27 +306,48 @@ abstract public class Ability {
 
     //BELOW ARE SOME ABILITY CREATING ASSISTANCE METHODS!
 
-    public boolean getIsMarked(JointMap jointMap, int i, int j){
-        for (int m = 0; m < jointMap.getEntity(i,j).getStatuses().size(); m++) {
-            if (jointMap.getEntity(i,j).getStatuses().get(m) instanceof MarkStatus){
+    /**
+     * Used when running abilities, checks if the target is marked or not
+     * @param jointMap map the targets are on
+     * @param x the x of the target
+     * @param y the y of the target
+     * @return boolean, true if the target is marked, false otherwise
+     */
+    public boolean getIsMarked(JointMap jointMap, int x, int y){
+        for (int m = 0; m < jointMap.getEntity(x,y).getStatuses().size(); m++) {
+            if (jointMap.getEntity(x,y).getStatuses().get(m) instanceof MarkStatus){
                 return true;
             }
         }
         return false;
     }
 
-    public int getDissect(JointMap jointMap, int i, int j){
-        for (int m = 0; m < jointMap.getEntity(i,j).getStatuses().size(); m++) {
-            if (jointMap.getEntity(i, j).getStatuses().get(m) instanceof DissectedStatus) {
-                return jointMap.getEntity(i, j).getStatuses().get(m).getStacks();
+    /**
+     * Used when running abilities, checks if the target is dissected or not
+     * @param jointMap map the targets are on
+     * @param x the x of the target
+     * @param y the y of the target
+     * @return the amount of dissect stacks on the target
+     */
+    public int getDissect(JointMap jointMap, int x, int y){
+        for (int m = 0; m < jointMap.getEntity(x,y).getStatuses().size(); m++) {
+            if (jointMap.getEntity(x, y).getStatuses().get(m) instanceof DissectedStatus) {
+                return jointMap.getEntity(x, y).getStatuses().get(m).getStacks();
             }
         }
         return 0;
     }
-    public void removeDissect(JointMap jointMap, int i, int j){
-        for (int m = 0; m < jointMap.getEntity(i,j).getStatuses().size(); m++) {
-            if (jointMap.getEntity(i, j).getStatuses().get(m) instanceof DissectedStatus) {
-                jointMap.getEntity(i, j).getStatuses().remove(m);
+
+    /**
+     * Used for removing all dissect stacks from a target
+     * @param jointMap map the targets are on
+     * @param x the x of the target
+     * @param y the y of the target
+     */
+    public void removeDissect(JointMap jointMap, int x, int y){
+        for (int m = 0; m < jointMap.getEntity(x,y).getStatuses().size(); m++) {
+            if (jointMap.getEntity(x, y).getStatuses().get(m) instanceof DissectedStatus) {
+                jointMap.getEntity(x, y).getStatuses().remove(m);
             }
         }
     }
