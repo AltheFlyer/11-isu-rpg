@@ -710,13 +710,17 @@ public class GameIO {
 
         for (int i = 0; i < totalObjects; ++i) {
             tokens = lines[i + 1].split(" ");
-            if (tokens[0].equals("orbiter")) {
+            if ((tokens[0].equals("orbiter")) || (tokens[0].equals("sweller"))) {
                 x = Integer.parseInt(tokens[1]);
                 y = Integer.parseInt(tokens[2]);
                 radius = Integer.parseInt(tokens[3]);
                 respawnX = Integer.parseInt(tokens[4]);
                 respawnY = Integer.parseInt(tokens[5]);
-                objects[i] = new Orbiter(x, y, x - radius, y, respawnX, respawnY);
+                if (tokens[0].equals("orbiter")) {
+                    objects[i] = new Orbiter(x, y, x - radius, y, respawnX, respawnY);
+                } else {
+                    objects[i] = new Sweller(x, y, radius, respawnX, respawnY);
+                }
             }
         }
         return objects;
