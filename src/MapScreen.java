@@ -17,7 +17,7 @@ public class MapScreen extends GameScreen {
     private FrameRate framerate;
     private OverworldMap map;
     private OverworldPlayer player;
-    private OverworldNPC[] npc;
+    private OverworldNPC[] npcs;
     private OverworldObject[] objects;
     int length;
     int width;
@@ -36,7 +36,7 @@ public class MapScreen extends GameScreen {
             map = new RoomMap(getIO(), mapPath, walkabilityKey);
         }
         player = new OverworldPlayer(x, y);
-        npc = getIO().getNPCs(npcPath);
+        npcs = getIO().getNPCs(npcPath);
         objects = getIO().getObjects(objectPath);
         length = map.getMap()[0].length;
         width = map.getMap().length;
@@ -71,12 +71,12 @@ public class MapScreen extends GameScreen {
         player.draw(g, map);
 
         //npc management
-        for (int i = 0; i < npc.length; ++i) {
-            npc[i].draw(g, map, player); //drawing the npcs
+        for (int i = 0; i < npcs.length; ++i) {
+            npcs[i].draw(g, map, player); //drawing the npcs
         }
-        for (int i = 0; i < npc.length; ++i) {
-            if (npc[i].isTalking()) {
-                npc[i].speak(g);
+        for (int i = 0; i < npcs.length; ++i) {
+            if (npcs[i].isTalking()) {
+                npcs[i].speak(g);
             }
         }
 
@@ -98,8 +98,8 @@ public class MapScreen extends GameScreen {
      */
     public void keyTyped(KeyEvent e) {
         if (e.getKeyChar() == 'z') {
-            for (int i = 0; i < npc.length; ++i) {
-                npc[i].checkInteractions(player.interact());
+            for (int i = 0; i < npcs.length; ++i) {
+                npcs[i].checkInteractions(player.interact());
             }
         }
     }
@@ -112,8 +112,8 @@ public class MapScreen extends GameScreen {
      */
     public void keyPressed(KeyEvent e) {
         boolean moveable = true;
-        for (int i = 0; i < npc.length; i++) {
-            if (npc[i].isTalking()) {
+        for (int i = 0; i < npcs.length; i++) {
+            if (npcs[i].isTalking()) {
                 moveable = false;
             }
         }
@@ -163,8 +163,8 @@ public class MapScreen extends GameScreen {
                 map.getMap()[i][j].checkCollisions(playerNewBox, player, getGame());
             }
         }
-        for (int i = 0; i < npc.length; ++i) {
-            npc[i].checkCollisions(playerNewBox, player);
+        for (int i = 0; i < npcs.length; ++i) {
+            npcs[i].checkCollisions(playerNewBox, player);
         }
         for (int i = 0; i < objects.length; ++i) {
             objects[i].checkCollisions(playerNewBox, player);
