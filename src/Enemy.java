@@ -184,6 +184,12 @@ abstract public class Enemy extends Entity {
         }
     }
 
+    /**
+     * [selectRowWithMostPlayers]
+     * @param map the map that all the entities are on
+     * @param ability the ability that is being used
+     * targets the row with the most players
+     */
     public void selectRowWithMostPlayers(JointMap map, Ability ability) {
         //The abilities used are swapped from the abilities decided
         //move to row with most players
@@ -207,44 +213,93 @@ abstract public class Enemy extends Entity {
         ability.action(map, getXGrid(), optimalRow);
     }
 
+    /**
+     * [getTargetedX]
+     * returns the X target it is about to hit for the animations to play on the enemy turn
+     * @return the X target it is about to hit
+     */
     public int getTargetedX(){
         return targetedX;
     }
 
+    /**
+     * [getTargetedY]
+     * returns the Y target it is about to hit for the animations to play on the enemy turn
+     * @return the Y target it is about to hit
+     */
     public int getTargetedY(){
         return targetedY;
     }
 
+    /**
+     * [getTargetedX]
+     * sets the XTargeting for the enemy for getting for animation
+     * @param targetedX the X target it is about to hit
+     */
     public void setTargetedX(int targetedX){
         this.targetedX =  targetedX;
     }
 
+    /**
+     * [getTargetedY]
+     * sets the YTargeting for the enemy for getting for animation
+     * @param targetedY the Y target it is about to hit
+     */
     public void setTargetedY(int targetedY){
         this.targetedY =  targetedY;
     }
 
+    /**
+     * [resetTargeted]
+     * resets the targeted tiles that the enemies are going to hit
+     */
     //-1 acts as a null check
     public void resetTargeted(){
         targetedX = -1;
         targetedY = -1;
     }
 
+    /**
+     * [setIntent]
+     * selects the correct icon to draw based on the enemy's intent
+     * @param icon the icon to draw on the entity
+     */
     public void setIntent(Icon icon) {
         this.intent = icon;
     }
 
+    /**
+     * [getIntent]
+     * returns the correct intent to draw with
+     * @return intent the icon that will be drawn
+     */
     public Icon getIntent() {
         return intent;
     }
 
+    /**
+     * [setDecide]
+     * sets the decision of the enemy, what it will use next turn
+     * @param ability the ability that the enemy is planning to use
+     */
     public void setDecide(Ability ability) {
         decide = ability;
     }
 
+    /**
+     * [getDecide]
+     * gets the decision of the enemy for drawing and acting
+     * @return decide the ability the enemy is planning to use
+     */
     public Ability getDecide() {
         return decide;
     }
 
+    /**
+     * [drawHealthBar]
+     * drawing the health bar for the enemy
+     * @param g the graphic used to draw with
+     */
     public void drawHealthBar(Graphics g){
         //Drawing a health bar here to make it nicer
         double ratio = getHealth() / getMaxHealth();
@@ -262,6 +317,11 @@ abstract public class Enemy extends Entity {
         g.drawString(Math.ceil(getHealth()) + "/" + getMaxHealth(), 1169, 44+105*abilities.length);
     }
 
+    /**
+     * [drawEnergyBar]
+     * drawing the energy bar of the enemy
+     * @param g the graphic used to draw with
+     */
     public void drawEnergyBar(Graphics g){
         double ratio = getEnergy() / getMaxEnergy();
         g.setColor(Color.GRAY);
