@@ -1,6 +1,7 @@
 import utils.TextDrawer;
 
-import java.awt.*;
+import java.awt.Graphics;
+import java.awt.Color;
 
 public class EnemyTile extends Tile{
     private Enemy enemy;

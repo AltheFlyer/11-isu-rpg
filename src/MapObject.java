@@ -1,4 +1,4 @@
-import java.awt.*;
+import java.awt.Rectangle;
 
 abstract public class MapObject {
 
