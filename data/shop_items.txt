@@ -1,5 +1,5 @@
 Shopkeeper Ken
 3
-100 800 250 loli poster
-200 800 350 loli tier list
-300 800 450 literal [REDACTED]
+100 800 200 loli poster
+200 800 300 loli tier list
+300 800 400 literal [REDACTED]

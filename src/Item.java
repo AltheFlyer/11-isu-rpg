@@ -9,7 +9,7 @@ import java.awt.Rectangle;
  */
 public class Item {
 
-    static int width = 200;
+    static int width = 300;
     static int height = 100;
     private String name;
     private int cost;
@@ -18,7 +18,7 @@ public class Item {
     public Item(String name, int cost, int x, int y) {
         this.name = name;
         this.cost = cost;
-        this.boundingBox = new Rectangle(x, y, height, width);
+        this.boundingBox = new Rectangle(x, y, width, height);
     }
 
     /**
