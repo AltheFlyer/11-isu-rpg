@@ -49,11 +49,13 @@ public class PlayerTile extends Tile{
     }
 
     /**
-     * RETURNS THE TYPE OF TILE IT IS, 'p' for Player 'e' for Enemy
+     * [isTileFriendly]
+     * checks if the tile is friendly or not
+     * @return boolean, true for all player tiles
      */
-
-    public char getType(){
-        return 'p';
+    @Override
+    public boolean isTileFriendly(){
+        return true;
     }
 
     //There is also damageEntity here!

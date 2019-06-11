@@ -38,10 +38,10 @@ public class AOEAbility extends Ability{
         for (int k = j - getYAOE(); k <= j + getYAOE(); k++) {
             for (int l = i - getXAOE(); l <= i + getXAOE(); l++) {
                 if (jointMap.tileExists(l, k)) {
-                    if (getFriendTarget() && jointMap.getTileType(l, k) == jointMap.getTileType(getEntitySource().getXGrid(), getEntitySource().getYGrid())) {
+                    if (getFriendTarget() && jointMap.isTileFriendly(l, k) == getEntitySource().isFriendly()) {
                         jointMap.target(l, k, getDamage());
                     }
-                    if (getEnemyTarget() && jointMap.getTileType(l, k) != jointMap.getTileType(getEntitySource().getXGrid(), getEntitySource().getYGrid())) {
+                    if (getEnemyTarget() && jointMap.isTileFriendly(l, k) != getEntitySource().isFriendly()) {
                         jointMap.target(l, k, getDamage());
                     }
                 }
@@ -71,11 +71,11 @@ public class AOEAbility extends Ability{
             for (int l = i-getXAOE(); l <= i+getXAOE(); l++){
                 //Yeah might need to revamp Single and AOE ability so one can do empty tiles, one cannot do that
                 if (jointMap.tileExists(l,k)){
-                    if (getFriendTarget() && jointMap.getTileType(l, k) == jointMap.getTileType(getEntitySource().getXGrid(), getEntitySource().getYGrid())) {
+                    if (getFriendTarget() && jointMap.isTileFriendly(l, k) == getEntitySource().isFriendly()) {
                         g.setColor(Color.GREEN);
                         g.drawRect(gridX + gridWidthSpace * l, gridY + gridHeightSpace * k, gridWidth, gridHeight);
                     }
-                    if (getEnemyTarget() && jointMap.getTileType(l, k) != jointMap.getTileType(getEntitySource().getXGrid(), getEntitySource().getYGrid())) {
+                    if (getEnemyTarget() && jointMap.isTileFriendly(l, k) != getEntitySource().isFriendly()) {
                         g.setColor(Color.GREEN);
                         g.drawRect(gridX + gridWidthSpace * l, gridY + gridHeightSpace * k, gridWidth, gridHeight);
                     }

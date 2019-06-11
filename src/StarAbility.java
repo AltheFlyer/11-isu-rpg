@@ -34,10 +34,10 @@ public class StarAbility extends Ability {
             for (int l = 0; l < 6; l++){
                 //Hits tiles in a star shape around the indicated tile
                 if (Math.abs(k-j) + Math.abs(l-i) <= 1 && jointMap.tileExists(l,k)){
-                    if (getFriendTarget() && jointMap.getTileType(l,k) == jointMap.getTileType(getEntitySource().getXGrid(),getEntitySource().getYGrid())) {
+                    if (getFriendTarget() && jointMap.isTileFriendly(l,k) == getEntitySource().isFriendly()) {
                         jointMap.target(l, k, getDamage());
                     }
-                    if (getEnemyTarget() && jointMap.getTileType(l,k) != jointMap.getTileType(getEntitySource().getXGrid(),getEntitySource().getYGrid())) {
+                    if (getEnemyTarget() && jointMap.isTileFriendly(l,k) != getEntitySource().isFriendly()) {
                         jointMap.target(l, k, getDamage());
                     }
                 }
@@ -69,11 +69,11 @@ public class StarAbility extends Ability {
                 if (Math.abs(k-j) + Math.abs(l-i) <= 1){
 
                     if (jointMap.tileExists(l,k)&& getEntitySource().isAlive()){
-                        if (getFriendTarget() && jointMap.getTileType(l,k) == jointMap.getTileType(getEntitySource().getXGrid(),getEntitySource().getYGrid())) {
+                        if (getFriendTarget() && jointMap.isTileFriendly(l,k) == jointMap.isTileFriendly(getEntitySource().getXGrid(),getEntitySource().getYGrid())) {
                             g.setColor(Color.GREEN);
                             g.drawRect(gridX + gridWidthSpace * l, gridY + gridHeightSpace * k, gridWidth, gridHeight);
                         }
-                        if (getEnemyTarget() && jointMap.getTileType(l,k) != jointMap.getTileType(getEntitySource().getXGrid(),getEntitySource().getYGrid())) {
+                        if (getEnemyTarget() && jointMap.isTileFriendly(l,k) != jointMap.isTileFriendly(getEntitySource().getXGrid(),getEntitySource().getYGrid())) {
                             g.setColor(Color.GREEN);
                             g.drawRect(gridX + gridWidthSpace * l, gridY + gridHeightSpace * k, gridWidth, gridHeight);
                         }

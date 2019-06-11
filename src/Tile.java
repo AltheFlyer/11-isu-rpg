@@ -1,11 +1,9 @@
 import utils.AnimatedSprite;
-import utils.TextDrawer;
 
 import java.awt.*;
 
 abstract public class Tile {
     private Entity entity;
-    private Rectangle boundingBox;
     private int xGrid;
     private int yGrid;
     private int xGraphic;
@@ -133,7 +131,7 @@ abstract public class Tile {
 
     abstract void draw(Graphics g);
 
-    abstract char getType();
+    abstract boolean isTileFriendly();
 
     /**
      * [drawIcons]
@@ -197,7 +195,7 @@ abstract public class Tile {
             g.fillRect(getXGraphic(), getYGraphic() + 120 - 10, 120, 10);
 
             //Set healthbar color based on if friendly or not
-            if (getType() == 'p') {
+            if (isTileFriendly()) {
                 g.setColor(Color.GREEN);
             } else {
                 g.setColor(Color.RED);
@@ -215,14 +213,14 @@ abstract public class Tile {
             double ratio = entity.getEnergy() / entity.getMaxEnergy();
 
             //Set healthbar color based on if friendly or not
-            if (getType() == 'p') {
+            if (isTileFriendly()) {
                 //Grey backing bar
                 g.setColor(Color.GRAY);
                 g.fillRect(getXGraphic(), getYGraphic() + 120 - 20, 120, 10);
                 g.setColor(new Color(0,200,255));
                 //Draw at bottom of screen, -10 is for the height of the bar
                 g.fillRect(getXGraphic(), getYGraphic() + 120 - 20, (int) (120 * ratio), 10);
-                if (getType() == 'p') {
+                if (isTileFriendly()) {
                     g.setColor(Color.BLACK);
                     g.drawString(entity.getEnergy() + "/" + entity.getMaxEnergy(), getXGraphic() + 30, getYGraphic() + 120 - 10);
                 }

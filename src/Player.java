@@ -219,4 +219,13 @@ public class Player extends Entity{
             drawer.drawText(g);
         }
     }
+
+    /**
+     * [isFriendly]
+     * gets whether the entity is friendly or not
+     * @return boolean, true for all players
+     */
+    public boolean isFriendly() {
+        return true;
+    }
 }

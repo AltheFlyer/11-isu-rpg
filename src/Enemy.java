@@ -3,7 +3,7 @@ import utils.TextDrawer;
 
 import java.awt.*;
 
-abstract public class Enemy extends Entity{
+abstract public class Enemy extends Entity {
 
     private Icon intent;
     private Ability decide;
@@ -248,6 +248,15 @@ abstract public class Enemy extends Entity{
         g.drawRect(1139, 45+105*abilities.length,190, 12);
         g.drawString(getEnergy() + "/" + getMaxEnergy(), 1169, 56+105*abilities.length);
 
+    }
+
+    /**
+     * [isFriendly]
+     * gets whether the entity is friendly or not
+     * @return boolean, false for all enemies
+     */
+    public boolean isFriendly() {
+        return false;
     }
 
 }

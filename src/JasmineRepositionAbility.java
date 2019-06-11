@@ -1,5 +1,3 @@
-import utils.AnimatedSprite;
-
 public class JasmineRepositionAbility extends BasicMoveAbility {
     /**
      * [BasicMoveAbility]
@@ -21,7 +19,7 @@ public class JasmineRepositionAbility extends BasicMoveAbility {
             for (int j = 0; j < 3; j++) {
                 for (int i = 0; i < 6; i++) {
                     if (Math.abs(getEntitySource().getXGrid() - i) + Math.abs(getEntitySource().getYGrid() - j) <= getMoves() && getEntitySource().isAlive()) {
-                        if (jointMap.getTileType(i, j) == jointMap.getTileType(getEntitySource().getXGrid(), getEntitySource().getYGrid())) {
+                        if (jointMap.isTileFriendly(i, j) == getEntitySource().isFriendly()) {
                             jointMap.indicate(i, j);
                             //Indicate if the tile is targetable or not, at this point Single and AOE ability are used for if they can target empty tiles
                             if (jointMap.isEmpty(i, j)) {

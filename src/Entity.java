@@ -335,4 +335,11 @@ abstract public class Entity {
     public void setDefense(double defence) {
         this.defence = defence;
     }
+
+    /**
+     * [isFriendly]
+     * gets whether the entity is friendly or not
+     * @return boolean, whether the entity is friendly or not
+     */
+    abstract public boolean isFriendly();
 }

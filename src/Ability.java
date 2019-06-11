@@ -326,7 +326,7 @@ abstract public class Ability {
                         if (showInvalidTiles) {
                             jointMap.indicate(i, j);
                         }
-                        if (getFriendTarget() && jointMap.getTileType(i, j) == jointMap.getTileType(getEntitySource().getXGrid(), getEntitySource().getYGrid())) {
+                        if (getFriendTarget() && jointMap.isTileFriendly(i, j) == getEntitySource().isFriendly()) {
                             jointMap.indicate(i, j);
                             //Indicate if the tile is targetable or not, at this point Single and AOE ability are used for if they can target empty tiles
                             if (targetEmpty) {
@@ -335,7 +335,7 @@ abstract public class Ability {
                                 jointMap.isTargetable(i, j);
                             }
                         }
-                        if (getEnemyTarget() && jointMap.getTileType(i, j) != jointMap.getTileType(getEntitySource().getXGrid(), getEntitySource().getYGrid())) {
+                        if (getEnemyTarget() && jointMap.isTileFriendly(i, j) != getEntitySource().isFriendly()) {
                             jointMap.indicate(i, j);
                             //Indicate if the tile is targetable or not, at this point Single and AOE ability are used for if they can target empty tiles
                             if (targetEmpty) {

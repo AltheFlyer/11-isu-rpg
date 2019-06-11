@@ -25,7 +25,6 @@ public class ProcessingCloudEnemy extends Enemy {
                     new SingleAbility(new AnimatedSprite("spritesheets/inflame.png", 1, 2, 600),
                             "Deconstructor", "Deals MASSIVE damage to the nearest player in the row",
                             0, 3, 6, 0, 0, 2, true, false)
-
         });
 
         deconstructionBeam = getAbility(0);

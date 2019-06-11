@@ -1,7 +1,6 @@
 import utils.AnimatedSprite;
 
 import java.awt.*;
-import java.util.concurrent.TimeUnit;
 
 public class JointMap {
     //private PlayerTile[][] playerArray = new PlayerTile[3][3];
@@ -59,9 +58,9 @@ public class JointMap {
 
     //Setting entities onto the grid
     public void addEntity(int i, int j, Entity entity) {
-        if (getTileType(i,j) == 'p'){
+        if (isTileFriendly(i,j)){
             ((PlayerTile)tileArray[i][j]).setPlayer((Player)entity);
-        } else if (getTileType(i,j) == 'e') {
+        } else {
             ((EnemyTile)tileArray[i][j]).setEnemy((Enemy)entity);
         }
     }
@@ -139,12 +138,12 @@ public class JointMap {
 
     public void moveOnTile(int x, int y, int xMove, int yMove) {
         if (tileExists(xMove, yMove) && isEmpty(xMove, yMove)) {
-            if (getTileType(x, y) == 'p' && tileExists(xMove, yMove) && getTileType(xMove, yMove) == 'p') {
+            if (isTileFriendly(x, y) && tileExists(xMove, yMove) && isTileFriendly(xMove, yMove)) {
                 ((PlayerTile) tileArray[x][y]).getPlayer().setXGrid(xMove);
                 ((PlayerTile) tileArray[x][y]).getPlayer().setYGrid(yMove);
                 ((PlayerTile) tileArray[xMove][yMove]).setPlayer(((PlayerTile) tileArray[x][y]).getPlayer());
                 ((PlayerTile) tileArray[x][y]).nullPlayer();
-            } else if (getTileType(x, y) == 'e' && tileExists(xMove, yMove)&& getTileType(xMove, yMove) == 'e') {
+            } else if (!isTileFriendly(x, y) && tileExists(xMove, yMove)&& !isTileFriendly(xMove, yMove)) {
                 ((EnemyTile) tileArray[x][y]).getEnemy().setXGrid(xMove);
                 ((EnemyTile) tileArray[x][y]).getEnemy().setYGrid(yMove);
                 ((EnemyTile) tileArray[xMove][yMove]).setEnemy(((EnemyTile) tileArray[x][y]).getEnemy());
@@ -154,13 +153,15 @@ public class JointMap {
     }
 
     /**
-     * getTileType will return a char based on if a tile is a playerTile or an enemyTile
+     * [isTileFriendly]
+     * Gets whether the tile is friendly or not. Generally true for all x in {0, 1, 2} and false for all
+     * x in {3, 4, 5} in a standard pre-fab grid
      * @param x
      * @param y
-     * @return returns 'p' for playerTile and 'e' for enemyTile
+     * @return boolean, whether the tile is friendly or not
      */
-    public char getTileType(int x, int y){
-        return tileArray[x][y].getType();
+    public boolean isTileFriendly(int x, int y){
+        return tileArray[x][y].isTileFriendly();
     }
 
 
