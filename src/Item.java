@@ -37,4 +37,13 @@ public class Item {
         return this.cost;
     }
 
+    /**
+     * [getBoundingBox]
+     * gets the items's bounding box for mouse interaction
+     * @return Rectangle, the item's bounding box for interaction
+     */
+    public Rectangle getBoundingBox() {
+        return this.boundingBox;
+    }
+
 }

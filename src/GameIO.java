@@ -700,7 +700,7 @@ public class GameIO {
             x = Integer.parseInt(tokens[1]);
             y = Integer.parseInt(tokens[2]);
             itemName = "";
-            for (int j = 3; j < tokens.length; ++i) {
+            for (int j = 3; j < tokens.length; ++j) {
                 itemName.concat(" " + tokens[j]);
             }
             items[i - startingIndex - 2] = new Item(itemName, itemCost, x, y);

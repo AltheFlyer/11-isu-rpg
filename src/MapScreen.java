@@ -3,6 +3,7 @@ import utils.TextDrawer;
 import java.awt.*;
 import java.awt.event.KeyListener;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
 
 /**
  * [MapScreen.java]
@@ -79,6 +80,14 @@ public class MapScreen extends GameScreen {
         for (int i = 0; i < npcs.length; ++i) {
             if (npcs[i].isTalking()) {
                 npcs[i].speak(g);
+                if (npcs[i].shopIsOpen()) {
+                    for (int j = 0; j < ((OverworldShopNPC)npcs[i]).getItems().length; ++j) {
+                        if (isMouseOver(((OverworldShopNPC) npcs[i]).getItems()[j].getBoundingBox())) {
+                            g.drawRect(((OverworldShopNPC) npcs[i]).getItems()[j].getBoundingBox().x,
+                                    ((OverworldShopNPC) npcs[i]).getItems()[j].getBoundingBox().y, 323, 768);
+                        }
+                    }
+                }
             }
         }
 
@@ -150,6 +159,31 @@ public class MapScreen extends GameScreen {
         if ((e.getKeyChar() == 'd') || (e.getKeyChar() == 'a')) {
             player.setXVelocity(0);
         }
+    }
+
+    /**
+     * [mouseReleased]
+     * Runs when the mouse is released and checks if an item bounding box was clicked on
+     * @param e the triggered MouseEvent
+     */
+    @Override
+    public void mouseReleased(MouseEvent e) {
+        super.mouseReleased(e);
+        for (int i = 0; i < npcs.length; ++i) {
+            if (npcs[i].shopIsOpen()) {
+                System.out.println("you bought absolute trash, good job");
+            }
+        }
+    }
+
+    /**
+     * [isMouseOver]
+     * checks if the mouse is within the specified rectangle
+     * @param rect the rectangle to check the bounds of
+     * @return boolean, whether the mouse is within the rectangle or not
+     */
+    public boolean isMouseOver(Rectangle rect) {
+        return rect.contains(getMouseX(), getMouseY());
     }
 
     /**
