@@ -678,6 +678,7 @@ public class GameIO {
         int totalItems;
         String itemName;
         int itemCost;
+        int x, y;
         int startingIndex = 0;
 
         String[] tokens;
@@ -694,7 +695,9 @@ public class GameIO {
             tokens = lines[i].split(" ");
             itemName = tokens[0];
             itemCost = Integer.parseInt(tokens[1]);
-            items[i - startingIndex - 2] = new Item(itemName, itemCost);
+            x = Integer.parseInt(tokens[2]);
+            y = Integer.parseInt(tokens[3]);
+            items[i - startingIndex - 2] = new Item(itemName, itemCost, x, y);
         }
         return items;
     }
