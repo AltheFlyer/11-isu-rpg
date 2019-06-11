@@ -1,8 +1,8 @@
 import utils.AnimatedSprite;
 
-import java.awt.*;
+import java.awt.Graphics;
 
-public class SingleAbility extends Ability {
+public class SingleAbility extends DamagingAbility {
     /**
      * [AOEAbility]
      * Constructor for single target abilities

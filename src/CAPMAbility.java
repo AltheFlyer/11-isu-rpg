@@ -2,7 +2,7 @@ import utils.AnimatedSprite;
 
 import java.awt.*;
 
-public class CAPMAbility extends Ability {
+public class CAPMAbility extends DamagingAbility {
     private int distance;
     CAPMAbility(AnimatedSprite animation, String name, String desc, double energyCost, int cooldown, double damage, double ratio){
         super (animation, name, desc, energyCost, cooldown, 6,0, damage, ratio, true, false);

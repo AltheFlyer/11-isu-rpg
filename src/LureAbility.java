@@ -2,7 +2,7 @@ import utils.AnimatedSprite;
 
 import java.awt.*;
 
-public class LureAbility extends Ability {
+public class LureAbility extends DamagingAbility {
     LureAbility(AnimatedSprite animation, String name, String desc, double energyCost, int cooldown, int xRange, int yRange, double damage, double ratio) {
         super(animation, name, desc, energyCost,cooldown, xRange,yRange,damage, ratio, true, false);
     }

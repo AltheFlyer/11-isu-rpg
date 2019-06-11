@@ -2,7 +2,7 @@ import utils.AnimatedSprite;
 
 import java.awt.*;
 
-public class CombinationAbility extends Ability {
+public class CombinationAbility extends DamagingAbility {
     /**
      * [AOEAbility]
      * Constructor for combination abilities

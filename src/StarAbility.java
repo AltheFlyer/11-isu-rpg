@@ -2,7 +2,7 @@ import utils.AnimatedSprite;
 
 import java.awt.*;
 
-public class StarAbility extends Ability {
+public class StarAbility extends DamagingAbility {
     /**
      * [AOEAbility]
      * Constructor for aoe abilities

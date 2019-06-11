@@ -1,4 +1,5 @@
 import utils.AnimatedSprite;
+import utils.TextDrawer;
 
 import java.awt.*;
 
@@ -15,19 +16,15 @@ abstract public class Ability {
     private int yAOE;
     private boolean enemyTarget;
     private boolean friendTarget;
-    private int moves;
     private Entity entitySource;
     private double energyCost;
     private int cooldown;
     private int currentCooldown;
     private AnimatedSprite animation;
 
-    private double baseDamage;
-    private double ratio;
-
     /**
      * [Ability]
-     * Constructor for single target and aoe abilities
+     * Constructor for generic abilities
      * @param animation the animation that is played on ability case
      * @param name the displayed name of the ability
      * @param desc the displayed description of the ability
@@ -35,12 +32,10 @@ abstract public class Ability {
      * @param cooldown the cooldown in turns
      * @param xRange the range in the x axis in tiles
      * @param yRange the range in the y axis in tiles
-     * @param baseDamage the amount of damage that the ability will do
-     * @param damageRatio the percentage of the casting entity's attack to include in damage
      * @param enemyTarget whether the ability can target enemies (relative to the caster) or not
      * @param friendTarget whether the ability can target allies (relative to the caster) or not
      */
-    Ability(AnimatedSprite animation, String name, String desc, double energyCost, int cooldown, int xRange, int yRange, double baseDamage, double damageRatio, boolean enemyTarget, boolean friendTarget) {
+    Ability(AnimatedSprite animation, String name, String desc, double energyCost, int cooldown, int xRange, int yRange, boolean enemyTarget, boolean friendTarget) {
         this.name = name;
         this.desc = desc;
         this.energyCost = energyCost;
@@ -48,8 +43,6 @@ abstract public class Ability {
         currentCooldown = 0;
         this.xRange = xRange;
         this.yRange = yRange;
-        this.baseDamage = baseDamage;
-        this.ratio = damageRatio;
         this.enemyTarget = enemyTarget;
         this.friendTarget = friendTarget;
         this.animation = animation;
@@ -57,20 +50,18 @@ abstract public class Ability {
 
     /**
      * [Ability]
-     * Constructor for movement abilities
+     * Constructor for movement-style abilities
      * @param name the displayed name of the ability
      * @param desc the displayed description of the ability
      * @param energyCost the energy cost of the ability
      * @param cooldown the cooldown in turns
-     * @param moves the distance that can be moved, in tiles based on manhattan distance
      */
-    Ability(String name, String desc, double energyCost, int cooldown, int moves){
+    Ability(String name, String desc, double energyCost, int cooldown){
         this.name = name;
         this.desc = desc;
         this.energyCost = energyCost;
         this.cooldown = cooldown;
         currentCooldown = 0;
-        this.moves = moves;
     }
 
     /**
@@ -131,6 +122,47 @@ abstract public class Ability {
     }
 
     /**
+     * [drawInfoBox]
+     * Draws the information box of the ability, displaying name, description, along with other useful information.
+     * @param g the graphics object to draw with
+     * @param x the x position to draw from (top left corner)
+     * @param y the y position to draw from (top left corner)
+     */
+    public void drawInfoBox(Graphics g, int x, int y) {
+        if (getEnergyCost() > entitySource.getEnergy() || getCurrentCooldown() > 0) {
+            g.setColor(new Color(255, 150, 200));
+        } else{
+            g.setColor(new Color(0, 200, 255));
+        }
+        g.fillRect(x, 15 + y, 264, 100);
+
+        //Cooldown bar!
+        g.setColor(new Color(0, 0, 0, 50));
+        if (getCurrentCooldown() > 0) {
+            g.fillRect(x, 15 + y, 264/getCooldown()*(getCurrentCooldown()), 100);
+        }
+
+        g.setColor(Color.BLACK);
+        //Drawing the name of the ability and a box around it
+
+        g.drawString(getName(), x + 10, 32+y);
+        g.drawRect(x,15+y,100,22);
+
+        //Drawing the energy cost of an ability and a box around it
+        g.drawString("Energy Cost: " + getEnergyCost(), x + 110, 32+y);
+        g.drawRect(x + 100,15+y,163,22);
+
+        //Drawing the cooldown of an ability and a box around it
+        g.drawString("Cooldown: " + getCooldown(), x + 10, 54+y);
+        g.drawRect(x,37+y,100,22);
+
+
+        //Drawing the description
+        TextDrawer drawer = new TextDrawer(g, getDesc(), x + 10, 76 + y,250);
+        drawer.drawText(g);
+    }
+
+    /**
      * [resetCooldown]
      * Once a move has been used, it will reset the current cooldown to the max possible cooldown
      */
@@ -165,32 +197,7 @@ abstract public class Ability {
         return yRange;
     }
 
-    /**
-     * [getBaseDamage]
-     * gets the damage that the ability does
-     * @return baseDamage, gets the damage that the ability does ignoring ratio
-     */
-    public double getBaseDamage(){
-        return baseDamage;
-    }
 
-    /**
-     * [getDamage]
-     * gets the damage of tha ability when used, including the attack power added by the caster
-     * @return double, the base damage of the ability + (the attack power of the caster, multiplied by the damage ratio)
-     */
-    public double getDamage() {
-        return baseDamage + ratio * entitySource.getAttack();
-    }
-
-    /**
-     * [getRatio]
-     * gets the ratio attack conversion of the ability
-     * @return ratio, the ratio attack conversion of the ability
-     */
-    public double getRatio(){
-        return ratio;
-    }
     /**
      * [getName]
      * gets the name of an ability
@@ -295,14 +302,6 @@ abstract public class Ability {
      */
     public Entity getEntitySource(){
         return entitySource;
-    }
-
-    /**
-     * [getMoves]
-     * gets the amount of moves a movement ability can use
-     */
-    public int getMoves() {
-        return moves;
     }
 
     //BELOW ARE SOME ABILITY CREATING ASSISTANCE METHODS!

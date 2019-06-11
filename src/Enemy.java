@@ -62,6 +62,9 @@ abstract public class Enemy extends Entity {
         //ABILITY ICONS
         for (int i = 0; i < abilities.length; i++) {
             //draw the abilities cyan if usable
+            abilities[i].drawInfoBox(g, 1069, 105 * i);
+
+            /*
             if (abilities[i].getEnergyCost() > getEnergy() || abilities[i].getCurrentCooldown() > 0) {
                 g.setColor(new Color(255, 150, 200));
             } else{
@@ -88,6 +91,7 @@ abstract public class Enemy extends Entity {
             //Drawing the description
             TextDrawer drawer = new TextDrawer(g,abilities[i].getDesc(), 1079, 54+105*i,250);
             drawer.drawText(g);
+            */
         }
     }
 

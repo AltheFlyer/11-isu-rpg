@@ -2,7 +2,7 @@ import utils.AnimatedSprite;
 
 import java.awt.*;
 
-public class AOEAbility extends Ability{
+public class AOEAbility extends DamagingAbility{
 
     /**
      * [AOEAbility]

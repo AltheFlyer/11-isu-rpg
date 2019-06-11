@@ -62,6 +62,8 @@ public class Player extends Entity{
         //ABILITY ICONS
         for (int i = 0; i < abilities.length; i++) {
             //draw the abilities cyan if usable
+            abilities[i].drawInfoBox(g, 30, 105 * i);
+            /*
             if (abilities[i].getEnergyCost() > getEnergy() || abilities[i].getCurrentCooldown() > 0) {
                 g.setColor(new Color(255, 150, 200));
             } else{
@@ -95,6 +97,7 @@ public class Player extends Entity{
             //Drawing the description
             TextDrawer drawer = new TextDrawer(g,abilities[i].getDesc(), 40, 76+105*i,250);
             drawer.drawText(g);
+            */
         }
 
         for (int i = 0; i < abilities.length; i++){
@@ -184,6 +187,8 @@ public class Player extends Entity{
         //ABILITY ICONS
         for (int i = 0; i < abilities.length; i++) {
             //draw the abilities cyan if usable
+            abilities[i].drawInfoBox(g, 30, 105 * i);
+            /**
             if (abilities[i].getEnergyCost() > getEnergy() || abilities[i].getCurrentCooldown() > 0) {
                 g.setColor(new Color(255, 150, 200));
             } else{
@@ -217,6 +222,7 @@ public class Player extends Entity{
             //Drawing the description
             TextDrawer drawer = new TextDrawer(g,abilities[i].getDesc(), 40, 76+105*i,250);
             drawer.drawText(g);
+             */
         }
     }
 

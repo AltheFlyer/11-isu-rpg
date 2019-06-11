@@ -1,6 +1,6 @@
 import java.awt.*;
 
-public class DiagMoveAbility extends Ability {
+public class DiagMoveAbility extends MoveAbility{
     /**
      * [DiagMoveAbility]
      * Constructor for movement

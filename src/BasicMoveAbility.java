@@ -1,6 +1,6 @@
 import java.awt.*;
 
-public class BasicMoveAbility extends Ability {
+public class BasicMoveAbility extends MoveAbility {
     /**
      * [BasicMoveAbility]
      * Constructor for movement

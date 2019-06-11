@@ -2,7 +2,7 @@ import utils.AnimatedSprite;
 
 import java.awt.*;
 
-public class EnergyAbility extends Ability{
+public class EnergyAbility extends DamagingAbility{
     private double energyGain;
     EnergyAbility(AnimatedSprite animation, String name, String desc, double energyCost, int cooldown, int xRange, int yRange, double damage, double energyGain) {
         super(animation, name, desc, energyCost,cooldown, xRange,yRange,damage,0, false, true);

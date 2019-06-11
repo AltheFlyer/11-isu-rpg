@@ -1,6 +1,6 @@
 import utils.AnimatedSprite;
 
-import java.awt.*;
+import java.awt.Graphics;
 
 /**
  * [AbilityPair]
@@ -26,7 +26,7 @@ public class AbilityPair extends Ability {
      * @param secondAbility an ability that is part of the full AbilityPair, this ability is processed last
      */
     public AbilityPair(AnimatedSprite animation, String name, String desc, int energyCost, int cooldown, Ability firstAbility, Ability secondAbility) {
-        super(name, desc, energyCost, cooldown, 0);
+        super(name, desc, energyCost, cooldown);
         this.firstAbility = firstAbility;
         this.secondAbility = secondAbility;
 
@@ -44,11 +44,6 @@ public class AbilityPair extends Ability {
     public void action(JointMap jointMap, int x, int y) {
         firstAbility.action(jointMap, x, y);
         secondAbility.action(jointMap, x, y);
-    }
-
-    @Override
-    public double getDamage() {
-        return firstAbility.getDamage() + secondAbility.getDamage();
     }
 
     /**
@@ -86,5 +81,30 @@ public class AbilityPair extends Ability {
         super.setEntitySource(e);
         firstAbility.setEntitySource(e);
         secondAbility.setEntitySource(e);
+    }
+
+    /**
+     * [drawInfoBox]
+     * Draws the default ability text box, but also draws damage IF the abilities would do damage.
+     * @param g the graphics object to draw with
+     * @param x the x position to draw from (top left corner)
+     * @param y the y position to draw from (top left corner)
+     */
+    @Override
+    public void drawInfoBox(Graphics g, int x, int y) {
+        super.drawInfoBox(g, x, y);
+        double damage = 0;
+
+        if (firstAbility instanceof DamagingAbility) {
+            damage += ((DamagingAbility) firstAbility).getDamage();
+        }
+        if (secondAbility instanceof DamagingAbility) {
+            damage += ((DamagingAbility) secondAbility).getDamage();
+        }
+
+        if (damage != 0) {
+            g.drawString("Damage: " + damage, x + 110, 54 + y);
+            g.drawRect(x + 100,37+y,163,22);
+        }
     }
 }
