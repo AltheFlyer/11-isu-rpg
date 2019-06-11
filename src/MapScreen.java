@@ -105,7 +105,7 @@ public class MapScreen extends GameScreen {
     public void keyTyped(KeyEvent e) {
         if (e.getKeyChar() == 'z') {
             for (int i = 0; i < npcs.length; ++i) {
-                npcs[i].checkInteractions(player.interact());
+                npcs[i].checkInteractions(player.interact(), player.getDirection());
             }
         }
     }

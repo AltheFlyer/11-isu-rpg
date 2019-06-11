@@ -69,12 +69,23 @@ public class OverworldNPC extends OverworldEntity {
      * [checkInteractions]
      * checks if the player's interaction hitbox is intersecting with this NPC
      * if so, it prompts theh NPC to show a textbox
+     * also turns NPC in the direction facing the player
      * @param hitbox, the player's interaction hitbox
      * @return void
      */
-    public void checkInteractions(Rectangle hitbox) {
+    public void checkInteractions(Rectangle hitbox, String direction) {
         if (hitbox.intersects(this.collisionWindow())) {
             this.setTalking();
+        }
+        switch (direction) {
+            case "up" : this.setDirection("down");
+            break;
+            case "down" : this.setDirection("up");
+            break;
+            case "right" : this.setDirection("left");
+            break;
+            case "left" : this.setDirection("right");
+            break;
         }
     }
 
