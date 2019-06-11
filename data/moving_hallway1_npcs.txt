@@ -1,3 +1,5 @@
-1
-325 325 Shopkeeper
+2
+325 325 Shopkeeper Ken
 Welcome to my crib, loli.
+325 400 Jasmine
+Please don't enable Ken, he thinks I'm a loli
