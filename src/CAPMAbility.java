@@ -4,6 +4,18 @@ import java.awt.Graphics;
 
 public class CAPMAbility extends DamagingAbility {
     private int distance;
+
+    /**
+     * [CAPMAbility]
+     * Constructor for combination abilities
+     * @param animation the animation that is played on ability case
+     * @param name the displayed name of the ability
+     * @param desc the displayed description of the ability
+     * @param energyCost the energy cost of the ability
+     * @param cooldown the cooldown in turns
+     * @param damage the amount of damage that the ability will do
+     * @param ratio the percentage of attack that is added by the caster as a decimal
+     */
     CAPMAbility(AnimatedSprite animation, String name, String desc, double energyCost, int cooldown, double damage, double ratio){
         super (animation, name, desc, energyCost, cooldown, 6,0, damage, ratio, true, false);
         distance = 1;
@@ -18,6 +30,7 @@ public class CAPMAbility extends DamagingAbility {
     public void action(JointMap jointMap, int i, int j){
         jointMap.target(i, j, getDamage());
     }
+
     /**
      * [drawHoverAttack]
      * Draws the area that will be affected by an ability
@@ -32,6 +45,10 @@ public class CAPMAbility extends DamagingAbility {
         distance = Math.abs(i-getEntitySource().getXGrid());
     }
 
+    /**
+     * [getDamage]
+     * @return a different calculation on the display of how much an ability damages one by
+     */
     @Override
     public double getDamage() {
         return (getBaseDamage() + getRatio() * getEntitySource().getAttack()) * distance;

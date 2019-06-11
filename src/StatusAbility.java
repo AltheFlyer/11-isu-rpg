@@ -79,7 +79,7 @@ public class StatusAbility extends Ability {
      * gets the status effect attached to the ability
      * @return StatusEffect, the status effect that would be applied by the ability
      */
-    public StatusEffect getStatusEffect() {
+    public StatusEffect getEffect() {
         return effect;
     }
 }

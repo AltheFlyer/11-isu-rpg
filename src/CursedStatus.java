@@ -26,9 +26,7 @@ public class CursedStatus extends StatusEffect {
     @Override
     public void stack(StatusEffect effect) {
         this.setStacks(effect.getStacks() + this.getStacks());
-
         this.getIcon().setName("Cursed x" + this.getStacks() + "!");
-
         this.setDuration(3);
     }
 

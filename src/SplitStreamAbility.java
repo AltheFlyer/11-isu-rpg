@@ -1,6 +1,16 @@
 import utils.AnimatedSprite;
 
 public class SplitStreamAbility extends AOEAbility{
+
+    /**
+     * [AOEAbility]
+     * Constructor for aoe abilities
+     * @param animation the animation that is played on ability case
+     * @param name the displayed name of the ability
+     * @param desc the displayed description of the ability
+     * @param energyCost the energy cost of the ability
+     * @param cooldown the cooldown in turns
+     */
     SplitStreamAbility(AnimatedSprite animation, String name, String desc, double energyCost, int cooldown){
         super (animation, name, desc, energyCost, cooldown, 0,2,6,0,0,0,true,true);
     }

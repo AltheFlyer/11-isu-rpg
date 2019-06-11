@@ -182,10 +182,9 @@ public class BattleLayoutScreen extends GameScreen {
         if (isFullyClicked(continueButton)) {
             //This piece of code to transition to levelScreen is completely experimental
             getGame().setScreen(new LevelScreen(getGame(), new Enemy[] {
-                    new BunsenBurnerEnemy(5, 0),
-                    new DecaEnemy(3, 2),
-                    new FlaskEnemy(4,1),
-                    new CAPMEnemy(4,2)
+                    new DecaEnemy(5,2),
+                    new FlaskEnemy(5,0),
+                    new ProcessingCloudEnemy(3, 1)
             }));
         }
     }

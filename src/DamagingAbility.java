@@ -15,7 +15,7 @@ abstract public class DamagingAbility extends Ability {
     private double ratio;
 
     /**
-     * [Ability]
+     * [DamagingAbility]
      * Constructor for single target and aoe abilities
      *
      * @param animation    the animation that is played on ability case

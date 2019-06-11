@@ -4,7 +4,7 @@ import java.awt.Graphics;
 
 public class CombinationAbility extends DamagingAbility {
     /**
-     * [AOEAbility]
+     * [CombinationAbility]
      * Constructor for combination abilities
      * @param animation the animation that is played on ability case
      * @param name the displayed name of the ability
@@ -35,6 +35,7 @@ public class CombinationAbility extends DamagingAbility {
         jointMap.target(i,j, getDamage());
         jointMap.moveOnTile(getEntitySource().getXGrid(),getEntitySource().getYGrid(),getEntitySource().getXGrid()-1,getEntitySource().getYGrid());
     }
+
     /**
      * [drawHoverAttack]
      * Draws the area that will be affected by an ability

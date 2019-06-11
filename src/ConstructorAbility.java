@@ -30,7 +30,7 @@ public class ConstructorAbility extends StatusAbility {
     public void action(JointMap jointMap, int x, int y) {
         getEntitySource().setHealth(getEntitySource().getMaxHealth());
         getEntitySource().getStatuses().clear();
-        getEntitySource().inflictStatus(jointMap, getStatusEffect().spread());
+        getEntitySource().inflictStatus(jointMap, getEffect().spread());
     }
 
     /**
