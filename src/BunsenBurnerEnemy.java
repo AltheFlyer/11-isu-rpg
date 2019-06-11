@@ -1,6 +1,6 @@
 import utils.AnimatedSprite;
 
-import java.awt.*;
+import java.awt.Graphics;
 
 /**
  * [BunsenBurnerEnemy.java]

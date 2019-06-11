@@ -1,6 +1,7 @@
 import utils.AnimatedSprite;
 
-import java.awt.*;
+import java.awt.Graphics;
+import java.awt.Color;
 
 abstract public class Tile {
     private Entity entity;
