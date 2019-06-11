@@ -28,8 +28,15 @@ abstract public class StatusEffect {
     }
 
     /**
+     * [isActiveImmediately]
+     * whether the status effect is active the moment it is applied
+     * @return boolean, whether the effect is applied immediately
+     */
+    abstract public boolean isActiveImmediately();
+
+    /**
      * [triggerEffect]
-     * triggers the status effect, should be called at the end of turns
+     * triggers the status effect, should be called at the end of turns except for passives/'active immediately' effects
      * @param map the jointmap that
      */
     abstract public void triggerEffect(JointMap map, Entity affected);

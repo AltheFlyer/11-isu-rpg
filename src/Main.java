@@ -6,7 +6,7 @@ public class Main {
         //game.setScreen(new DebugScreen(game));
         //game.setScreen(new LevelScreen(game));
 
-        game.setScreen(new BattleLayoutScreen(game));
+        //game.setScreen(new BattleLayoutScreen(game));
         //game.setScreen(new TutorialLevel(game));
 
         //My args setup, Use custom run configurations for different encounters

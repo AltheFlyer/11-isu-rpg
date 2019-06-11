@@ -48,7 +48,7 @@ public class JointMap {
     public void inflictStatus(int x, int y, StatusEffect status) {
         //Safety first
         if (tileExists(x, y)) {
-            tileArray[x][y].inflictStatus(status);
+            tileArray[x][y].inflictStatus(this, status);
         }
     }
 

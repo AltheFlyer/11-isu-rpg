@@ -73,4 +73,13 @@ public class StatusAbility extends Ability {
 
         indicateValidTileHelper(jointMap, rangeAhead, rangeBehind, rangeDown, rangeUp, false, false);
     }
+
+    /**
+     * [getStatus]
+     * gets the status effect attached to the ability
+     * @return StatusEffect, the status effect that would be applied by the ability
+     */
+    public StatusEffect getStatusEffect() {
+        return effect;
+    }
 }
