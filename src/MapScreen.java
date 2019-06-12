@@ -64,7 +64,7 @@ public class MapScreen extends GameScreen {
 
         //initializing the text drawer
         if (textDrawer == null) {
-            textDrawer = new TextDrawer(g,"",150,650,1166,50);
+            textDrawer = new TextDrawer(g,"",150,650,1166,25);
         }
 
         //if (!(this.map.isEventShownYet())) {
@@ -126,9 +126,13 @@ public class MapScreen extends GameScreen {
      */
     public void keyTyped(KeyEvent e) {
         if (e.getKeyChar() == 'z') {
-            textDrawer = null;
-            for (int i = 0; i < npcs.length; ++i) {
-                npcs[i].checkInteractions(player.interact(), player.getDirection());
+            if (textDrawer.getCharactersWritten() != textDrawer.getTextLength()) {
+                textDrawer.setCharactersWritten(textDrawer.getTextLength());
+            } else {
+                textDrawer = null;
+                for (int i = 0; i < npcs.length; ++i) {
+                    npcs[i].checkInteractions(player.interact(), player.getDirection());
+                }
             }
         }
     }
