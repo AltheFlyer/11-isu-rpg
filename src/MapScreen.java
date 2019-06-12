@@ -60,6 +60,15 @@ public class MapScreen extends GameScreen {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
 
+        //initializing the text drawer
+        if (textDrawer == null) {
+            textDrawer = new TextDrawer(g,"",150,650,1166,50);
+        }
+
+        //if (!(this.map.isEventShownYet())) {
+        //    map.event(g);
+        //}
+
         //updating clock and frames
         clock.update();
         framerate.update();
@@ -82,9 +91,6 @@ public class MapScreen extends GameScreen {
         //npc management
         for (int i = 0; i < npcs.length; ++i) {
             npcs[i].draw(g, map, player); //drawing the npcs
-        }
-        if (textDrawer == null) {
-            textDrawer = new TextDrawer(g,"",150,650,1166,50);
         }
         for (int i = 0; i < npcs.length; ++i) {
             if (npcs[i].isTalking()) {

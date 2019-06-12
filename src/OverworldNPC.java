@@ -57,10 +57,7 @@ public class OverworldNPC extends OverworldEntity {
         g.drawRect(100,600,1165,100); //outline message box
         g.drawRect(100,550,150,50); //outline name box
         g.drawString(name,120,580); //draw name
-//        for (int i = 0; i < message.length(); ++i) {
         textDrawer.speakText(g);
-//        }
-        //textDrawer.drawText(g); //draw message
         if (textDrawer.getCharactersWritten() == message.length()) {
             g.drawString("Press z to continue..",1111,675);
         }
@@ -70,7 +67,7 @@ public class OverworldNPC extends OverworldEntity {
     /**
      * [checkInteractions]
      * checks if the player's interaction hitbox is intersecting with this NPC
-     * if so, it prompts theh NPC to show a textbox
+     * if so, it prompts the NPC to show a textbox
      * also turns NPC in the direction facing the player
      * @param hitbox, the player's interaction hitbox
      * @return void

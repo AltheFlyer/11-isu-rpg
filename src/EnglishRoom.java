@@ -30,7 +30,8 @@ public class EnglishRoom extends RoomMap {
      */
     @Override
     public void event(Graphics g) {
-        String message = "Alright, class. You've all done your 10th journal, right?";
+        //super.event(g);
+        String message = "Alright, class. You've all done your 10th journal, right?\n...\n...What do you mean, no?";
         TextDrawer textDrawer = new TextDrawer(g,message,150,650,1166,50);
         g.setColor(Color.WHITE);
         g.fillRect(100,600,1165,100); //fill message box
@@ -39,8 +40,11 @@ public class EnglishRoom extends RoomMap {
         g.drawRect(100,600,1165,100); //outline message box
         g.drawRect(100,550,150,50); //outline name box
         g.drawString("Mr. Cimetta", 120,580); //draw name
-        textDrawer.drawText(g); //draw message
-        g.drawString("Press z to continue..",1111,675);
+        textDrawer.speakText(g); //draw message
+        if (textDrawer.getCharactersWritten() == message.length()) {
+            super.event(g);
+        }
+        //System.out.println("works");
      }
 
 }
