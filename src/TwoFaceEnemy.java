@@ -4,8 +4,15 @@ import java.awt.*;
 
 public class TwoFaceEnemy extends Enemy {
 
-    AnimatedSprite happyFace;
-    AnimatedSprite sadFace;
+    private AnimatedSprite happyFace;
+    private AnimatedSprite sadFace;
+
+    private int hits;
+
+    private Ability happyOrb;
+    private Ability sadOrb;
+
+    private Icon attackIcon;
 
     /**
      * Creates an enemy entity which doesn't need energy
@@ -13,12 +20,28 @@ public class TwoFaceEnemy extends Enemy {
      * @param y         the y location on the grid that the enemy is located
      */
     TwoFaceEnemy(int x, int y) {
-        super(x, y, 500, 30, 0, "Two Face", null,
+        super(x, y, 500, 30, 0, "Two Face", new AnimatedSprite("spritesheets/happy_mask.png", 1, 7, 50),
                 new Ability[] {
+                        new FirstInRowAbility(new AnimatedSprite("spritesheets/red_orb.png", 1, 3, 100),
+                        "Happy orb", "Deals damage to one target in the row. Only usable while happy.",
+                                0, 0, 10, 1, true, false
+                        ),
+                        new FirstInRowAbility(new AnimatedSprite("spritesheets/blue_orb.png", 1, 3, 100),
+                                "Sad orb", "Deals damage to one target in the row. Only usable while sad.",
+                                0, 0, 20, 1, true, false
+                        )
+
                 });
 
-        happyFace = new AnimatedSprite("spritesheets/happy_face.png", 1, 7, 250);
-        sadFace = new AnimatedSprite("spritesheets/happy_face.png", 1, 7, 250);
+        happyOrb = getAbility(0);
+        sadOrb = getAbility(1);
+
+        happyFace = new AnimatedSprite("spritesheets/happy_mask.png", 1, 7, 50);
+        sadFace = new AnimatedSprite("spritesheets/sad_mask.png", 1, 7, 75);
+
+        attackIcon = new Icon("assets/icons/sword.png", "Attack", "This enemy intends to attack a player.");
+
+        hits = 0;
     }
 
     /**
@@ -29,7 +52,13 @@ public class TwoFaceEnemy extends Enemy {
      */
     @Override
     public void decide(JointMap map) {
-
+        if (hits >= 10) {
+            setDecide(sadOrb);
+            setIntent(attackIcon);
+        } else {
+            setDecide(happyOrb);
+            setIntent(attackIcon);
+        }
     }
 
     /**
@@ -40,22 +69,16 @@ public class TwoFaceEnemy extends Enemy {
      */
     @Override
     public void act(JointMap map) {
-
+        selectRandomTile(map, getDecide());
     }
 
     @Override
-    public void draw(int x, int y, Graphics g, boolean indicated) {
-
-        g.setColor(Color.ORANGE);
-        g.fillRect(x,y,120,120);
-
-        happyFace.draw(g, x, y);
-
-        g.setColor(Color.BLACK);
-        if (indicated){
-            g.setColor(new Color(0, 0, 0, 100));
-            g.fillRect(x,y,120,120);
+    public void damageEntity(double damage) {
+        super.damageEntity(damage);
+        hits++;
+        if (hits == 10) {
+            setAnimation(sadFace);
+            setDefense(0.3);
         }
-        g.drawRect(x, y, 120, 120);
     }
 }

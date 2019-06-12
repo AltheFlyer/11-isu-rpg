@@ -14,7 +14,7 @@ abstract public class Enemy extends Entity {
 
     private Icon intent;
     private Ability decide;
-    private AnimatedSprite gif;
+    private AnimatedSprite animation;
     private int targetedX = -1;
     private int targetedY = -1;
 
@@ -33,7 +33,7 @@ abstract public class Enemy extends Entity {
         super(health, attack, defence, name, abilities);
         setXGrid(x);
         setYGrid(y);
-        gif = animation;
+        this.animation = animation;
         for (int i = 0; i < abilities.length; i++){
             abilities[i].setEntitySource(this);
         }
@@ -90,7 +90,7 @@ abstract public class Enemy extends Entity {
         g.fillRect(x,y,120,120);
 
         //Animation testing
-        gif.draw(g,x,y);
+        animation.draw(g,x,y);
 
         g.setColor(Color.BLACK);
         if (indicated){
@@ -326,6 +326,15 @@ abstract public class Enemy extends Entity {
      */
     public boolean isFriendly() {
         return false;
+    }
+
+    /**
+     * [setAnimation]
+     * sets the animation of the enemy
+     * @param animation the new animation for the enemy
+     */
+    public void setAnimation(AnimatedSprite animation) {
+        this.animation = animation;
     }
 
 }

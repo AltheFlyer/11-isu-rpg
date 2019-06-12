@@ -49,6 +49,16 @@ public class GameIO {
         readActiveMap();
     }
 
+    public void resetProgress() {
+
+
+
+        activeMap = "moving_hallway1";
+        mapX = 400;
+        mapY = 400;
+        writeMapData();
+    }
+
     /**
      * [readTileWalkability]
      * loads all tile types, and saves whether they can be walked on or not

@@ -47,6 +47,11 @@ public class Main {
                             new ProcessingCloudEnemy(3, 1)
                     }));
                     break;
+                case "DramaLevel" :
+                    game.setScreen(new LevelScreen(game, new Enemy[] {
+                            new TwoFaceEnemy(4, 1)
+                    }));
+                    break;
                 case "Tutorial" :
                     game.setScreen(new TutorialLevel(game));
                     break;
