@@ -71,6 +71,14 @@ abstract public class GameScreen extends JPanel
     }
 
     /**
+     * [enterMapScreen]
+     * enters the map screen based on the saved map position
+     */
+    public void enterMapScreen() {
+        game.enterMapScreen();
+    }
+
+    /**
      * [setMusic]
      * Sets the music for the screen, and starts its loop.
      * @param path the file path of the audio source

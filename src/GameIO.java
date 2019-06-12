@@ -36,6 +36,9 @@ public class GameIO {
     private int currentDay;
     private int currentPeriod;
 
+    private String activeMap;
+    private int mapX, mapY;
+
     //Game initialization (file reading) methods
     public GameIO() {
         readInventory();
@@ -43,6 +46,7 @@ public class GameIO {
         readEquipUnlocks();
         readAbilityUnlocks();
         readTimeState();
+        readActiveMap();
     }
 
     /**
@@ -74,8 +78,8 @@ public class GameIO {
         String periodLine = lines.substring(0, newline);
         String dayLine = lines.substring(newline + 1);
 
-        currentPeriod = Integer.parseInt(periodLine.substring(periodLine.indexOf(" ") + 1));
-        currentDay = Integer.parseInt(dayLine.substring(dayLine.indexOf(" ") + 1));
+        currentPeriod = Integer.parseInt(removeFirstWord(periodLine));
+        currentDay = Integer.parseInt(removeFirstWord(dayLine));
     }
 
     /**
@@ -105,7 +109,6 @@ public class GameIO {
     /**
      * [readInventory]
      * gets the saved inventory from the inventory file
-     * @return HashMap (String, Integer) containing a list of items in the inventory, along with the count of each item
      */
     public void readInventory() {
         String fullText = readFile("inventory.txt");
@@ -116,6 +119,21 @@ public class GameIO {
             int spacer = lines[i].indexOf(" ");
             inventory.put(lines[i].substring(0, spacer), Integer.parseInt(lines[i].substring(spacer + 1)));
         }
+    }
+
+    /**
+     * [readActiveMap]
+     * gets the saved map position from a file
+     */
+    public void readActiveMap() {
+        String mapPos = readFile("progression/map_position.txt");
+
+        String[] lines = mapPos.split("\n");
+
+        activeMap = removeFirstWord(lines[0]);
+
+        mapX = Integer.parseInt(lines[2]);
+        mapY = Integer.parseInt(lines[3]);
     }
 
 
@@ -184,6 +202,50 @@ public class GameIO {
         return currentPeriod;
     }
 
+    /**
+     * [getActiveMap]
+     * gets the saved active map path
+     */
+    public String getActiveMap() {
+        return activeMap + ".txt";
+    }
+
+    /**
+     * [getMapNPCPath]
+     * gets the file that contains the active map's npcs
+     * @return String, the file that contains the active npcs
+     */
+    public String getMapNPCPath() {
+        return activeMap + "_npcs.txt";
+    }
+
+    /**
+     * [getMapObjectPath]
+     * gets the file that contains the active map's objects
+     * @return String, the file that contains the active map objects
+     */
+    public String getMapObjectPath() {
+        return activeMap + "_objects.txt";
+    }
+
+
+    /**
+     * [getMapX]
+     * gets the stored x position on the active map
+     * @return int mapX
+     */
+    public int getMapX() {
+        return mapX;
+    }
+
+    /**
+     * [getMapY]
+     * gets the stored y position on the active map
+     * @return int mapY
+     */
+    public int getMapY() {
+        return mapY;
+    }
 
     //Dynamic setters
 
@@ -238,6 +300,19 @@ public class GameIO {
         currentDay = day;
     }
 
+    /**
+     * [setMapData]
+     * sets the saved map and position within it
+     * @param map the map debug name
+     * @param x the x position in the map
+     * @param y the y position in the map
+     */
+    public void setMapData(String map, int x, int y) {
+        activeMap = map;
+        mapX = x;
+        mapY = y;
+    }
+
 
     //Dynamic file writing
 
@@ -279,6 +354,21 @@ public class GameIO {
      */
     public void writeAbilityUnlocks() {
         writeHashMapToFile("progression/ability_unlock.txt", abilityUnlocks);
+    }
+
+    /**
+     * [writeMapData]
+     * writes map position (room and x/y)
+     */
+    public void writeMapData() {
+        String toWrite = "";
+
+        toWrite += "map_name " + activeMap;
+        toWrite += "\nposition\n";
+        toWrite += mapX + "\n";
+        toWrite += mapY;
+
+        writeFile("progression/map_position.txt", toWrite);
     }
 
 
@@ -355,18 +445,18 @@ public class GameIO {
         String allText = readFile("players/" + debugName+ ".txt");
         String[] lines = allText.split("\n");
 
-        String name = replaceFirstWord(lines[0]);
+        String name = removeFirstWord(lines[0]);
 
         AnimatedSprite animatedSprite = null;
 
         animatedSprite = generateAnimation(lines[1]);
 
-        double health = Double.parseDouble(replaceFirstWord(lines[2]));
-        double attack = Double.parseDouble(replaceFirstWord(lines[3]));
-        double defence = Double.parseDouble(replaceFirstWord(lines[4]));
-        double energy = Double.parseDouble(replaceFirstWord(lines[5]));
+        double health = Double.parseDouble(removeFirstWord(lines[2]));
+        double attack = Double.parseDouble(removeFirstWord(lines[3]));
+        double defence = Double.parseDouble(removeFirstWord(lines[4]));
+        double energy = Double.parseDouble(removeFirstWord(lines[5]));
 
-        int numAbilities = Integer.parseInt(replaceFirstWord(lines[6]));
+        int numAbilities = Integer.parseInt(removeFirstWord(lines[6]));
 
         Ability[] abilities = new Ability[numAbilities];
         int lineNumber = 7;
@@ -881,12 +971,12 @@ public class GameIO {
     }
 
     /**
-     * [replaceFirstWord]
+     * [removeFirstWord]
      * returns a string with the first word removed
      * @param s the string to get the words from
      * @return String, the input string with the first word (everything up to the first space) removed
      */
-    private static String replaceFirstWord(String s) {
+    private static String removeFirstWord(String s) {
         return s.substring(s.indexOf(" ") + 1);
     }
 }

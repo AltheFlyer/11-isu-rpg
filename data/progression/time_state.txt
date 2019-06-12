@@ -1,2 +1,2 @@
-current_period 8
-current_day 0
+current_period 1
+current_day 1

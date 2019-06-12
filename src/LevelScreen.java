@@ -37,6 +37,8 @@ public class LevelScreen extends GameScreen{
     int counter = 0;
     int turnNumber = 1;
 
+    Rectangle exitLevelButton;
+
     /**
      * [LevelScreen]
      * @param game the currently running game
@@ -68,6 +70,8 @@ public class LevelScreen extends GameScreen{
         for (int i = 0; i < enemies.length; ++i) {
             jointMap.generateEnemyDecisions(enemies[i]);
         }
+
+        exitLevelButton = new Rectangle((1366 / 2) - 100, 400, 200, 50);
     }
 
     @Override
@@ -178,6 +182,10 @@ public class LevelScreen extends GameScreen{
                     }
                 }
             }
+        }
+
+        if ((arePlayersDead() || areEnemiesDead()) && (isFullyClicked(exitLevelButton))) {
+            endBattleLoader();
         }
     }
 
@@ -441,16 +449,17 @@ public class LevelScreen extends GameScreen{
      * @param g the graphics object to draw with
      */
     public void winBattle(Graphics g) {
-        //Save inventory, progression
-        //This is just a test to see it works
-        //getIO().setInventory(inventory);
-        //getIO().writeInventory();
-        System.out.println(getIO().getCurrentPeriod());
-        getIO().setTimeState(getIO().getCurrentPeriod() + 1, getIO().getCurrentDay());
-        getIO().writeTimeState();
+        g.setColor(new Color(0, 0, 0, 200));
+        g.fillRect(100, 100, 1366 - 200, 768 - 200);
 
-        g.drawString("WINNER", 500, 500);
-        setScreen(new LoadingScreen(getGame()));
+        g.setColor(Color.WHITE);
+
+        g.drawString("You win!!!", 200, 200);
+
+        g.fillRect(exitLevelButton.x, exitLevelButton.y, exitLevelButton.width, exitLevelButton.height);
+
+        g.setColor(Color.BLACK);
+        g.drawString("Continue to map", exitLevelButton.x + 10, exitLevelButton.y + 20);
     }
 
     /**
@@ -460,8 +469,16 @@ public class LevelScreen extends GameScreen{
      * @param g the graphics object to draw with
      */
     public void loseBattle(Graphics g) {
-        //Go back to map OR restart level
-        g.drawString("LOSER", 500, 500);
+        g.setColor(new Color(0, 0, 0, 200));
+        g.fillRect(100, 100, 1366 - 200, 768 - 200);
+
+        g.setColor(Color.WHITE);
+
+        g.drawString("You lost...", 200, 200);
+
+        g.fillRect(exitLevelButton.x, exitLevelButton.y, exitLevelButton.width, exitLevelButton.height);
+        g.setColor(Color.BLACK);
+        g.drawString("Return to map", exitLevelButton.x + 10, exitLevelButton.y + 20);
     }
 
     /**
@@ -490,5 +507,18 @@ public class LevelScreen extends GameScreen{
             }
         }
         return true;
+    }
+
+    /**
+     * [endBattleLoader]
+     * loads the map for the end of battle, progressing time state if the battle was won
+     */
+    public void endBattleLoader() {
+        if (!arePlayersDead()) {
+            getIO().setTimeState(getIO().getCurrentPeriod() + 1, getIO().getCurrentDay());
+            getIO().writeTimeState();
+        }
+        setScreen(new LoadingScreen(getGame()));
+        enterMapScreen();
     }
 }
