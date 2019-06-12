@@ -126,13 +126,13 @@ public class MapScreen extends GameScreen {
      */
     public void keyTyped(KeyEvent e) {
         if (e.getKeyChar() == 'z') {
-            if (textDrawer.getCharactersWritten() == textDrawer.getTextLength()) {
-                textDrawer = null;
-            } else {
+            if (textDrawer.getCharactersWritten() != textDrawer.getTextLength()) {
                 textDrawer.setCharactersWritten(textDrawer.getTextLength());
-            }
-            for (int i = 0; i < npcs.length; ++i) {
-                npcs[i].checkInteractions(player.interact(), player.getDirection());
+            } else {
+                textDrawer = null;
+                for (int i = 0; i < npcs.length; ++i) {
+                    npcs[i].checkInteractions(player.interact(), player.getDirection());
+                }
             }
         }
     }
