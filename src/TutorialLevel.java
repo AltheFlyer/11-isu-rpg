@@ -87,7 +87,7 @@ public class TutorialLevel extends LevelScreen {
                 "You should perform an action before ending your turn!\n\n" +
                         "Start by selecting the player using the menu bar to the left or by clicking on the player in the grid.",
 
-                "The enemy intends to attack now! You should move out of the way. Use the move ability to move to another column." +
+                "The enemy intends to attack now! You should move out of the way. Use the move ability to move to another row." +
                         "This will let you avoid attacks. Use it wisely!"
         };
     }

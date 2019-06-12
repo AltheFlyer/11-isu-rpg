@@ -3,6 +3,13 @@ import utils.AnimatedSprite;
 import java.awt.Graphics;
 import java.awt.Color;
 
+/**
+ * [Tile.java]
+ * the abstract tiles that entities will be situated on
+ * @version 1.0
+ * @author Kevin Liu
+ * @since May 23, 2019
+ */
 abstract public class Tile {
     private Entity entity;
     private int xGrid;
@@ -12,6 +19,13 @@ abstract public class Tile {
     private boolean indicated;
     private boolean targetable;
 
+    /**
+     * Constructor for creating a tile
+     * @param xGraphic the x location in pixels, used to draw graphics
+     * @param yGraphic the y location in pixels, used to draw graphics
+     * @param xGrid the x location on the battle grid, used for attack ranges and calculations
+     * @param yGrid the y location on the battle grid, used for attack ranges and calculations
+     */
     Tile(int xGraphic, int yGraphic, int xGrid, int yGrid){
         this.xGraphic = xGraphic;
         indicated = false;
@@ -21,18 +35,38 @@ abstract public class Tile {
         targetable = false;
     }
 
+    /**
+     * [getXGraphic]
+     * returns the x location in pixels, used mainly to draw graphics
+     * @return xGraphic, the x location in pixels
+     */
     public int getXGraphic(){
         return xGraphic;
     }
 
+    /**
+     * [getXGrid]
+     * returns the x location on the battle grid, used for attack ranges and calculations
+     * @return xGraphic, the x location on the battle grid
+     */
     public int getXGrid(){
         return xGrid;
     }
 
+    /**
+     * [getYGrid]
+     * returns the y location on the battle grid, used for attack ranges and calculations
+     * @return yGraphic, the y location on the battle grid
+     */
     public int getYGrid(){
         return yGrid;
     }
 
+    /**
+     * [getYGraphic]
+     * returns the y location in pixels, used mainly to draw graphics
+     * @return yGraphic, the y location in pixels
+     */
     public int getYGraphic(){
         return yGraphic;
     }

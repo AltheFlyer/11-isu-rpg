@@ -3,6 +3,13 @@ import utils.AnimatedSprite;
 import java.awt.Graphics;
 import java.awt.Color;
 
+/**
+ * [Enemy.java]
+ * The abstract constructor for the basic enemy with health, stats, abilities and simple AI
+ * @version 1.0
+ * @author Kevin Liu
+ * @since May 23, 2019
+ */
 abstract public class Enemy extends Entity {
 
     private Icon intent;

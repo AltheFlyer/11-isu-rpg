@@ -7,6 +7,13 @@ import java.awt.Rectangle;
 
 import java.awt.image.BufferedImage;
 
+/**
+ * [Player.java]
+ * the constructor to create different players with health, energy, stats and abilities
+ * @version 1.0
+ * @author Kevin Liu
+ * @since May 23, 2019
+ */
 public class Player extends Entity{
 
     Icon ico;
