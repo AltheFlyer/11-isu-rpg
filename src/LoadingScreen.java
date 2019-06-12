@@ -10,6 +10,15 @@ import java.awt.Color;
  */
 public class LoadingScreen extends GameScreen {
 
+    String[] tips = {
+            "Talk to everyone you meet! You never know what you could learn!",
+            "battle tip 1",
+            "battle tip 2",
+            "battle tip 3"
+    };
+
+    int tipOfTheDay = (int)(Math.random()*tips.length);
+
     public LoadingScreen(GameManager game) {
         super(game);
     }
@@ -18,8 +27,8 @@ public class LoadingScreen extends GameScreen {
         super.paintComponent(g);
         setBackground(Color.BLACK);
         g.setColor(Color.WHITE);
-        g.drawString("Now loading...",10,10);
-
+        g.drawString("Now loading...",500,500);
+        g.drawString(tips[tipOfTheDay],600,600);
         repaint();
     }
 

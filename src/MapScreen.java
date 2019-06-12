@@ -67,10 +67,6 @@ public class MapScreen extends GameScreen {
             textDrawer = new TextDrawer(g,"",150,650,1166,25);
         }
 
-        //if (!(this.map.isEventShownYet())) {
-        //    map.event(g);
-        //}
-
         //updating clock and frames
         clock.update();
         framerate.update();
@@ -111,6 +107,8 @@ public class MapScreen extends GameScreen {
         for (int i = 0; i < objects.length; ++i) {
             objects[i].draw(g, map, player);
         }
+
+        map.checkEncounters(player,npcs);
 
         framerate.draw(g, 10, 10);
 

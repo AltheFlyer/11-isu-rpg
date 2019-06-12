@@ -44,7 +44,7 @@ public class EnglishRoom extends RoomMap {
         if (textDrawer.getCharactersWritten() == message.length()) {
             super.event(g);
         }
-        //System.out.println("works");
+        System.out.println("works");
      }
 
 }

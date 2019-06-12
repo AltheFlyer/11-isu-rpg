@@ -1,4 +1,5 @@
 import utils.SpriteLoader;
+import utils.TextDrawer;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -65,6 +66,10 @@ abstract public class OverworldMap {
      * @return BufferedImage sprites[x][y], the sprite at the position [x][y] in the array
      */
     public BufferedImage getSprite(int x, int y) { return sprites[x][y]; }
+
+    public void checkEncounters(OverworldPlayer player, OverworldNPC[] npcs) {
+
+    }
 
     /**
      * [event]

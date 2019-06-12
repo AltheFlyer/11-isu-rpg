@@ -1,9 +1,9 @@
 4
-300 300 Allen
+300 300 Student
 Did you know 3 billion devices run Java?
-500 500 Allen2
+500 500 Student
 Did you know 4 billion devices run Java?
-800 300 Allen3
+800 300 Student
 Did you know 8 billion devices run Java?
-300 400 Allen4
+300 400 Student
 Did you know 1 device runs Java?

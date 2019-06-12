@@ -1,6 +1,8 @@
+import utils.SpriteLoader;
 import utils.TextDrawer;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 
 /**
  * [OverworldNPC.java]
@@ -14,12 +16,14 @@ public class OverworldNPC extends OverworldEntity {
     private String message;
     private String name;
     private boolean talking;
+    private BufferedImage sprite;
 
     public OverworldNPC(int x, int y, String name, String message) {
         super(x,y);
         this.name = name;
         this.message = message;
         talking = false;
+        sprite = SpriteLoader.getEntitySprite(name);
     }
 
     /**
@@ -32,13 +36,15 @@ public class OverworldNPC extends OverworldEntity {
     public void draw(Graphics g, OverworldMap map, OverworldPlayer player) {
         g.setColor(Color.BLUE);
         if (map instanceof RoomMap) { //regular drawing
-            g.fillRect(this.getX(), this.getY(), 50, 50); //modify size
+            //g.fillRect(this.getX(), this.getY(), 50, 50); //modify size
+            g.drawImage(sprite, this.getX(), this.getY(), 50, 50, null);
         } else { //draw NPC in relation to player location in map and moving map
             int xDifference = player.getX() - this.getX();
             int yDifference = player.getY() - this.getY();
             int xLocation = 683 - xDifference;
             int yLocation = 384 - yDifference;
-            g.fillRect(xLocation, yLocation, 50, 50);
+            //g.fillRect(xLocation, yLocation, 50, 50);
+            g.drawImage(sprite, xLocation, yLocation, 50, 50, null);
         }
     }
 
@@ -88,7 +94,6 @@ public class OverworldNPC extends OverworldEntity {
         }
     }
 
-
     /**
      * [checkCollisions]
      * checks if player is colliding with this NPC
@@ -109,6 +114,16 @@ public class OverworldNPC extends OverworldEntity {
      * @return String name, the name of the NPC
      */
     public String getName() { return this.name; }
+
+    /**
+     * [setMessage]
+     * sets the NPC's message to a new message
+     * @param message the NPC's new message
+     * @return void
+     */
+    public void setMessage(String message) {
+        this.message = message;
+    }
 
     /**
      * [getMessage]
