@@ -18,19 +18,19 @@ import java.util.ArrayList;
  */
 public class TextDrawer {
 
-    String[] lines;
-    int x, y;
-    int lineHeight;
+    private String[] lines;
+    private int x, y;
+    private int lineHeight;
 
     //Spoken text values
-    int charactersWritten;
-    long characterDelay;
-    long lastTextUpdate;
+    private int charactersWritten;
+    private long characterDelay;
+    private long lastTextUpdate;
 
-    int textLength;
-    int maxWidth;
+    private int textLength;
+    private int maxWidth;
 
-    FontMetrics fontData;
+    private FontMetrics fontData;
 
     /**
      * [TextDrawer]
