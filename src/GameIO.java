@@ -850,14 +850,10 @@ public class GameIO {
                 respawnX = Integer.parseInt(tokens[4]);
                 respawnY = Integer.parseInt(tokens[5]);
                 if (tokens[0].equals("orbiter")) {
-                    objects[i] = new Orbiter(x, y, x - radius, y, respawnX, respawnY);
+                    objects[i] = new Orbiter(x, y, respawnX, respawnY, x - radius, y);
                 } else {
-                    objects[i] = new Sweller(x, y, radius, respawnX, respawnY);
+                    objects[i] = new Sweller(x, y, respawnX, respawnY, radius);
                 }
-            } else if ((tokens[0].equals("mirror"))) {
-                x = Integer.parseInt(tokens[1]);
-                y = Integer.parseInt(tokens[2]);
-                objects[i] = new Mirror(x, y);
             }
         }
         return objects;

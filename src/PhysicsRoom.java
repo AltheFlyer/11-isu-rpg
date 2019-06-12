@@ -7,7 +7,7 @@
  */
 public class PhysicsRoom extends RoomMap{
 
-    public PhysicsRoom(GameIO fileManager, String mapPath, String walkabilityKey){
-        super(fileManager, mapPath, walkabilityKey);
+    public PhysicsRoom(GameIO fileManager, String mapPath){
+        super(fileManager, mapPath);
     }
 }

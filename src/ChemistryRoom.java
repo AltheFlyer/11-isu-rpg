@@ -7,7 +7,7 @@
  */
 public class ChemistryRoom extends RoomMap {
 
-    public ChemistryRoom(GameIO fileManager, String mapPath, String walkabilityKey){
-        super(fileManager, mapPath, walkabilityKey);
+    public ChemistryRoom(GameIO fileManager, String mapPath){
+        super(fileManager, mapPath);
     }
 }
