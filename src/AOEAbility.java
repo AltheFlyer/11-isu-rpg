@@ -93,6 +93,7 @@ public class AOEAbility extends DamagingAbility{
     }
 
     /**
+     * [indicateValidTiles]
      * This method will indicate and make tiles targetable for you to click on it with your cursor to enact an ability.
      * @param jointMap The tiles on the jointMap array will be modified (some tiles will be indicated, some will become targetable)
      */

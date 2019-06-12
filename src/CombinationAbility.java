@@ -2,6 +2,13 @@ import utils.AnimatedSprite;
 
 import java.awt.Graphics;
 
+/**
+ * [CombinationAbility.java]
+ * Creating an ability that has movement and damage single target
+ * @version 1.1
+ * @author Kevin Liu
+ * @since June 3, 2019
+ */
 public class CombinationAbility extends DamagingAbility {
     /**
      * [CombinationAbility]

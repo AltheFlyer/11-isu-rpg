@@ -1,5 +1,11 @@
 import java.awt.Graphics;
-
+/**
+ * [DiagMoveAbility.java]
+ * Creating a diagonal movement for Jasmine the floutist
+ * @version 1.1
+ * @author Kevin Liu
+ * @since June 7, 2019
+ */
 public class DiagMoveAbility extends MoveAbility{
     /**
      * [DiagMoveAbility]
@@ -40,6 +46,7 @@ public class DiagMoveAbility extends MoveAbility{
     }
 
     /**
+     * [indicateValidTiles]
      * This method will indicate and make tiles targetable for you to click on it with your cursor to enact an ability.
      * @param jointMap: The tiles on the jointMap array will be modified (some tiles will be indicated, some will become targetable)
      */
