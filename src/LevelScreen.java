@@ -124,9 +124,11 @@ public class LevelScreen extends GameScreen{
                         jointMap.unTargetableAll();
                         //Enemy selection on the right x = {3, 4, 5}
                     } else {
-                        selectedEnemy = ((Enemy) jointMap.getEntity(gridX, gridY));
-                        jointMap.unIndicateAll();
-                        jointMap.unTargetableAll();
+                        if (!enemyTurn) {
+                            selectedEnemy = ((Enemy) jointMap.getEntity(gridX, gridY));
+                            jointMap.unIndicateAll();
+                            jointMap.unTargetableAll();
+                        }
                     }
                 //Ability use
                 } else if ((selectedPlayer != null) && (selectedAbility != null) && animatedAbility == null) {

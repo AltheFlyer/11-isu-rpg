@@ -4,7 +4,11 @@ import utils.TextDrawer;
 import java.awt.*;
 
 /**
- * This class is for the most basic abilities, it will be overwritten by other methods!
+ * [Ability.java]
+ * The overarching class for all abilities, other abilities are based on this
+ * @version 1.1
+ * @author Kevin Liu
+ * @since May 30, 2019
  */
 abstract public class Ability {
     private String name;
@@ -307,6 +311,7 @@ abstract public class Ability {
     //BELOW ARE SOME ABILITY CREATING ASSISTANCE METHODS!
 
     /**
+     * [getIsMarked]
      * Used when running abilities, checks if the target is marked or not
      * @param jointMap map the targets are on
      * @param x the x of the target
@@ -323,6 +328,7 @@ abstract public class Ability {
     }
 
     /**
+     * [getDissect]
      * Used when running abilities, checks if the target is dissected or not
      * @param jointMap map the targets are on
      * @param x the x of the target
@@ -339,6 +345,7 @@ abstract public class Ability {
     }
 
     /**
+     * [removeDissect]
      * Used for removing all dissect stacks from a target
      * @param jointMap map the targets are on
      * @param x the x of the target

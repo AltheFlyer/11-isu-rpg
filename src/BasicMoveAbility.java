@@ -1,5 +1,12 @@
 import java.awt.Graphics;
 
+/**
+ * [BasicMoveAbility.java]
+ * Creating of the basic movement ability that allows entities to move
+ * @version 1.1
+ * @author Kevin Liu
+ * @since May 31, 2019
+ */
 public class BasicMoveAbility extends MoveAbility {
     /**
      * [BasicMoveAbility]
