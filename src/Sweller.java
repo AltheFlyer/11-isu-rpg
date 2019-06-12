@@ -28,28 +28,6 @@ public class Sweller extends OverworldObject {
     }
 
     /**
-     * [draw]
-     * draws swellers on the map
-     * @param g the graphics object to draw with
-     * @param map the OverworldMap the object is inhabiting
-     * @param player the player inhabiting the same map
-     * @return void
-     */
-    @Override
-    public void draw(Graphics g, OverworldMap map, OverworldPlayer player) {
-        g.setColor(Color.BLUE);
-        if (map instanceof RoomMap) { //regular drawing
-            g.fillOval(this.getX(), this.getY(), this.radius, this.radius); //modify size
-        } else { //draw object in relation to player location in map and moving map
-            int xDifference = player.getX() - this.getX();
-            int yDifference = player.getY() - this.getY();
-            int xLocation = 683 - xDifference;
-            int yLocation = 384 - yDifference;
-            g.fillOval(xLocation, yLocation, this.radius, this.radius);
-        }
-    }
-
-    /**
      * [setVelocity]
      * sets the object's velocity as the new velocity
      * @return void
@@ -90,10 +68,11 @@ public class Sweller extends OverworldObject {
      * @return void
      */
     public void updateRadius(double elapsedTime) {
-        if ((this.radius > 200) || (this.radius < 200)) {
+        if ((this.radius > this.maxRadius) || (this.radius < 0)) {
             setVelocity(-this.velocity);
         }
         this.radius += (this.velocity * elapsedTime * 100);
+        System.out.println(radius);
     }
 
     /**
