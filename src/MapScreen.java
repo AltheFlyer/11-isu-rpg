@@ -40,6 +40,8 @@ public class MapScreen extends GameScreen {
             map = new EnglishRoom(getIO(), mapPath, walkabilityKey);
         } else if (mapPath.contains("chemistry")) {
             map = new ChemistryRoom(getIO(), mapPath, walkabilityKey);
+        } else if (mapPath.contains("comsci")) {
+            map = new ComsciRoom(getIO(), mapPath, walkabilityKey);
         } else {
             map = new RoomMap(getIO(), mapPath, walkabilityKey);
         }
@@ -107,7 +109,7 @@ public class MapScreen extends GameScreen {
         }
 
         for (int i = 0; i < objects.length; ++i) {
-            objects[i].draw(g);
+            objects[i].draw(g, map, player);
         }
 
         framerate.draw(g, 10, 10);

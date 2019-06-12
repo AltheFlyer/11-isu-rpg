@@ -12,3 +12,7 @@ exit true
 door true
 desk false
 shelf false
+computer_u false
+computer_d false
+computer_r false
+computer_l false

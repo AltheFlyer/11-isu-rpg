@@ -1,0 +1,17 @@
+10 15
+top_left wall_up wall_up wall_up wall_up wall_up wall_up wall_up wall_up top_right
+wall_left floor floor floor floor floor floor floor floor wall_right
+wall_left computer_r floor floor floor floor floor floor computer_l wall_right
+wall_left computer_r floor floor floor floor floor floor computer_l wall_right
+wall_left floor floor floor floor floor floor floor floor wall_right
+wall_left computer_u computer_u floor floor floor floor computer_u computer_u wall_right
+door exit floor floor floor floor floor floor floor wall_right
+wall_left computer_d computer_d floor floor floor floor computer_d computer_d wall_right
+wall_left floor floor floor floor floor floor floor floor wall_right
+wall_left computer_r floor floor floor floor floor floor computer_l wall_right
+wall_left computer_r floor floor floor floor floor floor computer_l wall_right
+wall_left floor floor floor floor floor floor floor floor wall_right
+wall_left floor floor floor floor floor floor floor floor wall_right
+wall_left floor floor floor floor floor floor floor floor wall_right
+bottom_left wall_down wall_down wall_down wall_down wall_down wall_down wall_down wall_down bottom_right
+moving_hallway2 1025 100

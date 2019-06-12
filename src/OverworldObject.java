@@ -24,11 +24,19 @@ abstract public class OverworldObject {
         this.boundingBox = new Rectangle(x,y,size,size);
     }
 
+    /**
+     * [draw]
+     * draws objects on the map
+     * @param g the graphics object to draw with
+     * @param map the OverworldMap the object is inhabiting
+     * @param player the player inhabiting the same map
+     * @return void
+     */
     public void draw(Graphics g, OverworldMap map, OverworldPlayer player) {
         g.setColor(Color.BLUE);
         if (map instanceof RoomMap) { //regular drawing
             g.fillRect(this.getX(), this.getY(), 50, 50); //modify size
-        } else { //draw NPC in relation to player location in map and moving map
+        } else { //draw object in relation to player location in map and moving map
             int xDifference = player.getX() - this.getX();
             int yDifference = player.getY() - this.getY();
             int xLocation = 683 - xDifference;
@@ -39,9 +47,8 @@ abstract public class OverworldObject {
 
     /**
      * [draw]
-     * draws objects
-     * @param g the graphics object to draw with
-     * @return void
+     * draws objects on the map
+     * @param g the graphics object used to draw with
      */
     public void draw(Graphics g) {
         g.setColor(Color.BLUE);
@@ -85,12 +92,32 @@ abstract public class OverworldObject {
     }
 
     /**
+     * [setXVelocity]
+     * sets the object's x velocity
+     * @param xVelocity the object's new x velocity
+     * @return void
+     */
+    public void setXVelocity(double xVelocity) {
+        this.xVelocity = xVelocity;
+    }
+
+    /**
      * [getXVelocity]
      * returns the object's x velocity
      * @return double xVelocity the object's x velocity
      */
     public double getXVelocity() {
         return this.xVelocity;
+    }
+
+    /**
+     * [setYVelocity]
+     * sets the object's y velocity
+     * @param yVelocity the object's new y velocity
+     * @return void
+     */
+    public void setYVelocity(double yVelocity) {
+        this.yVelocity = yVelocity;
     }
 
     /**
@@ -158,7 +185,7 @@ abstract public class OverworldObject {
     /**
      * [checkCollisions]
      * changes player's x and y coordinates if intersects with an object
-     * @return Rectangle boundingBox, the entity's bounding box
+     * @return Rectangle boundingBox, the object's bounding box
      */
     public void checkCollisions(Rectangle playerBounds, OverworldPlayer player) {
         if (playerBounds.intersects(this.collisionWindow())) {

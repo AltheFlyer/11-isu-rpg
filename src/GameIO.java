@@ -759,6 +759,10 @@ public class GameIO {
                 } else {
                     objects[i] = new Sweller(x, y, radius, respawnX, respawnY);
                 }
+            } else if ((tokens[0].equals("mirror"))) {
+                x = Integer.parseInt(tokens[1]);
+                y = Integer.parseInt(tokens[2]);
+                objects[i] = new Mirror(x, y);
             }
         }
         return objects;
