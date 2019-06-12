@@ -15,16 +15,20 @@ public class Sweller extends OverworldObject {
     private int radius;
     private int velocity;
     private Rectangle boundingBox;
-    private int respawnX;
-    private int respawnY;
+    private int respawnX, respawnY;
+    private int centerX, centerY;
 
-    public Sweller(int x, int y, int maxRadius, int respawnX, int respawnY) {
-        super(x, y);
+    public Sweller(int x, int y, int respawnX, int respawnY, int maxRadius) {
+        super(x, y, respawnX, respawnY);
         this.maxRadius = maxRadius;
-        this.velocity = 2;
+        this.velocity = 1;
+        System.out.println(x);
+        System.out.println(y);
         this.respawnX = respawnX;
         this.respawnY = respawnY;
-        this.boundingBox = new Rectangle(x,y,0,0);
+        this.centerX = x;
+        this.centerY = y;
+        this.boundingBox = new Rectangle(x,y,radius * 2,radius * 2);
     }
 
     /**
@@ -72,25 +76,24 @@ public class Sweller extends OverworldObject {
             setVelocity(-this.velocity);
         }
         this.radius += (this.velocity * elapsedTime * 100);
-        System.out.println(radius);
     }
 
     /**
      * [calcNewX]
-     * calculates the object's new x coordinate according to the elapsed time and radius
-     * @return int new value of the object's x coordinate according to the elapsed time
+     * calculates the object's new x coordinate according to the current radius and center x coordiante
+     * @return int new value of the object's x coordinate
      */
     public int calcNewX() {
-        return (this.getX() - this.radius);
+        return (this.centerX - this.radius);
     }
 
     /**
      * [calcNewY]
-     * calculates the object's new y coordinate according to the elapsed time and radius
-     * @return int new value of the object's y coordinate according to the elapsed time
+     * calculates the object's new y coordinate according to the current radius and center y coordiante
+     * @return int new value of the object's y coordinate
      */
     public int calcNewY() {
-        return (this.getY() - this.radius);
+        return (this.centerY - this.radius);
     }
 
     /**

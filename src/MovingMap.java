@@ -17,8 +17,8 @@ public class MovingMap extends OverworldMap{
     private int visibleWidth = 1366;
     private int visibleHeight = 768;
 
-    public MovingMap(GameIO fileManager, String mapPath, String walkabilityKey){
-        super(fileManager, mapPath,walkabilityKey);
+    public MovingMap(GameIO fileManager, String mapPath){
+        super(fileManager, mapPath);
     }
 
     @Override
@@ -37,7 +37,7 @@ public class MovingMap extends OverworldMap{
         int highestTile = highestVisible / tileSize;
 
         for (int i = 0; i < visibleWidth / tileSize + 2; i++){
-            for (int j = 0; j < visibleHeight / tileSize + 1; j++){
+            for (int j = 0; j < visibleHeight / tileSize + 2; j++){
                 if ((0 > leftmostTile + i) || (leftmostTile + i >= getMap().length) ||
                         (0 > highestTile + j) || (highestTile + j >= getMap()[0].length)) {
                 } else {

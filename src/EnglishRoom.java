@@ -17,8 +17,8 @@ public class EnglishRoom extends RoomMap {
 
      private int tileSize = 100;
 
-     public EnglishRoom(GameIO fileManager, String mapPath, String walkabilityKey) {
-         super(fileManager, mapPath,walkabilityKey);
+     public EnglishRoom(GameIO fileManager, String mapPath) {
+         super(fileManager, mapPath);
      }
 
     /**

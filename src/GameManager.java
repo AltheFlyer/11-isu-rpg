@@ -132,7 +132,7 @@ public class GameManager {
      * enters the map screen based on the saved map position
      */
     public void enterMapScreen() {
-        setScreen(new MapScreen(this, io.getActiveMap(), "walkability.txt",
+        setScreen(new MapScreen(this, io.getActiveMap(),
                 io.getMapNPCPath(), io.getMapObjectPath(), io.getMapX(), io.getMapY()));
     }
 

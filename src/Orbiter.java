@@ -15,37 +15,24 @@ public class Orbiter extends OverworldObject {
     private int orbitCenterX;
     private int orbitCenterY;
     private Rectangle boundingBox;
-    private int size = 50;
-    private int respawnX;
-    private int respawnY;
+    private int radius = 50;
 
-    public Orbiter(int x, int y, int orbitCenterX, int orbitCenterY, int respawnX, int respawnY) {
-        super(x, y);
+    public Orbiter(int x, int y, int respawnX, int respawnY, int orbitCenterX, int orbitCenterY) {
+        super(x, y, respawnX, respawnY);
         this.orbitRadius = 200;
         this.velocity = 5;
         this.orbitCenterX = orbitCenterX;
         this.orbitCenterY = orbitCenterY;
-        this.respawnX = respawnX;
-        this.respawnY = respawnY;
-        this.boundingBox = new Rectangle(x,y,size,size);
+        this.boundingBox = new Rectangle(x, y,radius*2, radius*2);
     }
 
     /**
-     * [getRespawnX]
-     * returns the player's x coordinate of the respawn point in this map
-     * @return int respawnX the player's y coordinate of the respawn point in this map
+     * [getRadius]
+     * returns the current radius of the object
+     * @return int radius the current radius of the object
      */
-    public int getRespawnX() {
-        return this.respawnX;
-    }
-
-    /**
-     * [getRespawnY]
-     * returns the player's y coordinate of the respawn point in this map
-     * @return int respawnY the player's y coordinate of the respawn point in this map
-     */
-    public int getRespawnY() {
-        return this.respawnY;
+    public int getRadius() {
+        return this.radius;
     }
 
     /**
@@ -90,18 +77,6 @@ public class Orbiter extends OverworldObject {
         this.setX(calcNewX());
         this.setY(calcNewY());
         this.setBoundingBox(this.getX(),this.getY());
-    }
-
-    /**
-     * [checkCollisions]
-     * changes player's x and y coordinates if intersects with an object
-     * @return Rectangle boundingBox, the entity's bounding box
-     */
-    public void checkCollisions(Rectangle playerBounds, OverworldPlayer player) {
-        if (playerBounds.intersects(this.collisionWindow())) {
-            player.setX(getRespawnX());
-            player.setY(getRespawnY());
-        }
     }
 
 }

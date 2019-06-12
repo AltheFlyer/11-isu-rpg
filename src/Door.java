@@ -26,8 +26,8 @@ public class Door extends OverworldTile {
         if (playerBounds.intersects(this.getBoundingBox())) {
             game.setScreen(new LoadingScreen(game));
             game.setScreen(new MapScreen(game, this.getDoorPath() + ".txt",
-                    "walkability.txt", this.getDoorPath() + "_npcs.txt",
-                    this.getDoorPath() + "_objects.txt", newX, newY));
+                    this.getDoorPath() + "_npcs.txt", this.getDoorPath() + "_objects.txt",
+                    newX, newY));
         }
     }
 
