@@ -4,7 +4,9 @@ health 120
 attack 35
 defence 0
 energy 100
-ABILITIES 3
+ABILITIES 5
 StarAbility "star" "An AOE ability that will hit in a star shaped area" spritesheets/star.png 1 4 250 50 2 5 0 0 1 true false
 BasicMoveAbility "step" "movement to an adjacent tile" 30 1 1
-SpearAbility "spear" "A very deadly single target spear with short range" spritesheets/jasmine.png 1 5 100 100 10 0 4
+SplitStreamAbility "dividing wind" "pushes things on row as far back as possible" spritesheets/jasmine.png 1 5 100 40 2
+AOEAbility "heal" "a vertical AOE heal on allies" spritesheets/heal.png 1 3 250 50 2 2 0 0 2 -30.0 0 false true
+KevinSpotlightAbility "spotlight" "Shines a spotlight on an enemy, marking them" spritesheets/jasmine.png 1 5 100

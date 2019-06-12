@@ -10,7 +10,7 @@ public class KevinSpotlightAbility extends StatusAbility {
      * @param desc the displayed description of the ability
      */
     public KevinSpotlightAbility(AnimatedSprite animation, String name, String desc) {
-        super(new CursedStatus(10), animation, name, desc, 40, 3, 4,2, true,false);
+        super(new MarkStatus(1), animation, name, desc, 20, 2, 4,2, true,true);
     }
 
     /**
@@ -24,6 +24,5 @@ public class KevinSpotlightAbility extends StatusAbility {
     @Override
     public void action(JointMap jointMap, int x, int y) {
         jointMap.inflictStatus(x, y, getEffect().spread());
-        jointMap.inflictStatus(x, y, new MarkStatus(1).spread());
     }
 }

@@ -34,14 +34,17 @@ public class ProcessingCloudEnemy extends Enemy {
                     new ConstructorAbility(),
                     new BasicMoveAbility("Seek", "Moves to a row with players.",
                             0, 2,2),
+                        new FirstInRowAbility(new AnimatedSprite("spritesheets/back.png", 1, 3, 400),
+                                "Proto Cannon", "Hits the nearest enemy in the row.",
+                                0, 0, 0, 1, true, false)
+                        /*
                     new SingleAbility(new AnimatedSprite("spritesheets/back.png", 1, 3, 400),
                             "Proto Cannon", "Hits the nearest enemy in the row.",
                             0, 0, 6, 0, 0, 1, true, false)
 
-        });
+                         */
 
-        abilities[1] = new ConstructorAbility();
-        abilities[1].setEntitySource(this);
+        });
 
         deconstructionBeam = getAbility(0);
         constructorAbility = getAbility(1);
@@ -94,17 +97,7 @@ public class ProcessingCloudEnemy extends Enemy {
      */
     @Override
     public void act(JointMap map) {
-        if (getDecide().equals(protoCannon)) {
-            int closestX = 0;
-            for (int x = 0; x < 3; ++x) {
-                if (!map.isEmpty(x, getYGrid())) {
-                    closestX = x;
-                }
-            }
-            setTargetedX(getXGrid());
-            setTargetedY(getYGrid());
-            getDecide().action(map, closestX, getYGrid());
-        } else if (getDecide().equals(seek)) {
+        if (getDecide().equals(seek)) {
             selectRowWithMostPlayers(map, seek);
         } else {
             selectRandomTile(map, getDecide());

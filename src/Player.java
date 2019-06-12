@@ -38,10 +38,22 @@ public class Player extends Entity{
         gif = animatedSprite;
     }
 
+    /**
+     * [getAbility]
+     * gets an ability and returns it to be used or selected
+     * @param index the index of the ability in the list of abilities that will be returned
+     * @return ability, an ability that will be used
+     */
     public Ability getAbility(int index){
         return abilities[index];
     }
 
+    /**
+     * [drawAbilities]
+     * draws out the menu on the side which contains all of the abilities
+     * @param g the graphics used to draw with
+     * @param ability the ability that is currently selected
+     */
     //pass list of abilities into levelScreen, select based on rect hovering
     public void drawAbilities(Graphics g, Ability ability){
         //BACKGROUND
@@ -62,45 +74,14 @@ public class Player extends Entity{
         drawHealthBar(g);
         drawEnergyBar(g);
 
+        //Display stats
+        g.drawString("Attack power: " + getAttack(), 100, 70+105*abilities.length);
+        g.drawString("Percent defence: " + (int) (getDefence() * 100) + "%", 100, 85+105*abilities.length);
+
         //ABILITY ICONS
         for (int i = 0; i < abilities.length; i++) {
             //draw the abilities cyan if usable
             abilities[i].drawInfoBox(g, 30, 105 * i);
-            /*
-            if (abilities[i].getEnergyCost() > getEnergy() || abilities[i].getCurrentCooldown() > 0) {
-                g.setColor(new Color(255, 150, 200));
-            } else{
-                g.setColor(new Color(0, 200, 255));
-            }
-            g.fillRect(30, 15 + 105 * i, 263, 100);
-
-            //Cooldown bar!
-            g.setColor(new Color(0, 0, 0, 50));
-            if (abilities[i].getCurrentCooldown() > 0) {
-                g.fillRect(30, 15 + 105 * i, 264/abilities[i].getCooldown()*(abilities[i].getCurrentCooldown()), 100);
-            }
-
-            g.setColor(Color.BLACK);
-            //Drawing the name of the ability and a box around it
-            g.drawString(abilities[i].getName(), 40, 32+105*i);
-            g.drawRect(30,15+105*i,100,22);
-
-            //Drawing the energy cost of an ability and a box around it
-            g.drawString("Energy Cost: " + abilities[i].getEnergyCost(), 140, 32+105*i);
-            g.drawRect(130,15+105*i,163,22);
-
-            //Drawing the cooldown of an ability and a box around it
-            g.drawString("Cooldown: " + abilities[i].getCooldown(), 40, 54+105*i);
-            g.drawRect(30,37+105*i,100,22);
-
-            //Drawing the damage for an ability
-            g.drawString("Damage: " + abilities[i].getDamage(), 140, 54+105*i);
-            g.drawRect(130,37+105*i,163,22);
-
-            //Drawing the description
-            TextDrawer drawer = new TextDrawer(g,abilities[i].getDesc(), 40, 76+105*i,250);
-            drawer.drawText(g);
-            */
         }
 
         for (int i = 0; i < abilities.length; i++){
@@ -113,15 +94,17 @@ public class Player extends Entity{
         }
     }
 
+    /**
+     * [draw]
+     * draws out the player animation on the battle grid
+     * @param x the x graphical location of the player
+     * @param y the y graphicat location of the player
+     * @param g the graphics to draw with
+     * @param indicated determines if a player should be shaded (indicated when an ability is selected)
+     */
     public void draw(int x, int y, Graphics g, boolean indicated){
         gif.draw(g,x,y);
 
-        g.setColor(Color.MAGENTA);
-        if (getName().equals("yellow")){
-            g.setColor(Color.yellow);
-        } else if (getName().equals("cyan")){
-            g.setColor(Color.CYAN);
-        }
         //g.fillRect(x,y,120,120);
         //g.drawImage(sprite, x, y, 120, 120, null);
         g.setColor(Color.BLACK);
@@ -132,7 +115,11 @@ public class Player extends Entity{
         g.drawRect(x, y, 120, 120);
     }
 
-
+    /**
+     * [drawHealthBar]
+     * draws the healthbar for a player
+     * @param g the graphics used to draw with
+     */
     public void drawHealthBar(Graphics g){
         //Drawing a health bar here to make it nicer
         double ratio = getHealth() / getMaxHealth();
@@ -149,7 +136,11 @@ public class Player extends Entity{
         g.drawRect(100, 33+105*abilities.length,190, 12);
         g.drawString(Math.ceil(getHealth()) + "/" + getMaxHealth(), 130, 44+105*abilities.length);
     }
-
+    /**
+     * [drawEnergyBar]
+     * draws the energybar for a player
+     * @param g the graphics used to draw with
+     */
     public void drawEnergyBar(Graphics g){
         double ratio = getEnergy() / getMaxEnergy();
         g.setColor(Color.GRAY);
@@ -174,6 +165,11 @@ public class Player extends Entity{
         return debugName;
     }
 
+    /**
+     * [drawSelectedAbilities]
+     * Gets the selectedAbility and shades it in when selected
+     * @param g the graphics used to draw
+     */
     //Drawing out abilities on the selection screen
     public void drawSelectAbilities(Graphics g){
         //BACKGROUND
@@ -191,41 +187,6 @@ public class Player extends Entity{
         for (int i = 0; i < abilities.length; i++) {
             //draw the abilities cyan if usable
             abilities[i].drawInfoBox(g, 30, 105 * i);
-            /**
-            if (abilities[i].getEnergyCost() > getEnergy() || abilities[i].getCurrentCooldown() > 0) {
-                g.setColor(new Color(255, 150, 200));
-            } else{
-                g.setColor(new Color(0, 200, 255));
-            }
-            g.fillRect(30, 15 + 105 * i, 263, 100);
-
-            //Cooldown bar!
-            g.setColor(new Color(0, 0, 0, 50));
-            if (abilities[i].getCurrentCooldown() > 0) {
-                g.fillRect(30, 15 + 105 * i, 264/abilities[i].getCooldown()*(abilities[i].getCurrentCooldown()), 100);
-            }
-
-            g.setColor(Color.BLACK);
-            //Drawing the name of the ability and a box around it
-            g.drawString(abilities[i].getName(), 40, 32+105*i);
-            g.drawRect(30,15+105*i,100,22);
-
-            //Drawing the energy cost of an ability and a box around it
-            g.drawString("Energy Cost: " + abilities[i].getEnergyCost(), 140, 32+105*i);
-            g.drawRect(130,15+105*i,163,22);
-
-            //Drawing the cooldown of an ability and a box around it
-            g.drawString("Cooldown: " + abilities[i].getCooldown(), 40, 54+105*i);
-            g.drawRect(30,37+105*i,100,22);
-
-            //Drawing the damage for an ability
-            g.drawString("Damage: " + abilities[i].getDamage(), 140, 54+105*i);
-            g.drawRect(130,37+105*i,163,22);
-
-            //Drawing the description
-            TextDrawer drawer = new TextDrawer(g,abilities[i].getDesc(), 40, 76+105*i,250);
-            drawer.drawText(g);
-             */
         }
     }
 

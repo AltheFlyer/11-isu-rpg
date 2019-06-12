@@ -1,5 +1,4 @@
 import utils.AnimatedSprite;
-import utils.TextDrawer;
 
 import java.awt.Graphics;
 import java.awt.Color;
@@ -60,39 +59,14 @@ abstract public class Enemy extends Entity {
         drawHealthBar(g);
         drawEnergyBar(g);
 
+        //Display stats
+        g.drawString("Attack power: " + getAttack(), 1139, 70+105*abilities.length);
+        g.drawString("Percent defence: " + (int) (getDefence() * 100) + "%", 1139, 85+105*abilities.length);
+
         //ABILITY ICONS
         for (int i = 0; i < abilities.length; i++) {
             //draw the abilities cyan if usable
             abilities[i].drawInfoBox(g, 1069, 105 * i);
-
-            /*
-            if (abilities[i].getEnergyCost() > getEnergy() || abilities[i].getCurrentCooldown() > 0) {
-                g.setColor(new Color(255, 150, 200));
-            } else{
-                g.setColor(new Color(0, 200, 255));
-            }
-            g.fillRect(1069, 15 + 105 * i, 264, 100);
-
-            //Cooldown bar!
-            g.setColor(new Color(0, 0, 0, 50));
-            if (abilities[i].getCurrentCooldown() > 0) {
-                g.fillRect(1069, 15 + 105 * i, 264/abilities[i].getCooldown()*(abilities[i].getCurrentCooldown()), 100);
-            }
-
-            g.setColor(Color.BLACK);
-            //Drawing the name of the ability and a box around it
-
-            g.drawString(abilities[i].getName(), 1079, 32+105*i);
-            g.drawRect(1069,15+105*i,100,22);
-
-            //Drawing the damage for an ability
-            g.drawString("Damage: " + abilities[i].getDamage(), 1179, 32+105*i);
-            g.drawRect(1169,15+105*i,163,22);
-
-            //Drawing the description
-            TextDrawer drawer = new TextDrawer(g,abilities[i].getDesc(), 1079, 54+105*i,250);
-            drawer.drawText(g);
-            */
         }
     }
 

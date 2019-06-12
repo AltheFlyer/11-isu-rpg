@@ -454,6 +454,16 @@ public class GameIO {
                 );
             case "JasmineRepositionAbility":
                 return new JasmineRepositionAbility(name, desc, Double.parseDouble(args[0]));
+            case "KevinDissectAbility":
+                return new KevinDissectAbility(
+                        new AnimatedSprite(args[0], Integer.parseInt(args[1]), Integer.parseInt(args[2]), Integer.parseInt(args[3])),
+                        name, desc
+                );
+            case "KevinAOEDissectAbility":
+                return new KevinAOEDissectAbility(
+                        new AnimatedSprite(args[0], Integer.parseInt(args[1]), Integer.parseInt(args[2]), Integer.parseInt(args[3])),
+                        name, desc
+                );
             case "KevinBasicAbility":
                 return new KevinBasicAbility(
                         new AnimatedSprite(args[0], Integer.parseInt(args[1]), Integer.parseInt(args[2]), Integer.parseInt(args[3])),

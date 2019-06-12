@@ -52,6 +52,7 @@ public class TutorialEnemy extends Enemy {
         attackAbility = getAbility(0);
         uselessAbility = getAbility(1);
         seek = new BasicMoveAbility("", "", 0, 0, 2);
+        seek.setEntitySource(this);
 
         try {
             sprite = ImageIO.read(new File("assets/sprites/slime.png"));

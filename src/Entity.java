@@ -325,11 +325,11 @@ abstract public class Entity {
     }
 
     /**
-     * [getDefense]
+     * [getDefence]
      * gets the entity's defense (as a percent)
      * @return double, the defense of the entity
      */
-    public double getDefense() {
+    public double getDefence() {
         return defence;
     }
 

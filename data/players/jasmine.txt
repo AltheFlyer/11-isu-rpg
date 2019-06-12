@@ -1,6 +1,6 @@
 display_name Jasmine
 spritesheets/jasmine.png 1 5 500
-health 65
+health 80
 attack 30
 defence 0
 energy 100
