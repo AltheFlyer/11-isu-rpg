@@ -14,4 +14,4 @@ wall_left floor floor floor floor floor floor floor floor wall_right
 wall_left floor floor floor floor floor floor floor floor wall_right
 wall_left floor floor floor floor floor floor floor floor wall_right
 bottom_left wall_down wall_down wall_down wall_down wall_down wall_down wall_down wall_down bottom_right
-moving_hallway2 1025 100
+moving_hallway1 525 100
