@@ -4,7 +4,7 @@ public class MapMainTest {
         GameManager game = new GameManager();
 
         //game.setScreen(new DebugScreen(game));
-
+        
         game.setScreen(new MapScreen(game,"comsci_room.txt",
                 "comsci_room_npcs.txt", "comsci_room_objects.txt", 400, 400));
 
