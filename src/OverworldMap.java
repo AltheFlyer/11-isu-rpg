@@ -1,3 +1,5 @@
+import utils.SpriteLoader;
+
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -24,12 +26,7 @@ abstract public class OverworldMap {
         sprites = new BufferedImage[map.length][map[0].length];
         for (int i = 0; i < map.length; ++i) {
             for (int j = 0; j < map[0].length; ++j) {
-                try {
-                    sprites[i][j] = ImageIO.read(new File("assets/map sprites/" +
-                            map[i][j].getTileName() + ".png"));
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                sprites[i][j] = SpriteLoader.getSprite(map[i][j].getTileName());
             }
         }
     }
