@@ -25,6 +25,7 @@ public class SpriteLoader {
     };
 
     static {
+        sprites = new HashMap<>();
         for (int i = 0; i < tileNames.length; ++i) {
             sprites.put(tileNames[i], getMapImage(tileNames[i]));
         }
