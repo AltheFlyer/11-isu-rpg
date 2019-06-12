@@ -15,7 +15,7 @@ public class JasmineRepositionAbility extends BasicMoveAbility {
      * @param jointMap: The tiles on the jointMap array will be modified (some tiles will be indicated, some will become targetable)
      */
     public void indicateValidTiles(JointMap jointMap) {
-        if (getEntitySource().getEnergy() >= 90) {
+        if (getEntitySource().getEnergy() >= 90 && getCurrentCooldown() <= 0) {
             for (int j = 0; j < 3; j++) {
                 for (int i = 0; i < 6; i++) {
                     if (Math.abs(getEntitySource().getXGrid() - i) + Math.abs(getEntitySource().getYGrid() - j) <= getMoves() && getEntitySource().isAlive()) {

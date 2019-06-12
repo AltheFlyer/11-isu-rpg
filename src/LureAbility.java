@@ -31,7 +31,9 @@ public class LureAbility extends DamagingAbility {
         jointMap.target(i, j, getDamage());
 
         if (getEntitySource() instanceof Player) {
+            jointMap.inflictStatus(i,j,new MarkStatus(1).spread());
             jointMap.moveOnTile(i, j, i - 1, j);
+
         } else if (getEntitySource() instanceof Enemy) {
             jointMap.moveOnTile(i, j, i + 1, j);
         }

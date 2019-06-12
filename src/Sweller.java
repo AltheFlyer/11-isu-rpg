@@ -21,23 +21,18 @@ public class Sweller extends OverworldObject {
     public Sweller(int x, int y, int maxRadius, int respawnX, int respawnY) {
         super(x, y);
         this.maxRadius = maxRadius;
-        this.velocity = 5;
+        this.velocity = 2;
         this.respawnX = respawnX;
         this.respawnY = respawnY;
         this.boundingBox = new Rectangle(x,y,0,0);
     }
 
-    @Override
     /**
-     * [draw]
-     * draws objects
-     * @param g the graphics object to draw with
+     * [setVelocity]
+     * sets the object's velocity as the new velocity
      * @return void
      */
-    public void draw(Graphics g) {
-        g.setColor(Color.BLUE);
-        g.fillRect(this.getX(), this.getY(), this.radius, this.radius);
-    }
+    public void setVelocity(int newVelocity) { this.velocity = newVelocity; }
 
     /**
      * [getRespawnX]
@@ -68,16 +63,16 @@ public class Sweller extends OverworldObject {
 
     /**
      * [updateRadius]
-     * updates the radius according to the elapsed time
+     * updates the radius and velocity according to the elapsed time
      * @param elapsedTime elapsed time between last time check and current time in seconds
      * @return void
      */
     public void updateRadius(double elapsedTime) {
-        if (this.radius >= maxRadius) {
-            this.radius -= (this.velocity * elapsedTime * 100);
-        } else {
-            this.radius += (this.velocity * elapsedTime * 100);
+        if ((this.radius > this.maxRadius) || (this.radius < 0)) {
+            setVelocity(-this.velocity);
         }
+        this.radius += (this.velocity * elapsedTime * 100);
+        System.out.println(radius);
     }
 
     /**
@@ -108,7 +103,7 @@ public class Sweller extends OverworldObject {
         updateRadius(elapsedTime);
         this.setX(calcNewX());
         this.setY(calcNewY());
-        this.setBoundingBox(this.getX(),this.getY());
+        this.setBoundingBox();
     }
 
     /**
@@ -119,8 +114,8 @@ public class Sweller extends OverworldObject {
     public void setBoundingBox() {
         this.boundingBox.x = this.getX();
         this.boundingBox.y = this.getY();
-        this.boundingBox.width = this.getRadius();
-        this.boundingBox.height = this.getRadius();
+        this.boundingBox.width = this.getRadius() * 2;
+        this.boundingBox.height = this.getRadius() * 2;
     }
 
     /**

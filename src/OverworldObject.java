@@ -35,24 +35,14 @@ abstract public class OverworldObject {
     public void draw(Graphics g, OverworldMap map, OverworldPlayer player) {
         g.setColor(Color.BLUE);
         if (map instanceof RoomMap) { //regular drawing
-            g.fillRect(this.getX(), this.getY(), 50, 50); //modify size
+            g.fillOval(this.getX(), this.getY(), 50, 50); //modify size
         } else { //draw object in relation to player location in map and moving map
             int xDifference = player.getX() - this.getX();
             int yDifference = player.getY() - this.getY();
             int xLocation = 683 - xDifference;
             int yLocation = 384 - yDifference;
-            g.fillRect(xLocation, yLocation, 50, 50);
+            g.fillOval(xLocation, yLocation, 50, 50);
         }
-    }
-
-    /**
-     * [draw]
-     * draws objects on the map
-     * @param g the graphics object used to draw with
-     */
-    public void draw(Graphics g) {
-        g.setColor(Color.BLUE);
-        g.fillRect(this.getX(), this.getY(), 50, 50);
     }
 
     /**
