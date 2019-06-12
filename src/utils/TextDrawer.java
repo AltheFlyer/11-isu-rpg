@@ -69,6 +69,7 @@ public class TextDrawer {
      */
     public TextDrawer(Graphics g, String text, int x, int y, int maxWidth, int characterDelay) {
         fontData = g.getFontMetrics();
+        this.maxWidth = maxWidth;
         this.x = x;
         this.y = y;
 
@@ -211,6 +212,15 @@ public class TextDrawer {
      */
     public int getTotalHeight() {
         return lineHeight * lines.length;
+    }
+
+    /**
+     * [getCharactersWritten]
+     * gets the number of characters written to the screen since last update
+     * @return the total number of characters of the message written since last update
+     */
+    public int getCharactersWritten() {
+        return charactersWritten;
     }
 
 }

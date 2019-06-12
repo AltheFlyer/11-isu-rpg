@@ -1,9 +1,15 @@
-4
-750 450 Mr. Cimetta
+7
+750 550 Mr. Cimetta
 prose or verse?
-100 450 placeholder
-You ready for the PROSE and VERSE analysis?
-850 450 placeholder
+325 350 Sarah
+You ready for the PROSE and VERSE analysis? *dabs*
+825 425 placeholder
 Oh god, my ISU presentation is today and I'm not ready...
-300 200 placeholder
+325 150 placeholder
 Synecdoche!? I've never heard of that word in my life!
+610 525 placeholder
+Quick, run while you still can...
+725 350 placeholder
+Do you think he'll smite me if I do all my journals at the end of the year?
+525 150 placeholder
+Always sit at the back of the class! Also, don't make eye contact! ...What?

@@ -16,6 +16,7 @@ abstract public class OverworldMap {
     private OverworldTile[][] map;
     private int tileSize = 100;
     private BufferedImage[][] sprites;
+    private boolean eventShownYet = false; //display event as soon as player walks in
 
     public OverworldMap(GameIO fileManager, String mapPath, String walkabilityKey){
         fileManager.readTileWalkability(walkabilityKey);
@@ -76,6 +77,12 @@ abstract public class OverworldMap {
      * @param g the graphics object used to draw with
      * @return void
      */
-    public void event(Graphics g) { }
+    public void event(Graphics g) {
+        eventShownYet = true;
+    }
+
+    public boolean isEventShownYet() {
+        return eventShownYet;
+    }
 
 }

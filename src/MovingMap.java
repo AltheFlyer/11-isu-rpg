@@ -59,7 +59,7 @@ public class MovingMap extends OverworldMap{
      */
     @Override
     public void event(Graphics g) {
-
+        //super.event(g);
     }
 
 }
