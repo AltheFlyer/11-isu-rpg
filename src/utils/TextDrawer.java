@@ -223,4 +223,23 @@ public class TextDrawer {
         return charactersWritten;
     }
 
+    /**
+     * [setCharactersWritten]
+     * sets the number of characters that should be displayed to the screen
+     * @param charactersWritten the total number of characters that should be displayed to the screen
+     * @return void
+     */
+    public void setCharactersWritten(int charactersWritten) {
+        this.charactersWritten = charactersWritten;
+    }
+
+    /**
+     * [getTextLength]
+     * gets the length of the current text loaded into the text drawer
+     * @return textLength the length of the current text loaded into the text drawer
+     */
+    public int getTextLength() {
+        return textLength;
+    }
+
 }

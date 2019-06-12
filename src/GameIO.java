@@ -559,8 +559,13 @@ public class GameIO {
                         new AnimatedSprite(args[0], Integer.parseInt(args[1]), Integer.parseInt(args[2]), Integer.parseInt(args[3])),
                         name, desc
                 );
-            case "KevinSpotlightAbility":
-                return new KevinSpotlightAbility(
+            case "FMGAbility":
+                return new FMGAbility(
+                        new AnimatedSprite(args[0], Integer.parseInt(args[1]), Integer.parseInt(args[2]), Integer.parseInt(args[3])),
+                        name, desc
+                );
+            case "AllenSpotlightAbility":
+                return new AllenSpotlightAbility(
                         new AnimatedSprite(args[0], Integer.parseInt(args[1]), Integer.parseInt(args[2]), Integer.parseInt(args[3])),
                         name, desc
                 );

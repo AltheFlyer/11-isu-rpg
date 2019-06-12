@@ -1,6 +1,6 @@
 import utils.AnimatedSprite;
 
-public class KevinSpotlightAbility extends StatusAbility {
+public class AllenSpotlightAbility extends StatusAbility {
 
     /**
      * [KevinSpotlightAbility]
@@ -9,8 +9,8 @@ public class KevinSpotlightAbility extends StatusAbility {
      * @param name the displayed name of the ability
      * @param desc the displayed description of the ability
      */
-    public KevinSpotlightAbility(AnimatedSprite animation, String name, String desc) {
-        super(new MarkStatus(1), animation, name, desc, 20, 2, 4,2, true,true);
+    public AllenSpotlightAbility(AnimatedSprite animation, String name, String desc) {
+        super(new MarkStatus(1), animation, name, desc, 20, 1, 4,2, true,true);
     }
 
     /**

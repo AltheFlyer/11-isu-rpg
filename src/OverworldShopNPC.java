@@ -1,3 +1,5 @@
+import utils.TextDrawer;
+
 import java.awt.Graphics;
 import java.awt.Color;
 
@@ -23,8 +25,8 @@ public class OverworldShopNPC extends OverworldNPC {
      * @param g the graphics object to draw with
      * @return void
      */
-    public void speak(Graphics g) {
-        utils.TextDrawer textDrawer = new utils.TextDrawer(g,this.getMessage(),150,650,1166,50);
+    public void speak(Graphics g, TextDrawer textDrawer) {
+        textDrawer.setText(this.getMessage());
         g.setColor(Color.WHITE);
         g.fillRect(750,150,515,450); //fill shop box
         g.fillRect(100,600,1165,100); //fill message box
