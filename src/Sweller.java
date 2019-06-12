@@ -21,23 +21,40 @@ public class Sweller extends OverworldObject {
     public Sweller(int x, int y, int maxRadius, int respawnX, int respawnY) {
         super(x, y);
         this.maxRadius = maxRadius;
-        this.velocity = 5;
+        this.velocity = 2;
         this.respawnX = respawnX;
         this.respawnY = respawnY;
         this.boundingBox = new Rectangle(x,y,0,0);
     }
 
-    @Override
     /**
      * [draw]
-     * draws objects
+     * draws swellers on the map
      * @param g the graphics object to draw with
+     * @param map the OverworldMap the object is inhabiting
+     * @param player the player inhabiting the same map
      * @return void
      */
-    public void draw(Graphics g) {
+    @Override
+    public void draw(Graphics g, OverworldMap map, OverworldPlayer player) {
         g.setColor(Color.BLUE);
-        g.fillRect(this.getX(), this.getY(), this.radius, this.radius);
+        if (map instanceof RoomMap) { //regular drawing
+            g.fillOval(this.getX(), this.getY(), this.radius, this.radius); //modify size
+        } else { //draw object in relation to player location in map and moving map
+            int xDifference = player.getX() - this.getX();
+            int yDifference = player.getY() - this.getY();
+            int xLocation = 683 - xDifference;
+            int yLocation = 384 - yDifference;
+            g.fillOval(xLocation, yLocation, this.radius, this.radius);
+        }
     }
+
+    /**
+     * [setVelocity]
+     * sets the object's velocity as the new velocity
+     * @return void
+     */
+    public void setVelocity(int newVelocity) { this.velocity = newVelocity; }
 
     /**
      * [getRespawnX]
@@ -68,16 +85,15 @@ public class Sweller extends OverworldObject {
 
     /**
      * [updateRadius]
-     * updates the radius according to the elapsed time
+     * updates the radius and velocity according to the elapsed time
      * @param elapsedTime elapsed time between last time check and current time in seconds
      * @return void
      */
     public void updateRadius(double elapsedTime) {
-        if (this.radius >= maxRadius) {
-            this.radius -= (this.velocity * elapsedTime * 100);
-        } else {
-            this.radius += (this.velocity * elapsedTime * 100);
+        if ((this.radius > 200) || (this.radius < 200)) {
+            setVelocity(-this.velocity);
         }
+        this.radius += (this.velocity * elapsedTime * 100);
     }
 
     /**
@@ -108,7 +124,7 @@ public class Sweller extends OverworldObject {
         updateRadius(elapsedTime);
         this.setX(calcNewX());
         this.setY(calcNewY());
-        this.setBoundingBox(this.getX(),this.getY());
+        this.setBoundingBox();
     }
 
     /**
@@ -119,8 +135,8 @@ public class Sweller extends OverworldObject {
     public void setBoundingBox() {
         this.boundingBox.x = this.getX();
         this.boundingBox.y = this.getY();
-        this.boundingBox.width = this.getRadius();
-        this.boundingBox.height = this.getRadius();
+        this.boundingBox.width = this.getRadius() * 2;
+        this.boundingBox.height = this.getRadius() * 2;
     }
 
     /**

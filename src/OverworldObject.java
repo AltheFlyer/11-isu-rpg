@@ -46,16 +46,6 @@ abstract public class OverworldObject {
     }
 
     /**
-     * [draw]
-     * draws objects on the map
-     * @param g the graphics object used to draw with
-     */
-    public void draw(Graphics g) {
-        g.setColor(Color.BLUE);
-        g.fillRect(this.getX(), this.getY(), 50, 50);
-    }
-
-    /**
      * [setX]
      * sets the object's x coordinate as the new x coordinate passed in
      * @param newX the object's new x coordinate on the map
