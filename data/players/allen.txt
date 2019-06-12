@@ -5,11 +5,11 @@ attack 40
 defence 0
 energy 100
 ABILITIES 5
-CombinationAbility "back" "A single target attack that also pushes you back by 1" spritesheets/back.png 1 3 250 40 2 5 2 0 0.5 true false
+CombinationAbility "back" "A single target attack that also pushes you and the enemy back by 1" spritesheets/back.png 1 3 250 40 2 5 2 0 0.5 true false
 BasicMoveAbility "CVPM" "Physicists get free movement to an adjacent tile" 0 1 1
-KevinSpotlightAbility "spotlight" "Shines a spotlight on an enemy, marking them" spritesheets/jasmine.png 1 5 100
-AOEAbility "heal" "a vertical AOE heal on allies" spritesheets/heal.png 1 3 250 50 2 2 0 0 2 -30.0 0 false true
+AllenSpotlightAbility "spotlight" "Shines a spotlight on an enemy, marking them" spritesheets/spotlight.png 1 5 100
+FMGAbility "force of gravity" "deals damage to marked enemies and heals marked allies y damage dealt" spritesheets/fmg.png 1 5 150
 CAPMAbility "CAPM" "Deals more damage based on how far the target is" spritesheets/allen.png 1 5 100 40 2 0 0.4
 
-AOEAbility "sacrifice" "A sacrifice that will deal massive damage to everyone" spritesheets/sacrifice.png 1 4 350 50 4 0 0 6 2 20 1 true true
 SplitStreamAbility "dividing wind" "pushes things on row as far back as possible" spritesheets/jasmine.png 1 5 100 40 2
+AOEAbility "heal" "a vertical AOE heal on allies" spritesheets/heal.png 1 3 250 50 2 2 0 0 2 -30.0 0 false true

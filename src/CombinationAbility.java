@@ -20,8 +20,6 @@ public class CombinationAbility extends DamagingAbility {
      */
     CombinationAbility(AnimatedSprite animation, String name, String desc, double energyCost, int cooldown, int xRange, int yRange, double damage, double ratio, boolean enemyTarget, boolean friendTarget){
         super (animation, name, desc, energyCost, cooldown, xRange, yRange, damage, ratio, enemyTarget, friendTarget);
-        setXAOE(0);
-        setYAOE(0);
     }
 
     /**
@@ -34,6 +32,7 @@ public class CombinationAbility extends DamagingAbility {
     public void action(JointMap jointMap, int i, int j){
         jointMap.target(i,j, getDamage());
         jointMap.moveOnTile(getEntitySource().getXGrid(),getEntitySource().getYGrid(),getEntitySource().getXGrid()-1,getEntitySource().getYGrid());
+        jointMap.moveOnTile(i,j,i+1,j);
     }
 
     /**
