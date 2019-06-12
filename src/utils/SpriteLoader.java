@@ -9,7 +9,7 @@ import java.util.HashMap;
 /**
  * [SpriteLoader.java]
  * preloads reused sprites for more efficient memory management
- * @verion 1.0
+ * @version 1.0
  * @author Allen Liu
  * @since June 12, 2019
  */
@@ -43,7 +43,7 @@ public class SpriteLoader {
     /**
      * [getMapImage]
      * gets an image from the map sprite path
-     * @param fileName the file to get from dir assets/map sprites/
+     * @param fileName the file to get from dir assets/map sprites
      * @return BufferedImage, the image located at the file
      */
     private static BufferedImage getMapImage(String fileName) {
@@ -52,5 +52,6 @@ public class SpriteLoader {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return null;
     }
 }
