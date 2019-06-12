@@ -199,7 +199,7 @@ public class BattleLayoutScreen extends GameScreen {
             for (int x = 0; x < 3; ++x) {
                 //In theory, both players should be equal, but since one has a position, two 'identical' people
                 //would be considered unequal
-                if (grid[x][y] != null && grid[x][y].getDebugName().equals(p.getDebugName())) {
+                if ((grid[x][y] != null) && (grid[x][y].getDebugName().equals(p.getDebugName()))) {
                     return true;
                 }
             }
@@ -267,20 +267,10 @@ public class BattleLayoutScreen extends GameScreen {
                 if (isMouseOver(new Rectangle(30, 15+105*i, 263, 100))) {
                     g.setColor(new Color(0, 0, 0, 100));
                     g.fillRect(30, 15+105*i, 263, 100);
-                    //Will make it easier to see which tiles can be targetable
-                    /*
-                    if (selectedAbility == null) {
-                        jointMap.unIndicateAll();
-                        jointMap.unTargetableAll();
-                        selectedPlayer.getAbility(i).indicateValidTiles(jointMap);
-                    }
-
-                     */
                 }
             }
         }
     }
-
 
     /**
      * [initializeGrid]
@@ -288,7 +278,6 @@ public class BattleLayoutScreen extends GameScreen {
      */
     private void initializeGrid() {
         Player[] currentLoadout = GameIO.getBattleLayout();
-
 
         for (int i = 0; i < currentLoadout.length; ++i) {
             Player p = currentLoadout[i];

@@ -1,9 +1,16 @@
 import utils.AnimatedSprite;
 
+/**
+ * [AllenSpotlightAbility.java]
+ * A special spotlight ability for Allen the Physicist
+ * @version 1.1
+ * @author Kevin Liu
+ * @since June 8, 2019
+ */
 public class AllenSpotlightAbility extends StatusAbility {
 
     /**
-     * [KevinSpotlightAbility]
+     * [AllenSpotlightAbility]
      * generates a StatusAbility with single target capabilities
      * @param animation the animation that is played on ability case
      * @param name the displayed name of the ability

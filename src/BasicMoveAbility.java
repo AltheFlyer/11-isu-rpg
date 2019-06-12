@@ -1,5 +1,12 @@
 import java.awt.Graphics;
 
+/**
+ * [BasicMoveAbility.java]
+ * Creating of the basic movement ability that allows entities to move
+ * @version 1.1
+ * @author Kevin Liu
+ * @since May 31, 2019
+ */
 public class BasicMoveAbility extends MoveAbility {
     /**
      * [BasicMoveAbility]
@@ -40,6 +47,7 @@ public class BasicMoveAbility extends MoveAbility {
     }
 
     /**
+     * [indicateValidTiles]
      * This method will indicate and make tiles targetable for you to click on it with your cursor to enact an ability.
      * @param jointMap: The tiles on the jointMap array will be modified (some tiles will be indicated, some will become targetable)
      */
@@ -47,7 +55,7 @@ public class BasicMoveAbility extends MoveAbility {
         if (getEntitySource().getEnergy() >= getEnergyCost() && getCurrentCooldown() <= 0) {
             for (int j = 0; j < 3; j++) {
                 for (int i = 0; i < 6; i++) {
-                    if (Math.abs(getEntitySource().getXGrid() - i) + Math.abs(getEntitySource().getYGrid() - j) <= getMoves() && getEntitySource().isAlive()) {
+                    if ((Math.abs(getEntitySource().getXGrid() - i) + Math.abs(getEntitySource().getYGrid() - j) <= getMoves()) && getEntitySource().isAlive()) {
                         if (jointMap.isTileFriendly(i, j) == getEntitySource().isFriendly()) {
                             jointMap.indicate(i, j);
                             //Indicate if the tile is targetable or not, at this point Single and AOE ability are used for if they can target empty tiles

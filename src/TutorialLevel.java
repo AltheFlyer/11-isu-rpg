@@ -101,47 +101,49 @@ public class TutorialLevel extends LevelScreen {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
 
-        //Draw the text drawer, if it is null, set it using the graphics object
-        if (tutorialPrompt != null) {
-            g.setColor(Color.WHITE);
-            g.fillRect(textBack.x, textBack.y, textBack.width, textBack.height);
+        if (!(arePlayersDead() || areEnemiesDead())) {
+            //Draw the text drawer, if it is null, set it using the graphics object
+            if (tutorialPrompt != null) {
+                g.setColor(Color.WHITE);
+                g.fillRect(textBack.x, textBack.y, textBack.width, textBack.height);
 
-            g.setColor(Color.BLACK);
-            tutorialPrompt.drawText(g);
-        } else {
-            tutorialPrompt = new TextDrawer(g, tutorial[0], tutorialX + 10, tutorialY + 20, 121 * 3 - 20);
-        }
-
-        //Don't display default messages if the player attempts to end the turn early
-        if (tutorialIndex != 7) {
-            //Dynamic tutorial, try to draw the appropriate text based on current character action.
-            if (turnNumber == 2) {
-                tutorialIndex = 8;
-            } else if (players[0].getEnergy() == 0) {
-                if (selectedEnemy != null) {
-                    tutorialIndex = 6;
-                } else {
-                    tutorialIndex = 5;
-                }
-            } else if (selectedAbility != null) {
-                //Different advice for the move ability
-                if (selectedAbility.getCooldown() == 2) {
-                    tutorialIndex = 4;
-                } else {
-                    tutorialIndex = 3;
-                }
-            } else if (selectedPlayer != null) {
-                if (getMouseX() < 323) {
-                    tutorialIndex = 2;
-                } else {
-                    tutorialIndex = 1;
-                }
+                g.setColor(Color.BLACK);
+                tutorialPrompt.drawText(g);
             } else {
-                tutorialIndex = 0;
+                tutorialPrompt = new TextDrawer(g, tutorial[0], tutorialX + 10, tutorialY + 20, 121 * 3 - 20);
             }
-        }
 
-        tutorialPrompt.setText(tutorial[tutorialIndex]);
+            //Don't display default messages if the player attempts to end the turn early
+            if (tutorialIndex != 7) {
+                //Dynamic tutorial, try to draw the appropriate text based on current character action.
+                if (turnNumber == 2) {
+                    tutorialIndex = 8;
+                } else if (players[0].getEnergy() == 0) {
+                    if (selectedEnemy != null) {
+                        tutorialIndex = 6;
+                    } else {
+                        tutorialIndex = 5;
+                    }
+                } else if (selectedAbility != null) {
+                    //Different advice for the move ability
+                    if (selectedAbility.getCooldown() == 2) {
+                        tutorialIndex = 4;
+                    } else {
+                        tutorialIndex = 3;
+                    }
+                } else if (selectedPlayer != null) {
+                    if (getMouseX() < 323) {
+                        tutorialIndex = 2;
+                    } else {
+                        tutorialIndex = 1;
+                    }
+                } else {
+                    tutorialIndex = 0;
+                }
+            }
+
+            tutorialPrompt.setText(tutorial[tutorialIndex]);
+        }
 
         repaint();
     }
@@ -172,6 +174,41 @@ public class TutorialLevel extends LevelScreen {
         } else {
             tutorialIndex = 7;
             tutorialPrompt.setText(tutorial[tutorialIndex]);
+        }
+    }
+
+    /**
+     * [loseBattle]
+     * handles loss condition (if all players die) and give the player the option of restarting the encounter
+     * or returning to map
+     * @param g the graphics object to draw with
+     */
+    @Override
+    public void loseBattle(Graphics g) {
+        g.setColor(new Color(0, 0, 0, 200));
+        g.fillRect(100, 100, 1366 - 200, 768 - 200);
+
+        g.setColor(Color.WHITE);
+
+        g.drawString("You lost...", 200, 200);
+
+        g.fillRect(exitLevelButton.x, exitLevelButton.y, exitLevelButton.width, exitLevelButton.height);
+        g.setColor(Color.BLACK);
+        g.drawString("Retry?", exitLevelButton.x + 10, exitLevelButton.y + 20);
+    }
+
+    /**
+     * [endBattleLoader]
+     * loads the map for the end of battle, progressing time state if the battle was won
+     */
+    public void endBattleLoader() {
+        if (!arePlayersDead()) {
+            getIO().setTimeState(getIO().getCurrentPeriod() + 1, getIO().getCurrentDay());
+            getIO().writeTimeState();
+            setScreen(new LoadingScreen(getGame()));
+            enterMapScreen();
+        } else {
+            setScreen(new TutorialLevel(getGame()));
         }
     }
 }

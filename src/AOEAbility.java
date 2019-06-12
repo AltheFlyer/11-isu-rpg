@@ -3,6 +3,13 @@ import utils.AnimatedSprite;
 import java.awt.Graphics;
 import java.awt.Color;
 
+/**
+ * [AOEAbility.java]
+ * Creating of AOE abilities that will target various tiles around the selected
+ * @version 1.1
+ * @author Kevin Liu
+ * @since May 31, 2019
+ */
 public class AOEAbility extends DamagingAbility{
 
     /**
@@ -39,10 +46,10 @@ public class AOEAbility extends DamagingAbility{
         for (int k = j - getYAOE(); k <= j + getYAOE(); k++) {
             for (int l = i - getXAOE(); l <= i + getXAOE(); l++) {
                 if (jointMap.tileExists(l, k)) {
-                    if (getFriendTarget() && jointMap.isTileFriendly(l, k) == getEntitySource().isFriendly()) {
+                    if (getFriendTarget() && (jointMap.isTileFriendly(l, k) == getEntitySource().isFriendly())) {
                         jointMap.target(l, k, getDamage());
                     }
-                    if (getEnemyTarget() && jointMap.isTileFriendly(l, k) != getEntitySource().isFriendly()) {
+                    if (getEnemyTarget() && (jointMap.isTileFriendly(l, k) != getEntitySource().isFriendly())) {
                         jointMap.target(l, k, getDamage());
                     }
                 }
@@ -72,11 +79,11 @@ public class AOEAbility extends DamagingAbility{
             for (int l = i-getXAOE(); l <= i+getXAOE(); l++){
                 //Yeah might need to revamp Single and AOE ability so one can do empty tiles, one cannot do that
                 if (jointMap.tileExists(l,k)){
-                    if (getFriendTarget() && jointMap.isTileFriendly(l, k) == getEntitySource().isFriendly()) {
+                    if (getFriendTarget() && (jointMap.isTileFriendly(l, k) == getEntitySource().isFriendly())) {
                         g.setColor(Color.GREEN);
                         g.drawRect(gridX + gridWidthSpace * l, gridY + gridHeightSpace * k, gridWidth, gridHeight);
                     }
-                    if (getEnemyTarget() && jointMap.isTileFriendly(l, k) != getEntitySource().isFriendly()) {
+                    if (getEnemyTarget() && (jointMap.isTileFriendly(l, k) != getEntitySource().isFriendly())) {
                         g.setColor(Color.GREEN);
                         g.drawRect(gridX + gridWidthSpace * l, gridY + gridHeightSpace * k, gridWidth, gridHeight);
                     }
@@ -86,6 +93,7 @@ public class AOEAbility extends DamagingAbility{
     }
 
     /**
+     * [indicateValidTiles]
      * This method will indicate and make tiles targetable for you to click on it with your cursor to enact an ability.
      * @param jointMap The tiles on the jointMap array will be modified (some tiles will be indicated, some will become targetable)
      */

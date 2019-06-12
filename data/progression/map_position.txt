@@ -1,0 +1,4 @@
+map_name moving_hallway1
+position
+400
+400

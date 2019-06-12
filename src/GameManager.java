@@ -40,8 +40,13 @@ public class GameManager {
         window.setVisible(true);
 
         setScreen(new LoadingScreen(this));
-        //Filler Panel
-        //TODO change to whatever the start screen should be
+
+        //Set tutorial screen if beginning of game
+        if ((io.getCurrentDay() == 1) && (io.getCurrentPeriod() == 0)) {
+            setScreen(new TutorialLevel(this));
+        } else {
+            enterMapScreen();
+        }
     }
 
     /**
@@ -120,6 +125,15 @@ public class GameManager {
         }
 
         return clip;
+    }
+
+    /**
+     * [enterMapScreen]
+     * enters the map screen based on the saved map position
+     */
+    public void enterMapScreen() {
+        setScreen(new MapScreen(this, io.getActiveMap(), "walkability.txt",
+                io.getMapNPCPath(), io.getMapObjectPath(), io.getMapX(), io.getMapY()));
     }
 
     /**
