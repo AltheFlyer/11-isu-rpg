@@ -57,7 +57,7 @@ public class FirstInRowAbility extends DamagingAbility {
      */
     @Override
     public void indicateValidTiles(JointMap jointMap) {
-        if (getEntitySource().getEnergy() >= getEnergyCost() && getCurrentCooldown() <= 0) {
+        if ((getEntitySource().getEnergy() >= getEnergyCost()) && (getCurrentCooldown() <= 0)) {
             int y = getEntitySource().getYGrid();
 
             int startX = getEntitySource().getXGrid();
@@ -80,7 +80,7 @@ public class FirstInRowAbility extends DamagingAbility {
                 int x = startX;
 
                 //Run from left to right, stopping when a target is found
-                while (isTargetFound(jointMap, x, y) || x >= endX) {
+                while (isTargetFound(jointMap, x, y) || (x >= endX)) {
                     x--;
                 }
             }
@@ -98,7 +98,7 @@ public class FirstInRowAbility extends DamagingAbility {
     public boolean isTargetFound(JointMap jointMap, int x, int y) {
         if (jointMap.tileExists(x, y) && getEntitySource().isAlive()) {
             jointMap.indicate(x, y);
-            if (!jointMap.isEmpty(x, y) && jointMap.isTileFriendly(x, y) != getEntitySource().isFriendly()) {
+            if (!jointMap.isEmpty(x, y) && (jointMap.isTileFriendly(x, y) != getEntitySource().isFriendly())) {
                  jointMap.isTargetable(x, y);
                  return true;
             }

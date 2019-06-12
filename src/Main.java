@@ -1,6 +1,13 @@
+/**
+ * [Main.java]
+ * Where the GameManager is run to allow for the whole game to run
+ * @version 1.5
+ * @author Allen Liu, Kevin Liu
+ * @since June 12, 2019
+ */
 public class Main {
 
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) {
         GameManager game = new GameManager();
 
         //game.setScreen(new DebugScreen(game));

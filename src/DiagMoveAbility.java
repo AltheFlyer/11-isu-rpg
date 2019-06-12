@@ -44,10 +44,10 @@ public class DiagMoveAbility extends MoveAbility{
      * @param jointMap: The tiles on the jointMap array will be modified (some tiles will be indicated, some will become targetable)
      */
     public void indicateValidTiles(JointMap jointMap) {
-        if (getEntitySource().getEnergy() >= getEnergyCost() && getCurrentCooldown() <= 0) {
+        if ((getEntitySource().getEnergy() >= getEnergyCost()) && (getCurrentCooldown() <= 0)) {
             for (int j = 0; j < 3; j++) {
                 for (int i = 0; i < 6; i++) {
-                    if (Math.abs(getEntitySource().getXGrid() - i) == getMoves() && Math.abs(getEntitySource().getYGrid() - j) == getMoves()) {
+                    if ((Math.abs(getEntitySource().getXGrid() - i) == getMoves()) && (Math.abs(getEntitySource().getYGrid() - j) == getMoves())) {
                         if (jointMap.isTileFriendly(i, j) == getEntitySource().isFriendly()) {
                             jointMap.indicate(i, j);
                             //Indicate if the tile is targetable or not, at this point Single and AOE ability are used for if they can target empty tiles

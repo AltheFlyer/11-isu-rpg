@@ -370,7 +370,7 @@ abstract public class Ability {
                         if (showInvalidTiles) {
                             jointMap.indicate(i, j);
                         }
-                        if (getFriendTarget() && jointMap.isTileFriendly(i, j) == getEntitySource().isFriendly()) {
+                        if (getFriendTarget() && (jointMap.isTileFriendly(i, j) == getEntitySource().isFriendly())) {
                             jointMap.indicate(i, j);
                             //Indicate if the tile is targetable or not, at this point Single and AOE ability are used for if they can target empty tiles
                             if (targetEmpty) {
@@ -379,7 +379,7 @@ abstract public class Ability {
                                 jointMap.isTargetable(i, j);
                             }
                         }
-                        if (getEnemyTarget() && jointMap.isTileFriendly(i, j) != getEntitySource().isFriendly()) {
+                        if (getEnemyTarget() && (jointMap.isTileFriendly(i, j) != getEntitySource().isFriendly())) {
                             jointMap.indicate(i, j);
                             //Indicate if the tile is targetable or not, at this point Single and AOE ability are used for if they can target empty tiles
                             if (targetEmpty) {
