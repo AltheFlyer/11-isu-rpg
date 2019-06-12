@@ -10,7 +10,7 @@ import java.awt.Graphics;
 public class ConstructorAbility extends StatusAbility {
 
     /**
-     * [Ability]
+     * [ConstructorAbility]
      * Constructor for movement-style abilities
      */
     ConstructorAbility() {

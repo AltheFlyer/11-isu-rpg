@@ -2,6 +2,13 @@ import utils.AnimatedSprite;
 
 import java.awt.Graphics;
 
+/**
+ * [SingleAbility.java]
+ * Creating of single target abilities that will only select and target one tile
+ * @version 1.1
+ * @author Kevin Liu
+ * @since May 31, 2019
+ */
 public class SingleAbility extends DamagingAbility {
     /**
      * [SingleAbility]

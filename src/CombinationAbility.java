@@ -2,6 +2,13 @@ import utils.AnimatedSprite;
 
 import java.awt.Graphics;
 
+/**
+ * [CombinationAbility.java]
+ * Creating an ability that has movement and damage single target
+ * @version 1.1
+ * @author Kevin Liu
+ * @since June 3, 2019
+ */
 public class CombinationAbility extends DamagingAbility {
     /**
      * [CombinationAbility]
@@ -48,6 +55,7 @@ public class CombinationAbility extends DamagingAbility {
     }
 
     /**
+     * [indicateValidTiles]
      * This method will indicate and make tiles targetable for you to click on it with your cursor to enact an ability.
      * @param jointMap: The tiles on the jointMap array will be modified (some tiles will be indicated, some will become targetable)
      */

@@ -3,6 +3,13 @@ import utils.AnimatedSprite;
 import java.awt.Graphics;
 import java.awt.Color;
 
+/**
+ * [AOEAbility.java]
+ * Creating of AOE abilities that will target various tiles around the selected
+ * @version 1.1
+ * @author Kevin Liu
+ * @since May 31, 2019
+ */
 public class AOEAbility extends DamagingAbility{
 
     /**
@@ -86,6 +93,7 @@ public class AOEAbility extends DamagingAbility{
     }
 
     /**
+     * [indicateValidTiles]
      * This method will indicate and make tiles targetable for you to click on it with your cursor to enact an ability.
      * @param jointMap The tiles on the jointMap array will be modified (some tiles will be indicated, some will become targetable)
      */

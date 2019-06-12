@@ -1,7 +1,13 @@
 import utils.AnimatedSprite;
 
 import java.awt.Graphics;
-
+/**
+ * [SingleAbility.java]
+ * Creating of a special single target ability for allen the physicist which deals more damage the farther the enemy is
+ * @version 1.1
+ * @author Kevin Liu
+ * @since June 9, 2019
+ */
 public class CAPMAbility extends DamagingAbility {
     private int distance;
 
@@ -33,7 +39,7 @@ public class CAPMAbility extends DamagingAbility {
 
     /**
      * [drawHoverAttack]
-     * Draws the area that will be affected by an ability
+     * Draws the area that will be affected by an ability, will update distance which will update damage dealt by attack
      * @param i the x of the tile that the mouse is hovered over
      * @param j the y of the tile that the mouse is hovered over
      * @param g the graphics object to draw with
@@ -47,7 +53,7 @@ public class CAPMAbility extends DamagingAbility {
 
     /**
      * [getDamage]
-     * @return a different calculation on the display of how much an ability damages one by
+     * @return a different calculation on the display of how much an ability damages one (distance matters)
      */
     @Override
     public double getDamage() {
@@ -55,6 +61,7 @@ public class CAPMAbility extends DamagingAbility {
     }
 
     /**
+     * [indicateValidTiles]
      * This method will indicate and make tiles targetable for you to click on it with your cursor to enact an ability.
      * @param jointMap: The tiles on the jointMap array will be modified (some tiles will be indicated, some will become targetable)
      */
