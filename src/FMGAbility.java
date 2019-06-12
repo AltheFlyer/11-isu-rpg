@@ -28,10 +28,10 @@ public class FMGAbility extends AOEAbility{
             for (int k = i - getXAOE(); k <= i + getXAOE(); k++) {
                 if (jointMap.tileExists(k, l)) {
                     if (!jointMap.isEmpty(k,l)) {
-                        if ((getFriendTarget() && jointMap.isTileFriendly(k, l)) == (getEntitySource().isFriendly() && getIsMarked(jointMap, k, l))) {
+                        if ((getFriendTarget()) && (jointMap.isTileFriendly(k, l) == getEntitySource().isFriendly()) && (getIsMarked(jointMap, k, l))) {
                             jointMap.target(k, l, -getDamage());
                         }
-                        if ((getEnemyTarget() && jointMap.isTileFriendly(k, l)) != (getEntitySource().isFriendly() && getIsMarked(jointMap, k, l))) {
+                        if ((getEnemyTarget()) && (jointMap.isTileFriendly(k, l) != getEntitySource().isFriendly()) && (getIsMarked(jointMap, k, l))) {
                             System.out.println("help");
                             jointMap.target(k, l, getDamage());
                         }
