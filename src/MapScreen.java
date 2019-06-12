@@ -25,6 +25,7 @@ public class MapScreen extends GameScreen {
     private OverworldObject[] objects;
     int length;
     int width;
+    TextDrawer textDrawer;
 
     public MapScreen(GameManager game, String mapPath, String walkabilityKey,
                      String npcPath, String objectPath, int x, int y) {
@@ -55,6 +56,7 @@ public class MapScreen extends GameScreen {
      * @param g the graphics object to draw with
      * @return void
      */
+    @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
 
@@ -81,9 +83,12 @@ public class MapScreen extends GameScreen {
         for (int i = 0; i < npcs.length; ++i) {
             npcs[i].draw(g, map, player); //drawing the npcs
         }
+        if (textDrawer == null) {
+            textDrawer = new TextDrawer(g,"",150,650,1166,50);
+        }
         for (int i = 0; i < npcs.length; ++i) {
             if (npcs[i].isTalking()) {
-                npcs[i].speak(g);
+                npcs[i].speak(g, textDrawer);
                 if (npcs[i].shopIsOpen()) {
                     for (int j = 0; j < ((OverworldShopNPC)npcs[i]).getItems().length; ++j) {
                         Rectangle boundingBox = (((OverworldShopNPC) npcs[i]).getItems()[j].getBoundingBox());
@@ -113,6 +118,7 @@ public class MapScreen extends GameScreen {
      */
     public void keyTyped(KeyEvent e) {
         if (e.getKeyChar() == 'z') {
+            textDrawer = null;
             for (int i = 0; i < npcs.length; ++i) {
                 npcs[i].checkInteractions(player.interact(), player.getDirection());
             }
