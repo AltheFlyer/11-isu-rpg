@@ -1,5 +1,12 @@
 import java.util.ArrayList;
 
+/**
+ * [Entity.java]
+ * the top abstract class for all Players and Enemies
+ * @version 1.0
+ * @author Kevin Liu
+ * @since May 23, 2019
+ */
 abstract public class Entity {
 
     //Base stats
