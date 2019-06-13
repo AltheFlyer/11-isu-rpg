@@ -1,4 +1,5 @@
 import java.awt.*;
+import java.util.HashMap;
 
 /**
  * [OverworldTile.java]
@@ -71,7 +72,7 @@ public class OverworldTile {
      * changes player's x and y velocity if it intersects with the tile's bounding box and the tile is not walkable
      * @return void
      */
-    public void checkCollisions(Rectangle playerBounds, OverworldPlayer player, GameManager game) {
+    public void checkCollisions(Rectangle playerBounds, OverworldPlayer player, GameManager game, HashMap<String, Integer> inventory) {
         if (playerBounds.intersects(this.boundingBox) && (isNotWalkable())) {
             player.setXVelocity(0);
             player.setYVelocity(0);

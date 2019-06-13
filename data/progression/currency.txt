@@ -1,1 +1,1 @@
-currency 10
+currency 100
