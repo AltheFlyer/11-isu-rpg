@@ -24,14 +24,6 @@ abstract public class OverworldObject {
         this.boundingBox = new Rectangle(x,y,size,size);
     }
 
-    public OverworldObject(int x, int y) {
-        this.x = x;
-        this.y = y;
-        this.boundingBox = new Rectangle(x,y,size,size);
-        this.xVelocity = 0;
-        this.yVelocity = 0;
-    }
-
     /**
      * [draw]
      * draws objects on the map
@@ -182,7 +174,7 @@ abstract public class OverworldObject {
 
     /**
      * [checkCollisions]
-     * changes player's x and y coordinates if intersects with an object
+     * stops player from moving if intersects with an object
      * @return void
      */
     public void checkCollisions(Rectangle playerBounds, OverworldPlayer player) {
