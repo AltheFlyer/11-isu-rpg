@@ -334,11 +334,11 @@ abstract public class Entity {
     }
 
     /**
-     * [setDefense]
+     * [setDefence]
      * sets the defense of the entity (as a percent between 0, 1)
      * @param defence the new defense of the entity
      */
-    public void setDefense(double defence) {
+    public void setDefence(double defence) {
         this.defence = defence;
     }
 

@@ -4,9 +4,9 @@
  * WARNING: Status Effects should only be spread or applied onto entities using the .spread() method if you are creating
  * statuses off of pre-fab objects. Otherwise, the status effect would pass by reference, which will lead to
  * unintended behaviour.
- * @version 1.1
+ * @version 1.2
  * @author Allen Liu
- * @since June 7, 2019
+ * @since June 12, 2019
  */
 abstract public class StatusEffect {
 
@@ -65,32 +65,67 @@ abstract public class StatusEffect {
     abstract public StatusEffect spread();
 
     //Access time!
+
+    /**
+     * [getStacks]
+     * gets the number of status stacks
+     * @return int stacks, the number of status stacks
+     */
     public int getStacks() {
         return stacks;
     }
 
+    /**
+     * [setStacks]
+     * sets the number of status stacks
+     * @param stacks the new number of status stacks
+     */
     public void setStacks(int stacks) {
         this.stacks = stacks;
     }
 
+    /**
+     * [getMaxStacks]
+     * gets the maximum number of status stacks for the status
+     * @return int maxStacks, the maximum stacks for the status
+     */
     public int getMaxStacks() {
         return maxStacks;
     }
 
-    public void setMaxStacks(int maxStacks) {
-        this.maxStacks = maxStacks;
-    }
-
+    /**
+     * [getDuration]
+     * gets the duration of the status (note -1 should be treated as infinite)
+     * @return int duration, how many turns the status should last
+     */
     public int getDuration() {
         return duration;
     }
 
+    /**
+     * [setDuration]
+     * sets the duration of the status (note -1 should be treated as infinite)
+     * @param duration, how many turns the status should last
+     */
     public void setDuration(int duration) {
         this.duration = duration;
     }
 
+    /**
+     * [getIcon]
+     * gets the status effect's associated icon
+     * @return Icon, the icon for the status
+     */
     public Icon getIcon() {
         return icon;
     }
 
+    /**
+     * [setIcon]
+     * sets the status effect's associated icon
+     * @param ico the new icon for the status
+     */
+    public void setIcon(Icon ico) {
+        this.icon = ico;
+    }
 }
