@@ -1,4 +1,4 @@
-4
+7
 300 300 Student
 Did you know 3 billion devices run Java?
 500 500 Student
@@ -7,3 +7,9 @@ Did you know 4 billion devices run Java?
 Did you know 8 billion devices run Java?
 300 400 Student
 Did you know 1 device runs Java?
+925 225 Kant Survive
+I lost.. my AP English textbook.. he's gonna hunt me down.. it's only a matter of time..
+1775 425 Ebiq TLAPer
+I don't know what's going on in Physics today. There's pendulum's everywhere.. everywhere!
+1125 625 Fireman
+Don't mind me. I'm just waiting for something to set the alarm off. Monthly routine, right?

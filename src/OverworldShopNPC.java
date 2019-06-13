@@ -36,8 +36,8 @@ public class OverworldShopNPC extends OverworldNPC {
         g.drawRect(100,600,1165,100); //outline message box
         g.drawRect(100,550,150,50); //outline name box
         for (int i = 0; i < items.length; ++i) {
-            g.drawString(items[i].getName(), 850, 250 + 100 * i); //draw name of current item
-            g.drawString(Integer.toString(items[i].getCost()), 1050, 250 + 100 * i); //draw cost of current item
+            g.drawString(items[i].getName(), 850, 200 + 50 * i); //draw name of current item
+            g.drawString(Integer.toString(items[i].getCost()), 1050, 200 + 50 * i); //draw cost of current item
         }
         g.drawString(this.getName(),120,580); //draw name
         textDrawer.drawText(g); //draw message
