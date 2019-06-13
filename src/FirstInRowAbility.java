@@ -69,8 +69,8 @@ public class FirstInRowAbility extends DamagingAbility {
                 endX += getXRange();
                 int x = startX;
 
-                //Run from right to left, stopping when a target is found
-                while (isTargetFound(jointMap, x, y) || x <= endX) {
+                //Run from left to right, stopping when a target is found
+                while (!isTargetFound(jointMap, x, y) && (x <= endX)) {
                     x++;
                 }
 
@@ -79,8 +79,8 @@ public class FirstInRowAbility extends DamagingAbility {
                 endX -= getXRange();
                 int x = startX;
 
-                //Run from left to right, stopping when a target is found
-                while (isTargetFound(jointMap, x, y) || (x >= endX)) {
+                //Run from right to left, stopping when a target is found
+                while (!isTargetFound(jointMap, x, y) && (x >= endX)) {
                     x--;
                 }
             }
