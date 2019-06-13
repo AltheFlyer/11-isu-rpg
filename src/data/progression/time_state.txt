@@ -1,0 +1,2 @@
+current_period 1
+current_day 1

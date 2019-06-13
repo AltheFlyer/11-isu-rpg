@@ -71,7 +71,7 @@ public class SpriteLoader {
      */
     private static BufferedImage getMapImage(String fileName) {
         try {
-            return ImageIO.read(new File("assets/map sprites/" + fileName + ".png"));
+            return ImageIO.read(new File("src/assets/map sprites/" + fileName + ".png"));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -87,7 +87,7 @@ public class SpriteLoader {
      */
     private static BufferedImage getEntityImage(String fileName) {
         try {
-            return ImageIO.read(new File("assets/overworld entity sprites/" + fileName + ".png"));
+            return ImageIO.read(new File("src/assets/overworld entity sprites/" + fileName + ".png"));
         } catch (IOException e) {
             e.printStackTrace();
         }

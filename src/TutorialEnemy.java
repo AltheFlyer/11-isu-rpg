@@ -55,7 +55,7 @@ public class TutorialEnemy extends Enemy {
         seek.setEntitySource(this);
 
         try {
-            sprite = ImageIO.read(new File("assets/sprites/slime.png"));
+            sprite = ImageIO.read(new File("src/assets/sprites/slime.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -22,7 +22,7 @@ public class GameIO {
      * The string of the folder that all text files are to be placed in,
      * acting as a universal accessor
      */
-    private static final String TEXT_SRC = "data/";
+    private static final String TEXT_SRC = "src/data/";
 
     private HashMap<String, Boolean> tileWalkability;
 

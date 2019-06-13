@@ -1,2 +1,0 @@
-current_period 0
-current_day 1

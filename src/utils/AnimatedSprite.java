@@ -18,7 +18,7 @@ import java.io.IOException;
  */
 public class AnimatedSprite {
 
-    private static final String SRC = "assets/";
+    private static final String SRC = "src/assets/";
 
     private BufferedImage[] sprites;
     private int frame;

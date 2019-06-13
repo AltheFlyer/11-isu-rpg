@@ -20,6 +20,7 @@ import java.io.IOException;
  */
 public class Icon {
 
+    public static String sourceRoot = "src/";
     private Rectangle boundingBox;
     private BufferedImage sprite;
     //Should probably be based on the entity source
@@ -37,7 +38,7 @@ public class Icon {
      */
     public Icon(Rectangle boundingBox, String path) {
         try {
-            this.sprite = ImageIO.read(new File(path));
+            this.sprite = ImageIO.read(new File( sourceRoot + path));
         } catch (IOException e) {
             e.printStackTrace();
             this.sprite = new BufferedImage(0, 0, 0);
@@ -89,7 +90,8 @@ public class Icon {
      */
     public Icon(String path, String name, String desc) {
         try {
-            this.sprite = ImageIO.read(new File(path));
+            System.out.println(sourceRoot + path);
+            this.sprite = ImageIO.read(new File(sourceRoot + path));
         } catch (IOException e) {
             e.printStackTrace();
             this.sprite = new BufferedImage(0, 0, 0);
