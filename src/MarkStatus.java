@@ -8,7 +8,7 @@
 public class MarkStatus extends StatusEffect {
 
     public MarkStatus(int stacks) {
-        super("assets/icons/test.png", "Marked!", "This target is marked",
+        super("assets/icons/mark.png", "Marked!", "This target is marked",
                 stacks, 1, 2, false);
         this.getIcon().setName("Marked!");
     }
