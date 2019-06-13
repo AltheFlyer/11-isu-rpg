@@ -165,8 +165,8 @@ abstract public class OverworldObject {
 
     /**
      * [collisionWindow]
-     * returns the entity's bounding box
-     * @return Rectangle boundingBox, the entity's bounding box
+     * returns the object's bounding box
+     * @return Rectangle boundingBox, the object's bounding box
      */
     public Rectangle collisionWindow(){
         return this.boundingBox;
