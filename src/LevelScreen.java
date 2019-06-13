@@ -295,7 +295,7 @@ public class LevelScreen extends GameScreen{
         }
 
         //Enemy info
-        if (selectedEnemy != null && selectedEnemy.isAlive()) {
+        if ((selectedEnemy != null) && selectedEnemy.isAlive()) {
             selectedEnemy.drawAbilities(g);
             g.setColor(Color.GREEN);
             g.drawRect(323+selectedEnemy.getXGrid()*121, 108+selectedEnemy.getYGrid()*121, 120,120);
@@ -347,11 +347,12 @@ public class LevelScreen extends GameScreen{
             }
 
             //images
-            if (playerClock.getElapsedMilli() < animationTime && selectedEnemy.getDecide().getAnimation() != null && selectedEnemy.getTargetedX()>=0 && selectedEnemy.getTargetedY()>=0){
+            if ((playerClock.getElapsedMilli() < animationTime) && (selectedEnemy.getDecide().getAnimation() != null) &&
+                    (selectedEnemy.getTargetedX() >= 0) && (selectedEnemy.getTargetedY() >= 0)){
                 jointMap.animateAttack(g,selectedEnemy.getDecide().getAnimation(),selectedEnemy.getTargetedX(),selectedEnemy.getTargetedY());
             }
 
-            if (counter >= enemies.length && playerClock.getElapsedMilli() > animationTime){
+            if ((counter >= enemies.length) && (playerClock.getElapsedMilli() > animationTime)) {
                 enemyTurn = false;
                 counter = 0;
                 //End of enemy turn
@@ -556,9 +557,13 @@ public class LevelScreen extends GameScreen{
      */
     public void endBattleLoader() {
         if (!arePlayersDead()) {
+            //Time passes by 1 period
             getIO().setTimeState(getIO().getCurrentPeriod() + 1, getIO().getCurrentDay());
             getIO().writeTimeState();
+            //Earn some money
+            getIO().setCurrency(getIO().getCurrency() + 100);
         }
+        //Load, then enter map based on saved position
         setScreen(new LoadingScreen(getGame()));
         enterMapScreen();
     }

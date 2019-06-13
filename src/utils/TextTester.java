@@ -1,12 +1,21 @@
 package utils;
 
-import javax.swing.*;
-import javax.swing.text.html.CSS;
-import javax.swing.text.html.HTML;
-import java.awt.*;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
+import java.awt.Graphics;
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.font.TextAttribute;
 import java.text.AttributedString;
 
+/**
+ * [TextTester.java]
+ * Used to test textdrawers and speech-writing
+ * @version 1.1
+ * @author Allen Liu
+ * @since May 26, 2019
+ */
 public class TextTester {
 
     public static void main(String[] ags) {
@@ -21,11 +30,20 @@ public class TextTester {
         window.add(new TextPanel());
     }
 
+    /**
+     * [TextPanel]
+     * internally used jpanel that displays textdrawer contents
+     */
     static class TextPanel extends JPanel {
 
         TextDrawer t;
         SpecialTextDrawer st;
 
+        /**
+         * [paintComponent]
+         * draws textdrawer contents
+         * @param g the graphics object to draw with
+         */
         @Override
         public void paintComponent(Graphics g) {
             super.paintComponent(g);

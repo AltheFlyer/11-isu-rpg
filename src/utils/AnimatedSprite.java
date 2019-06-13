@@ -70,13 +70,24 @@ public class AnimatedSprite {
         tick();
     }
 
+    /**
+     * [getWidth]
+     * gets the width of the animated sprite
+     * @return int, the width of the animated sprite
+     */
     public int getWidth(){
         return width;
     }
 
+    /**
+     * [getHeight]
+     * gets the height of the animated sprite
+     * @return int, the height of the animated sprite
+     */
     public int getHeight(){
         return height;
     }
+
     /**
      * [getSprite]
      * Returns the current frame from of the animated sprite, for use with any sprite manipulation.

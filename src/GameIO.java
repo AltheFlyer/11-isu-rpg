@@ -465,6 +465,7 @@ public class GameIO {
     /**
      * [setBattleLayout]
      * Saves a 3x3 battle layout for later use. The grid is expected to have only 3 characters but this is not strictly enforced.
+     * This also writes to the battle layout file.
      * @param grid the 3x3 grid of players to save
      */
     public static void setBattleLayout(Player[][] grid) {

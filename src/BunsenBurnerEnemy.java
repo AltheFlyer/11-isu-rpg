@@ -1,7 +1,5 @@
 import utils.AnimatedSprite;
 
-import java.awt.Graphics;
-
 /**
  * [BunsenBurnerEnemy.java]
  * An enemy that burns players.
@@ -11,8 +9,14 @@ import java.awt.Graphics;
  */
 public class BunsenBurnerEnemy extends Enemy {
 
-    Icon attackIcon;
+    private Icon attackIcon;
 
+    /**
+     * [BunsenBurnerEnemy]
+     * Creates a bunsen burner at the specified grid position
+     * @param x the x grid position to spawn at
+     * @param y the y grid position to spawn at
+     */
     BunsenBurnerEnemy(int x, int y) {
         super(x, y, 200, 30, 0,"Bunsen Burner",
                 new AnimatedSprite("spritesheets/bunsen.png", 1, 10, 100),
@@ -24,12 +28,22 @@ public class BunsenBurnerEnemy extends Enemy {
         attackIcon = new Icon("assets/icons/sword.png", "Inflame", "This enemy intends to attack all players in the row.");
     }
 
+    /**
+     * [decide]
+     * generates a decision, which will always be to use the 'inflame' attack
+     * @param map the map that the entities are in
+     */
     @Override
     public void decide(JointMap map) {
         setIntent(attackIcon);
         setDecide(getAbility(0));
     }
 
+    /**
+     * [act]
+     * allos the enemy to act, which will always trigger the 'inflame' ability
+     * @param map the map that the entities are in
+     */
     @Override
     public void act(JointMap map) {
         getDecide().indicateValidTiles(map);
@@ -39,8 +53,4 @@ public class BunsenBurnerEnemy extends Enemy {
         setTargetedY(getYGrid());
     }
 
-    @Override
-    public void draw(int x, int y, Graphics g, boolean indicated) {
-        super.draw(x, y, g, indicated);
-    }
 }

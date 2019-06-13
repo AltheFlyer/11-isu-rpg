@@ -6,9 +6,9 @@ import java.awt.event.MouseEvent;
 /**
  * [BattleLayoutScreen.java]
  * This screen is used to edit the starting battle layout for other levels
- * @version 1.1
+ * @version 1.2
  * @author Allen Liu
- * @since June 3, 2019
+ * @since June 13, 2019
  */
 public class BattleLayoutScreen extends GameScreen {
 
@@ -28,6 +28,12 @@ public class BattleLayoutScreen extends GameScreen {
 
     private LevelScreen nextLevel;
 
+    /**
+     * [BattleLayoutScreen]
+     * create a battle layout screen that will then advance to a specified level
+     * @param game the game that the screen is made in
+     * @param level the level to progress to after selection
+     */
     public BattleLayoutScreen(GameManager game, LevelScreen level) {
         super(game);
 
@@ -150,7 +156,8 @@ public class BattleLayoutScreen extends GameScreen {
             int gridX = (getMouseX() - gridSpace.x) / 121;
             int gridY = (getMouseY() - gridSpace.y) / 121;
 
-            if ((!isPlayerInGrid(selectedPlayer)) && ((getNumPlayersInGrid() < 3) || (grid[gridX][gridY] != null))) {
+            //You can drop up to 3 characters, or replace one if you have 3 on teh grid already
+            if (((!isPlayerInGrid(selectedPlayer)) && ((getNumPlayersInGrid() < 3)) || (grid[gridX][gridY] != null))) {
                 //'drop' player into grid tile
                 grid[gridX][gridY] = selectedPlayer;
                 selectedPlayer = null;
@@ -185,7 +192,13 @@ public class BattleLayoutScreen extends GameScreen {
 
         if (isFullyClicked(continueButton)) {
             //This piece of code to transition to levelScreen is completely experimental
-            getGame().setScreen(nextLevel);
+            if (getNumPlayersInGrid() == 3) {
+                GameIO.setBattleLayout(grid);
+                status = "Loadout saved.";
+                getGame().setScreen(nextLevel);
+            } else {
+                status = "You need 3 players to save a loadout!";
+            }
             /*
             getGame().setScreen(new LevelScreen(getGame(), new Enemy[] {
                     new DecaEnemy(5,2),
