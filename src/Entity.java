@@ -158,11 +158,11 @@ abstract public class Entity {
     /**
      * [damageEntity]
      * damages an entity from an attack
-     * @param damage the amound of damage dealt to an entity
+     * @param damage the amount of damage dealt to an entity
      */
     public void damageEntity(double damage) {
         //Modify damage by defence, try to prevent negatives
-        health -= damage * Math.min(0, (1.0 - defence));
+        health -= damage * Math.max(0, (1.0 - defence));
         if (health <= 0){
             alive = false;
         }
