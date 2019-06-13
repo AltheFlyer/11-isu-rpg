@@ -42,6 +42,8 @@ public class MapScreen extends GameScreen {
             map = new ChemistryRoom(getIO(), mapPath, walkabilityKey);
         } else if (mapPath.contains("comsci")) {
             map = new ComsciRoom(getIO(), mapPath, walkabilityKey);
+        } else if (mapPath.contains("math")) {
+            map = new MathRoom(getIO(), mapPath, walkabilityKey);
         } else {
             map = new RoomMap(getIO(), mapPath, walkabilityKey);
         }
@@ -86,6 +88,10 @@ public class MapScreen extends GameScreen {
         map.draw(g, player);
         player.draw(g, map);
 
+        for (int i = 0; i < objects.length; ++i) {
+            objects[i].draw(g, map, player);
+        }
+
         //npc management
         for (int i = 0; i < npcs.length; ++i) {
             npcs[i].draw(g, map, player); //drawing the npcs
@@ -102,10 +108,6 @@ public class MapScreen extends GameScreen {
                     }
                 }
             }
-        }
-
-        for (int i = 0; i < objects.length; ++i) {
-            objects[i].draw(g, map, player);
         }
 
         map.checkEncounters(player,npcs);
@@ -131,6 +133,9 @@ public class MapScreen extends GameScreen {
                 for (int i = 0; i < npcs.length; ++i) {
                     npcs[i].checkInteractions(player.interact(), player.getDirection());
                 }
+            }
+            for (int i = 0; i < objects.length; ++i) {
+                objects[i].checkInteractions(player.interact());
             }
         }
     }

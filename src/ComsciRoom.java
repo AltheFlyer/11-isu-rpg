@@ -1,7 +1,10 @@
-import utils.TextDrawer;
-
-import java.awt.*;
-
+/**
+ * [ComsciRoom.java]
+ * Class for computer science room and its interactions
+ * @version 1.1
+ * @author Ethan Kwan
+ * @since June 12, 2019
+ */
 public class ComsciRoom extends MovingMap {
 
     private int tileSize = 100;
