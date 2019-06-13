@@ -1,10 +1,16 @@
 import utils.AnimatedSprite;
-
+/**
+ * [SplitStreamAbility.java]
+ * pushes all entities in a row away from the center
+ * @version 1.0
+ * @author Kevin Liu
+ * @since June 7, 2019
+ */
 public class SplitStreamAbility extends AOEAbility{
 
     /**
-     * [AOEAbility]
-     * Constructor for aoe abilities
+     * [SplitStreamAbility]
+     * Constructor for an ability that pushes both sides back (players/enemies)
      * @param animation the animation that is played on ability case
      * @param name the displayed name of the ability
      * @param desc the displayed description of the ability
@@ -16,11 +22,10 @@ public class SplitStreamAbility extends AOEAbility{
     }
 
     /**
-     * action: This method will target and affect the selected tiles in a certain pattern
+     * action: This method will push players as far left and enemies as far right as possible in a row
      * @param jointMap: The map that will be affected
      * @param i one of the selected coordinates
      * @param j the other selected coordinate
-     * @return it will return a value based on if an action was valid or not, if it was, it will unindicate everything and reset selectedAbility on levelscreen
      */
     @Override
     public void action(JointMap jointMap, int i, int j){

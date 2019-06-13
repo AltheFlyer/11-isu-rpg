@@ -1,7 +1,13 @@
 import utils.AnimatedSprite;
 
 import java.awt.*;
-
+/**
+ * [JasmineBlastAbility.java]
+ * a powerful low range move that will move user and affected target
+ * @version 1.0
+ * @author Kevin Liu
+ * @since June 7, 2019
+ */
 public class JasmineBlastAbility extends SpearAbility {
 
     /**
@@ -15,11 +21,11 @@ public class JasmineBlastAbility extends SpearAbility {
         super(animation, name, desc, 20, 0, 0,2);
     }
     /**
-     * action: This method will target and affect the selected tiles in a certain pattern
+     * action: This method will target damage a selected tile, push user and affected back by 1
+     * then reset cooldown of waltz to 0
      * @param jointMap: The map that will be affected
      * @param i: one of the selected coordinates
      * @param j: the other selected coordinate
-     * @return: it will return a value based on if an action was valid or not, if it was, it will unindicate everything and reset selectedAbility on levelscreen
      */
     @Override
     public void action(JointMap jointMap, int i, int j) {

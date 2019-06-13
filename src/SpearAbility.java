@@ -1,12 +1,18 @@
 import utils.AnimatedSprite;
 
 import java.awt.Graphics;
-
+/**
+ * [SpearAbility.java]
+ * low range high damage attack
+ * @version 1.0
+ * @author Kevin Liu
+ * @since May 31, 2019
+ */
 public class SpearAbility extends DamagingAbility {
 
     /**
      * [SpearAbility]
-     * Constructor for Spear abilities
+     * Constructor for a short range spear ability
      * @param animation the animation that is played on ability case
      * @param name the displayed name of the ability
      * @param desc the displayed description of the ability
@@ -19,11 +25,10 @@ public class SpearAbility extends DamagingAbility {
         super(animation, name, desc, energyCost, cooldown, 2, 1, damage, ratio, true, false);
     }
     /**
-     * action: This method will target and affect the selected tiles in a certain pattern
+     * action: This method will target and damage a selected tile
      * @param jointMap: The map that will be affected
      * @param i: one of the selected coordinates
      * @param j: the other selected coordinate
-     * @return: it will return a value based on if an action was valid or not, if it was, it will unindicate everything and reset selectedAbility on levelscreen
      */
     @Override
     public void action(JointMap jointMap, int i, int j) {

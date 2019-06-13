@@ -1,13 +1,19 @@
 import utils.AnimatedSprite;
 
 import java.awt.*;
-
+/**
+ * [KevinDissectAbility.java]
+ * Damage an enemy and gain energy based on number of dissect stacks on target
+ * @version 1.0
+ * @author Kevin Liu
+ * @since June 9, 2019
+ */
 public class KevinDissectAbility extends SingleAbility {
     private int stacks;
 
     /**
-     * [KevinBasicAbility]
-     * Constructor for single target abilities
+     * [KevinDissectAbility]
+     * Constructor for kevin's dissection ability
      * @param animation the animation that is played on ability case
      * @param name the displayed name of the ability
      * @param desc the displayed description of the ability
@@ -19,11 +25,10 @@ public class KevinDissectAbility extends SingleAbility {
     @Override
     /**
      * [KevinBasicAbility]
-     * action: This method will target and affect a single tile then lower the cooldown of waltz to 0
+     * action: This method will target and affect a single tile then gain energy based on dissect stacks on target
      * @param jointMap: The map that will be affected
      * @param i: one of the selected coordinates
      * @param j: the other selected coordinate
-     * @return: it will return a value based on if an action was valid or not, if it was, it will unindicate everything and reset selectedAbility on levelscreen
      */
     public void action(JointMap jointMap, int i, int j){
         jointMap.target(i, j, getDamage());
@@ -34,6 +39,14 @@ public class KevinDissectAbility extends SingleAbility {
     }
 
     @Override
+    /**
+     * [drawHoverAttack]
+     * Draws the area that will be affected by an ability
+     * @param i the x of the tile that the mouse is hovered over
+     * @param j the y of the tile that the mouse is hovered over
+     * @param g the graphics object to draw with
+     * @param jointMap map to draw the hovered square on
+     */
     public void drawHoverAttack(int i, int j, Graphics g, JointMap jointMap) {
         //What to do here???
         drawHoverAttackSingleHelper(i,j,g,jointMap);
@@ -43,6 +56,10 @@ public class KevinDissectAbility extends SingleAbility {
     }
 
     @Override
+    /**
+     * [getDamage]
+     * @return int, a damage value that is changed based on dissect stacks on target
+     */
     public double getDamage(){
         return (getBaseDamage() + getRatio() * getEntitySource().getAttack())*stacks;
     }

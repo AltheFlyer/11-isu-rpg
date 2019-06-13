@@ -14,7 +14,7 @@ public class EnemySummonAbility extends Ability {
     Enemy summon;
 
     /**
-     * [Ability]
+     * [EnemySummonAbility]
      * Constructor for generic abilities
      *
      * @param animation    the animation that is played on ability case
@@ -33,12 +33,11 @@ public class EnemySummonAbility extends Ability {
     }
 
     /**
-     * action: This method will target and affect the selected tiles in a certain pattern
+     * action: This method will
      *
      * @param jointMap The map that will be affected
      * @param x        one of the selected coordinates
      * @param y        the other selected coordinate
-     * @return it will return a value based on if an action was valid or not, if it was, it will unindicate everything and reset selectedAbility on levelscreen
      */
     @Override
     public void action(JointMap jointMap, int x, int y) {

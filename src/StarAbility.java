@@ -2,10 +2,16 @@ import utils.AnimatedSprite;
 
 import java.awt.Graphics;
 import java.awt.Color;
-
+/**
+ * [StarAbility.java]
+ * damages all enemies in a star (cross) shape
+ * @version 1.0
+ * @author Kevin Liu
+ * @since May 31, 2019
+ */
 public class StarAbility extends DamagingAbility {
     /**
-     * [AOEAbility]
+     * [StarAbility]
      * Constructor for aoe abilities
      * @param animation the animation that is played on ability case
      * @param name the displayed name of the ability
@@ -24,11 +30,10 @@ public class StarAbility extends DamagingAbility {
     }
 
     /**
-     * action: This method will target and affect the selected tiles in a certain pattern
+     * action: This method will target and damage the selected tiles in a certain pattern
      * @param jointMap: The map that will be affected
      * @param i: one of the selected coordinates
      * @param j: the other selected coordinate
-     * @return: it will return a value based on if an action was valid or not, if it was, it will unindicate everything and reset selectedAbility on levelscreen
      */
     public void action(JointMap jointMap, int i, int j){
         for (int k = 0; k < 3; k++){

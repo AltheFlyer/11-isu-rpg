@@ -2,11 +2,18 @@ import utils.AnimatedSprite;
 
 import java.awt.*;
 
+/**
+ * [FMGAbility.java]
+ * A mass AOE ability that only affects marked targets
+ * @version 1.0
+ * @author Kevin Liu
+ * @since June 11, 2019
+ */
 public class FMGAbility extends AOEAbility{
 
     /**
      * [FMGAbility]
-     * Constructor for aoe abilities
+     * Constructor for for the special FMGAbility that will hit marked targets
      * @param animation the animation that is played on ability case
      * @param name the displayed name of the ability
      * @param desc the displayed description of the ability
@@ -16,11 +23,10 @@ public class FMGAbility extends AOEAbility{
     }
 
     /**
-     * action: This method will target and affect the selected tiles in a certain pattern
+     * action: This method will target and affect damage all marked enemies while healing all marked allies
      * @param jointMap: The map that will be affected
      * @param i one of the selected coordinates
      * @param j the other selected coordinate
-     * @return it will return a value based on if an action was valid or not, if it was, it will unindicate everything and reset selectedAbility on levelscreen
      */
     @Override
     public void action(JointMap jointMap, int i, int j){
