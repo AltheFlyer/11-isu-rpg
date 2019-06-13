@@ -1,5 +1,5 @@
 /**
- * [PhysicsRoom.java]
+ * [ChemistryRoom.java]
  * Class for chemistry room and its interactions
  * @version 1.1
  * @author Jasmine Chu

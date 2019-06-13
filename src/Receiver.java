@@ -1,5 +1,12 @@
 import java.awt.*;
 
+/**
+ * [Receiver.java]
+ * Class for the receiver object
+ * @version 1.1
+ * @author Ethan Kwan
+ * @since June 12, 2019
+ */
 public class Receiver extends OverworldObject {
 
     public Receiver(int x, int y) {

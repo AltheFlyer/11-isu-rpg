@@ -1,7 +1,7 @@
 import java.awt.*;
 
 /**
- * [LaserEmitter]
+ * [LaserEmitter.java]
  * Class for the laser emitter object
  * @version 1.1
  * @author Ethan Kwan
