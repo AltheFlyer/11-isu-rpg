@@ -25,4 +25,21 @@ public class SplitAbilityPair extends AbilityPair {
         super(animation, name, desc, energyCost, cooldown, firstAbility, secondAbility);
     }
 
+    /**
+     * [action]
+     * performs the actions of the two contained abilities
+     * @param jointMap the map that the ability is cast on
+     * @param x the targeted x position
+     * @param y the targeted y position
+     */
+    @Override
+    public void action(JointMap jointMap, int x, int y) {
+        firstAbility.indicateValidTiles(jointMap);
+        firstAbility.action(jointMap, x, y);
+
+        jointMap.unIndicateAll();
+        jointMap.unTargetableAll();
+        secondAbility.selectRandomTile(jointMap);
+    }
+
 }

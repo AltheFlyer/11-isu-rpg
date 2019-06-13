@@ -11,8 +11,8 @@ import java.awt.Graphics;
  */
 public class AbilityPair extends Ability {
 
-    private Ability firstAbility;
-    private Ability secondAbility;
+    protected Ability firstAbility;
+    protected Ability secondAbility;
 
     /**
      * [AbilityPair]

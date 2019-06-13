@@ -457,4 +457,51 @@ abstract public class Ability {
         }
     }
 
+    /**
+     * [selectRandomTile]
+     * selects a random tile for the ability
+     * @param map the map that the ability is used on
+     */
+    public void selectRandomTile(JointMap map) {
+        int[] xTargets;
+        int[] yTargets;
+        int validTargets = 0;
+        int counter = 0;
+        int choice;
+
+        indicateValidTiles(map);
+
+        //count up the number of targetable tiles
+        for (int k = 0; k < 3; k++) {
+            for (int l = 0; l < 6; l++) {
+                if (map.getTargetable(l, k)) {
+                    validTargets += 1;
+                }
+            }
+        }
+        //Run the attack if there are valid targets
+        if (validTargets > 0) {
+            //Create the new arrays to store all targetable tiles
+            xTargets = new int[validTargets];
+            yTargets = new int[validTargets];
+
+
+            //Store the targetable tile locations
+            for (int k = 0; k < 3; k++) {
+                for (int l = 0; l < 6; l++) {
+                    if (map.getTargetable(l, k)) {
+                        xTargets[counter] = l;
+                        yTargets[counter] = k;
+                        counter++;
+                    }
+                }
+            }
+
+            //Choose a random tile to target out of the targetable tiles
+            choice = (int) (Math.random() * counter);
+            System.out.println(counter);
+            //Use the chosen ability on the selected tile
+            action(map, xTargets[choice], yTargets[choice]);
+        }
+    }
 }
