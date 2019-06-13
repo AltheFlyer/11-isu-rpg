@@ -21,8 +21,8 @@ abstract public class OverworldMap {
     private BufferedImage[][] sprites;
     private boolean eventShownYet = false; //display event as soon as player walks in
 
-    public OverworldMap(GameIO fileManager, String mapPath, String walkabilityKey){
-        fileManager.readTileWalkability(walkabilityKey);
+    public OverworldMap(GameIO fileManager, String mapPath){
+        fileManager.readTileWalkability("walkability.txt");
         map = fileManager.getMap(mapPath, tileSize);
         sprites = new BufferedImage[map.length][map[0].length];
         for (int i = 0; i < map.length; ++i) {

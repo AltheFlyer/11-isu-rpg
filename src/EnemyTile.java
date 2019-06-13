@@ -3,6 +3,13 @@ import utils.TextDrawer;
 import java.awt.Graphics;
 import java.awt.Color;
 
+/**
+ * [EnemyTile.java]
+ * the tiles that enemies will be situated on
+ * @version 1.0
+ * @author Kevin Liu
+ * @since May 23, 2019
+ */
 public class EnemyTile extends Tile{
     private Enemy enemy;
 

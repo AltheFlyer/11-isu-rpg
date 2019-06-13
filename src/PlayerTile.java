@@ -1,5 +1,12 @@
 import java.awt.*;
 
+/**
+ * [PlayerTile.java]
+ * the tiles that players will be situated on
+ * @version 1.0
+ * @author Kevin Liu
+ * @since May 23, 2019
+ */
 public class PlayerTile extends Tile{
     private Player player;
 

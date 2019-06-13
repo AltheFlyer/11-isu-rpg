@@ -49,6 +49,16 @@ public class GameIO {
         readActiveMap();
     }
 
+    public void resetProgress() {
+
+
+
+        activeMap = "moving_hallway1";
+        mapX = 400;
+        mapY = 400;
+        writeMapData();
+    }
+
     /**
      * [readTileWalkability]
      * loads all tile types, and saves whether they can be walked on or not
@@ -850,9 +860,9 @@ public class GameIO {
                 respawnX = Integer.parseInt(tokens[4]);
                 respawnY = Integer.parseInt(tokens[5]);
                 if (tokens[0].equals("orbiter")) {
-                    objects[i] = new Orbiter(x, y, x - radius, y, respawnX, respawnY);
+                    objects[i] = new Orbiter(x, y, respawnX, respawnY, x - radius, y);
                 } else {
-                    objects[i] = new Sweller(x, y, radius, respawnX, respawnY);
+                    objects[i] = new Sweller(x, y, respawnX, respawnY, radius);
                 }
             } else if ((tokens[0].equals("laser"))) {
                 x = Integer.parseInt(tokens[1]);

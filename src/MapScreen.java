@@ -27,25 +27,25 @@ public class MapScreen extends GameScreen {
     int width;
     TextDrawer textDrawer;
 
-    public MapScreen(GameManager game, String mapPath, String walkabilityKey,
+    public MapScreen(GameManager game, String mapPath,
                      String npcPath, String objectPath, int x, int y) {
         super(game);
         clock = new Clock(0.1);
         framerate = new FrameRate();
         if (mapPath.contains("moving")) {
-            map = new MovingMap(getIO(), mapPath, walkabilityKey);
+            map = new MovingMap(getIO(), mapPath);
         } else if (mapPath.contains("physics")) {
-            map = new PhysicsRoom(getIO(), mapPath, walkabilityKey);
+            map = new PhysicsRoom(getIO(), mapPath);
         } else if (mapPath.contains("english")) {
-            map = new EnglishRoom(getIO(), mapPath, walkabilityKey);
+            map = new EnglishRoom(getIO(), mapPath);
         } else if (mapPath.contains("chemistry")) {
-            map = new ChemistryRoom(getIO(), mapPath, walkabilityKey);
+            map = new ChemistryRoom(getIO(), mapPath);
         } else if (mapPath.contains("comsci")) {
-            map = new ComsciRoom(getIO(), mapPath, walkabilityKey);
+            map = new ComsciRoom(getIO(), mapPath);
         } else if (mapPath.contains("math")) {
-            map = new MathRoom(getIO(), mapPath, walkabilityKey);
+            map = new MathRoom(getIO(), mapPath);
         } else {
-            map = new RoomMap(getIO(), mapPath, walkabilityKey);
+            map = new RoomMap(getIO(), mapPath);
         }
         player = new OverworldPlayer(x, y);
         npcs = getIO().getNPCs(npcPath);
