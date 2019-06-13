@@ -24,6 +24,7 @@ abstract public class OverworldObject {
         this.boundingBox = new Rectangle(x,y,size,size);
     }
 
+    /*
     public OverworldObject(int x, int y) {
         this.x = x;
         this.y = y;
@@ -31,6 +32,7 @@ abstract public class OverworldObject {
         this.xVelocity = 0;
         this.yVelocity = 0;
     }
+    */
 
     /**
      * [draw]

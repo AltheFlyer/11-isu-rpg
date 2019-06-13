@@ -24,7 +24,6 @@ public class ConstructorAbility extends StatusAbility {
      * @param jointMap The map that will be affected
      * @param x        one of the selected coordinates
      * @param y        the other selected coordinate
-     * @return it will return a value based on if an action was valid or not, if it was, it will unindicate everything and reset selectedAbility on levelscreen
      */
     @Override
     public void action(JointMap jointMap, int x, int y) {

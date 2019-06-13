@@ -9,7 +9,7 @@ import java.awt.Graphics;
 public class DiagMoveAbility extends MoveAbility{
     /**
      * [DiagMoveAbility]
-     * Constructor for movement
+     * Constructor for diagonal movement
      * @param name the displayed name of the ability
      * @param desc the displayed description of the ability
      * @param energyCost the energy cost of the ability
@@ -21,11 +21,10 @@ public class DiagMoveAbility extends MoveAbility{
     }
 
     /**
-     * action: This method will target and affect the selected tiles in a certain pattern
+     * action: This method will move an entoty to the selected tile
      * @param jointMap: The map that will be affected
      * @param i: one of the selected coordinates
      * @param j: the other selected coordinate
-     * @return: it will return a value based on if an action was valid or not, if it was, it will unindicate everything and reset selectedAbility on levelscreen
      */
     public void action(JointMap jointMap, int i, int j) {
         if (jointMap.isEmpty(i, j)) {

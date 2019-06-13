@@ -73,7 +73,6 @@ abstract public class Ability {
      * @param jointMap The map that will be affected
      * @param i one of the selected coordinates
      * @param j the other selected coordinate
-     * @return  it will return a value based on if an action was valid or not, if it was, it will unindicate everything and reset selectedAbility on levelscreen
      */
     abstract public void action(JointMap jointMap, int i, int j);
 

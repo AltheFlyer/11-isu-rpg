@@ -11,7 +11,7 @@ public class AllenSpotlightAbility extends StatusAbility {
 
     /**
      * [AllenSpotlightAbility]
-     * generates a StatusAbility with single target capabilities
+     * generates a StatusAbility which marks a target friendly or enemy
      * @param animation the animation that is played on ability case
      * @param name the displayed name of the ability
      * @param desc the displayed description of the ability
@@ -22,7 +22,7 @@ public class AllenSpotlightAbility extends StatusAbility {
 
     /**
      * [action]
-     * runs the action for the ability, which is to apply the status effect to a targeted entity
+     * runs the action for the ability, which is to mark a targeted entity
      * @param jointMap the map that the ability is cast on
      * @param x the x position of the desired tile
      * @param y the y position of the desired tile

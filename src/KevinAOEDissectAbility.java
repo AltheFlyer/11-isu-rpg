@@ -5,8 +5,8 @@ import java.awt.*;
 public class KevinAOEDissectAbility extends AOEAbility{
 
     /**
-     * [KevinSpotlightAbility]
-     * generates a StatusAbility with single target capabilities
+     * [KevinAOEDissectAbility]
+     * An attack that will affect all enemies in a row with DissectedStatus
      * @param animation the animation that is played on ability case
      * @param name the displayed name of the ability
      * @param desc the displayed description of the ability
@@ -16,11 +16,10 @@ public class KevinAOEDissectAbility extends AOEAbility{
     }
 
     /**
-     * action: This method will target and affect the selected tiles in a certain pattern
+     * action: This method will inflict DissectedStatus on enemies in a row
      * @param jointMap: The map that will be affected
      * @param i one of the selected coordinates
      * @param j the other selected coordinate
-     * @return it will return a value based on if an action was valid or not, if it was, it will unindicate everything and reset selectedAbility on levelscreen
      */
     @Override
     public void action(JointMap jointMap, int i, int j){
