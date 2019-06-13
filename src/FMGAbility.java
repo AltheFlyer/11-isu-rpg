@@ -12,7 +12,7 @@ public class FMGAbility extends AOEAbility{
      * @param desc the displayed description of the ability
      */
     FMGAbility(AnimatedSprite animation, String name, String desc){
-        super (animation, name, desc, 40, 1, 0, 0, 6,2, 0,1, true, true);
+        super (animation, name, desc, 40, 2, 0, 0, 6,2, 0,1, true, true);
     }
 
     /**
