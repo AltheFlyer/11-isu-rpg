@@ -8,5 +8,5 @@ ABILITIES 5
 BasicMoveAbility "step" "movement to an adjacent tile" 30 1 1
 EthanPactAbility "initiation" "Sacrifice 20 health for a Slight heal of 20 + mark an ally" spritesheets/jasmine.png 1 5 100
 EthanStorePowerAbility "sacrifice" "sacrifice half of your health and all marked allies, convert to stored power" spritesheets/jasmine.png 1 5 100
-EthanTidesAbility "tides" "deal damage based on sacrifice amounts" spritesheets/jasmine.png 1 5 100
+EthanTidesAbility "tides" "deal damage to the middle enemy column based on stored power" spritesheets/jasmine.png 1 5 100
 EthanTransfuseAbility "transfusion" "deal damage and heal for %missing health, heal more on marked targets" spritesheets/jasmine.png 1 5 100
