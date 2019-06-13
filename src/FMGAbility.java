@@ -1,6 +1,7 @@
 import utils.AnimatedSprite;
 
-import java.awt.*;
+import java.awt.Graphics;
+import java.awt.Color;
 
 /**
  * [FMGAbility.java]
@@ -25,13 +26,13 @@ public class FMGAbility extends AOEAbility{
     /**
      * action: This method will target and affect damage all marked enemies while healing all marked allies
      * @param jointMap: The map that will be affected
-     * @param i one of the selected coordinates
-     * @param j the other selected coordinate
+     * @param x one of the selected coordinates
+     * @param y the other selected coordinate
      */
     @Override
-    public void action(JointMap jointMap, int i, int j){
-        for (int l = j - getYAOE(); l <= j + getYAOE(); l++) {
-            for (int k = i - getXAOE(); k <= i + getXAOE(); k++) {
+    public void action(JointMap jointMap, int x, int y){
+        for (int l = y - getYAOE(); l <= y + getYAOE(); l++) {
+            for (int k = x - getXAOE(); k <= x + getXAOE(); k++) {
                 if (jointMap.tileExists(k, l)) {
                     if (!jointMap.isEmpty(k,l)) {
                         if ((getFriendTarget()) && (jointMap.isTileFriendly(k, l) == getEntitySource().isFriendly()) && (getIsMarked(jointMap, k, l))) {
@@ -50,12 +51,12 @@ public class FMGAbility extends AOEAbility{
     /**
      * [drawHoverAttack]
      * Draws the area that will be affected by an ability
-     * @param i the x of the tile that the mouse is hovered over
-     * @param j the y of the tile that the mouse is hovered over
+     * @param x the x of the tile that the mouse is hovered over
+     * @param y the y of the tile that the mouse is hovered over
      * @param g the graphics object to draw with
      * @param jointMap map to draw the hovered square on
      */
-    public void drawHoverAttack(int i, int j, Graphics g, JointMap jointMap) {
+    public void drawHoverAttack(int x, int y, Graphics g, JointMap jointMap) {
         //What to do here???
         int gridX = 323;
         int gridY = 108;
@@ -65,8 +66,8 @@ public class FMGAbility extends AOEAbility{
 
         int gridWidthSpace = 121;
         int gridHeightSpace = 121;
-        for (int l = j-getYAOE(); l <= j+getYAOE(); l++){
-            for (int k = i-getXAOE(); k <= i+getXAOE(); k++){
+        for (int l = y-getYAOE(); l <= y+getYAOE(); l++){
+            for (int k = x-getXAOE(); k <= x+getXAOE(); k++){
                 //Yeah might need to revamp Single and AOE ability so one can do empty tiles, one cannot do that
                 if (jointMap.tileExists(k,l)){
                     if (!jointMap.isEmpty(k,l)) {

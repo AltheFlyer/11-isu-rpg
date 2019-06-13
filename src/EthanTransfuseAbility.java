@@ -22,14 +22,14 @@ public class EthanTransfuseAbility extends SingleAbility {
     /**
      * action: This method will target and affect a single tile while affecting it with DissectedStatus
      * @param jointMap: The map that will be affected
-     * @param i: one of the selected coordinates
-     * @param j: the other selected coordinate
+     * @param x: one of the selected coordinates
+     * @param y: the other selected coordinate
      */
-    public void action(JointMap jointMap, int i, int j){
+    public void action(JointMap jointMap, int x, int y){
         jointMap.target(getEntitySource().getXGrid(), getEntitySource().getYGrid(),-(getEntitySource().getMaxHealth()-getEntitySource().getHealth())/4);
-        if (getIsMarked(jointMap,i,j)){
+        if (getIsMarked(jointMap,x,y)){
             jointMap.target(getEntitySource().getXGrid(), getEntitySource().getYGrid(),-(getEntitySource().getMaxHealth()-getEntitySource().getHealth())/4);
         }
-        jointMap.target(i, j, getDamage());
+        jointMap.target(x, y, getDamage());
     }
 }

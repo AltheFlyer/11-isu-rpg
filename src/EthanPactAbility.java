@@ -27,7 +27,6 @@ public class EthanPactAbility extends StatusAbility {
      * @param x the x position of the desired tile
      * @param y the y position of the desired tile
      */
-
     @Override
     public void action(JointMap jointMap, int x, int y) {
         jointMap.inflictStatus(x, y, getEffect().spread());

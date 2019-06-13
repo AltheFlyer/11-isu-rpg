@@ -79,6 +79,10 @@ abstract public class Entity {
     }
 
 
+    /**
+     * [endTurnLowerCooldown]
+     * reduces the cooldown of all abilities by 1, for use at the end of turns
+     */
     public void endTurnLowerCooldown(){
         for (int i = 0; i < abilities.length; i++){
             abilities[i].lowerCooldown(1);
@@ -157,8 +161,8 @@ abstract public class Entity {
      * @param damage the amound of damage dealt to an entity
      */
     public void damageEntity(double damage) {
-        //Modify damage by defence
-        health -= damage * (1.0 - defence);
+        //Modify damage by defence, try to prevent negatives
+        health -= damage * Math.min(0, (1.0 - defence));
         if (health <= 0){
             alive = false;
         }
@@ -221,7 +225,7 @@ abstract public class Entity {
 
     /**
      * [gainEnergy]
-     * Will reduce the amount of energy that an entity has due to an attack
+     * Will increase the entity's energy
      * @param energyGained the amount of energy gained from the end of the turn
      */
     public void gainEnergy(double energyGained){
@@ -249,19 +253,6 @@ abstract public class Entity {
         }
     }
 
-
-    /**
-     * [dispose]
-     * dereferences all objects within the player/accessing the player
-     */
-    public void dispose() {
-        //Make all abilities null
-        for (int i = 0; i < abilities.length; ++i) {
-            abilities[i] = null;
-        }
-        statuses.clear();
-    }
-
     /**
      * [inflictStatus]
      * Inflicts a status effect on the entity. If the entity already has a status effect of the same type, it will
@@ -274,14 +265,14 @@ abstract public class Entity {
         for (int i = 0; i < statuses.size(); ++i) {
             if (statuses.get(i).getClass() == effect.getClass()) {
                 statuses.get(i).stack(effect);
-                if (effect.isActiveImmediately()) {
+                if (effect.getIsActiveImmediately()) {
                     effect.triggerEffect(map, this);
                 }
                 return;
             }
         }
         statuses.add(effect);
-        if (effect.isActiveImmediately()) {
+        if (effect.getIsActiveImmediately()) {
             effect.triggerEffect(map, this);
         }
     }

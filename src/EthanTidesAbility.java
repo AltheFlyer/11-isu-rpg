@@ -1,8 +1,5 @@
 import utils.AnimatedSprite;
 
-import java.awt.Graphics;
-import java.awt.Color;
-
 /**
  * [EthanTidesAbility.java]
  * Creating of a tide ability that will do damage based on stored power
@@ -26,14 +23,14 @@ public class EthanTidesAbility extends AOEAbility{
     /**
      * action: This method will target and affect the selected tiles in a certain pattern
      * @param jointMap: The map that will be affected
-     * @param i one of the selected coordinates
-     * @param j the other selected coordinate
+     * @param x one of the selected coordinates
+     * @param y the other selected coordinate
      */
-    public void action(JointMap jointMap, int i, int j){
-        for (int k = j - getYAOE(); k <= j + getYAOE(); k++) {
-            if (jointMap.tileExists(i,k)) {
-                if (jointMap.isTileFriendly(i, k) != getEntitySource().isFriendly()) {
-                    jointMap.target(i, k, getDamage());
+    public void action(JointMap jointMap, int x, int y){
+        for (int k = y - getYAOE(); k <= y + getYAOE(); k++) {
+            if (jointMap.tileExists(x,k)) {
+                if (jointMap.isTileFriendly(x, k) != getEntitySource().isFriendly()) {
+                    jointMap.target(x, k, getDamage());
                 }
             }
         }

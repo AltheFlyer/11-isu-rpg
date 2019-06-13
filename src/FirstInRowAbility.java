@@ -26,26 +26,26 @@ public class FirstInRowAbility extends DamagingAbility {
      * action: This method will target and affect the selected tiles in a certain pattern
      *
      * @param jointMap The map that will be affected
-     * @param i        one of the selected coordinates
-     * @param j        the other selected coordinate
+     * @param x        one of the selected coordinates
+     * @param y        the other selected coordinate
      */
     @Override
-    public void action(JointMap jointMap, int i, int j) {
-        jointMap.target(i, j, getDamage());
+    public void action(JointMap jointMap, int x, int y) {
+        jointMap.target(x, y, getDamage());
     }
 
     /**
      * [drawSelectedArea]
      * Draws the area that will be affected by an ability
      *
-     * @param i        the x of the tile that the mouse is hovered over
-     * @param j        the y of the tile that the mouse is hovered over
+     * @param x        the x of the tile that the mouse is hovered over
+     * @param y        the y of the tile that the mouse is hovered over
      * @param g        the graphics object to draw with
      * @param jointMap map to draw the hovered square on
      */
     @Override
-    public void drawHoverAttack(int i, int j, Graphics g, JointMap jointMap) {
-        drawHoverAttackSingleHelper(i,j,g,jointMap);
+    public void drawHoverAttack(int x, int y, Graphics g, JointMap jointMap) {
+        drawHoverAttackSingleHelper(x,y,g,jointMap);
     }
 
     /**
