@@ -9,7 +9,7 @@ import java.awt.Rectangle;
  * @author Jasmine Chu
  * @since June 09, 2019
  */
-public class Sweller extends OverworldObject {
+public class Sweller extends Collider {
 
     private int maxRadius, minRadius;
     private int radius;
@@ -119,18 +119,6 @@ public class Sweller extends OverworldObject {
         this.boundingBox.y = this.getY();
         this.boundingBox.width = this.getRadius();
         this.boundingBox.height = this.getRadius();
-    }
-
-    /**
-     * [checkCollisions]
-     * changes player's x and y coordinates if intersects with an object
-     * @return Rectangle boundingBox, the entity's bounding box
-     */
-    public void checkCollisions(Rectangle playerBounds, OverworldPlayer player) {
-        if (playerBounds.intersects(this.collisionWindow())) {
-            player.setX(getRespawnX());
-            player.setY(getRespawnY());
-        }
     }
 
 }

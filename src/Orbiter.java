@@ -7,7 +7,7 @@ import java.awt.Rectangle;
  * @author Jasmine Chu
  * @since June 07, 2019
  */
-public class Orbiter extends OverworldObject {
+public class Orbiter extends Collider {
 
     private int orbitRadius;
     private double angle = 0;
