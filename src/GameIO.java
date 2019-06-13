@@ -812,7 +812,7 @@ public class GameIO {
                     doorData = lines[height + 1 + doorCounter].split(" ");
                     if (doorData.length == 3) {
                         tileMap[x][y] = new Door(x, y, tileWalkability.get("door"), tileSize, "door",
-                                doorData[0], Integer.parseInt(doorData[1]), Integer.parseInt(doorData[2]));
+                                doorData[0], Integer.parseInt(doorData[1]), Integer.parseInt(doorData[2]), null);
                     } else {
                         for (int i = 3; i < doorData.length; ++i) {
                             neededItem = neededItem.concat(" " + doorData[i]);
