@@ -9,5 +9,5 @@ wall_left floor floor floor floor floor floor floor floor floor exit floor floor
 bottom_left wall_down wall_down wall_down wall_down wall_down wall_down wall_down wall_down wall_down door wall_down wall_down wall_down wall_down wall_down wall_down wall_down wall_down bottom_right
 english_room 525 550 AP English Textbook
 moving_hallway1 1350 325
-physics_room 100 325
-chemistry_room 225 100
+physics_room 100 325 Pendulum
+chemistry_room 225 100 Strange Substance
