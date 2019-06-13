@@ -118,7 +118,7 @@ abstract public class Ability {
      * lowers the current cooldown of an ability by one, happens after a turn ends if the move is not currently usable
      */
     public void lowerCooldown(int amountLower){
-        if (currentCooldown - amountLower < 0){
+        if ((currentCooldown - amountLower) < 0){
             currentCooldown = 0;
         } else {
             currentCooldown -= amountLower;
@@ -133,7 +133,7 @@ abstract public class Ability {
      * @param y the y position to draw from (top left corner)
      */
     public void drawInfoBox(Graphics g, int x, int y) {
-        if (getEnergyCost() > entitySource.getEnergy() || getCurrentCooldown() > 0) {
+        if ((getEnergyCost() > entitySource.getEnergy()) || (getCurrentCooldown() > 0)) {
             g.setColor(new Color(255, 150, 200));
         } else{
             g.setColor(new Color(0, 200, 255));

@@ -162,7 +162,7 @@ abstract public class Entity {
      */
     public void damageEntity(double damage) {
         //Modify damage by defence, try to prevent negatives
-        health -= damage * Math.max(0, (1.0 - defence));
+        health -= damage * Math.min(0, (1.0 - defence));
         if (health <= 0){
             alive = false;
         }
