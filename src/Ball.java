@@ -1,7 +1,7 @@
 import java.awt.*;
 
 /**
- * [Ball]
+ * [Ball.java]
  * Class for a laser that is created from the laser emitter
  * @version 1.1
  * @author Ethan Kwan

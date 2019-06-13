@@ -1,5 +1,7 @@
 Shopkeeper Ken
 3
-100 800 200 loli poster
-200 800 300 loli tier list
-300 800 400 literal [REDACTED]
+100 800 200 AP English Textbook
+100 800 300 Strange Substance
+100 800 400 Acer Gang Laptop
+100 800 500 Ticket to Papua New Guinea
+100 800 600 Pendulum

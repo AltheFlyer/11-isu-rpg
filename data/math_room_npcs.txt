@@ -1,1 +1,9 @@
-0
+4
+1025 150 DECA President
+Greetings! Welcome! Salutations! If you're wondering why we're in the math room, it's because our usual room is being cleaned.
+1225 425 DECA Member
+You wanna take the MC? First, you gotta pass the practical! ...What's the practical, you ask? Er, why don't you ask one of my teammates over there?
+825 150 DECA Member
+The practical test is easy: just use this little machine to get the ball into the goal! Suuuuuuper simple, right?
+225 825 DECA Member
+It's like a cult...escape while you can...

@@ -1,7 +1,7 @@
 import java.awt.*;
 
 /**
- * [LaserEmitter]
+ * [LaserEmitter.java]
  * Class for the laser emitter object
  * @version 1.1
  * @author Ethan Kwan
@@ -153,4 +153,5 @@ public class LaserEmitter extends OverworldObject {
     private double degreesToRad(int angle) {
         return angle*(Math.PI/180) + Math.PI/2;
     }
+
 }

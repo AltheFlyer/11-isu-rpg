@@ -1,7 +1,7 @@
 import java.awt.*;
 
 /**
- * [MapScreen.java]
+ * [OverworldObject.java]
  * Class for all overworld objects
  * @version 1.1
  * @author Jasmine Chu

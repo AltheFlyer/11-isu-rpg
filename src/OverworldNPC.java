@@ -34,7 +34,7 @@ public class OverworldNPC extends OverworldEntity {
      * @return void
      */
     public void draw(Graphics g, OverworldMap map, OverworldPlayer player) {
-        g.setColor(Color.BLUE);
+        g.setColor(Color.MAGENTA);
         if (map instanceof RoomMap) { //regular drawing
             g.fillRect(this.getX(), this.getY(), 50, 50); //modify size
             //g.drawImage(sprite, this.getX(), this.getY(), 50, 50, null);

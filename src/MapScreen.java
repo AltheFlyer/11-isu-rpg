@@ -7,6 +7,7 @@ import java.awt.Rectangle;
 import java.awt.event.KeyListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
+import java.util.HashMap;
 
 /**
  * [MapScreen.java]
@@ -23,6 +24,8 @@ public class MapScreen extends GameScreen {
     private OverworldPlayer player;
     private OverworldNPC[] npcs;
     private OverworldObject[] objects;
+    private int currency = getIO().getCurrency();
+    private HashMap<String, Integer> inventory = getIO().getInventory();
     int length;
     int width;
     TextDrawer textDrawer;
@@ -66,7 +69,7 @@ public class MapScreen extends GameScreen {
 
         //initializing the text drawer
         if (textDrawer == null) {
-            textDrawer = new TextDrawer(g,"",150,650,1166,25);
+            textDrawer = new TextDrawer(g,"",150,650,1150,25);
         }
 
         //updating clock and frames
@@ -87,19 +90,18 @@ public class MapScreen extends GameScreen {
         //drawing everything
         map.draw(g, player);
         player.draw(g, map);
-
         for (int i = 0; i < objects.length; ++i) {
             objects[i].draw(g, map, player);
         }
+        for (int i = 0; i < npcs.length; ++i) {
+            npcs[i].draw(g, map, player); //drawing the npcs
+        }
+
+        //checking interactions
         for (int i = 0; i < objects.length; ++i) {
             if (objects[i].isInterfaceOpen()) {
                 objects[i].openInterface(g);
             }
-        }
-
-        //npc management
-        for (int i = 0; i < npcs.length; ++i) {
-            npcs[i].draw(g, map, player); //drawing the npcs
         }
         for (int i = 0; i < npcs.length; ++i) {
             if (npcs[i].isTalking()) {
@@ -115,13 +117,15 @@ public class MapScreen extends GameScreen {
             }
         }
 
-        if (map.runEvent(player,npcs)) {
+        //run the event if the room has it
+        if (map.runEvent(npcs)) {
             getIO().setMapData(map.getMapName(),player.getX(),player.getY());
             if (textDrawer.getCharactersWritten() == textDrawer.getTextLength()) {
                 getGame().setLevel(map.getLevelName());
             }
         }
 
+        //can't forget your trusty framerate
         framerate.draw(g, 10, 10);
 
         //ask for repaint
@@ -221,7 +225,19 @@ public class MapScreen extends GameScreen {
         super.mouseReleased(e);
         for (int i = 0; i < npcs.length; ++i) {
             if (npcs[i].shopIsOpen()) {
-                System.out.println("you bought absolute trash, good job");
+                Item[] items = ((OverworldShopNPC)npcs[i]).getItems();
+                for (int j = 0; j < items.length; ++j) {
+                    if ((items[j].getBoundingBox().contains(getMouseX(), getMouseY())) &&
+                            (items[j].getBoundingBox().contains(getClickX(), getClickY()))) {
+                        if (currency >= items[j].getCost()) {
+                            currency -= items[j].getCost();
+                            inventory.put(items[j].getName(), 1);
+                            npcs[i].setMessage("Thanks for buying a" + items[j].getName() + ".");
+                        } else {
+                            npcs[i].setMessage("Scram, twerp. Go steal from someone else.");
+                        }
+                    }
+                }
             }
         }
     }
@@ -252,7 +268,7 @@ public class MapScreen extends GameScreen {
         Rectangle playerNewBox = new Rectangle(playerNewX, playerNewY, player.getSize(), player.getSize());
         for (int i = centerTileX - 1; i < centerTileX + 2; i++) {
             for (int j = centerTileY - 1; j < centerTileY + 2; j++) {
-                map.getMap()[i][j].checkCollisions(playerNewBox, player, getGame());
+                map.getMap()[i][j].checkCollisions(playerNewBox, player, getGame(), inventory);
             }
         }
         for (int i = 0; i < npcs.length; ++i) {
