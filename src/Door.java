@@ -26,6 +26,7 @@ public class Door extends OverworldTile {
     public String getDoorPath() { return this.doorPath; }
 
     public void checkCollisions(Rectangle playerBounds, OverworldPlayer player, GameManager game, HashMap<String, Integer> inventory) {
+        super.checkCollisions(playerBounds,player,game,inventory);
         if ((playerBounds.intersects(this.getBoundingBox())) && ((inventory.containsKey(this.itemNeeded)) || this.itemNeeded == null)) {
             game.setScreen(new LoadingScreen(game));
             game.setScreen(new MapScreen(game, this.getDoorPath() + ".txt",
