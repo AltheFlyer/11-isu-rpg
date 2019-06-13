@@ -1,19 +1,21 @@
-9
+10
 500 100 Mr. Mangat
 Hey. I can't do anything for you right now - the music kids are back. Help chase them out, will you? I think there are six of 'em in total.
-400 725 music kid
+400 725 Music Kid
 MINING AWAY, I DON'T KNOW WHAT TO MINE I'LL MINE IT ANYWAYS
-345 800 music kid
+345 800 Music Kid
 MIIIIIINE DIIIIIIIIIIIIIIAMOOOOOOOOONDS
-600 400 music kid
+600 400 Music Kid
 Coffee House is in three hours!!!!
-800 630 music kid
+800 630 Music Kid
 I swear I don't know these people.
-200 925 music kid
+200 925 Music Kid
 I just looked on TeachAssist and my mark went down from 100 to 99.7...
-750 360 music kid
+750 360 Music Kid
 Why am I wearing my band uniform? It's comfy! Why else?
 300 700 Jordan
 Why do I hear boss music?
 415 800 Anthony
 Hi there!
+700 300 Daksh
+Hey, I think Mr. Mangat was looking for you. Where've you been?

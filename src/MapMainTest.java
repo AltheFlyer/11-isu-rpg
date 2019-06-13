@@ -5,11 +5,11 @@ public class MapMainTest {
 
         //game.setScreen(new DebugScreen(game));
         
-//        game.setScreen(new MapScreen(game,"comsci_room.txt",
-//                "comsci_room_npcs.txt", "comsci_room_objects.txt", 400, 400));
+        game.setScreen(new MapScreen(game,"math_room.txt",
+                "math_room_npcs.txt", "math_room_objects.txt", 400, 400));
 
-        game.setScreen(new MapScreen(game,"chemistry_room.txt",
-                "chemistry_room_npcs.txt", "chemistry_room_objects.txt", 400, 400));
+//        game.setScreen(new MapScreen(game,"chemistry_room.txt",
+//                "chemistry_room_npcs.txt", "chemistry_room_objects.txt", 400, 400));
 
 //        game.setScreen(new MapScreen(game,"moving_hallway1.txt",
 //                "moving_hallway1_npcs.txt", "moving_hallway1_objects.txt", 400, 400));

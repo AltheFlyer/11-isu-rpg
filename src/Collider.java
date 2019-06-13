@@ -2,7 +2,7 @@ import java.awt.*;
 
 /**
  * [Collider.java]
- * Class for orbiter object that travels in a circular path on the map and interacts with player upon collisions
+ * Abstract class for any object on the map
  * @version 1.1
  * @author Jasmine Chu
  * @since June 07, 2019
@@ -72,6 +72,19 @@ abstract public class Collider extends OverworldObject {
         return this.respawnY;
     }
 
+//    /**
+//     * [checkCollisions]
+//     * changes player's x and y coordinates if intersects with an object
+//     * @return Rectangle boundingBox, the entity's bounding box
+//     */
+//    @Override
+//    public void checkCollisions(Rectangle playerBounds, OverworldPlayer player) {
+//        if (playerBounds.intersects(this.collisionWindow())) {
+//            player.setX(getRespawnX());
+//            player.setY(getRespawnY());
+//        }
+//    }
+
     /**
      * [checkCollisions]
      * changes player's x and y coordinates if intersects with an object
@@ -79,7 +92,11 @@ abstract public class Collider extends OverworldObject {
      */
     @Override
     public void checkCollisions(Rectangle playerBounds, OverworldPlayer player) {
-        if (playerBounds.intersects(this.collisionWindow())) {
+        int deltaX = (this.getX() + this.getRadius()) - Math.max(playerBounds.x,
+                Math.min((this.getX() + this.getRadius()), playerBounds.x + playerBounds.width));
+        int deltaY = (this.getY() + this.getRadius()) - Math.max(playerBounds.y,
+                Math.min((this.getY() + this.getRadius()), playerBounds.x + playerBounds.height));
+        if (Math.pow(deltaX, 2) + (Math.pow(deltaY, 2)) < (Math.pow(this.getRadius(), 2))) {
             player.setX(getRespawnX());
             player.setY(getRespawnY());
         }

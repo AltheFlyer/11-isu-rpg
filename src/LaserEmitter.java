@@ -59,7 +59,12 @@ public class LaserEmitter extends OverworldObject {
      */
     @Override
     public void draw(Graphics g, OverworldMap map, OverworldPlayer player) {
-        super.draw(g, map, player);
+        g.setColor(Color.BLUE);
+        int xDifference = player.getX() - this.getX();
+        int yDifference = player.getY() - this.getY();
+        int xLocation = 683 - xDifference;
+        int yLocation = 384 - yDifference;
+        g.fillRect(xLocation, yLocation, 50, 50);
         if (ball != null) {
             if (ball.getBounces() > 10) {
                 ball = null;
