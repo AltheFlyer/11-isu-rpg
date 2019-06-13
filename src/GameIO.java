@@ -935,6 +935,8 @@ public class GameIO {
                 }
             } else if ((tokens[0].equals("laser"))) {
                 objects[i] = new LaserEmitter(x, y);
+            } else if ((tokens[0].equals("receiver"))) {
+                objects[i] = new Receiver(x, y);
             }
         }
         return objects;

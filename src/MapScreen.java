@@ -66,7 +66,7 @@ public class MapScreen extends GameScreen {
 
         //initializing the text drawer
         if (textDrawer == null) {
-            textDrawer = new TextDrawer(g,"",150,650,1166,25);
+            textDrawer = new TextDrawer(g,"",150,650,1150,25);
         }
 
         //updating clock and frames
@@ -115,7 +115,7 @@ public class MapScreen extends GameScreen {
             }
         }
 
-        if (map.runEvent(player,npcs)) {
+        if (map.runEvent(npcs)) {
             getIO().setMapData(map.getMapName(),player.getX(),player.getY());
             if (textDrawer.getCharactersWritten() == textDrawer.getTextLength()) {
                 getGame().setLevel(map.getLevelName());
