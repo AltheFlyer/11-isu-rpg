@@ -39,6 +39,8 @@ public class GameIO {
     private String activeMap;
     private int mapX, mapY;
 
+    int currency;
+
     //Game initialization (file reading) methods
     public GameIO() {
         readInventory();
@@ -46,7 +48,7 @@ public class GameIO {
         readEquipUnlocks();
         readAbilityUnlocks();
         readTimeState();
-        readActiveMap();
+        readActiveMap();readCurrency();
     }
 
     /**
@@ -56,7 +58,8 @@ public class GameIO {
      */
     public void resetProgress() {
 
-
+        currency = 0;
+        writeCurrency();
 
         currentDay = 1;
         currentPeriod = 0;
@@ -155,6 +158,17 @@ public class GameIO {
         mapY = Integer.parseInt(lines[3]);
     }
 
+    /**
+     * [readCurrency]
+     * reads the file which includes currency values
+     */
+    public void readCurrency() {
+        String misc = readFile("progression/currency.txt");
+
+        String lines[] = misc.split("\n");
+
+        currency = Integer.parseInt(removeFirstWord(lines[0]));
+    }
 
     //HashMap access
 
@@ -266,6 +280,15 @@ public class GameIO {
         return mapY;
     }
 
+    /**
+     * [getCurrency]
+     * gets the saved currency
+     * @return int, the amount of currency the player has
+     */
+    public int getCurrency() {
+        return currency;
+    }
+
     //Dynamic setters
 
     /**
@@ -332,6 +355,14 @@ public class GameIO {
         mapY = y;
     }
 
+    /**
+     * [setCurrency]
+     * sets the amount of saved currency
+     * @param money the amount of currency the players now have
+     */
+    public void setCurrency(int money) {
+        currency = money;
+    }
 
     //Dynamic file writing
 
@@ -390,6 +421,14 @@ public class GameIO {
         writeFile("progression/map_position.txt", toWrite);
     }
 
+    /**
+     * [writeCurrency]
+     * writes the saved currency values to the currency file
+     */
+    public void writeCurrency() {
+        String toWrite = "currency " + currency;
+        writeFile("progression/currency.txt", toWrite);
+    }
 
 
     //Battle Layouts (for levels)
