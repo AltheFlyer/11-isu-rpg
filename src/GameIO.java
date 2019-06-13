@@ -852,14 +852,13 @@ public class GameIO {
     public OverworldObject[] getObjects(String path) {
         String text = readFile(path);
         OverworldObject[] objects;
-        int x, y, radius, respawnX, respawnY, minRadius;
+        int x, y, radius, respawnX, respawnY, velocity;
 
         String[] lines = text.split("\n");
 
         String[] tokens = lines[0].split(" ");
         int totalObjects = Integer.parseInt(tokens[0]);
         objects = new OverworldObject[totalObjects];
-        System.out.println(totalObjects);
 
         for (int i = 0; i < totalObjects; ++i) {
             tokens = lines[i + 1].split(" ");
@@ -869,11 +868,11 @@ public class GameIO {
                 radius = Integer.parseInt(tokens[3]);
                 respawnX = Integer.parseInt(tokens[4]);
                 respawnY = Integer.parseInt(tokens[5]);
-                if (tokens[0].equals("orbiter")) {
-                    objects[i] = new Orbiter(x, y, respawnX, respawnY, x - radius, y);
-                } else if (tokens[0].equals("sweller")) {
-                    minRadius = Integer.parseInt(tokens[6]);
-                    objects[i] = new Sweller(x, y, respawnX, respawnY, radius);
+                velocity = Integer.parseInt(tokens[6]);
+                if (tokens[0].equals("sweller")) {
+                    objects[i] = new Sweller(x, y, respawnX, respawnY, radius, velocity);
+                } else if (tokens[0].equals("orbiter")) {
+                    objects[i] = new Orbiter(x, y, respawnX, respawnY, x - radius, y, velocity);
                 }
             } else if ((tokens[0].equals("laser"))) {
                 objects[i] = new LaserEmitter(x, y);

@@ -1,1 +1,5 @@
-0
+2
+125 175 Novice TLAPer
+I've been trying to get to the teacher to ask him a TLAP question, but every time you hit those balls, you get teleported to the start of the room. No physics taught me that! Bleugh, I feel sick..
+1225 375 TLAP Master
+You dare approach me on my lunch break?

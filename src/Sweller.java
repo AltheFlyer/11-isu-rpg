@@ -11,15 +11,15 @@ import java.awt.Rectangle;
  */
 public class Sweller extends Collider {
 
-    private int maxRadius, minRadius;
+    private int maxRadius;
     private int radius;
     private int velocity;
     private Rectangle boundingBox;
     private int centerX, centerY;
 
-    public Sweller(int x, int y, int respawnX, int respawnY, int maxRadius) {
+    public Sweller(int x, int y, int respawnX, int respawnY, int maxRadius, int velocity) {
         super(x, y, respawnX, respawnY);
-        this.velocity = 5;
+        this.velocity = velocity;
         this.centerX = x;
         this.centerY = y;
         this.maxRadius = maxRadius;
