@@ -853,22 +853,20 @@ public class GameIO {
 
         for (int i = 0; i < totalObjects; ++i) {
             tokens = lines[i + 1].split(" ");
+            x = Integer.parseInt(tokens[1]);
+            y = Integer.parseInt(tokens[2]);
             if ((tokens[0].equals("orbiter")) || (tokens[0].equals("sweller"))) {
-                x = Integer.parseInt(tokens[1]);
-                y = Integer.parseInt(tokens[2]);
                 radius = Integer.parseInt(tokens[3]);
                 respawnX = Integer.parseInt(tokens[4]);
                 respawnY = Integer.parseInt(tokens[5]);
                 if (tokens[0].equals("orbiter")) {
                     objects[i] = new Orbiter(x, y, respawnX, respawnY, x - radius, y);
-                } else {
+                } else if (tokens[0].equals("sweller")) {
                     minRadius = Integer.parseInt(tokens[6]);
                     objects[i] = new Sweller(x, y, respawnX, respawnY, radius);
+                } else if ((tokens[0].equals("laser"))) {
+                    objects[i] = new LaserEmitter(x, y);
                 }
-            } else if ((tokens[0].equals("laser"))) {
-                x = Integer.parseInt(tokens[1]);
-                y = Integer.parseInt(tokens[2]);
-                objects[i] = new LaserEmitter(x, y);
             }
         }
         return objects;

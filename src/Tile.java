@@ -20,7 +20,7 @@ abstract public class Tile {
     private boolean targetable;
 
     /**
-     * Constructor for creating a tile
+     * Constructor for creating a Tile
      * @param xGraphic the x location in pixels, used to draw graphics
      * @param yGraphic the y location in pixels, used to draw graphics
      * @param xGrid the x location on the battle grid, used for attack ranges and calculations
@@ -71,20 +71,38 @@ abstract public class Tile {
         return yGraphic;
     }
 
-
+    /**
+     * [setEntity]
+     * sets an entity in this tile location
+     * @param entity the entity that is in the current tile
+     */
     public void setEntity(Entity entity){
         this.entity = entity;
     }
 
+    /**
+     * [getEntity]
+     * gets the entity in this tile location
+     * @return entity, the entity that is in the current tile
+     */
     public Entity getEntity(){
         return entity;
     }
 
+    /**
+     * [nullEntity]
+     * nulls the entity in the current tile, used for if it dies or if it moves
+     */
     public void nullEntity(){
         //entity.dispose();
         entity = null;
     }
 
+    /**
+     * [isEmpty]
+     * Checks if a certain tile is empty or not, return true if yes, false if no
+     * @return boolean, checks if the tile is empty, return true if yes, false if no
+     */
     public boolean isEmpty() {
         if (entity == null) {
             return true;
@@ -92,12 +110,11 @@ abstract public class Tile {
         return false;
     }
 
-    /*
-    public void die(){
-        entity = null;
-    }
-    */
-
+    /**
+     * [damageTile]
+     * damages the entity on a certain tile, if it kills the entity, null the entity
+     * @param damage the amount of damage dealt to the entity
+     */
     public void damageTile(double damage){
         if (!isEmpty()) {
             entity.damageEntity(damage);
@@ -107,6 +124,11 @@ abstract public class Tile {
         }
     }
 
+    /**
+     * [healTile]
+     * heals the entity on a certain tile
+     * @param healing the amount of healing dealt to the entity
+     */
     public void healTile(double healing) {
         if (!isEmpty()) {
             entity.healEntity(healing);
@@ -136,37 +158,77 @@ abstract public class Tile {
         }
     }
 
+    /**
+     * [animateAttack]
+     * draws an animation for a certain attack centered on a tile
+     * @param g the graphics used to draw the attack
+     * @param animation the animation that the attack uses it is drawn centered on this tile
+     */
     public void animateAttack(Graphics g, AnimatedSprite animation){
         animation.draw(g,xGraphic-(animation.getWidth()/2-60),yGraphic-(animation.getHeight()/2-60));
     }
 
-
+    /**
+     * [indicate]
+     * indicates if the tile is in range of an attack if it is indicated, it will differ when drawing
+     */
     public void indicate() {
         indicated = true;
     }
+
+    /**
+     * [unIndicate]
+     * will unindicate the tile when no attack is selected (since it will indicate based on ability ranges)
+     */
     public void unIndicate() {
         indicated = false;
     }
 
+    /**
+     * [getIndication]
+     * will return if a tile is indicated or not
+     * @return indicated, the boolean that determines if the tile is indicated or not, used for drawing
+     */
     public boolean getIndication(){
         return indicated;
     }
 
-    //Is targetable means that there is a target in the location and you can target that location using your ability
+    /**
+     * [isTargetable]
+     * Is targetable means that there is a target in the location and you can target that location using your ability
+     */
     public void isTargetable(){
         targetable = true;
     }
 
+    /**
+     * [unTargetable]
+     * makes it so that the tile cannot be selected by an ability anymore
+     */
     public void unTargetable(){
         targetable = false;
     }
 
+    /**
+     * [getTargetable]
+     * will return if a tile is targetable or not
+     * @return targetable, the boolean that determines if the tile is targetable or not, used for drawing or abilities
+     */
     public boolean getTargetable(){
         return targetable;
     }
 
+    /**
+     * [draw]
+     * draw the information present on the tile, will be overwritten
+     * @param g the graphics used to draw
+     */
     abstract void draw(Graphics g);
 
+    /**
+     * [isTileFriendly]
+     * checks if the tile is friendly or not, will be overwritten
+     */
     abstract boolean isTileFriendly();
 
     /**
@@ -222,6 +284,11 @@ abstract public class Tile {
         }
     }
 
+    /**
+     * [drawHealthbar]
+     * draws the health bar of the entity that is in it
+     * @param g the graphics used to draw
+     */
     public void drawHealthbar(Graphics g) {
         if (!isEmpty()) {
             double ratio = entity.getHealth() / entity.getMaxHealth();
@@ -244,6 +311,11 @@ abstract public class Tile {
         }
     }
 
+    /**
+     * [drawEnergybar]
+     * draws the energy bar of the entity that is in it
+     * @param g the graphics used to draw
+     */
     public void drawEnergybar(Graphics g){
         if (!isEmpty()) {
             double ratio = entity.getEnergy() / entity.getMaxEnergy();

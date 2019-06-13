@@ -57,7 +57,8 @@ public class Player extends Entity{
 
     /**
      * [drawAbilities]
-     * draws out the menu on the side which contains all of the abilities
+     * draws out the menu on the side which contains all of the abilities, the ability that is currently selected
+     * will be shaded in
      * @param g the graphics used to draw with
      * @param ability the ability that is currently selected
      */
