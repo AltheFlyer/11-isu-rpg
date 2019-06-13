@@ -25,6 +25,7 @@ public class OverworldShopNPC extends OverworldNPC {
      * @param g the graphics object to draw with
      * @return void
      */
+    @Override
     public void speak(Graphics g, TextDrawer textDrawer) {
         textDrawer.setText(this.getMessage());
         g.setColor(Color.WHITE);
@@ -44,12 +45,12 @@ public class OverworldShopNPC extends OverworldNPC {
         g.drawString("Press z to continue..",1111,675); //draw continue message
     }
 
-    @Override
     /**
      * [shopIsOpen]
      * returns if the NPC's shop interface is open or not
      * @return boolean isTalking, if the NPC is talking or not
      */
+    @Override
     public boolean shopIsOpen() {
         return this.isTalking();
     }

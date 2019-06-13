@@ -850,7 +850,6 @@ public class GameIO {
         String[] tokens = lines[0].split(" ");
         int totalObjects = Integer.parseInt(tokens[0]);
         objects = new OverworldObject[totalObjects];
-        System.out.println(totalObjects);
 
         for (int i = 0; i < totalObjects; ++i) {
             tokens = lines[i + 1].split(" ");
