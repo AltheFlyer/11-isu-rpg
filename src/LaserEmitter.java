@@ -14,8 +14,19 @@ public class LaserEmitter extends OverworldObject {
 
     public LaserEmitter(int x, int y) {
         super(x, y);
-        this.setXVelocity(0);
-        this.setYVelocity(0);
+    }
+
+    /**
+     * [checkCollisions]
+     * changes player's x and y coordinates if intersects with an object
+     * @return void
+     */
+    @Override
+    public void checkCollisions(Rectangle playerBounds, OverworldPlayer player) {
+        if (playerBounds.intersects(this.collisionWindow())) {
+            player.setXVelocity(0);
+            player.setYVelocity(0);
+        }
     }
 
     /**
@@ -45,4 +56,5 @@ public class LaserEmitter extends OverworldObject {
             }
         }
     }
+
 }
