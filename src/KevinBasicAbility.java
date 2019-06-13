@@ -18,18 +18,19 @@ public class KevinBasicAbility extends SingleAbility {
         super (animation, name, desc, 20, 1, 6, 0, 0, 0.5, true, false);
     }
 
-    @Override
+
     /**
      * action: This method will target and affect a single tile while affecting it with DissectedStatus
      * @param jointMap: The map that will be affected
-     * @param i: one of the selected coordinates
-     * @param j: the other selected coordinate
+     * @param x: one of the selected coordinates
+     * @param y: the other selected coordinate
      */
-    public void action(JointMap jointMap, int i, int j){
-        jointMap.inflictStatus(i,j,new DissectedStatus(1).spread());
-        if (getIsMarked(jointMap,i,j)){
-            jointMap.inflictStatus(i,j,new DissectedStatus(1).spread());
+    @Override
+    public void action(JointMap jointMap, int x, int y){
+        jointMap.inflictStatus(x,y,new DissectedStatus(1).spread());
+        if (getIsMarked(jointMap,x,y)){
+            jointMap.inflictStatus(x,y,new DissectedStatus(1).spread());
         }
-        jointMap.target(i, j, getDamage());
+        jointMap.target(x, y, getDamage());
     }
 }

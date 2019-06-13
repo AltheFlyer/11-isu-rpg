@@ -1,6 +1,6 @@
 import utils.AnimatedSprite;
 
-import java.awt.*;
+import java.awt.Graphics;
 /**
  * [KevinDissectAbility.java]
  * Damage an enemy and gain energy based on number of dissect stacks on target
@@ -27,14 +27,14 @@ public class KevinDissectAbility extends SingleAbility {
      * [KevinBasicAbility]
      * action: This method will target and affect a single tile then gain energy based on dissect stacks on target
      * @param jointMap: The map that will be affected
-     * @param i: one of the selected coordinates
-     * @param j: the other selected coordinate
+     * @param x: one of the selected coordinates
+     * @param y: the other selected coordinate
      */
-    public void action(JointMap jointMap, int i, int j){
-        jointMap.target(i, j, getDamage());
+    public void action(JointMap jointMap, int x, int y){
+        jointMap.target(x, y, getDamage());
         getEntitySource().gainEnergy(stacks*10);
-        if (!jointMap.isEmpty(i,j)) {
-            removeDissect(jointMap, i, j);
+        if (!jointMap.isEmpty(x,y)) {
+            removeDissect(jointMap, x, y);
         }
     }
 
@@ -42,16 +42,16 @@ public class KevinDissectAbility extends SingleAbility {
     /**
      * [drawHoverAttack]
      * Draws the area that will be affected by an ability
-     * @param i the x of the tile that the mouse is hovered over
-     * @param j the y of the tile that the mouse is hovered over
+     * @param x the x of the tile that the mouse is hovered over
+     * @param y the y of the tile that the mouse is hovered over
      * @param g the graphics object to draw with
      * @param jointMap map to draw the hovered square on
      */
-    public void drawHoverAttack(int i, int j, Graphics g, JointMap jointMap) {
+    public void drawHoverAttack(int x, int y, Graphics g, JointMap jointMap) {
         //What to do here???
-        drawHoverAttackSingleHelper(i,j,g,jointMap);
-        if (!jointMap.isEmpty(i,j)) {
-            stacks = getDissect(jointMap, i, j);
+        drawHoverAttackSingleHelper(x,y,g,jointMap);
+        if (!jointMap.isEmpty(x,y)) {
+            stacks = getDissect(jointMap, x, y);
         }
     }
 

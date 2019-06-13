@@ -9,18 +9,10 @@ public class MarkStatus extends StatusEffect {
 
     public MarkStatus(int stacks) {
         super("assets/icons/test.png", "Marked!", "This target is marked",
-                stacks, 1, 2);
+                stacks, 1, 2, false);
         this.getIcon().setName("Marked!");
     }
-    /**
-     * [isActiveImmediately]
-     * whether the status effect is active the moment it is applied
-     * @return boolean, whether the effect is applied immediately
-     */
-    @Override
-    public boolean isActiveImmediately() {
-        return false;
-    }
+
     /**
      * [triggerEffect]
      * triggers the status effect, should be called at the end of turns except for passives/'active immediately' effects

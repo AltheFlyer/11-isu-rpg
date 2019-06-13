@@ -1,5 +1,3 @@
-import java.awt.*;
-
 /**
  * [MathRoom.java]
  * Class for math room and its interactions

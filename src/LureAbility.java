@@ -29,31 +29,31 @@ public class LureAbility extends DamagingAbility {
     /**
      * action: This method will target and potentially damage a selected tile while pulling the affecting entity forwards
      * @param jointMap: The map that will be affected
-     * @param i: one of the selected coordinates
-     * @param j: the other selected coordinate
+     * @param x: one of the selected coordinates
+     * @param y: the other selected coordinate
      */
-    public void action(JointMap jointMap, int i, int j){
-        jointMap.target(i, j, getDamage());
+    public void action(JointMap jointMap, int x, int y){
+        jointMap.target(x, y, getDamage());
 
         if (getEntitySource() instanceof Player) {
-            jointMap.inflictStatus(i,j,new MarkStatus(1).spread());
-            jointMap.moveOnTile(i, j, i - 1, j);
+            jointMap.inflictStatus(x,y,new MarkStatus(1).spread());
+            jointMap.moveOnTile(x, y, x - 1, y);
 
         } else if (getEntitySource() instanceof Enemy) {
-            jointMap.moveOnTile(i, j, i + 1, j);
+            jointMap.moveOnTile(x, y, x + 1, y);
         }
     }
     /**
      * [drawHoverAttack]
      * Draws the area that will be affected by an ability
-     * @param i the x of the tile that the mouse is hovered over
-     * @param j the y of the tile that the mouse is hovered over
+     * @param x the x of the tile that the mouse is hovered over
+     * @param y the y of the tile that the mouse is hovered over
      * @param g the graphics object to draw with
      * @param jointMap map to draw the hovered square on
      */
-    public void drawHoverAttack(int i, int j, Graphics g, JointMap jointMap) {
+    public void drawHoverAttack(int x, int y, Graphics g, JointMap jointMap) {
         //What to do here???
-        drawHoverAttackSingleHelper(i,j,g,jointMap);
+        drawHoverAttackSingleHelper(x,y,g,jointMap);
     }
 
     /**

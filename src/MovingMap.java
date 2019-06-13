@@ -1,8 +1,5 @@
-import javax.imageio.ImageIO;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 
 /**
  * [MovingMap.java]
@@ -21,14 +18,13 @@ public class MovingMap extends OverworldMap{
         super(fileManager, mapPath);
     }
 
-    @Override
     /**
      * [draw]
      * draws the moving map by tile around the player
-     * @param g
-     * @param player
-     * @return void
+     * @param g the graphics object to draw with
+     * @param player the player that is on the map
      */
+    @Override
     public void draw(Graphics g, OverworldPlayer player){
         BufferedImage sprite;
         int leftmostVisible = player.getX() - (visibleWidth / 2);

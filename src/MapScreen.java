@@ -4,7 +4,6 @@ import java.awt.Graphics;
 import java.awt.Color;
 import java.awt.Rectangle;
 
-import java.awt.event.KeyListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.util.HashMap;
@@ -136,8 +135,8 @@ public class MapScreen extends GameScreen {
      * [keyTyped]
      * checks if a certain key is typed and checks for an interaction accordingly
      * @param e key event for a pressed key
-     * @return void
      */
+    @Override
     public void keyTyped(KeyEvent e) {
         if (e.getKeyChar() == 'z' || e.getKeyChar() == ' ') {
             if (textDrawer.getCharactersWritten() != textDrawer.getTextLength()) {
@@ -158,8 +157,8 @@ public class MapScreen extends GameScreen {
      * [keyPressed]
      * checks if certain keys are pressed and changes player velocity accordingly
      * @param e key event for a pressed key
-     * @return void
      */
+    @Override
     public void keyPressed(KeyEvent e) {
         boolean moveable = true;
         boolean slideable = false;
@@ -204,8 +203,8 @@ public class MapScreen extends GameScreen {
      * [keyReleased]
      * checks if certain keys are released and changes player velocity accordingly
      * @param e key event for a released key
-     * @return void
      */
+    @Override
     public void keyReleased(KeyEvent e) {
         if ((e.getKeyChar() == 'w') || (e.getKeyChar() == 's')) {
             player.setYVelocity(0);
@@ -248,6 +247,7 @@ public class MapScreen extends GameScreen {
      * @param rect the rectangle to check the bounds of
      * @return boolean, whether the mouse is within the rectangle or not
      */
+    @Override
     public boolean isMouseOver(Rectangle rect) {
         return rect.contains(getMouseX(), getMouseY());
     }
@@ -256,7 +256,6 @@ public class MapScreen extends GameScreen {
      * [checkCollisions]
      * checks the nine tiles, NPCs and objects around the player for walkability
      * stops the player from walking on a non-walkable tile
-     * @return void
      */
     private void checkCollisions() {
         int playerXCenter = player.getX() + player.collisionWindow().width / 2;

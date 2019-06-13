@@ -62,12 +62,13 @@ public class MangatEnemy extends Enemy {
     /**
      * [decide]
      * generates a next move (Ability and intent) - that the player can then react to (should be overriden).
-     *
+     * Uses refactor when below 750 health,
+     * uses roast or for loop randomly depending on how crowded the right side row is.
      * @param map the map that the entities are in
      */
     @Override
     public void decide(JointMap map) {
-        if ((getHealth() < 1000) && (refactor.getCurrentCooldown() == 0)) {
+        if ((getHealth() < 750) && (refactor.getCurrentCooldown() == 0)) {
             setDecide(refactor);
             setIntent(medicIcon);
         } else {

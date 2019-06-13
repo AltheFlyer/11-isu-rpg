@@ -1,4 +1,6 @@
-import java.awt.*;
+import java.awt.Graphics;
+import java.awt.Rectangle;
+import java.awt.Color;
 
 /**
  * [LaserEmitter.java]
@@ -24,7 +26,6 @@ public class LaserEmitter extends OverworldObject {
      * checks if player's interaction hitbox is intersecting with this laser emitter
      * if so, open angle modification interface
      * @param hitbox, the player's interaction hitbox
-     * @return void
      */
     @Override
     public void checkInteractions(Rectangle hitbox) {
@@ -40,7 +41,6 @@ public class LaserEmitter extends OverworldObject {
      * [move]
      * if spawned, moves the ball
      * @param elapsedTime elapsed time between last time check and current time in seconds
-     * @return void
      */
     @Override
     public void move(double elapsedTime) {
@@ -55,7 +55,6 @@ public class LaserEmitter extends OverworldObject {
      * @param g the graphics object to draw with
      * @param map the OverworldMap the object is inhabiting
      * @param player the player inhabiting the same map
-     * @return void
      */
     @Override
     public void draw(Graphics g, OverworldMap map, OverworldPlayer player) {
@@ -80,7 +79,6 @@ public class LaserEmitter extends OverworldObject {
      * draws this object's interactable interface
      * a slider that determines what angle to launch the ball at
      * @param g the graphics object to draw with
-     * @return void
      */
     @Override
     public void openInterface(Graphics g) {
@@ -100,7 +98,6 @@ public class LaserEmitter extends OverworldObject {
     /**
      * [moveSliderRight]
      * moves this object's interactable slider towards the right
-     * @return void
      */
     public void moveSliderRight() {
         if (sliderX < 768) {
@@ -112,7 +109,6 @@ public class LaserEmitter extends OverworldObject {
     /**
      * [moveSliderLeft]
      * moves this object's interactable slider towards the left
-     * @return void
      */
     public void moveSliderLeft() {
         if (sliderX > 588) {

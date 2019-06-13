@@ -1,6 +1,5 @@
 import utils.AnimatedSprite;
 
-import java.awt.*;
 /**
  * [KevinAOEDissectAbility.java]
  * afflict all enemies in row with DissectedStatus but only usable at certain energies
@@ -24,13 +23,13 @@ public class KevinAOEDissectAbility extends AOEAbility{
     /**
      * action: This method will inflict DissectedStatus on enemies in a row
      * @param jointMap: The map that will be affected
-     * @param i one of the selected coordinates
-     * @param j the other selected coordinate
+     * @param x one of the selected coordinates
+     * @param y the other selected coordinate
      */
     @Override
-    public void action(JointMap jointMap, int i, int j){
-        for (int l = j - getYAOE(); l <= j + getYAOE(); l++) {
-            for (int k = i - getXAOE(); k <= i + getXAOE(); k++) {
+    public void action(JointMap jointMap, int x, int y){
+        for (int l = y - getYAOE(); l <= y + getYAOE(); l++) {
+            for (int k = x - getXAOE(); k <= x + getXAOE(); k++) {
                 if (jointMap.tileExists(k,l)) {
                     if (!jointMap.isTileFriendly(k,l) && !jointMap.isEmpty(k,l)) {
                         jointMap.inflictStatus(k,l,new DissectedStatus(4));

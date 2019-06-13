@@ -1,3 +1,10 @@
+/**
+ * [MapMainTest.java]
+ * used to test map screens
+ * @version 1.0
+ * @author Ethan Kwan, Jasmine Chu
+ * @since June 12, 2019
+ */
 public class MapMainTest {
 
     public static void main(String[] args) throws InterruptedException {

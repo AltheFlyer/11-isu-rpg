@@ -39,7 +39,6 @@ public class Orbiter extends Collider {
      * [updateAngle]
      * updates the angle according to the elapsed time
      * @param elapsedTime elapsed time between last time check and current time in seconds
-     * @return void
      */
     public void updateAngle(double elapsedTime) {
         this.angle += (this.velocity * elapsedTime * 100);
@@ -70,8 +69,8 @@ public class Orbiter extends Collider {
      * [move]
      * moves the object's coordinates and sets a new bounding box accordingly
      * @param elapsedTime elapsed time between last time check and current time in seconds
-     * @return void
      */
+    @Override
     public void move(double elapsedTime) {
         updateAngle(elapsedTime);
         this.setX(calcNewX());

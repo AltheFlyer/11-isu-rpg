@@ -2,7 +2,6 @@ import java.awt.Graphics;
 import java.awt.Color;
 import java.awt.Rectangle;
 
-import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
 /**
@@ -13,15 +12,7 @@ import java.awt.event.MouseEvent;
  * @since May 22, 2019
  */
 public class LevelScreen extends GameScreen{
-    @Override
-    /**
-     * [setBackground]
-     * sets the background colour of the battle
-     * @param bg the background colour
-     */
-    public void setBackground(Color bg) {
-        super.setBackground(bg);
-    }
+
     //Player that is selected at the moment
     Player selectedPlayer;
 
@@ -87,6 +78,16 @@ public class LevelScreen extends GameScreen{
         }
 
         exitLevelButton = new Rectangle((1366 / 2) - 100, 400, 200, 50);
+    }
+
+    /**
+     * [setBackground]
+     * sets the background colour of the battle
+     * @param bg the background colour
+     */
+    @Override
+    public void setBackground(Color bg) {
+        super.setBackground(bg);
     }
 
     /**
@@ -267,14 +268,17 @@ public class LevelScreen extends GameScreen{
         int gridHeightSpace = 121;
 
         //getX or getY
-        for (int j = 0; j < 3; j++) {
-            for (int i = 3; i < 6; i++) {
-                if (!jointMap.isEmpty(i,j)) {
-                    if (isMouseOver(new Rectangle(gridX + gridWidthSpace * i, gridY + gridHeightSpace * j, gridWidth, gridHeight))) {
+        /*
+        for (int y = 0; y < 3; y++) {
+            for (int x = 3; x < 6; x++) {
+                if (!jointMap.isEmpty(x,y)) {
+                    if (isMouseOver(new Rectangle(gridX + gridWidthSpace * x, gridY + gridHeightSpace * y, gridWidth, gridHeight))) {
+
                     }
                 }
             }
         }
+        */
 
         //Draw the abilities of the profile of the player who is selected
         if (selectedPlayer != null) {

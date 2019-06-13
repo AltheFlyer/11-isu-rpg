@@ -23,6 +23,12 @@ public class LoadingScreen extends GameScreen {
         super(game);
     }
 
+    /**
+     * [paintComponent]
+     * draws loading text and a helpful(?) hint
+     * @param g the graphics object to draw with
+     */
+    @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         setBackground(Color.BLACK);
