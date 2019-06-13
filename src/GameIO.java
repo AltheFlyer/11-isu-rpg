@@ -65,7 +65,7 @@ public class GameIO {
         currentPeriod = 0;
         writeTimeState();
 
-        activeMap = "moving_hallway1";
+        activeMap = "moving_hallway1.txt";
         mapX = 400;
         mapY = 400;
         writeMapData();
@@ -240,7 +240,7 @@ public class GameIO {
      * gets the saved active map path
      */
     public String getActiveMap() {
-        return activeMap + ".txt";
+        return activeMap;
     }
 
     /**
@@ -249,7 +249,7 @@ public class GameIO {
      * @return String, the file that contains the active npcs
      */
     public String getMapNPCPath() {
-        return activeMap + "_npcs.txt";
+        return activeMap.substring(0, activeMap.indexOf(".txt")) + "_npcs.txt";
     }
 
     /**
@@ -258,7 +258,7 @@ public class GameIO {
      * @return String, the file that contains the active map objects
      */
     public String getMapObjectPath() {
-        return activeMap + "_objects.txt";
+        return activeMap.substring(0, activeMap.indexOf(".txt")) + "_objects.txt";
     }
 
 
