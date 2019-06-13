@@ -134,6 +134,7 @@ public class TwoFaceEnemy extends Enemy {
             //Note how nothing happens if no players are in the row... this is intended to reward the movement
             if (playersInRow == 0) {
                 getDecide().action(map, 1, 1);
+                getDecide().resetCooldown();
             }
         } else {
             selectRandomTile(map, getDecide());
