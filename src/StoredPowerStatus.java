@@ -8,7 +8,7 @@
 public class StoredPowerStatus extends StatusEffect {
 
     public StoredPowerStatus(int stacks) {
-        super("assets/icons/test.png", "Storing Power!", "This unit is storing power",
+        super("assets/icons/stored.png", "Storing Power!", "This unit is storing power",
                 stacks, 250, 10, false);
         this.getIcon().setName("Stored x" + this.getStacks() + "!");
     }

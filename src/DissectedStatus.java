@@ -8,7 +8,7 @@
 public class DissectedStatus extends StatusEffect {
 
     public DissectedStatus(int stacks) {
-        super("assets/icons/test.png", "Dissected!", "This unit is being dissected",
+        super("assets/icons/dissect.png", "Dissected!", "This unit is being dissected",
                 stacks, 15, 7, false);
         this.getIcon().setName("Dissected x" + this.getStacks() + "!");
     }
