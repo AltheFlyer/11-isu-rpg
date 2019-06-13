@@ -1,5 +1,17 @@
-2
+8
 500 100 Mr. Mangat
-OOPS! You couldn't live with your failure, and where did that lead you? ... ...right back to me.
+Hey. I can't do anything for you right now - the music kids are back. Help chase them out, will you? I think there are six of 'em in total.
+400 725 music kid
+MINING AWAY, I DON'T KNOW WHAT TO MINE I'LL MINE IT ANYWAYS
+845 1345 music kid
+something funny
+800 630 music kid
+something funny
+600 400 music kid
+something funny
+200 860 music kid
+something funny
+100 100 music kid
+something funny
 300 700 Jordan
 Why do I hear boss music?
