@@ -287,6 +287,35 @@ abstract public class Entity {
     }
 
     /**
+     * [selectRowWithMostPlayers]
+     * @param map the map that all the entities are on
+     * @param ability the ability that is being used
+     * targets the row with the most players
+     */
+    public void selectRowWithMostPlayers(JointMap map, Ability ability) {
+        //The abilities used are swapped from the abilities decided
+        //move to row with most players
+        int optimalRow = 0;
+        int maxRowPlayers = 0;
+
+        for (int y = 0; y < 3; ++y) {
+            int playerCount = 0;
+            for (int x = 0; x < 3; ++x) {
+                if (!map.isEmpty(x, y)) {
+                    playerCount++;
+                    if (playerCount > maxRowPlayers) {
+                        optimalRow = y;
+                        maxRowPlayers = playerCount;
+                    }
+                }
+            }
+        }
+
+        ability.indicateValidTiles(map);
+        ability.action(map, getXGrid(), optimalRow);
+    }
+
+    /**
      * [getAbility]
      * will get the ability from the list for the enemy to use
      * @param index the index of the ability on the abilities list

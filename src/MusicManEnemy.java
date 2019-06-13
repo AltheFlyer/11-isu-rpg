@@ -24,11 +24,11 @@ public class MusicManEnemy extends Enemy {
                         new SingleAbility(new AnimatedSprite("spritesheets/blast.png", 1, 3, 250),
                                 "Blast", "Deals damage to a player.", 0, 0,
                                 4, 2, 0, 1, true, false),
-                        new AbilityPair(new AnimatedSprite("spritesheets/blast.png", 1, 3, 250),
+                        new SplitAbilityPair(new AnimatedSprite("spritesheets/blast.png", 1, 3, 250),
                                 "Sforzando", "Deals massive damage to a row, but decreases attack power.",
                                 0, 3,
                                 new AOEAbility(null, "", "", 0, 0, 6, 2,
-                                        3, 0, 0, 2, true, false),
+                                        3, 0, 0, 1.5, true, false),
                                 new StatusAbility(new AttackStatModifier(-20), null, "", "", 0, 0,
                                         0, 0, false, true)
                         )
@@ -47,8 +47,10 @@ public class MusicManEnemy extends Enemy {
     public void decide(JointMap map) {
         if (getAbility(1).getCurrentCooldown() == 0) {
             setDecide(getAbility(1));
+            attackIcon.setDescription("WQDIucedoi");
         } else {
             setDecide(getAbility(0));
+            attackIcon.setDescription("This enemy intends to attack.");
         }
         setIntent(attackIcon);
     }
