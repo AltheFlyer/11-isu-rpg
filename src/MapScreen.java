@@ -110,7 +110,7 @@ public class MapScreen extends GameScreen {
             }
         }
 
-        map.checkEncounters(player,npcs);
+        map.runEvent(player,npcs);
 
         framerate.draw(g, 10, 10);
 

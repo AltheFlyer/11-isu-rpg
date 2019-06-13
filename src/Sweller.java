@@ -38,8 +38,8 @@ public class Sweller extends Collider {
         g.setColor(Color.BLUE);
         if (map instanceof RoomMap) { //regular drawing
             g.fillOval(this.getX(), this.getY(), this.radius, this.radius); //modify size
-            g.setColor(Color.BLACK);
-            g.fillRect(this.boundingBox.x, this.boundingBox.y, this.boundingBox.width, this.boundingBox.height);
+//            g.setColor(Color.BLACK);
+//            g.drawRect(this.boundingBox.x, this.boundingBox.y, this.boundingBox.width, this.boundingBox.height);
         } else { //draw object in relation to player location in map and moving map
             int xDifference = player.getX() - this.getX();
             int yDifference = player.getY() - this.getY();
@@ -119,6 +119,16 @@ public class Sweller extends Collider {
         this.boundingBox.y = this.getY();
         this.boundingBox.width = this.getRadius();
         this.boundingBox.height = this.getRadius();
+    }
+
+    /**
+     * [collisionWindow]
+     * returns the object's bounding box
+     * @return Rectangle boundingBox, the object's bounding box
+     */
+    @Override
+    public Rectangle collisionWindow(){
+        return this.boundingBox;
     }
 
 }

@@ -19,7 +19,6 @@ abstract public class OverworldMap {
     private OverworldTile[][] map;
     private int tileSize = 100;
     private BufferedImage[][] sprites;
-    private boolean eventShownYet = false; //display event as soon as player walks in
 
     public OverworldMap(GameIO fileManager, String mapPath){
         fileManager.readTileWalkability("walkability.txt");
@@ -67,24 +66,15 @@ abstract public class OverworldMap {
      */
     public BufferedImage getSprite(int x, int y) { return sprites[x][y]; }
 
-    public void checkEncounters(OverworldPlayer player, OverworldNPC[] npcs) {
-
-    }
-
     /**
-     * [event]
-     * method is called whenever a new map is created
-     * runs a scripted event, such as an announcement or the bell ringing
-     * overridden in subclasses
-     * @param g the graphics object used to draw with
+     * [runEvent]
+     * runs the event that is happening in the current room, some rooms have no events
+     * @param player the player inhabiting the room
+     * @param npcs the array of NPCs inhabiting the room
      * @return void
      */
-    public void event(Graphics g) {
-        eventShownYet = true;
-    }
+    public void runEvent(OverworldPlayer player, OverworldNPC[] npcs) {
 
-    public boolean isEventShownYet() {
-        return eventShownYet;
     }
 
 }

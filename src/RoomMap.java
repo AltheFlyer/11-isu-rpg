@@ -19,7 +19,6 @@ public class RoomMap extends OverworldMap{
         super(fileManager, mapPath);
     }
 
-    @Override
     /**
      * [draw]
      * draws the room map by tile
@@ -27,6 +26,7 @@ public class RoomMap extends OverworldMap{
      * @param player the current player
      * @return void
      */
+    @Override
     public void draw(Graphics g, OverworldPlayer player){
         BufferedImage sprite;
         for (int i = 0; i < this.getMap().length; i++){

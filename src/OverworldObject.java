@@ -24,7 +24,7 @@ abstract public class OverworldObject {
         this.boundingBox = new Rectangle(x,y,size,size);
     }
 
-    /*
+
     public OverworldObject(int x, int y) {
         this.x = x;
         this.y = y;
@@ -32,7 +32,6 @@ abstract public class OverworldObject {
         this.xVelocity = 0;
         this.yVelocity = 0;
     }
-    */
 
     /**
      * [draw]
@@ -175,8 +174,8 @@ abstract public class OverworldObject {
 
     /**
      * [collisionWindow]
-     * returns the entity's bounding box
-     * @return Rectangle boundingBox, the entity's bounding box
+     * returns the object's bounding box
+     * @return Rectangle boundingBox, the object's bounding box
      */
     public Rectangle collisionWindow(){
         return this.boundingBox;
@@ -184,7 +183,7 @@ abstract public class OverworldObject {
 
     /**
      * [checkCollisions]
-     * changes player's x and y coordinates if intersects with an object
+     * stops player from moving if intersects with an object
      * @return void
      */
     public void checkCollisions(Rectangle playerBounds, OverworldPlayer player) {
