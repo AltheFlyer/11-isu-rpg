@@ -8,7 +8,7 @@
 public class CursedStatus extends StatusEffect {
 
     public CursedStatus(int stacks) {
-        super("assets/icons/test.png", "Cursed!", "Terrible curse...",
+        super("assets/icons/cursed.png", "Cursed!", "Terrible curse...",
                 stacks, 5, 3, false);
         this.getIcon().setName("Cursed x" + this.getStacks() + "!");
     }
