@@ -12,9 +12,9 @@ import java.io.IOException;
 /**
  * [GameManager.java]
  * Manages the various screens of the game
- * @version 1.1
+ * @version 1.2
  * @author Allen Liu
- * @since June 3, 2019
+ * @since June 13, 2019
  */
 public class GameManager {
 

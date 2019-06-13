@@ -12,9 +12,9 @@ import java.util.HashMap;
 /**
  * [GameIO.java]
  * class that manages IO with text files for progression and saved data
- * @version 1.7
- * @author Allen Liu
- * @since June 10, 2019
+ * @version 1.9
+ * @author Allen Liu, Kevin Liu, Jasmine Chu, Ethan Kwan
+ * @since June 13, 2019
  */
 public class GameIO {
 
@@ -527,6 +527,12 @@ public class GameIO {
         return new Player(health, attack, defence, energy, debugName, name, animatedSprite, abilities);
     }
 
+    /**
+     * [generateAnimation]
+     * @param line the line of text with the animation information
+     * @return AnimatedSprite, an animated sprite defined by the params in the line String
+     * @throws ArrayIndexOutOfBoundsException when the line contains too few params for an AnimatedSprite to be made
+     */
     private static AnimatedSprite generateAnimation(String line) throws ArrayIndexOutOfBoundsException {
         //Get the index of the next space or string 'breaker'
         int breakIndex = line.indexOf(" ");
@@ -775,7 +781,6 @@ public class GameIO {
     /**
      * [setPlayer]
      * sets the player data in a specified file
-     * THIS METHOD IS NOT COMPLETE, WILL BE UPDATED WHEN PLAYER CLASS IS COMPLETE
      * @param path the file to write to, not including source folder
      * @param data the character data as a string **NOTE: THIS WILL CHANGE SOON**
      */
@@ -788,7 +793,8 @@ public class GameIO {
     /**
      * [getMap]
      * Gets a 2d array of tiles from a specified map file.
-     * WARNING: readTileWalkability must be called first in order to establish walkabilities of each given tile.
+     * WARNING: readTileWalkability must be called first in order to establish walkabilities of each given tile, as it
+     * is the only method that is NOT called from startup
      * @param path the path of the map file (not including source folder)
      * @return OverworldTile[][] a 2d array of form [x][y] of Overworld tiles
      */

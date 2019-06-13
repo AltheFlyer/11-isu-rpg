@@ -1,7 +1,6 @@
 import java.awt.Graphics;
 import java.awt.Color;
 
-
 /**
  * [FrameRate.java]
  * Class for framerate

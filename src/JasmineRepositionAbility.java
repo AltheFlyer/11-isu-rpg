@@ -23,14 +23,14 @@ public class JasmineRepositionAbility extends BasicMoveAbility {
      */
     public void indicateValidTiles(JointMap jointMap) {
         if (getEntitySource().getEnergy() >= 90 && getCurrentCooldown() <= 0) {
-            for (int j = 0; j < 3; j++) {
-                for (int i = 0; i < 6; i++) {
-                    if (Math.abs(getEntitySource().getXGrid() - i) + Math.abs(getEntitySource().getYGrid() - j) <= getMoves() && getEntitySource().isAlive()) {
-                        if (jointMap.isTileFriendly(i, j) == getEntitySource().isFriendly()) {
-                            jointMap.indicate(i, j);
+            for (int y = 0; y < 3; y++) {
+                for (int x = 0; x < 6; x++) {
+                    if (Math.abs(getEntitySource().getXGrid() - x) + Math.abs(getEntitySource().getYGrid() - y) <= getMoves() && getEntitySource().isAlive()) {
+                        if (jointMap.isTileFriendly(x, y) == getEntitySource().isFriendly()) {
+                            jointMap.indicate(x, y);
                             //Indicate if the tile is targetable or not, at this point Single and AOE ability are used for if they can target empty tiles
-                            if (jointMap.isEmpty(i, j)) {
-                                jointMap.isTargetable(i, j);
+                            if (jointMap.isEmpty(x, y)) {
+                                jointMap.isTargetable(x, y);
                             }
                         }
                     }
