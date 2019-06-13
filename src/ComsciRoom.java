@@ -15,15 +15,15 @@ public class ComsciRoom extends MovingMap {
         super(fileManager, mapPath);
     }
 
-    public void runEvent(OverworldPlayer player, OverworldNPC[] npcs) {
+    public boolean runEvent(OverworldPlayer player, OverworldNPC[] npcs) {
         if (npcs[0].isTalking()) {
             questStart = true;
-            npcs[1].setMessage("going");
-            npcs[2].setMessage("going");
-            npcs[3].setMessage("going");
-            npcs[4].setMessage("going");
-            npcs[5].setMessage("going");
-            npcs[6].setMessage("going");
+            npcs[1].setMessage("What's that I found? Holy sheep it's - MR. MANGAT!!");
+            npcs[2].setMessage("We have to go? Awwwww man!");
+            npcs[3].setMessage("Whaaat? I'm just advertising for our department! Hey, you! Come to Coffee House!");
+            npcs[4].setMessage("But - I - no - Mr. Mangat, I'm innocent!");
+            npcs[5].setMessage("Never mind my music mark, my computer science mark is way worse!");
+            npcs[6].setMessage("Oh boy, it sure is getting hot in here...");
         }
         if (questStart) {
             for (int i = 1; i < 7; ++i) {
@@ -34,8 +34,12 @@ public class ComsciRoom extends MovingMap {
         }
         if (questCleared()) {
             npcs[0].setMessage("Thanks for doing that. They were getting real annoying. Kinda sad I have to do this" +
-                    " after what you just did for me, but, well, a game's a game, right?");
+                    " after what you just did for me, but, well, a game's a game, right?         ");
+            if (npcs[0].isTalking()) {
+                return true;
+            }
         }
+        return false;
     }
 
     public boolean questCleared() {
@@ -47,4 +51,7 @@ public class ComsciRoom extends MovingMap {
         return true;
     }
 
+    public String getLevelName() {
+        return "CSLevel";
+    }
 }

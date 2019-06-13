@@ -50,7 +50,8 @@ public class LevelFactory {
                 });
             case "MusicLevel" :
                 return new LevelScreen(game, new Enemy[] {
-                        new MusicManEnemy(4, 1)
+                        new MusicManEnemy(4, 0),
+                        new MusicManEnemy(4, 2),
                 });
             case "Tutorial" :
                 return new TutorialLevel(game);
