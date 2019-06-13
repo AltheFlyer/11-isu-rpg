@@ -1,12 +1,12 @@
 display_name Ethan
 spritesheets/jasmine.png 1 5 100
-health 120
-attack 35
+health 140
+attack 40
 defence 0
 energy 100
 ABILITIES 5
-StarAbility "star" "An AOE ability that will hit in a star shaped area" spritesheets/star.png 1 4 250 50 2 5 0 0 1 true false
 BasicMoveAbility "step" "movement to an adjacent tile" 30 1 1
-SplitStreamAbility "dividing wind" "pushes things on row as far back as possible" spritesheets/jasmine.png 1 5 100 40 2
-AOEAbility "heal" "a vertical AOE heal on allies" spritesheets/heal.png 1 3 250 50 2 2 0 0 2 -30.0 0 false true
-KevinSpotlightAbility "spotlight" "Shines a spotlight on an enemy, marking them" spritesheets/jasmine.png 1 5 100
+EthanPactAbility "initiation" "Sacrifice 20 health for a Slight heal of 20 + mark an ally" spritesheets/jasmine.png 1 5 100
+EthanStorePowerAbility "sacrifice" "sacrifice half of your health and all marked allies, convert to stored power" spritesheets/jasmine.png 1 5 100
+EthanTidesAbility "tides" "deal damage based on sacrifice amounts" spritesheets/jasmine.png 1 5 100
+EthanTransfuseAbility "transfusion" "deal damage and heal for %missing health, heal more on marked targets" spritesheets/jasmine.png 1 5 100
