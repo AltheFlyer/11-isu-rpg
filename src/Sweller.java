@@ -9,26 +9,44 @@ import java.awt.Rectangle;
  * @author Jasmine Chu
  * @since June 09, 2019
  */
-public class Sweller extends OverworldObject {
+public class Sweller extends Collider {
 
-    private int maxRadius;
+    private int maxRadius, minRadius;
     private int radius;
     private int velocity;
     private Rectangle boundingBox;
-    private int respawnX, respawnY;
     private int centerX, centerY;
 
     public Sweller(int x, int y, int respawnX, int respawnY, int maxRadius) {
         super(x, y, respawnX, respawnY);
-        this.maxRadius = maxRadius;
-        this.velocity = 1;
-        System.out.println(x);
-        System.out.println(y);
-        this.respawnX = respawnX;
-        this.respawnY = respawnY;
+        this.velocity = 5;
         this.centerX = x;
         this.centerY = y;
+        this.maxRadius = maxRadius;
         this.boundingBox = new Rectangle(x,y,radius * 2,radius * 2);
+    }
+
+    /**
+     * [draw]
+     * draws objects on the map
+     * @param g the graphics object to draw with
+     * @param map the OverworldMap the object is inhabiting
+     * @param player the player inhabiting the same map
+     * @return void
+     */
+    public void draw(Graphics g, OverworldMap map, OverworldPlayer player) {
+        g.setColor(Color.BLUE);
+        if (map instanceof RoomMap) { //regular drawing
+            g.fillOval(this.getX(), this.getY(), this.radius, this.radius); //modify size
+            g.setColor(Color.BLACK);
+            g.fillRect(this.boundingBox.x, this.boundingBox.y, this.boundingBox.width, this.boundingBox.height);
+        } else { //draw object in relation to player location in map and moving map
+            int xDifference = player.getX() - this.getX();
+            int yDifference = player.getY() - this.getY();
+            int xLocation = 683 - xDifference;
+            int yLocation = 384 - yDifference;
+            g.fillOval(xLocation, yLocation, this.radius, this.radius);
+        }
     }
 
     /**
@@ -37,24 +55,6 @@ public class Sweller extends OverworldObject {
      * @return void
      */
     public void setVelocity(int newVelocity) { this.velocity = newVelocity; }
-
-    /**
-     * [getRespawnX]
-     * returns the player's x coordinate of the respawn point in this map
-     * @return int respawnX the player's y coordinate of the respawn point in this map
-     */
-    public int getRespawnX() {
-        return this.respawnX;
-    }
-
-    /**
-     * [getRespawnY]
-     * returns the player's y coordinate of the respawn point in this map
-     * @return int respawnY the player's y coordinate of the respawn point in this map
-     */
-    public int getRespawnY() {
-        return this.respawnY;
-    }
 
     /**
      * [getRadius]
@@ -84,7 +84,7 @@ public class Sweller extends OverworldObject {
      * @return int new value of the object's x coordinate
      */
     public int calcNewX() {
-        return (this.centerX - this.radius);
+        return (this.centerX - this.radius / 2);
     }
 
     /**
@@ -93,7 +93,7 @@ public class Sweller extends OverworldObject {
      * @return int new value of the object's y coordinate
      */
     public int calcNewY() {
-        return (this.centerY - this.radius);
+        return (this.centerY - this.radius / 2);
     }
 
     /**
@@ -117,20 +117,8 @@ public class Sweller extends OverworldObject {
     public void setBoundingBox() {
         this.boundingBox.x = this.getX();
         this.boundingBox.y = this.getY();
-        this.boundingBox.width = this.getRadius() * 2;
-        this.boundingBox.height = this.getRadius() * 2;
-    }
-
-    /**
-     * [checkCollisions]
-     * changes player's x and y coordinates if intersects with an object
-     * @return Rectangle boundingBox, the entity's bounding box
-     */
-    public void checkCollisions(Rectangle playerBounds, OverworldPlayer player) {
-        if (playerBounds.intersects(this.collisionWindow())) {
-            player.setX(getRespawnX());
-            player.setY(getRespawnY());
-        }
+        this.boundingBox.width = this.getRadius();
+        this.boundingBox.height = this.getRadius();
     }
 
 }

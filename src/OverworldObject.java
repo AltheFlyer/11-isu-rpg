@@ -15,16 +15,12 @@ abstract public class OverworldObject {
     private double yVelocity;
     private Rectangle boundingBox;
     private int size = 50;
-    private int respawnX;
-    private int respawnY;
 
-    public OverworldObject(int x, int y, int respawnX, int respawnY) {
+    public OverworldObject(int x, int y) {
         this.x = x;
         this.y = y;
         this.xVelocity = 5;
         this.yVelocity = 5;
-        this.respawnX = respawnX;
-        this.respawnY = respawnY;
         this.boundingBox = new Rectangle(x,y,size,size);
     }
 
@@ -132,24 +128,6 @@ abstract public class OverworldObject {
     }
 
     /**
-     * [getRespawnX]
-     * returns the player's x coordinate of the respawn point in this map
-     * @return int respawnX the player's y coordinate of the respawn point in this map
-     */
-    public int getRespawnX() {
-        return this.respawnX;
-    }
-
-    /**
-     * [getRespawnY]
-     * returns the player's y coordinate of the respawn point in this map
-     * @return int respawnY the player's y coordinate of the respawn point in this map
-     */
-    public int getRespawnY() {
-        return this.respawnY;
-    }
-
-    /**
      * [calcNewX]
      * calculates the object's new x coordinate according to the elapsed time
      * @param elapsedTime elapsed time between last time check and current time in seconds
@@ -209,8 +187,8 @@ abstract public class OverworldObject {
      */
     public void checkCollisions(Rectangle playerBounds, OverworldPlayer player) {
         if (playerBounds.intersects(this.collisionWindow())) {
-            player.setX(getRespawnX());
-            player.setY(getRespawnY());
+            player.setXVelocity(0);
+            player.setYVelocity(0);
         }
     }
 

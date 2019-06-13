@@ -13,7 +13,7 @@ public class KevinDissectAbility extends SingleAbility {
      * @param desc the displayed description of the ability
      */
     KevinDissectAbility(AnimatedSprite animation, String name, String desc){
-        super (animation, name, desc, 0, 1, 6, 0, 0, 0.5, true, false);
+        super (animation, name, desc, 0, 1, 6, 0, 0, 0.375, true, false);
     }
 
     @Override
