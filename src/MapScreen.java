@@ -87,19 +87,18 @@ public class MapScreen extends GameScreen {
         //drawing everything
         map.draw(g, player);
         player.draw(g, map);
-
         for (int i = 0; i < objects.length; ++i) {
             objects[i].draw(g, map, player);
         }
+        for (int i = 0; i < npcs.length; ++i) {
+            npcs[i].draw(g, map, player); //drawing the npcs
+        }
+
+        //checking interactions
         for (int i = 0; i < objects.length; ++i) {
             if (objects[i].isInterfaceOpen()) {
                 objects[i].openInterface(g);
             }
-        }
-
-        //npc management
-        for (int i = 0; i < npcs.length; ++i) {
-            npcs[i].draw(g, map, player); //drawing the npcs
         }
         for (int i = 0; i < npcs.length; ++i) {
             if (npcs[i].isTalking()) {
@@ -115,6 +114,7 @@ public class MapScreen extends GameScreen {
             }
         }
 
+        //run the event if the room has it
         if (map.runEvent(npcs)) {
             getIO().setMapData(map.getMapName(),player.getX(),player.getY());
             if (textDrawer.getCharactersWritten() == textDrawer.getTextLength()) {
@@ -122,6 +122,7 @@ public class MapScreen extends GameScreen {
             }
         }
 
+        //can't forget your trusty framerate
         framerate.draw(g, 10, 10);
 
         //ask for repaint
