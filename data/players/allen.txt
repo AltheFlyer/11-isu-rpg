@@ -8,5 +8,5 @@ ABILITIES 5
 CombinationAbility "back" "A single target attack that also pushes you and the enemy back by 1" spritesheets/back.png 1 3 250 40 2 5 2 0 0.5 true false
 BasicMoveAbility "CVPM" "Physicists get free movement to an adjacent tile" 0 1 1
 AllenSpotlightAbility "spotlight" "Shines a spotlight on an character, marking them" spritesheets/spotlight.png 1 5 100
-FMGAbility "force of gravity" "deals damage to marked enemies and heals marked allies y damage dealt" spritesheets/fmg.png 1 5 150
+FMGAbility "force of gravity" "deals damage to marked enemies and heals marked allies by damage dealt" spritesheets/fmg.png 1 5 150
 CAPMAbility "CAPM" "Deals more damage based on how far the target is" spritesheets/allen.png 1 5 100 40 2 0 0.5

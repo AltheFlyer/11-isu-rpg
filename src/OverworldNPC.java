@@ -140,7 +140,7 @@ public class OverworldNPC extends OverworldEntity {
      * @return void
      */
     public void setTalking() {
-        this.talking = !(talking);
+        this.talking = !(this.talking);
     }
 
     /**

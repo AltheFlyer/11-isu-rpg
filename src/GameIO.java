@@ -588,6 +588,26 @@ public class GameIO {
                         new AnimatedSprite(args[0], Integer.parseInt(args[1]), Integer.parseInt(args[2]), Integer.parseInt(args[3])),
                         name, desc
                 );
+            case "EthanStorePowerAbility":
+                return new EthanStorePowerAbility(
+                        new AnimatedSprite(args[0], Integer.parseInt(args[1]), Integer.parseInt(args[2]), Integer.parseInt(args[3])),
+                        name, desc
+                );
+            case "EthanTidesAbility":
+                return new EthanTidesAbility(
+                        new AnimatedSprite(args[0], Integer.parseInt(args[1]), Integer.parseInt(args[2]), Integer.parseInt(args[3])),
+                        name, desc
+                );
+            case "EthanPactAbility":
+                return new EthanPactAbility(
+                        new AnimatedSprite(args[0], Integer.parseInt(args[1]), Integer.parseInt(args[2]), Integer.parseInt(args[3])),
+                        name, desc
+                );
+            case "EthanTransfuseAbility":
+                return new EthanTransfuseAbility(
+                        new AnimatedSprite(args[0], Integer.parseInt(args[1]), Integer.parseInt(args[2]), Integer.parseInt(args[3])),
+                        name, desc
+                );
             case "SplitStreamAbility":
                 return new SplitStreamAbility(
                         new AnimatedSprite(args[0], Integer.parseInt(args[1]), Integer.parseInt(args[2]), Integer.parseInt(args[3])),

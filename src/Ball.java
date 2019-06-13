@@ -11,11 +11,11 @@ public class Ball {
 
     private int x;
     private int y;
-    private int xVelocity, yVelocity;
+    private double xVelocity, yVelocity;
     private int bounces = 0;
     private Rectangle boundingBox;
 
-    public Ball(int x, int y, int xVelocity, int yVelocity) {
+    public Ball(int x, int y, double xVelocity, double yVelocity) {
         this.x = x;
         this.y = y;
         this.xVelocity = xVelocity;
@@ -23,27 +23,41 @@ public class Ball {
         this.boundingBox = new Rectangle(x, y, 20, 20);
     }
 
+    /**
+     * [checkCollisions]
+     * checks wall collisions for this ball and bounces off walls accordingly
+     * @param tile, the current map tile the ball is on
+     */
     public void checkCollisions(OverworldTile tile) {
-        if (tile.isNotWalkable()) {
+        if ((this.x >= 1300)||(this.x <= 200)) {
+            this.xVelocity = this.xVelocity * -1;
             bounces++;
-            if ((this.boundingBox.intersects(new Rectangle(tile.getX()*100,tile.getY()*100,1,100)))||
-                    (this.boundingBox.intersects(new Rectangle(tile.getX()*100+100,tile.getY()*100,1,100)))) {
-                this.xVelocity = this.xVelocity * -1;
-            }
-            if ((this.boundingBox.intersects(new Rectangle(tile.getX()*100,tile.getY()*100,100,1)))||
-                    (this.boundingBox.intersects(new Rectangle(tile.getX()*100,tile.getY()*100+100,100,1)))){
-                this.yVelocity = this.yVelocity * -1;
-            }
+        }
+        if ((this.y >= 900)||(this.y <= 100)) {
+            this.yVelocity = this.yVelocity * -1;
+            bounces++;
         }
     }
 
-    public void move() {
-        this.x = this.x + xVelocity;
-        this.y = this.y + yVelocity;
+    /**
+     * [move]
+     * moves the ball according to a time check
+     * @param elapsedTime elapsed time between last time check and current time in seconds
+     * @return void
+     */
+    public void move(double elapsedTime) {
+        this.x = (int) (this.x + xVelocity * elapsedTime * 100);
+        this.y = (int) (this.y + yVelocity * elapsedTime * 100);
         this.boundingBox.x = this.x;
         this.boundingBox.y = this.y;
     }
 
+    /**
+     * [draw]
+     * draws the ball to the screen
+     * @param g the graphics object used to draw with
+     * @param player the player currently inhabiting the map
+     */
     public void draw(Graphics g, OverworldPlayer player) {
         g.setColor(Color.GREEN);
         int xDifference = player.getX() - x;
@@ -53,20 +67,31 @@ public class Ball {
         g.fillOval(xLocation, yLocation, 10, 10);
     }
 
-    public void ricochet() {
-        this.xVelocity = this.xVelocity * -1;
-        this.yVelocity = this.yVelocity * -1;
-    }
-
+    /**
+     * [getBounces]
+     * returns the current number of bounces that the ball has performed
+     * @return the current number of bounces that the ball has performed
+     */
     public int getBounces() {
         return this.bounces;
     }
 
+    /**
+     * [getX]
+     * returns the ball's current x position
+     * @return the ball's current x position
+     */
     public int getX() {
         return this.x;
     }
 
+    /**
+     * [getY]
+     * returns the ball's current y position
+     * @return the ball's current y position
+     */
     public int getY() {
         return this.y;
     }
+
 }

@@ -9,7 +9,7 @@ wall false
 bottom_left false
 bottom_right false
 exit true
-door true
+door false
 desk false
 shelf false
 computer_u false

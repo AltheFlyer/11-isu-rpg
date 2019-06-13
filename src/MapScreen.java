@@ -91,6 +91,11 @@ public class MapScreen extends GameScreen {
         for (int i = 0; i < objects.length; ++i) {
             objects[i].draw(g, map, player);
         }
+        for (int i = 0; i < objects.length; ++i) {
+            if (objects[i].isInterfaceOpen()) {
+                objects[i].openInterface(g);
+            }
+        }
 
         //npc management
         for (int i = 0; i < npcs.length; ++i) {
@@ -125,7 +130,7 @@ public class MapScreen extends GameScreen {
      * @return void
      */
     public void keyTyped(KeyEvent e) {
-        if (e.getKeyChar() == 'z') {
+        if (e.getKeyChar() == 'z' || e.getKeyChar() == ' ') {
             if (textDrawer.getCharactersWritten() != textDrawer.getTextLength()) {
                 textDrawer.setCharactersWritten(textDrawer.getTextLength());
             } else {
@@ -148,9 +153,18 @@ public class MapScreen extends GameScreen {
      */
     public void keyPressed(KeyEvent e) {
         boolean moveable = true;
+        boolean slideable = false;
+        int indexOfSlideable = 0;
         for (int i = 0; i < npcs.length; i++) {
             if (npcs[i].isTalking()) {
                 moveable = false;
+            }
+        }
+        for (int i = 0; i < objects.length; ++i) {
+            if (objects[i].isInterfaceOpen()) {
+                moveable = false;
+                indexOfSlideable = i;
+                slideable = true;
             }
         }
         if (moveable) {
@@ -167,6 +181,12 @@ public class MapScreen extends GameScreen {
             } else if (e.getKeyChar() == 'a') {
                 player.setXVelocity(-5);
                 player.setDirection("left");
+            }
+        } else if (slideable) {
+            if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+                ((LaserEmitter)objects[indexOfSlideable]).moveSliderRight();
+            } else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+                ((LaserEmitter)objects[indexOfSlideable]).moveSliderLeft();
             }
         }
     }
