@@ -23,8 +23,22 @@ public class Door extends OverworldTile {
         this.itemNeeded = itemNeeded;
     }
 
+
+    /**
+     * [getDoorPath]
+     * gets the door's path, or what room it links to
+     * @return String, the string for the room the door links to
+     */
     public String getDoorPath() { return this.doorPath; }
 
+    /**
+     * [checkCollisions]
+     * checks collisions with a player
+     * @param playerBounds the bounding box for the player
+     * @param player the player on the overworld
+     * @param game the running game manager
+     * @param inventory the inventory of the player
+     */
     public void checkCollisions(Rectangle playerBounds, OverworldPlayer player, GameManager game, HashMap<String, Integer> inventory) {
         super.checkCollisions(playerBounds,player,game,inventory);
         if ((playerBounds.intersects(this.getBoundingBox())) && ((inventory.containsKey(this.itemNeeded)) || this.itemNeeded == null)) {

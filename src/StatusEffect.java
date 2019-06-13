@@ -15,9 +15,9 @@ abstract public class StatusEffect {
     private int maxStacks;
 
     private int duration;
+    private boolean isActiveImmediately;
 
-
-    public StatusEffect(String iconName, String name, String description, int stacks, int maxStacks, int duration) {
+    public StatusEffect(String iconName, String name, String description, int stacks, int maxStacks, int duration, boolean isActiveImmediately) {
         icon = new Icon(iconName);
         icon.setName(name);
         icon.setDescription(description);
@@ -25,14 +25,17 @@ abstract public class StatusEffect {
         this.stacks = stacks;
         this.maxStacks = maxStacks;
         this.duration = duration;
+        this.isActiveImmediately = isActiveImmediately;
     }
 
     /**
-     * [isActiveImmediately]
+     * [getIsActiveImmediately]
      * whether the status effect is active the moment it is applied
      * @return boolean, whether the effect is applied immediately
      */
-    abstract public boolean isActiveImmediately();
+    public boolean getIsActiveImmediately() {
+        return isActiveImmediately;
+    }
 
     /**
      * [triggerEffect]

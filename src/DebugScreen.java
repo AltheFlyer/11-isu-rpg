@@ -1,4 +1,6 @@
-import java.awt.*;
+import java.awt.Graphics;
+import java.awt.Rectangle;
+import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
@@ -15,6 +17,11 @@ public class DebugScreen extends GameScreen {
         super(game);
     }
 
+    /**
+     * [paintComponent]
+     * draws rectangles to test mouse hovers
+     * @param g the graphics object to draw with
+     */
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -32,6 +39,11 @@ public class DebugScreen extends GameScreen {
         repaint();
     }
 
+    /**
+     * [mouseReleased]
+     * runs whenever the mouse is released to check for full mouse clicks
+     * @param e the triggered mouse event
+     */
     @Override
     public void mouseReleased(MouseEvent e) {
         super.mouseReleased(e);
@@ -43,6 +55,11 @@ public class DebugScreen extends GameScreen {
         }
     }
 
+    /**
+     * [keyPressed]
+     * runs whenever a key is pressed, used to test that they work
+     * @param e the fired key event
+     */
     @Override
     public void keyPressed(KeyEvent e) {
 

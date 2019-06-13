@@ -1,6 +1,7 @@
 import utils.AnimatedSprite;
 
 import java.awt.Graphics;
+
 /**
  * [CAPMAbility.java]
  * Creating of a special single target ability for allen the physicist which deals more damage the farther the enemy is
@@ -45,7 +46,6 @@ public class CAPMAbility extends DamagingAbility {
      * @param jointMap map to draw the hovered square on
      */
     public void drawHoverAttack(int i, int j, Graphics g, JointMap jointMap) {
-        //What to do here???
         drawHoverAttackSingleHelper(i,j,g,jointMap);
         distance = Math.abs(i-getEntitySource().getXGrid());
     }

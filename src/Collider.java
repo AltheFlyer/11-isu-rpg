@@ -1,4 +1,6 @@
-import java.awt.*;
+import java.awt.Rectangle;
+import java.awt.Graphics;
+import java.awt.Color;
 
 /**
  * [Collider.java]

@@ -23,25 +23,25 @@ public class DiagMoveAbility extends MoveAbility{
     /**
      * action: This method will move an entoty to the selected tile
      * @param jointMap: The map that will be affected
-     * @param i: one of the selected coordinates
-     * @param j: the other selected coordinate
+     * @param x: one of the selected coordinates
+     * @param y: the other selected coordinate
      */
-    public void action(JointMap jointMap, int i, int j) {
-        if (jointMap.isEmpty(i, j)) {
-            jointMap.moveOnTile(getEntitySource().getXGrid(), getEntitySource().getYGrid(), i, j);
+    public void action(JointMap jointMap, int x, int y) {
+        if (jointMap.isEmpty(x, y)) {
+            jointMap.moveOnTile(getEntitySource().getXGrid(), getEntitySource().getYGrid(), x, y);
         }
     }
 
     /**
      * [drawHoverAttack]
      * Draws the area that will be affected by an ability
-     * @param i the x of the tile that the mouse is hovered over
-     * @param j the y of the tile that the mouse is hovered over
+     * @param x the x of the tile that the mouse is hovered over
+     * @param y the y of the tile that the mouse is hovered over
      * @param g the graphics object to draw with
      * @param jointMap map to draw the hovered square on
      */
-    public void drawHoverAttack(int i, int j, Graphics g, JointMap jointMap) {
-        drawHoverAttackSingleHelper(i,j,g,jointMap);
+    public void drawHoverAttack(int x, int y, Graphics g, JointMap jointMap) {
+        drawHoverAttackSingleHelper(x,y,g,jointMap);
     }
 
     /**
@@ -51,14 +51,14 @@ public class DiagMoveAbility extends MoveAbility{
      */
     public void indicateValidTiles(JointMap jointMap) {
         if ((getEntitySource().getEnergy() >= getEnergyCost()) && (getCurrentCooldown() <= 0)) {
-            for (int j = 0; j < 3; j++) {
-                for (int i = 0; i < 6; i++) {
-                    if ((Math.abs(getEntitySource().getXGrid() - i) == getMoves()) && (Math.abs(getEntitySource().getYGrid() - j) == getMoves())) {
-                        if (jointMap.isTileFriendly(i, j) == getEntitySource().isFriendly()) {
-                            jointMap.indicate(i, j);
+            for (int y = 0; y < 3; y++) {
+                for (int x = 0; x < 6; x++) {
+                    if ((Math.abs(getEntitySource().getXGrid() - x) == getMoves()) && (Math.abs(getEntitySource().getYGrid() - y) == getMoves())) {
+                        if (jointMap.isTileFriendly(x, y) == getEntitySource().isFriendly()) {
+                            jointMap.indicate(x, y);
                             //Indicate if the tile is targetable or not, at this point Single and AOE ability are used for if they can target empty tiles
-                            if (jointMap.isEmpty(i, j)) {
-                                jointMap.isTargetable(i, j);
+                            if (jointMap.isEmpty(x, y)) {
+                                jointMap.isTargetable(x, y);
                             }
                         }
                     }

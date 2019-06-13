@@ -47,7 +47,7 @@ public class CAPMEnemy extends Enemy {
 
     /**
      * [act]
-     * targets a random valid player with an attack, then increases attack power through the power of jank
+     * targets a random valid player with an attack, then increases attack power with a buff
      * @param map the JointMap that the enemy is on
      */
     @Override

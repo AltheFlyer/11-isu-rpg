@@ -9,18 +9,8 @@ public class DissectedStatus extends StatusEffect {
 
     public DissectedStatus(int stacks) {
         super("assets/icons/test.png", "Dissected!", "This unit is being dissected",
-                stacks, 15, 7);
+                stacks, 15, 7, false);
         this.getIcon().setName("Dissected x" + this.getStacks() + "!");
-    }
-
-    /**
-     * [isActiveImmediately]
-     * whether the status effect is active the moment it is applied
-     * @return boolean, whether the effect is applied immediately
-     */
-    @Override
-    public boolean isActiveImmediately() {
-        return false;
     }
 
     /**

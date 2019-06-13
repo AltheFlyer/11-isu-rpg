@@ -15,7 +15,7 @@ public class DefenceStatModifier extends StatusEffect {
      * @param bonusDefence the amount of defence the status grants, as a raw value (defence itself is a % reduction)
      */
     public DefenceStatModifier(int bonusDefence) {
-        super("assets/icons/test.png", "Defence modifier", "", bonusDefence, 100, -1);
+        super("assets/icons/test.png", "Defence modifier", "", bonusDefence, 100, -1, true);
 
         positiveDefence = new Icon("assets/icons/defence_buff.png", "Defence up", "");
         negativeDefence = new Icon("assets/icons/defence_debuff.png", "Defence down", "");
@@ -30,22 +30,11 @@ public class DefenceStatModifier extends StatusEffect {
     }
 
     /**
-     * [isActiveImmediately]
-     * whether the status effect is active the moment it is applied
-     *
-     * @return boolean, whether the effect is applied immediately
-     */
-    @Override
-    public boolean isActiveImmediately() {
-        return true;
-    }
-
-    /**
      * [triggerEffect]
      * triggers the status effect, should be called at the end of turns except for passives/'active immediately' effects
      *
-     * @param map      the jointmap that
-     * @param affected
+     * @param map      the jointmap that the affected is on
+     * @param affected the entity that has this status effect
      */
     @Override
     public void triggerEffect(JointMap map, Entity affected) {
@@ -56,7 +45,7 @@ public class DefenceStatModifier extends StatusEffect {
     /**
      * [stack]
      * combines the effect of this status and another status of the same type:
-     * e.g a -15% attack debuff and a -30% attack debuff can combine to become a -45% attack debuff
+     * numerous defence modifiers sum to create one final modifier (e.g -10 + 20 = 10% def)
      * a special method is used to allow for unique interactions
      *
      * @param effect the status effect to attempt to stack
