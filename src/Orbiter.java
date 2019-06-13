@@ -17,10 +17,10 @@ public class Orbiter extends Collider {
     private Rectangle boundingBox;
     private int radius = 50;
 
-    public Orbiter(int x, int y, int respawnX, int respawnY, int orbitCenterX, int orbitCenterY) {
+    public Orbiter(int x, int y, int respawnX, int respawnY, int orbitCenterX, int orbitCenterY, int velocity) {
         super(x, y, respawnX, respawnY);
         this.orbitRadius = 200;
-        this.velocity = 5;
+        this.velocity = velocity;
         this.orbitCenterX = orbitCenterX;
         this.orbitCenterY = orbitCenterY;
         this.boundingBox = new Rectangle(x, y,radius*2, radius*2);
