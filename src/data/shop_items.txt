@@ -1,7 +1,7 @@
 Shopkeeper Ken
-3
+5
 100 800 200 AP English Textbook
-100 800 300 Strange Substance
-100 800 400 Acer Gang Laptop
-100 800 500 Ticket to Papua New Guinea
-100 800 600 Pendulum
+100 800 250 Strange Substance
+100 800 300 Acer Gang Laptop
+100 800 350 Ticket to Papua New Guinea
+100 800 400 Pendulum
