@@ -45,10 +45,10 @@ public class DecaEnemy extends Enemy {
     public void decide(JointMap map) {
         if (Math.random() < 0.5) {
             setIntent(attackIcon);
-            setDecide(abilities[0]);
+            setDecide(getAbility(0));
         } else {
             setIntent(statusIcon);
-            setDecide(abilities[1]);
+            setDecide(getAbility(1));
         }
     }
 

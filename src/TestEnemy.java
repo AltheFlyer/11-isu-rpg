@@ -22,10 +22,10 @@ public class TestEnemy extends Enemy {
         if (this.getHealth() < this.getMaxHealth() / 2) {
             //A heal on itself
             setIntent(medicIcon);
-            setDecide(abilities[1]);
+            setDecide(getAbility(1));
         } else {
             setIntent(attackIcon);
-            setDecide(abilities[0]);
+            setDecide(getAbility(0));
         }
     }
 

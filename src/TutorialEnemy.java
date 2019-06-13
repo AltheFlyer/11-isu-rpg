@@ -116,7 +116,7 @@ public class TutorialEnemy extends Enemy {
     @Override
     public void drawAbilities(Graphics g) {
         super.drawAbilities(g);
-        g.drawImage(sprite, 1069, 15+105*abilities.length, 60, 60,null);
+        g.drawImage(sprite, 1069, 15+105*getNumAbilities(), 60, 60,null);
     }
 
 }

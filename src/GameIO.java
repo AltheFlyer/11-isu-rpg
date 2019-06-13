@@ -49,9 +49,18 @@ public class GameIO {
         readActiveMap();
     }
 
+    /**
+     * [resetProgress]
+     * resets ALL progression (time state, map position) to initial values on first game creation
+     * use with a mass reset button.
+     */
     public void resetProgress() {
 
 
+
+        currentDay = 1;
+        currentPeriod = 0;
+        writeTimeState();
 
         activeMap = "moving_hallway1";
         mapX = 400;
