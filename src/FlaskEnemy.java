@@ -19,7 +19,7 @@ public class FlaskEnemy extends Enemy {
 
     @Override
     public void decide(JointMap map) {
-        setDecide(abilities[0]);
+        setDecide(getAbility(0));
         setIntent(toxicCloud);
     }
 

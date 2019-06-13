@@ -24,13 +24,12 @@ public class GameManager {
     private Clip music;
 
     private GameIO io;
-
-    //I have a feeling it might be a good idea to store this:
-    //TODO Add Map Position variables + methods
+    LevelFactory levelGenerator;
 
     public GameManager() {
         window = new JFrame();
         io = new GameIO();
+        levelGenerator = new LevelFactory(this);
 
         //Default window values
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -70,6 +69,15 @@ public class GameManager {
         //Prepare the window
         screen.requestFocusInWindow();
         screen.repaint();
+    }
+
+    /**
+     * [setLevel]
+     * sets the battle for the currently running game manager, defined by a string that can generate a level screen
+     * @param level the string name for the level screen to generate
+     */
+    public void setLevel(String level) {
+        setScreen(levelGenerator.getLevel(level));
     }
 
     /**

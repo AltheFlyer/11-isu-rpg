@@ -35,24 +35,14 @@ public class Player extends Entity{
      */
     Player(double health, double attack, double defence, double energy, String debugName, String name, AnimatedSprite animatedSprite, Ability[] abilities){
         super(health, attack, defence, energy,name, abilities);
-        for (int i = 0; i < abilities.length; i++){
-            abilities[i].setEntitySource(this);
+        for (int i = 0; i < getNumAbilities(); i++){
+            getAbility(i).setEntitySource(this);
         }
         this.debugName = debugName;
         ico = new Icon(new Rectangle(0, 0, 40, 40), "assets/icons/test.png");
         //this.sprite = sprite;
 
         gif = animatedSprite;
-    }
-
-    /**
-     * [getAbility]
-     * gets an ability and returns it to be used or selected
-     * @param index the index of the ability in the list of abilities that will be returned
-     * @return ability, an ability that will be used
-     */
-    public Ability getAbility(int index){
-        return abilities[index];
     }
 
     /**
@@ -77,24 +67,24 @@ public class Player extends Entity{
         } else if (getName().equals("cyan")){
             g.setColor(Color.CYAN);
         }
-        //g.drawImage(sprite, 30,15+105*abilities.length,60,60, null);
-        //g.fillRect(30,15+105*abilities.length,60,60);
+        //g.drawImage(sprite, 30,15+105*getNumAbilities(),60,60, null);
+        //g.fillRect(30,15+105*getNumAbilities(),60,60);
         drawHealthBar(g);
         drawEnergyBar(g);
 
         //Display stats
-        g.drawString("Attack power: " + getAttack(), 100, 70+105*abilities.length);
-        g.drawString("Percent defence: " + (int) (getDefence() * 100) + "%", 100, 85+105*abilities.length);
+        g.drawString("Attack power: " + getAttack(), 100, 70+105*getNumAbilities());
+        g.drawString("Percent defence: " + (int) (getDefence() * 100) + "%", 100, 85+105*getNumAbilities());
 
         //ABILITY ICONS
-        for (int i = 0; i < abilities.length; i++) {
+        for (int i = 0; i < getNumAbilities(); i++) {
             //draw the abilities cyan if usable
-            abilities[i].drawInfoBox(g, 30, 105 * i);
+            getAbility(i).drawInfoBox(g, 30, 105 * i);
         }
 
-        for (int i = 0; i < abilities.length; i++){
+        for (int i = 0; i < getNumAbilities(); i++){
             if (ability != null) {
-                if (ability.equals(abilities[i])) {
+                if (ability.equals(getAbility(i))) {
                     g.setColor(new Color(0, 0, 0, 100));
                     g.fillRect(30, 15 + 105 * i, 263, 100);
                 }
@@ -133,16 +123,16 @@ public class Player extends Entity{
         double ratio = getHealth() / getMaxHealth();
         //Grey backing bar
         g.setColor(Color.GRAY);
-        g.fillRect(100, 33+105*abilities.length,190, 12);
+        g.fillRect(100, 33+105*getNumAbilities(),190, 12);
 
         //Set healthbar color based on if friendly or not
         g.setColor(Color.GREEN);
 
         //Draw at bottom of screen, -10 is for the height of the bar
-        g.fillRect(100, 33+105*abilities.length, (int) (190 * ratio), 12);
+        g.fillRect(100, 33+105*getNumAbilities(), (int) (190 * ratio), 12);
         g.setColor(Color.BLACK);
-        g.drawRect(100, 33+105*abilities.length,190, 12);
-        g.drawString(Math.ceil(getHealth()) + "/" + getMaxHealth(), 130, 44+105*abilities.length);
+        g.drawRect(100, 33+105*getNumAbilities(),190, 12);
+        g.drawString(Math.ceil(getHealth()) + "/" + getMaxHealth(), 130, 44+105*getNumAbilities());
     }
     /**
      * [drawEnergyBar]
@@ -152,16 +142,16 @@ public class Player extends Entity{
     public void drawEnergyBar(Graphics g){
         double ratio = getEnergy() / getMaxEnergy();
         g.setColor(Color.GRAY);
-        g.fillRect(100, 45+105*abilities.length,190, 12);
+        g.fillRect(100, 45+105*getNumAbilities(),190, 12);
 
         //Set healthbar color based on if friendly or not
         g.setColor(new Color(0,200,255));
 
         //Draw at bottom of screen, -10 is for the height of the bar
-        g.fillRect(100, 45+105*abilities.length, (int) (190 * ratio), 12);
+        g.fillRect(100, 45+105*getNumAbilities(), (int) (190 * ratio), 12);
         g.setColor(Color.BLACK);
-        g.drawRect(100, 45+105*abilities.length,190, 12);
-        g.drawString(getEnergy() + "/" + getMaxEnergy(), 130, 56+105*abilities.length);
+        g.drawRect(100, 45+105*getNumAbilities(),190, 12);
+        g.drawString(getEnergy() + "/" + getMaxEnergy(), 130, 56+105*getNumAbilities());
 
     }
 
@@ -188,13 +178,13 @@ public class Player extends Entity{
 
         //Draw the player profile at the bottom so you know!
         g.setColor(Color.MAGENTA);
-        //g.drawImage(sprite, 30, 15+105*abilities.length,60,60, null);
-        //g.fillRect(30,15+105*abilities.length,60,60);
+        //g.drawImage(sprite, 30, 15+105*getNumAbilities(),60,60, null);
+        //g.fillRect(30,15+105*getNumAbilities(),60,60);
 
         //ABILITY ICONS
-        for (int i = 0; i < abilities.length; i++) {
+        for (int i = 0; i < getNumAbilities(); i++) {
             //draw the abilities cyan if usable
-            abilities[i].drawInfoBox(g, 30, 105 * i);
+            getAbility(i).drawInfoBox(g, 30, 105 * i);
         }
     }
 

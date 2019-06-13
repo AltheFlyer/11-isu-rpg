@@ -357,6 +357,40 @@ abstract public class Ability {
             }
         }
     }
+
+    /**
+     * [getStoredPower]
+     * Used when running abilities, checks if the target is dissected or not
+     * @param jointMap map the targets are on
+     * @param x the x of the target
+     * @param y the y of the target
+     * @return the amount of dissect stacks on the target
+     */
+    public int getStoredPower(JointMap jointMap, int x, int y){
+        for (int m = 0; m < jointMap.getEntity(x,y).getStatuses().size(); m++) {
+            if (jointMap.getEntity(x, y).getStatuses().get(m) instanceof StoredPowerStatus) {
+                return jointMap.getEntity(x, y).getStatuses().get(m).getStacks();
+            }
+        }
+        return 0;
+    }
+
+    /**
+     * [removeStoredPower]
+     * Used for removing all dissect stacks from a target
+     * @param jointMap map the targets are on
+     * @param x the x of the target
+     * @param y the y of the target
+     */
+    public void removeStoredPower(JointMap jointMap, int x, int y){
+        for (int m = 0; m < jointMap.getEntity(x,y).getStatuses().size(); m++) {
+            if (jointMap.getEntity(x, y).getStatuses().get(m) instanceof StoredPowerStatus) {
+                jointMap.getEntity(x, y).getStatuses().remove(m);
+            }
+        }
+    }
+
+
     /**
      * [indicatedValidTileHelper]
      * Something for abilities that helps users create where an ability will indicate as valid targetable tiles
@@ -422,4 +456,5 @@ abstract public class Ability {
             g.drawRect(gridX + gridWidthSpace * i, gridY + gridHeightSpace * j, gridWidth, gridHeight);
         }
     }
+
 }

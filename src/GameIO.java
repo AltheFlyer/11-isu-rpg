@@ -49,9 +49,18 @@ public class GameIO {
         readActiveMap();
     }
 
+    /**
+     * [resetProgress]
+     * resets ALL progression (time state, map position) to initial values on first game creation
+     * use with a mass reset button.
+     */
     public void resetProgress() {
 
 
+
+        currentDay = 1;
+        currentPeriod = 0;
+        writeTimeState();
 
         activeMap = "moving_hallway1";
         mapX = 400;
@@ -576,6 +585,26 @@ public class GameIO {
                 );
             case "AllenSpotlightAbility":
                 return new AllenSpotlightAbility(
+                        new AnimatedSprite(args[0], Integer.parseInt(args[1]), Integer.parseInt(args[2]), Integer.parseInt(args[3])),
+                        name, desc
+                );
+            case "EthanStorePowerAbility":
+                return new EthanStorePowerAbility(
+                        new AnimatedSprite(args[0], Integer.parseInt(args[1]), Integer.parseInt(args[2]), Integer.parseInt(args[3])),
+                        name, desc
+                );
+            case "EthanTidesAbility":
+                return new EthanTidesAbility(
+                        new AnimatedSprite(args[0], Integer.parseInt(args[1]), Integer.parseInt(args[2]), Integer.parseInt(args[3])),
+                        name, desc
+                );
+            case "EthanPactAbility":
+                return new EthanPactAbility(
+                        new AnimatedSprite(args[0], Integer.parseInt(args[1]), Integer.parseInt(args[2]), Integer.parseInt(args[3])),
+                        name, desc
+                );
+            case "EthanTransfuseAbility":
+                return new EthanTransfuseAbility(
                         new AnimatedSprite(args[0], Integer.parseInt(args[1]), Integer.parseInt(args[2]), Integer.parseInt(args[3])),
                         name, desc
                 );

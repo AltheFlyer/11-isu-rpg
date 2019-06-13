@@ -34,19 +34,9 @@ abstract public class Enemy extends Entity {
         setXGrid(x);
         setYGrid(y);
         this.animation = animation;
-        for (int i = 0; i < abilities.length; i++){
+        for (int i = 0; i <  getNumAbilities(); i++){
             abilities[i].setEntitySource(this);
         }
-    }
-
-    /**
-     * [getAbility]
-     * will get the ability from the list for the enemy to use
-     * @param index the index of the ability on the abilities list
-     * @return the ability for th eenmy to use
-     */
-    public Ability getAbility(int index){
-        return abilities[index];
     }
 
     /**
@@ -62,18 +52,18 @@ abstract public class Enemy extends Entity {
 
         //Draw the player profile at the bottom so you know!
         g.setColor(Color.ORANGE);
-        g.fillRect(1069,15+105*abilities.length,60,60);
+        g.fillRect(1069,15+105* getNumAbilities(),60,60);
         drawHealthBar(g);
         drawEnergyBar(g);
 
         //Display stats
-        g.drawString("Attack power: " + getAttack(), 1139, 70+105*abilities.length);
-        g.drawString("Percent defence: " + (int) (getDefence() * 100) + "%", 1139, 85+105*abilities.length);
+        g.drawString("Attack power: " + getAttack(), 1139, 70+105* getNumAbilities());
+        g.drawString("Percent defence: " + (int) (getDefence() * 100) + "%", 1139, 85+105* getNumAbilities());
 
         //ABILITY ICONS
-        for (int i = 0; i < abilities.length; i++) {
+        for (int i = 0; i <  getNumAbilities(); i++) {
             //draw the abilities cyan if usable
-            abilities[i].drawInfoBox(g, 1069, 105 * i);
+            getAbility(i).drawInfoBox(g, 1069, 105 * i);
         }
     }
 
@@ -286,16 +276,16 @@ abstract public class Enemy extends Entity {
         double ratio = getHealth() / getMaxHealth();
         //Grey backing bar
         g.setColor(Color.GRAY);
-        g.fillRect(1139, 33+105*abilities.length,190, 12);
+        g.fillRect(1139, 33+105* getNumAbilities(),190, 12);
 
         //Set healthbar color based on if friendly or not
         g.setColor(Color.GREEN);
 
         //Draw at bottom of screen, -10 is for the height of the bar
-        g.fillRect(1139, 33+105*abilities.length, (int) (190 * ratio), 12);
+        g.fillRect(1139, 33+105* getNumAbilities(), (int) (190 * ratio), 12);
         g.setColor(Color.BLACK);
-        g.drawRect(1139, 33+105*abilities.length,190, 12);
-        g.drawString(Math.ceil(getHealth()) + "/" + getMaxHealth(), 1169, 44+105*abilities.length);
+        g.drawRect(1139, 33+105* getNumAbilities(),190, 12);
+        g.drawString(Math.ceil(getHealth()) + "/" + getMaxHealth(), 1169, 44+105* getNumAbilities());
     }
 
     /**
@@ -306,16 +296,16 @@ abstract public class Enemy extends Entity {
     public void drawEnergyBar(Graphics g){
         double ratio = getEnergy() / getMaxEnergy();
         g.setColor(Color.GRAY);
-        g.fillRect(1139, 45+105*abilities.length,190, 12);
+        g.fillRect(1139, 45+105* getNumAbilities(),190, 12);
 
         //Set healthbar color based on if friendly or not
         g.setColor(new Color(0,200,255));
 
         //Draw at bottom of screen, -10 is for the height of the bar
-        g.fillRect(1139, 45+105*abilities.length, (int) (190 * ratio), 12);
+        g.fillRect(1139, 45+105* getNumAbilities(), (int) (190 * ratio), 12);
         g.setColor(Color.BLACK);
-        g.drawRect(1139, 45+105*abilities.length,190, 12);
-        g.drawString(getEnergy() + "/" + getMaxEnergy(), 1169, 56+105*abilities.length);
+        g.drawRect(1139, 45+105* getNumAbilities(),190, 12);
+        g.drawString(getEnergy() + "/" + getMaxEnergy(), 1169, 56+105* getNumAbilities());
 
     }
 

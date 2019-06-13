@@ -130,7 +130,7 @@ public class MapScreen extends GameScreen {
      * @return void
      */
     public void keyTyped(KeyEvent e) {
-        if (e.getKeyChar() == 'z') {
+        if (e.getKeyChar() == 'z' || e.getKeyChar() == ' ') {
             if (textDrawer.getCharactersWritten() != textDrawer.getTextLength()) {
                 textDrawer.setCharactersWritten(textDrawer.getTextLength());
             } else {

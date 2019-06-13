@@ -27,7 +27,7 @@ public class BunsenBurnerEnemy extends Enemy {
     @Override
     public void decide(JointMap map) {
         setIntent(attackIcon);
-        setDecide(abilities[0]);
+        setDecide(getAbility(0));
     }
 
     @Override

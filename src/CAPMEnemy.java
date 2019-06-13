@@ -9,7 +9,6 @@ import utils.AnimatedSprite;
  */
 public class CAPMEnemy extends Enemy {
 
-    private int attackMod = 0;
     private Icon weakAttackIcon;
     private Icon strongAttackIcon;
 
@@ -20,7 +19,7 @@ public class CAPMEnemy extends Enemy {
      * @param y the y position of the grid
      */
     CAPMEnemy(int x, int y) {
-        super(x, y, 150, 15, 0, "CAPM", new AnimatedSprite("spritesheets/CAPM.png", 3, 3, 100),
+        super(x, y, 150, 20, 0, "CAPM", new AnimatedSprite("spritesheets/CAPM.png", 3, 3, 100),
                 new Ability[] {
                         new SingleAbility(null, "Accelerate", "Deals damage to a target and increases attack power.",
                                 0, 1, 6, 0, 0,1, true, false)
@@ -38,8 +37,8 @@ public class CAPMEnemy extends Enemy {
      */
     @Override
     public void decide(JointMap map) {
-        setDecide(abilities[0]);
-        if (attackMod <= 6) {
+        setDecide(getAbility(0));
+        if (getAttack() <= 30) {
             setIntent(weakAttackIcon);
         } else {
             setIntent(strongAttackIcon);
@@ -54,6 +53,6 @@ public class CAPMEnemy extends Enemy {
     @Override
     public void act(JointMap map) {
         selectRandomTile(map, getDecide());
-        setAttack(getAttack() + 5);
+        inflictStatus(map, new AttackStatModifier(25));
     }
 }

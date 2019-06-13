@@ -25,7 +25,7 @@ abstract public class Entity {
 
 
     //CREATE A GETTER FOR THIS LATER
-    public Ability[] abilities;
+    private Ability[] abilities;
     private int xGrid;
     private int yGrid;
 
@@ -284,6 +284,25 @@ abstract public class Entity {
         if (effect.isActiveImmediately()) {
             effect.triggerEffect(map, this);
         }
+    }
+
+    /**
+     * [getAbility]
+     * will get the ability from the list for the enemy to use
+     * @param index the index of the ability on the abilities list
+     * @return the ability within the entity
+     */
+    public Ability getAbility(int index){
+        return abilities[index];
+    }
+
+    /**
+     * [getNumAbilities]
+     * gets the number of abilities on the entity
+     * @return int, the number of abilities in the entity
+     */
+    public int getNumAbilities() {
+        return abilities.length;
     }
 
     /**
