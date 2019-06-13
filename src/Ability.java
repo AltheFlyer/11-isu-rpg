@@ -456,4 +456,5 @@ abstract public class Ability {
             g.drawRect(gridX + gridWidthSpace * i, gridY + gridHeightSpace * j, gridWidth, gridHeight);
         }
     }
+
 }
