@@ -19,9 +19,11 @@ abstract public class OverworldMap {
     private OverworldTile[][] map;
     private int tileSize = 100;
     private BufferedImage[][] sprites;
+    private String mapName;
 
     public OverworldMap(GameIO fileManager, String mapPath){
         fileManager.readTileWalkability("walkability.txt");
+        mapName = mapPath;
         map = fileManager.getMap(mapPath, tileSize);
         sprites = new BufferedImage[map.length][map[0].length];
         for (int i = 0; i < map.length; ++i) {
@@ -75,6 +77,25 @@ abstract public class OverworldMap {
      */
     public boolean runEvent(OverworldPlayer player, OverworldNPC[] npcs) {
         return false;
+    }
+
+    /**
+     * [getMapName]
+     * returns this map's debug name
+     * @return String, this map's debug name
+     */
+    public String getMapName() {
+        return mapName;
+    }
+
+    /**
+     * [getLevelName]
+     * returns the name of the level that events in this map will lead to
+     * most maps do not have a level and will not call this method
+     * @return String, the name of the level that events in this map will lead to
+     */
+    public String getLevelName() {
+        return "";
     }
 
 }
