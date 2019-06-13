@@ -9,6 +9,8 @@ import utils.AnimatedSprite;
  */
 public class MusicManEnemy extends Enemy {
 
+    Icon attackIcon;
+
     /**
      * Creates an enemy entity which doesn't need energy
      *
@@ -21,8 +23,18 @@ public class MusicManEnemy extends Enemy {
                 new Ability[] {
                         new SingleAbility(new AnimatedSprite("spritesheets/blast.png", 1, 3, 250),
                                 "Blast", "Deals damage to a player.", 0, 0,
-                                4, 2, 0, 1, true, false)
+                                4, 2, 0, 1, true, false),
+                        new AbilityPair(new AnimatedSprite("spritesheets/blast.png", 1, 3, 250),
+                                "Sforzando", "Deals massive damage to a row, but decreases attack power.",
+                                0, 3,
+                                new AOEAbility(null, "", "", 0, 0, 6, 2,
+                                        3, 0, 0, 2, true, false),
+                                new StatusAbility(new AttackStatModifier(-20), null, "", "", 0, 0,
+                                        0, 0, false, true)
+                        )
                 });
+
+        attackIcon = new Icon("assets/icons/sword.png", "Attack", "This enemy intends to attack.");
     }
 
     /**
@@ -33,7 +45,12 @@ public class MusicManEnemy extends Enemy {
      */
     @Override
     public void decide(JointMap map) {
-        setDecide(getAbility(0));
+        if (getAbility(1).getCurrentCooldown() == 0) {
+            setDecide(getAbility(1));
+        } else {
+            setDecide(getAbility(0));
+        }
+        setIntent(attackIcon);
     }
 
     /**
@@ -44,6 +61,7 @@ public class MusicManEnemy extends Enemy {
      */
     @Override
     public void act(JointMap map) {
-
+        selectRandomTile(map, getDecide());
+        getDecide().resetCooldown();
     }
 }

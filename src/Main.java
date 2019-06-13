@@ -52,6 +52,11 @@ public class Main {
                             new TwoFaceEnemy(4, 1)
                     }));
                     break;
+                case "MusicLevel" :
+                    game.setScreen(new LevelScreen(game, new Enemy[] {
+                            new MusicManEnemy(4, 1)
+                    }));
+                    break;
                 case "Tutorial" :
                     game.setScreen(new TutorialLevel(game));
                     break;

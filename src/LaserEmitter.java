@@ -28,7 +28,7 @@ public class LaserEmitter extends OverworldObject {
     @Override
     public void checkInteractions(Rectangle hitbox) {
         if (hitbox.intersects(this.collisionWindow())) {
-            ball = new Ball(1100, 200, 10, 10);
+            ball = new Ball(getX(), getY(), 10, 10);
         }
     }
 
