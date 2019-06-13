@@ -5,27 +5,40 @@ import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
+/**
+ * [JointMap.java]
+ * The screen that every part of the battle is drawn on
+ * @version 1.0
+ * @author Kevin Liu
+ * @since May 22, 2019
+ */
 public class LevelScreen extends GameScreen{
     @Override
+    /**
+     * [setBackground]
+     * sets the background colour of the battle
+     * @param bg the background colour
+     */
     public void setBackground(Color bg) {
         super.setBackground(bg);
     }
-
+    //Player that is selected at the moment
     Player selectedPlayer;
+
+    //Player Ability that is selected
     Ability selectedAbility;
+
+    //ability that was used, it is now queued to be animated
     Ability animatedAbility;
     int animatedX;
     int animatedY;
 
+    //Enemy that is selected at the moment
     Enemy selectedEnemy;
 
     JointMap jointMap;
-    Player kevin;
-    Player allen;
-    Player bryan;
     Player[] players;
-
-    Enemy[] enemies = new Enemy[9];
+    Enemy[] enemies;
 
     //The animationTime is for enemy turn, for those abilities without animations
     long animationTime = 1000;
@@ -33,6 +46,7 @@ public class LevelScreen extends GameScreen{
 
     Clock playerClock, enemyClock;
     boolean enemyTurn = false;
+
     //Counter for amount of enemies
     int counter = 0;
     int turnNumber = 1;
@@ -41,6 +55,7 @@ public class LevelScreen extends GameScreen{
 
     /**
      * [LevelScreen]
+     * The screen that every part of the battle is drawn on
      * @param game the currently running game
      * @param enemySet the list of enemies to add to the encounter
      */
@@ -74,12 +89,17 @@ public class LevelScreen extends GameScreen{
         exitLevelButton = new Rectangle((1366 / 2) - 100, 400, 200, 50);
     }
 
-    @Override
-    public void keyPressed(KeyEvent e) {
-        if(e.getKeyChar() == 's' ){
-        }
-    }
-
+    /**
+     * [mouseReleased]
+     * has many functions when mouse click releases on something:
+     * - click on the player profiles to select them and open up their abilities
+     * - click on players/enemies on the grid to check their abilities
+     * - click on abilities to select them for use
+     * - click on grid with selected ability to use the ability
+     * - click on empty tile to deselect everything
+     * - click on end turn to end the turn
+     * @param e checks the mouse inputs
+     */
     @Override
     public void mouseReleased(MouseEvent e) {
         super.mouseReleased(e);
@@ -186,11 +206,23 @@ public class LevelScreen extends GameScreen{
             }
         }
 
+        //Loads the screen where you can click on the end battle button to continue
         if ((arePlayersDead() || areEnemiesDead()) && (isFullyClicked(exitLevelButton))) {
             endBattleLoader();
         }
     }
 
+    /**
+     * [paintComponent]
+     * has many functions for the game, especially as a loop and for graphics:
+     * - draws out the different parts of the screen including the battle grid (JointMap), the abilities on the sides
+     * the playerProfiles, enemyProfiles and different buttons (endTurn)
+     * - Animates the abilities of both players and enemies using animatedAbility
+     * - completes the end turn sequence for enemies where they will finish their turn and play their animations
+     * the timing of that is managed by the enemyClock
+     * - ticks the playerClocks and enemyClocks (for animation purposes)
+     * @param g the graphic used to draw with
+     */
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
 
@@ -363,9 +395,12 @@ public class LevelScreen extends GameScreen{
         repaint();
     }
 
-    //MOVE ENEMY AND MOVE PLAYER HERE!!!
-
-    //If you are hovering over a space you can attack, this will highlight those spaces
+    /**
+     * [drawHoverAttack]
+     * if an ability is selected, checks if the mouse is currently over a certain tile or not,
+     * will highlight the tiles that the ability will affect
+     * @param g the graphics used to draw with
+     */
     public void drawHoverAttack(Graphics g){
         //Magic number storage
         int gridX = 323;
@@ -389,7 +424,11 @@ public class LevelScreen extends GameScreen{
         }
     }
 
-    //If you hover over a player profile, it will highlight and turn green!
+    /**
+     * [drawPlayerProfiles]
+     * draws out the three player profiles at the bottom of the screen
+     * @param g the graphics used to draw with
+     */
     public void drawPlayerProfiles(Graphics g){
         //Magic number storage
         int profileX = 323;

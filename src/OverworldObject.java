@@ -175,7 +175,7 @@ abstract public class OverworldObject {
     /**
      * [checkCollisions]
      * changes player's x and y coordinates if intersects with an object
-     * @return Rectangle boundingBox, the object's bounding box
+     * @return void
      */
     public void checkCollisions(Rectangle playerBounds, OverworldPlayer player) {
         if (playerBounds.intersects(this.collisionWindow())) {

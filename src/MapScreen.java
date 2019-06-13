@@ -81,7 +81,7 @@ public class MapScreen extends GameScreen {
         //draws black background
         setBackground(Color.BLACK);
 
-        //checking collisions with walls and NPCs
+        //checking collisions with walls, objects, and NPCs
         checkCollisions();
 
         //drawing everything
