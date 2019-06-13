@@ -153,4 +153,5 @@ public class LaserEmitter extends OverworldObject {
     private double degreesToRad(int angle) {
         return angle*(Math.PI/180) + Math.PI/2;
     }
+
 }
