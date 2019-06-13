@@ -53,6 +53,10 @@ public class LevelFactory {
                         new MusicManEnemy(4, 0),
                         new MusicManEnemy(4, 2),
                 });
+            case "MangatLevel":
+                return new LevelScreen(game, new Enemy[] {
+                        new MangatEnemy(3, 1)
+                });
             case "Tutorial" :
                 return new TutorialLevel(game);
         }
