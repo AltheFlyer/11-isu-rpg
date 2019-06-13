@@ -165,8 +165,8 @@ abstract public class OverworldObject {
 
     /**
      * [collisionWindow]
-     * returns the entity's bounding box
-     * @return Rectangle boundingBox, the entity's bounding box
+     * returns the object's bounding box
+     * @return Rectangle boundingBox, the object's bounding box
      */
     public Rectangle collisionWindow(){
         return this.boundingBox;
@@ -175,7 +175,7 @@ abstract public class OverworldObject {
     /**
      * [checkCollisions]
      * changes player's x and y coordinates if intersects with an object
-     * @return Rectangle boundingBox, the entity's bounding box
+     * @return Rectangle boundingBox, the object's bounding box
      */
     public void checkCollisions(Rectangle playerBounds, OverworldPlayer player) {
         if (playerBounds.intersects(this.collisionWindow())) {
