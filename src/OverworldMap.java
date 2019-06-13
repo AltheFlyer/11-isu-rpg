@@ -92,6 +92,7 @@ abstract public class OverworldMap {
      * [getLevelName]
      * returns the name of the level that events in this map will lead to
      * most maps do not have a level and will not call this method
+     * overridden in room-specific subclasses
      * @return String, the name of the level that events in this map will lead to
      */
     public String getLevelName() {

@@ -15,6 +15,14 @@ public class ComsciRoom extends MovingMap {
         super(fileManager, mapPath);
     }
 
+    /**
+     * [runEvent]
+     * a sequence of events that happens in the room
+     * returns true when all the events have been completed and the battle is ready to load
+     * @param player the player inhabiting the room
+     * @param npcs the array of NPCs inhabiting the room
+     * @return boolean true when all the events have been completed and the battle is ready to load
+     */
     public boolean runEvent(OverworldPlayer player, OverworldNPC[] npcs) {
         if (npcs[0].isTalking()) {
             questStart = true;
@@ -42,7 +50,13 @@ public class ComsciRoom extends MovingMap {
         return false;
     }
 
-    public boolean questCleared() {
+    /**
+     * [questCleared]
+     * checks if a room-specific quest has been cleared
+     * in this case, if all the music kids have been spoken to after hearing Mr. Mangat's request
+     * @return boolean true when this task has been completed
+     */
+    private boolean questCleared() {
         for (int i = 0; i < 6; ++i) {
             if (!musicKidsTalkedTo[i]) {
                 return false;
@@ -51,6 +65,11 @@ public class ComsciRoom extends MovingMap {
         return true;
     }
 
+    /**
+     * [getLevelName]
+     * returns the name of the level that events in this map will lead to
+     * @return String, the name of the level that events in this map will lead to
+     */
     public String getLevelName() {
         return "CSLevel";
     }

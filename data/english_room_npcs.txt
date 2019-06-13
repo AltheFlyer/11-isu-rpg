@@ -1,15 +1,15 @@
 7
 750 550 Mr. Cimetta
-Alright, class. You've all done your 10th journal, right? ... ... ...What do you mean, no?
+Alright, class. What do you think of this prompt on the screen? ... ...Do YOU have an opinion? Why don't you go ask everyone what they think, and we'll come back to you.
 325 350 Sarah
-You ready for the PROSE and VERSE analysis? *dabs*
-825 425 placeholder
-Oh god, my ISU presentation is today and I'm not ready...
-325 150 placeholder
+You ready for the PROSE and VERSE analysis tomorrow? *dabs*
+825 425 Ethan
+Oh gods, my ISU presentation is today and I'm not ready...
+325 150 Mandy
 Synecdoche!? I've never heard of that word in my life!
-610 525 placeholder
-Quick, run while you still can...
-725 350 placeholder
+610 525 Sam
+It's ISU season. Quick, run while you still can...
+725 350 Jasmine
 Do you think he'll smite me if I do all my journals at the end of the year?
-525 150 placeholder
+525 150 Candace
 Always sit at the back of the class! Also, don't make eye contact! ...What?
