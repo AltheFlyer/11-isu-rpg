@@ -7,6 +7,7 @@ import java.awt.Rectangle;
 import java.awt.event.KeyListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
+import java.util.HashMap;
 
 /**
  * [MapScreen.java]
@@ -23,6 +24,8 @@ public class MapScreen extends GameScreen {
     private OverworldPlayer player;
     private OverworldNPC[] npcs;
     private OverworldObject[] objects;
+    private int currency = getIO().getCurrency();
+    private HashMap<String, Integer> inventory = getIO().getInventory();
     int length;
     int width;
     TextDrawer textDrawer;
@@ -222,7 +225,19 @@ public class MapScreen extends GameScreen {
         super.mouseReleased(e);
         for (int i = 0; i < npcs.length; ++i) {
             if (npcs[i].shopIsOpen()) {
-                System.out.println("you bought absolute trash, good job");
+                Item[] items = ((OverworldShopNPC)npcs[i]).getItems();
+                for (int j = 0; j < items.length; ++j) {
+                    if ((items[j].getBoundingBox().contains(getMouseX(), getMouseY())) &&
+                            (items[j].getBoundingBox().contains(getClickX(), getClickY()))) {
+                        if (currency >= items[j].getCost()) {
+                            currency -= items[j].getCost();
+                            inventory.put(items[j].getName(), 1);
+                            npcs[i].setMessage("Thanks for buying a" + items[j].getName() + ".");
+                        } else {
+                            npcs[i].setMessage("Scram, twerp. Go steal from someone else.");
+                        }
+                    }
+                }
             }
         }
     }
@@ -253,7 +268,7 @@ public class MapScreen extends GameScreen {
         Rectangle playerNewBox = new Rectangle(playerNewX, playerNewY, player.getSize(), player.getSize());
         for (int i = centerTileX - 1; i < centerTileX + 2; i++) {
             for (int j = centerTileY - 1; j < centerTileY + 2; j++) {
-                map.getMap()[i][j].checkCollisions(playerNewBox, player, getGame());
+                map.getMap()[i][j].checkCollisions(playerNewBox, player, getGame(), inventory);
             }
         }
         for (int i = 0; i < npcs.length; ++i) {
