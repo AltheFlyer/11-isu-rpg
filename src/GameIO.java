@@ -71,6 +71,7 @@ public class GameIO {
         writeMapData();
 
         inventory = new HashMap<>();
+        inventory.put("seeeecret", 1);
         writeInventory();
     }
 
