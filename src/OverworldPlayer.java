@@ -1,4 +1,6 @@
-import java.awt.*;
+import java.awt.Graphics;
+import java.awt.Rectangle;
+import java.awt.Color;
 
 /**
  * [OverworldPlayer.java]
@@ -18,7 +20,6 @@ public class OverworldPlayer extends OverworldEntity {
      * draws the player sprite either in the middle for moving maps, or at its [x][y] position
      * @param g the graphics object to draw with
      * @param map the map that the player is currently in
-     * @return void
      */
     public void draw(Graphics g, OverworldMap map) {
         g.setColor(Color.RED);

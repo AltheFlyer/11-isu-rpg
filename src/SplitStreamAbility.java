@@ -24,28 +24,28 @@ public class SplitStreamAbility extends AOEAbility{
     /**
      * action: This method will push players as far left and enemies as far right as possible in a row
      * @param jointMap: The map that will be affected
-     * @param i one of the selected coordinates
-     * @param j the other selected coordinate
+     * @param x one of the selected coordinates
+     * @param y the other selected coordinate
      */
     @Override
-    public void action(JointMap jointMap, int i, int j){
-        for (int l = i - getXAOE(); l <= i + getXAOE(); l++) {
-            if (jointMap.tileExists(l, j)) {
-                if (jointMap.isTileFriendly(l, j) && !jointMap.isEmpty(l,j)) {
-                    jointMap.moveOnTile(l,j,l-1,j);
+    public void action(JointMap jointMap, int x, int y){
+        for (int l = x - getXAOE(); l <= x + getXAOE(); l++) {
+            if (jointMap.tileExists(l, y)) {
+                if (jointMap.isTileFriendly(l, y) && !jointMap.isEmpty(l,y)) {
+                    jointMap.moveOnTile(l,y,l-1,y);
                 }
-                if (!jointMap.isTileFriendly(l, j) && !jointMap.isEmpty(l,j)) {
-                    jointMap.moveOnTile(l,j,l+1,j);
+                if (!jointMap.isTileFriendly(l, y) && !jointMap.isEmpty(l,y)) {
+                    jointMap.moveOnTile(l,y,l+1,y);
                 }
             }
         }
-        for (int l = i - getXAOE(); l <= i + getXAOE(); l++) {
-            if (jointMap.tileExists(l, j)) {
-                if (jointMap.isTileFriendly(l, j) && !jointMap.isEmpty(l,j)) {
-                    jointMap.moveOnTile(l,j,l-1,j);
+        for (int l = x - getXAOE(); l <= x + getXAOE(); l++) {
+            if (jointMap.tileExists(l, y)) {
+                if (jointMap.isTileFriendly(l, y) && !jointMap.isEmpty(l,y)) {
+                    jointMap.moveOnTile(l,y,l-1,y);
                 }
-                if (!jointMap.isTileFriendly(l, j) && !jointMap.isEmpty(l,j)) {
-                    jointMap.moveOnTile(l,j,l+1,j);
+                if (!jointMap.isTileFriendly(l, y) && !jointMap.isEmpty(l,y)) {
+                    jointMap.moveOnTile(l,y,l+1,y);
                 }
             }
         }

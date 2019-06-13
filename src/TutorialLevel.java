@@ -101,7 +101,7 @@ public class TutorialLevel extends LevelScreen {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
 
-        if (!(arePlayersDead() || areEnemiesDead())) {
+        if ((!(arePlayersDead()) || areEnemiesDead())) {
             //Draw the text drawer, if it is null, set it using the graphics object
             if (tutorialPrompt != null) {
                 g.setColor(Color.WHITE);

@@ -1,8 +1,5 @@
-import javax.imageio.ImageIO;
-import java.awt.*;
+import java.awt.Graphics;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 
 /**
  * [RoomMap.java]
@@ -24,7 +21,6 @@ public class RoomMap extends OverworldMap{
      * draws the room map by tile
      * @param g the graphics object to draw with
      * @param player the current player
-     * @return void
      */
     @Override
     public void draw(Graphics g, OverworldPlayer player){

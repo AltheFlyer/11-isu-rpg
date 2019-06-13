@@ -23,7 +23,6 @@ public class OverworldShopNPC extends OverworldNPC {
      * [speak]
      * draws the NPC's text box and speech
      * @param g the graphics object to draw with
-     * @return void
      */
     @Override
     public void speak(Graphics g, TextDrawer textDrawer) {

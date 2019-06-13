@@ -21,7 +21,7 @@ import java.awt.event.KeyEvent;
  * @since May 30, 2019
  */
 abstract public class GameScreen extends JPanel
-        implements MouseListener, KeyListener, MouseMotionListener, MouseWheelListener {
+        implements MouseListener, KeyListener, MouseMotionListener {
 
     private GameManager game;
 
@@ -151,6 +151,11 @@ abstract public class GameScreen extends JPanel
         return clickY;
     }
 
+    /**
+     * [mousePressed]
+     * sets the click and mouse position when the mouse is first pressed down
+     * @param e the fired mouse event
+     */
     @Override
     public void mousePressed(MouseEvent e) {
         clickX = e.getX();
@@ -160,40 +165,82 @@ abstract public class GameScreen extends JPanel
         mouseY = e.getY();
     }
 
+    /**
+     * [mouseMoved]
+     * sets the mouse position when the mouse moves
+     * @param e the fired mouse event
+     */
     @Override
     public void mouseMoved(MouseEvent e) {
         mouseX = e.getX();
         mouseY = e.getY();
     }
 
-    @Override
-    public void keyTyped(KeyEvent e) {}
-
-    @Override
-    public void keyPressed(KeyEvent e) {}
-
-    @Override
-    public void keyReleased(KeyEvent e) {}
-
-    @Override
-    public void mouseClicked(MouseEvent e) {}
-
-    @Override
-    public void mouseReleased(MouseEvent e) {}
-
-    @Override
-    public void mouseEntered(MouseEvent e) {}
-
-    @Override
-    public void mouseExited(MouseEvent e) {}
-
+    /**
+     * [mouseDragged]
+     * runs when the mouse is moved while being clicked, so that position can be update
+     * @param e the fired mouse event
+     */
     @Override
     public void mouseDragged(MouseEvent e) {
         mouseX = e.getX();
         mouseY = e.getY();
     }
 
+    /**
+     * [keyTyped]
+     * runs whenever a key is typed
+     * @param e the fired key event
+     */
     @Override
-    public void mouseWheelMoved(MouseWheelEvent e) {}
+    public void keyTyped(KeyEvent e) {}
+
+    /**
+     * [keyPressed]
+     * runs whenever a key is first pressed
+     * @param e the fired key event
+     */
+    @Override
+    public void keyPressed(KeyEvent e) {}
+
+    /**
+     * [keyReleased]
+     * runs whwnever a key is released
+     * @param e the fired key event
+     */
+    @Override
+    public void keyReleased(KeyEvent e) {}
+
+    /**
+     * [mouseClicked]
+     * runs when the mouse is clicked and released without movement
+     * @param e the fired mouse event
+     */
+    @Override
+    public void mouseClicked(MouseEvent e) {}
+
+    /**
+     * [mouseReleased]
+     * runs whenever the mouse is let go of - override this for fullyClicked() checks
+     * @param e the fired mouse event
+     */
+    @Override
+    public void mouseReleased(MouseEvent e) {}
+
+    /**
+     * [mouseEntered]
+     * runs whenever the mouse enters the panel
+     * @param e the fired mouse event
+     */
+    @Override
+    public void mouseEntered(MouseEvent e) {}
+
+    /**
+     * [mouseExited]
+     * runs when the mouse exits the panel
+     * @param e the fired mouse event
+     */
+    @Override
+    public void mouseExited(MouseEvent e) {}
 
 }

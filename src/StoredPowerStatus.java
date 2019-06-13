@@ -9,18 +9,8 @@ public class StoredPowerStatus extends StatusEffect {
 
     public StoredPowerStatus(int stacks) {
         super("assets/icons/test.png", "Storing Power!", "This unit is storing power",
-                stacks, 250, 10);
+                stacks, 250, 10, false);
         this.getIcon().setName("Stored x" + this.getStacks() + "!");
-    }
-
-    /**
-     * [isActiveImmediately]
-     * whether the status effect is active the moment it is applied
-     * @return boolean, whether the effect is applied immediately
-     */
-    @Override
-    public boolean isActiveImmediately() {
-        return false;
     }
 
     /**

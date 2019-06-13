@@ -1,7 +1,10 @@
 import utils.SpriteLoader;
 import utils.TextDrawer;
 
-import java.awt.*;
+import java.awt.Graphics;
+import java.awt.Rectangle;
+import java.awt.Color;
+
 import java.awt.image.BufferedImage;
 
 /**
@@ -29,9 +32,8 @@ public class OverworldNPC extends OverworldEntity {
     /**
      * [draw]
      * draws the NPC sprite either relative to the player for moving maps, or at its [x][y] position
-     * @param g
+     * @param g the graphics object to draw with
      * @param map the map that the NPC is currently in
-     * @return void
      */
     public void draw(Graphics g, OverworldMap map, OverworldPlayer player) {
         g.setColor(Color.MAGENTA);
@@ -51,8 +53,7 @@ public class OverworldNPC extends OverworldEntity {
     /**
      * [speak]
      * draws the NPC's text box and speech
-     * @param g
-     * @return void
+     * @param g the graphics object to draw with
      */
     public void speak(Graphics g, TextDrawer textDrawer) {
         textDrawer.setText(message);
@@ -76,7 +77,6 @@ public class OverworldNPC extends OverworldEntity {
      * if so, it prompts the NPC to show a textbox
      * also turns NPC in the direction facing the player
      * @param hitbox, the player's interaction hitbox
-     * @return void
      */
     public void checkInteractions(Rectangle hitbox, String direction) {
         if (hitbox.intersects(this.collisionWindow())) {
@@ -119,7 +119,6 @@ public class OverworldNPC extends OverworldEntity {
      * [setMessage]
      * sets the NPC's message to a new message
      * @param message the NPC's new message
-     * @return void
      */
     public void setMessage(String message) {
         this.message = message;
@@ -137,7 +136,6 @@ public class OverworldNPC extends OverworldEntity {
     /**
      * [setTalking]
      * changes the state of the NPC from talking to not talking, or vice versa
-     * @return void
      */
     public void setTalking() {
         this.talking = !(this.talking);

@@ -16,6 +16,11 @@ public class TestEnemy extends Enemy {
         attackIcon = new Icon("assets/icons/sword.png", "Attack", "A basic attack that will deal damage to a player.");
     }
 
+    /**
+     * [decide]
+     * basic 'ai', attacks when over 50% health, heals when below
+     * @param map the map that the entities are in
+     */
     @Override
     public void decide(JointMap map) {
         //For testing/theory purposes only...
@@ -29,6 +34,11 @@ public class TestEnemy extends Enemy {
         }
     }
 
+    /**
+     * [act]
+     * performs whatever action was chosen by .decide()
+     * @param map the map that the entities are in
+     */
     @Override
     public void act(JointMap map) {
         selectRandomTile(map, getDecide());

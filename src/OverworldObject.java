@@ -1,4 +1,5 @@
-import java.awt.*;
+import java.awt.Graphics;
+import java.awt.Rectangle;
 
 /**
  * [OverworldObject.java]
@@ -31,7 +32,6 @@ abstract public class OverworldObject {
      * @param g the graphics object to draw with
      * @param map the OverworldMap the object is inhabiting
      * @param player the player inhabiting the same map
-     * @return void
      */
     public void draw(Graphics g, OverworldMap map, OverworldPlayer player) { }
 
@@ -39,7 +39,6 @@ abstract public class OverworldObject {
      * [setX]
      * sets the object's x coordinate as the new x coordinate passed in
      * @param newX the object's new x coordinate on the map
-     * @return void
      */
     public void setX(int newX) {
         this.x = newX;
@@ -49,7 +48,6 @@ abstract public class OverworldObject {
      * [setY]
      * sets the object's y coordinate as the new y coordinate passed in
      * @param newY the object's new y coordinate on the map
-     * @return void
      */
     public void setY(int newY) {
         this.y = newY;
@@ -75,7 +73,6 @@ abstract public class OverworldObject {
      * [setXVelocity]
      * sets the object's x velocity
      * @param xVelocity the object's new x velocity
-     * @return void
      */
     public void setXVelocity(double xVelocity) {
         this.xVelocity = xVelocity;
@@ -94,7 +91,6 @@ abstract public class OverworldObject {
      * [setYVelocity]
      * sets the object's y velocity
      * @param yVelocity the object's new y velocity
-     * @return void
      */
     public void setYVelocity(double yVelocity) {
         this.yVelocity = yVelocity;
@@ -133,7 +129,6 @@ abstract public class OverworldObject {
      * [move]
      * moves the object's coordinates and sets a new bounding box accordingly
      * @param elapsedTime elapsed time between last time check and current time in seconds
-     * @return void
      */
     public void move(double elapsedTime) {
         this.x = calcNewX(elapsedTime);
@@ -146,7 +141,6 @@ abstract public class OverworldObject {
      * changes the x and y position of the object's bounding box
      * @param x the new x value of the object's bounding box
      * @param y the new y value of the object's bounding box
-     * @return void
      */
     public void setBoundingBox(int x, int y) {
         this.boundingBox.x = x;
@@ -165,7 +159,6 @@ abstract public class OverworldObject {
     /**
      * [checkCollisions]
      * stops player from moving if intersects with an object
-     * @return void
      */
     public void checkCollisions(Rectangle playerBounds, OverworldPlayer player) {
         if (playerBounds.intersects(this.collisionWindow())) {
@@ -179,7 +172,6 @@ abstract public class OverworldObject {
      * checks if player's interaction hitbox is intersecting with this object
      * empty for most Overworld objects, but some types have an interaction
      * @param hitbox, the player's ineraction hitbox
-     * @return void
      */
     public void checkInteractions(Rectangle hitbox) {
 
@@ -198,7 +190,6 @@ abstract public class OverworldObject {
     /**
      * [toggleInterface]
      * switches the boolean to show this object's interface on and off
-     * @return void
      */
     public void toggleInterface() {
         this.interfaceOpen = !(this.interfaceOpen);
@@ -209,7 +200,6 @@ abstract public class OverworldObject {
      * draws the object's interactable interface, if it has one
      * overridden in each specific subclass because each interface is different
      * @param g the graphics object to draw with
-     * @return void
      */
     public void openInterface(Graphics g) {
 

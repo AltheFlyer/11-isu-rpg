@@ -62,11 +62,7 @@ public class Player extends Entity{
 
         //Draw the player profile at the bottom so you know!
         g.setColor(Color.MAGENTA);
-        if (getName().equals("yellow")){
-            g.setColor(Color.yellow);
-        } else if (getName().equals("cyan")){
-            g.setColor(Color.CYAN);
-        }
+
         //g.drawImage(sprite, 30,15+105*getNumAbilities(),60,60, null);
         //g.fillRect(30,15+105*getNumAbilities(),60,60);
         drawHealthBar(g);

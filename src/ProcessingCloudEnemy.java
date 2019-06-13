@@ -1,7 +1,5 @@
 import utils.AnimatedSprite;
 
-import java.awt.Graphics;
-
 /**
  * [ProcessingCloudEnemy.java]
  * An enemy that uses tech-based moves.
@@ -59,7 +57,8 @@ public class ProcessingCloudEnemy extends Enemy {
     /**
      * [decide]
      * generates a next move (Ability and intent) - that the player can then react to (should be overriden).
-     *
+     * Will ALWAYS use constructor once if health is below 40%.
+     * Otherwise, cycles between attacks, and seeks if no players in row
      * @param map the map that the entities are in
      */
     @Override

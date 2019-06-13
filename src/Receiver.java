@@ -1,4 +1,5 @@
-import java.awt.*;
+import java.awt.Graphics;
+import java.awt.Color;
 
 /**
  * [Receiver.java]
@@ -21,7 +22,6 @@ public class Receiver extends OverworldObject {
      * @param g the graphics object to draw with
      * @param map the OverworldMap the object is inhabiting
      * @param player the player inhabiting the same map
-     * @return void
      */
     @Override
     public void draw(Graphics g, OverworldMap map, OverworldPlayer player) {

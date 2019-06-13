@@ -83,7 +83,8 @@ public class TwoFaceEnemy extends Enemy {
     /**
      * [decide]
      * generates a next move (Ability and intent) - that the player can then react to (should be overriden).
-     *
+     * Uses different abilities based on how many hits have been taken (switching it from happy to sad face),
+     * where sad face is meant to be stronger
      * @param map the map that the entities are in
      */
     @Override
@@ -118,8 +119,8 @@ public class TwoFaceEnemy extends Enemy {
 
     /**
      * [act]
-     * lets the enemy perform an action using an ability
-     *
+     * lets the enemy perform an action using an ability, this one is special in that the lonliness ability
+     * will be canceled if anyone is in the same row as it (for fun gameplay)
      * @param map the map that the entities are in
      */
     @Override
@@ -141,6 +142,11 @@ public class TwoFaceEnemy extends Enemy {
         }
     }
 
+    /**
+     * [damageEntity]
+     * runs whenever the entity is damaged, its also used to count hits for the sad face transform
+     * @param damage the amound of damage dealt to an entity
+     */
     @Override
     public void damageEntity(double damage) {
         super.damageEntity(damage);
