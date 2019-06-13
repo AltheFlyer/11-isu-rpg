@@ -2,10 +2,16 @@ import utils.AnimatedSprite;
 
 import java.awt.Graphics;
 import java.awt.Color;
-
+/**
+ * [StarAbility.java]
+ * damages all enemies in a star (cross) shape
+ * @version 1.0
+ * @author Kevin Liu
+ * @since May 31, 2019
+ */
 public class StarAbility extends DamagingAbility {
     /**
-     * [AOEAbility]
+     * [StarAbility]
      * Constructor for aoe abilities
      * @param animation the animation that is played on ability case
      * @param name the displayed name of the ability

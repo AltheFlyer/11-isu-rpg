@@ -1,7 +1,13 @@
 import utils.AnimatedSprite;
 
 import java.awt.*;
-
+/**
+ * [JasmineBlastAbility.java]
+ * a powerful low range move that will move user and affected target
+ * @version 1.0
+ * @author Kevin Liu
+ * @since June 7, 2019
+ */
 public class JasmineBlastAbility extends SpearAbility {
 
     /**

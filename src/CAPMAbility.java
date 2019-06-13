@@ -2,9 +2,9 @@ import utils.AnimatedSprite;
 
 import java.awt.Graphics;
 /**
- * [SingleAbility.java]
+ * [CAPMAbility.java]
  * Creating of a special single target ability for allen the physicist which deals more damage the farther the enemy is
- * @version 1.1
+ * @version 1.0
  * @author Kevin Liu
  * @since June 9, 2019
  */

@@ -1,7 +1,13 @@
 import utils.AnimatedSprite;
 
 import java.awt.Graphics;
-
+/**
+ * [LureAbility.java]
+ * mark 1 target and drag them closer to the center
+ * @version 1.0
+ * @author Kevin Liu
+ * @since June 7, 2019
+ */
 public class LureAbility extends DamagingAbility {
     /**
      * [LureAbility]

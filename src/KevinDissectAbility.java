@@ -1,7 +1,13 @@
 import utils.AnimatedSprite;
 
 import java.awt.*;
-
+/**
+ * [KevinDissectAbility.java]
+ * Damage an enemy and gain energy based on number of dissect stacks on target
+ * @version 1.0
+ * @author Kevin Liu
+ * @since June 9, 2019
+ */
 public class KevinDissectAbility extends SingleAbility {
     private int stacks;
 

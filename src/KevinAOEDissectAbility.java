@@ -1,7 +1,13 @@
 import utils.AnimatedSprite;
 
 import java.awt.*;
-
+/**
+ * [KevinAOEDissectAbility.java]
+ * afflict all enemies in row with DissectedStatus but only usable at certain energies
+ * @version 1.0
+ * @author Kevin Liu
+ * @since June 9, 2019
+ */
 public class KevinAOEDissectAbility extends AOEAbility{
 
     /**

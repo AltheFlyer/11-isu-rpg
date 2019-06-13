@@ -1,3 +1,10 @@
+/**
+ * [JasmineRepositionAbility.java]
+ * a free teleport with an energy condition
+ * @version 1.0
+ * @author Kevin Liu
+ * @since June 7, 2019
+ */
 public class JasmineRepositionAbility extends BasicMoveAbility {
     /**
      * [JasmineRepositionAbility]

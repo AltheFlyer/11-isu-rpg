@@ -1,5 +1,11 @@
 import utils.AnimatedSprite;
-
+/**
+ * [KevinBasicAbility.java]
+ * basic single attack in a row that also afflicts DissectedStatus
+ * @version 1.0
+ * @author Kevin Liu
+ * @since June 9, 2019
+ */
 public class KevinBasicAbility extends SingleAbility {
     /**
      * [KevinBasicAbility]

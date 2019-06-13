@@ -2,6 +2,13 @@ import utils.AnimatedSprite;
 
 import java.awt.*;
 
+/**
+ * [FMGAbility.java]
+ * A mass AOE ability that only affects marked targets
+ * @version 1.0
+ * @author Kevin Liu
+ * @since June 11, 2019
+ */
 public class FMGAbility extends AOEAbility{
 
     /**

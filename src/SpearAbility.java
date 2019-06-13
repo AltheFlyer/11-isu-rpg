@@ -1,7 +1,13 @@
 import utils.AnimatedSprite;
 
 import java.awt.Graphics;
-
+/**
+ * [SpearAbility.java]
+ * low range high damage attack
+ * @version 1.0
+ * @author Kevin Liu
+ * @since May 31, 2019
+ */
 public class SpearAbility extends DamagingAbility {
 
     /**

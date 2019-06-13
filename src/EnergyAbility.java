@@ -2,6 +2,13 @@ import utils.AnimatedSprite;
 
 import java.awt.Graphics;
 
+/**
+ * [EnergyAbility.java]
+ * An energy replenishing ability
+ * @version 1.0
+ * @author Kevin Liu
+ * @since June 11, 2019
+ */
 public class EnergyAbility extends DamagingAbility{
     private double energyGain;
 

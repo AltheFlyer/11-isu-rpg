@@ -1,10 +1,16 @@
 import utils.AnimatedSprite;
-
+/**
+ * [SplitStreamAbility.java]
+ * pushes all entities in a row away from the center
+ * @version 1.0
+ * @author Kevin Liu
+ * @since June 7, 2019
+ */
 public class SplitStreamAbility extends AOEAbility{
 
     /**
-     * [AOEAbility]
-     * Constructor for an ability that ushes both sides back (players/enemies)
+     * [SplitStreamAbility]
+     * Constructor for an ability that pushes both sides back (players/enemies)
      * @param animation the animation that is played on ability case
      * @param name the displayed name of the ability
      * @param desc the displayed description of the ability

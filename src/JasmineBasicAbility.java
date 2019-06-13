@@ -1,5 +1,12 @@
 import utils.AnimatedSprite;
 
+/**
+ * [JasmineBasicAbility.java]
+ * a basic single attack that will reset Jasmine's diagonal move
+ * @version 1.0
+ * @author Kevin Liu
+ * @since June 7, 2019
+ */
 public class JasmineBasicAbility extends SingleAbility {
     /**
      * [JasmineBasicAbility]
