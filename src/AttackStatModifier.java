@@ -15,7 +15,7 @@ public class AttackStatModifier extends StatusEffect {
      * @param attackMod modification of attack as a whole number percentage
      */
     public AttackStatModifier(int attackMod) {
-        super("assets/icons/test.png", "Attack % Modifier", "Modifies attack", attackMod, 0, -1, true);
+        super("assets/icons/test.png", "Attack % Modifier", "Modifies attack", attackMod, 0, -1);
 
         positiveAttack = new Icon("assets/icons/attack_buff.png", "Attack up", "");
         negativeAttack = new Icon("assets/icons/attack_debuff.png", "Attack down", "");
@@ -27,6 +27,11 @@ public class AttackStatModifier extends StatusEffect {
             setIcon(negativeAttack);
             negativeAttack.setDescription("Decreases attack by " + (getStacks() * -1) + "%");
         }
+    }
+
+    @Override
+    public boolean isActiveImmediately() {
+        return true;
     }
 
     @Override
