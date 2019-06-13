@@ -1,4 +1,4 @@
-map_name moving_hallway1
+map_name moving_hallway1.txt
 position
 725
 625

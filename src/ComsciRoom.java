@@ -72,6 +72,6 @@ public class ComsciRoom extends MovingMap {
      */
     @Override
     public String getLevelName() {
-        return "CSLevel";
+        return "MangatLevel";
     }
 }

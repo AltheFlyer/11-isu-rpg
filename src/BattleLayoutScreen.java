@@ -12,7 +12,7 @@ import java.awt.event.MouseEvent;
  */
 public class BattleLayoutScreen extends GameScreen {
 
-    private String[] playerDebugNames = {"allen", "kevin", "bryan", "jasmine", "ethan"};
+    private String[] playerDebugNames = {"allen", "kevin", "jasmine", "ethan"};
     private Player[] playerList;
     private Player[][] grid;
     private Player selectedPlayer;
@@ -26,8 +26,12 @@ public class BattleLayoutScreen extends GameScreen {
     private Rectangle saveButton;
     private Rectangle continueButton;
 
-    public BattleLayoutScreen(GameManager game) {
+    private LevelScreen nextLevel;
+
+    public BattleLayoutScreen(GameManager game, LevelScreen level) {
         super(game);
+
+        nextLevel = level;
 
         grid = new Player[3][3];
 
@@ -181,11 +185,14 @@ public class BattleLayoutScreen extends GameScreen {
 
         if (isFullyClicked(continueButton)) {
             //This piece of code to transition to levelScreen is completely experimental
+            getGame().setScreen(nextLevel);
+            /*
             getGame().setScreen(new LevelScreen(getGame(), new Enemy[] {
                     new DecaEnemy(5,2),
                     new FlaskEnemy(5,0),
                     new ProcessingCloudEnemy(3, 1)
             }));
+             */
         }
     }
 
