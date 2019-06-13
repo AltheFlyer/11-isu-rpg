@@ -20,7 +20,7 @@ public class EthanTidesAbility extends AOEAbility{
      * @param desc the displayed description of the ability
      */
     EthanTidesAbility(AnimatedSprite animation, String name, String desc){
-        super (animation, name, desc, 20, 0,0,2, 0,2, 0,0, true, false);
+        super (animation, name, desc, 0, 1,0,2, 0,2, 0,0, true, false);
     }
 
     /**

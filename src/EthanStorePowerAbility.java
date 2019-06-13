@@ -19,7 +19,7 @@ public class EthanStorePowerAbility extends DamagingAbility{
      * @param desc the displayed description of the ability
      */
     EthanStorePowerAbility(AnimatedSprite animation, String name, String desc) {
-        super(animation, name, desc, 20,0, 0,0,0,0, false, true);
+        super(animation, name, desc, 20,1, 0,0,0,0, false, true);
     }
 
     /**
