@@ -7,6 +7,6 @@ wall_left floor floor floor floor floor floor floor floor floor floor floor floo
 wall_left floor floor floor floor floor floor floor floor floor floor floor floor floor wall_right
 wall_left floor floor floor floor floor exit exit exit floor floor floor floor floor wall_right
 bottom_left wall_down wall_down wall_down wall_down wall_down wall_down wall_down wall_down wall_down wall_down wall_down wall_down wall_down bottom_right
-comsci_room 100 625
-math_room 1350 325
+comsci_room 100 625 Acer Gang Laptop
+math_room 1350 325 Ticket to Papua New Guinea
 moving_hallway2 100 325
