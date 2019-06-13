@@ -23,11 +23,11 @@ public class JasmineBasicAbility extends SingleAbility {
     /**
      * action: This method will target and damage a single tile then lower the cooldown of waltz to 0
      * @param jointMap: The map that will be affected
-     * @param i: one of the selected coordinates
-     * @param j: the other selected coordinate
+     * @param x: one of the selected coordinates
+     * @param y: the other selected coordinate
      */
-    public void action(JointMap jointMap, int i, int j){
-        jointMap.target(i, j, getDamage());
+    public void action(JointMap jointMap, int x, int y){
+        jointMap.target(x, y, getDamage());
         getEntitySource().lowerCooldown(0,1);
     }
 }
