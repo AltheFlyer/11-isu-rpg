@@ -68,13 +68,13 @@ abstract public class OverworldMap {
 
     /**
      * [runEvent]
-     * runs the event that is happening in the current room, some rooms have no events
+     * runs the event leading up to battle that is happening in the current room, some rooms have no events
      * @param player the player inhabiting the room
      * @param npcs the array of NPCs inhabiting the room
-     * @return void
+     * @return boolean true when battle can start
      */
-    public void runEvent(OverworldPlayer player, OverworldNPC[] npcs) {
-
+    public boolean runEvent(OverworldPlayer player, OverworldNPC[] npcs) {
+        return false;
     }
 
 }

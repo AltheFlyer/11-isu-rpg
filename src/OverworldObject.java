@@ -15,6 +15,7 @@ abstract public class OverworldObject {
     private double yVelocity;
     private Rectangle boundingBox;
     private int size = 50;
+    private boolean interfaceOpen = false; //for objects with interactable interfaces
 
     public OverworldObject(int x, int y) {
         this.x = x;
@@ -24,17 +25,6 @@ abstract public class OverworldObject {
         this.boundingBox = new Rectangle(x,y,size,size);
     }
 
-
-    /*
-    public OverworldObject(int x, int y) {
-        this.x = x;
-        this.y = y;
-        this.boundingBox = new Rectangle(x,y,size,size);
-        this.xVelocity = 0;
-        this.yVelocity = 0;
-    }
-*/
-
     /**
      * [draw]
      * draws objects on the map
@@ -43,18 +33,7 @@ abstract public class OverworldObject {
      * @param player the player inhabiting the same map
      * @return void
      */
-    public void draw(Graphics g, OverworldMap map, OverworldPlayer player) {
-        g.setColor(Color.BLUE);
-        if (map instanceof RoomMap) { //regular drawing
-            g.fillOval(this.getX(), this.getY(), 50, 50); //modify size
-        } else { //draw object in relation to player location in map and moving map
-            int xDifference = player.getX() - this.getX();
-            int yDifference = player.getY() - this.getY();
-            int xLocation = 683 - xDifference;
-            int yLocation = 384 - yDifference;
-            g.fillOval(xLocation, yLocation, 50, 50);
-        }
-    }
+    public void draw(Graphics g, OverworldMap map, OverworldPlayer player) { }
 
     /**
      * [setX]
@@ -203,6 +182,36 @@ abstract public class OverworldObject {
      * @return void
      */
     public void checkInteractions(Rectangle hitbox) {
+
+    }
+
+    /**
+     * [isInterfaceOpen]
+     * checks to see if this object's interactable interface is currently open
+     * for most objects, this is false
+     * @return interfaceOpen, the boolean delineating whether this object's interface is currently open
+     */
+    public boolean isInterfaceOpen() {
+        return interfaceOpen;
+    }
+
+    /**
+     * [toggleInterface]
+     * switches the boolean to show this object's interface on and off
+     * @return void
+     */
+    public void toggleInterface() {
+        this.interfaceOpen = !(this.interfaceOpen);
+    }
+
+    /**
+     * [openInterface]
+     * draws the object's interactable interface, if it has one
+     * overridden in each specific subclass because each interface is different
+     * @param g the graphics object to draw with
+     * @return void
+     */
+    public void openInterface(Graphics g) {
 
     }
 
