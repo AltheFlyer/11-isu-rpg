@@ -850,6 +850,7 @@ public class GameIO {
         String[] tokens = lines[0].split(" ");
         int totalObjects = Integer.parseInt(tokens[0]);
         objects = new OverworldObject[totalObjects];
+        System.out.println(totalObjects);
 
         for (int i = 0; i < totalObjects; ++i) {
             tokens = lines[i + 1].split(" ");
@@ -864,9 +865,9 @@ public class GameIO {
                 } else if (tokens[0].equals("sweller")) {
                     minRadius = Integer.parseInt(tokens[6]);
                     objects[i] = new Sweller(x, y, respawnX, respawnY, radius);
-                } else if ((tokens[0].equals("laser"))) {
-                    objects[i] = new LaserEmitter(x, y);
                 }
+            } else if ((tokens[0].equals("laser"))) {
+                objects[i] = new LaserEmitter(x, y);
             }
         }
         return objects;

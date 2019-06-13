@@ -32,6 +32,14 @@ public class LaserEmitter extends OverworldObject {
         }
     }
 
+    /**
+     * [draw]
+     * draws this object and also the ball that it spawns
+     * @param g the graphics object to draw with
+     * @param map the OverworldMap the object is inhabiting
+     * @param player the player inhabiting the same map
+     * @return void
+     */
     @Override
     public void draw(Graphics g, OverworldMap map, OverworldPlayer player) {
         super.draw(g, map, player);
