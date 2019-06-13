@@ -843,7 +843,7 @@ public class GameIO {
     public OverworldObject[] getObjects(String path) {
         String text = readFile(path);
         OverworldObject[] objects;
-        int x, y, radius, respawnX, respawnY;
+        int x, y, radius, respawnX, respawnY, minRadius;
 
         String[] lines = text.split("\n");
 
@@ -862,8 +862,13 @@ public class GameIO {
                 if (tokens[0].equals("orbiter")) {
                     objects[i] = new Orbiter(x, y, respawnX, respawnY, x - radius, y);
                 } else {
+                    minRadius = Integer.parseInt(tokens[6]);
                     objects[i] = new Sweller(x, y, respawnX, respawnY, radius);
                 }
+            } else if ((tokens[0].equals("laser"))) {
+                x = Integer.parseInt(tokens[1]);
+                y = Integer.parseInt(tokens[2]);
+                objects[i] = new LaserEmitter(x, y);
             }
         }
         return objects;

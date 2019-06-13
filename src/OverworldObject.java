@@ -206,4 +206,15 @@ abstract public class OverworldObject {
         }
     }
 
+    /**
+     * [checkInteractions]
+     * checks if player's interaction hitbox is intersecting with this object
+     * empty for most Overworld objects, but some types have an interaction
+     * @param hitbox, the player's ineraction hitbox
+     * @return void
+     */
+    public void checkInteractions(Rectangle hitbox) {
+
+    }
+
 }
