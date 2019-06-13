@@ -12,7 +12,7 @@ public class KevinAOEDissectAbility extends AOEAbility{
      * @param desc the displayed description of the ability
      */
     KevinAOEDissectAbility(AnimatedSprite animation, String name, String desc){
-        super (animation, name, desc, 60, 0, 3,0, 2,0, 0,0, true, false);
+        super (animation, name, desc, 50, 0, 3,0, 2,0, 0,0, true, false);
     }
 
     /**
@@ -41,7 +41,7 @@ public class KevinAOEDissectAbility extends AOEAbility{
      */
     @Override
     public void indicateValidTiles(JointMap jointMap){
-        if (getEntitySource().getEnergy() == 60) {
+        if (getEntitySource().getEnergy() == 50) {
             jointMap.indicate(3,getEntitySource().getYGrid());
             jointMap.isTargetable(3,getEntitySource().getYGrid());
         }

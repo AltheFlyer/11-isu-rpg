@@ -3,10 +3,10 @@ spritesheets/kevin.png 1 5 500
 health 120
 attack 40
 defence 0
-energy 100
+energy 110
 ABILITIES 5
 KevinBasicAbility "scalpel" "An incision that will inflict dissect, effective on marked targets" spritesheets/scalpel.png 1 3 200
-KevinAOEDissectAbility "breakthrough" "an experimental breakthrough that mass dissects all targets in a row, only usable at 60 energy" spritesheets/breakthrough.png 1 2 500
+KevinAOEDissectAbility "breakthrough" "an experimental breakthrough that mass dissects all targets in a row, only usable at 50 energy" spritesheets/breakthrough.png 1 2 500
 KevinDissectAbility "dissect" "A dissection that does 15 damage per dissect stack and gives you 10 energy per dissect stack on target" spritesheets/dissection.png 1 3 400
 EnergyAbility "cellular resp" "give a friendly player 40 energy" spritesheets/mitochondria.png 1 3 250 60 1 2 2 0 40
 BasicMoveAbility "step" "movement to an adjacent tile" 30 1 1
