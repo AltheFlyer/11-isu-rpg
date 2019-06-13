@@ -66,6 +66,13 @@ public class MapScreen extends GameScreen {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
 
+        if (inventory.containsKey(" reset game")){
+            getIO().resetProgress();
+
+
+            getGame().setLevel("tutorial");
+        }
+
         //initializing the text drawer
         if (textDrawer == null) {
             textDrawer = new TextDrawer(g,"",150,650,1150,25);
@@ -231,6 +238,7 @@ public class MapScreen extends GameScreen {
                         if (currency >= items[j].getCost()) {
                             currency -= items[j].getCost();
                             inventory.put(items[j].getName(), 1);
+                            System.out.println(inventory);
                             npcs[i].setMessage("Thanks for buying a" + items[j].getName() + ".");
                         } else {
                             npcs[i].setMessage("Scram, twerp. Go steal from someone else.");

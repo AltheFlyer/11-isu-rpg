@@ -1,3 +1,0 @@
-red 2
-holy_hand_grenade 5
-bone_hurting_juice 10

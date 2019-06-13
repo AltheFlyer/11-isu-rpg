@@ -58,7 +58,7 @@ public class GameIO {
      */
     public void resetProgress() {
 
-        currency = 0;
+        currency = 100;
         writeCurrency();
 
         currentDay = 1;
@@ -69,6 +69,9 @@ public class GameIO {
         mapX = 400;
         mapY = 400;
         writeMapData();
+
+        inventory = new HashMap<>();
+        writeInventory();
     }
 
     /**

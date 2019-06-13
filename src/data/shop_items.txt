@@ -1,7 +1,8 @@
 Shopkeeper Ken
-5
+6
 100 800 200 AP English Textbook
 100 800 250 Strange Substance
 100 800 300 Acer Gang Laptop
 100 800 350 Ticket to Papua New Guinea
 100 800 400 Pendulum
+0 800 450 reset game
