@@ -12,12 +12,21 @@ public class Door extends OverworldTile {
     private String doorPath;
     private int newX;
     private int newY;
+    private String itemNeeded;
 
     public Door(int x, int y, boolean walkable, int tileSize, String tileName, String doorPath, int newX, int newY) {
         super(x, y, walkable, tileSize, tileName);
         this.doorPath = doorPath;
         this.newX = newX;
         this.newY = newY;
+    }
+
+    public Door(int x, int y, boolean walkable, int tileSize, String tileName, String doorPath, int newX, int newY, String itemNeeded) {
+        super(x, y, walkable, tileSize, tileName);
+        this.doorPath = doorPath;
+        this.newX = newX;
+        this.newY = newY;
+        this.itemNeeded = itemNeeded;
     }
 
     public String getDoorPath() { return this.doorPath; }
