@@ -15,7 +15,7 @@ public class ComsciRoom extends MovingMap {
         super(fileManager, mapPath);
     }
 
-    public void runEvent(OverworldPlayer player, OverworldNPC[] npcs) {
+    public boolean runEvent(OverworldPlayer player, OverworldNPC[] npcs) {
         if (npcs[0].isTalking()) {
             questStart = true;
             npcs[1].setMessage("going");
@@ -34,8 +34,12 @@ public class ComsciRoom extends MovingMap {
         }
         if (questCleared()) {
             npcs[0].setMessage("Thanks for doing that. They were getting real annoying. Kinda sad I have to do this" +
-                    " after what you just did for me, but, well, a game's a game, right?");
+                    " after what you just did for me, but, well, a game's a game, right?         ");
+            if (npcs[0].isTalking()) {
+                return true;
+            }
         }
+        return false;
     }
 
     public boolean questCleared() {

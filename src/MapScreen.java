@@ -115,7 +115,12 @@ public class MapScreen extends GameScreen {
             }
         }
 
-        map.runEvent(player,npcs);
+        if (map.runEvent(player,npcs)) {
+            getIO().setMapData("comsci_room",player.getX(),player.getY());
+            if (textDrawer.getCharactersWritten() == textDrawer.getTextLength()) {
+                getGame().setLevel("CSLevel");
+            }
+        }
 
         framerate.draw(g, 10, 10);
 
